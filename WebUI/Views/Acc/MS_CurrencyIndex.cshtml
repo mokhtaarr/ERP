@@ -1,0 +1,201 @@
+﻿@using Inv.WebUI.Resources
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+    ViewBag.Title = SystemResource.Currencies;
+}
+
+<div class="row bg-white">
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" data-toggle="tab" href="#BasicData">@SystemResource.BasicData</a>
+            <a class="nav-item nav-link" data-toggle="tab" href="#currencyCategories">@SystemResource.currencyCategories</a>
+            <a class="nav-item nav-link" data-toggle="tab" href="#currencyNames">@SystemResource.currencyNames</a>
+            <a class="nav-item nav-link" data-toggle="tab" href="#CurrencyParityRates">@SystemResource.CurrencyParityRates</a>
+        </div>
+    </nav>
+
+    <div class="tab-content col-12">
+        <div id="BasicData" class="tab-pane fade show active">
+            <div class="row">
+                <div class="col-md-3 d-flex">
+                    <label class="col-md-1 ">@SystemResource.Code</label>
+                    <input id="CurrencyCode" disabled name="CurrencyCode" type="text" class="form-control input-sm  text_Display addable" placeholder="@SystemResource.Code">
+                </div>
+
+                <div class="col-md-1 text-center">
+                    <button type="button" class="src-btn btn btn-warning xaddable xeditable" id="btnMS_CurrencySearch" name="btnSearch">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-around col-md-2">
+                    <label for="DefualtCurrency" class="col-md-2">@SystemResource.DefualtCurrency</label>
+                    <div class="switch-button switch-button-yesno">
+                        <input type="checkbox" name="DefualtCurrency" id="DefualtCurrency"><span>
+                            <label for="DefualtCurrency"></label>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-3 d-flex">
+                    <label class="col-md-1">@SystemResource.ConversionFactor</label>
+                    <input id="Rate" disabled name="Rate" type="number" class="form-control input-sm  text_Display addable" placeholder="">
+                </div>
+
+                <div class="col-md-3 d-flex">
+                    <label class="col-md-2">@SystemResource.NoDecimalPlaces</label>
+                    <input id="DecimalPlaces" disabled name="DecimalPlaces" type="number" class="form-control input-sm  text_Display addable" placeholder="@SystemResource.NoDecimalPlaces">
+                </div>
+
+                <div class="col-md-6 d-flex">
+                    <label class="col-md-1" placeholder="@SystemResource.Name_Arabic">@SystemResource.Name_Arabic</label>
+                    <input id="CurrencyDescA" disabled name="CurrencyDescA" type="text" class="form-control input-sm  text_Display addable editable">
+                </div>
+
+                <div class="col-md-6 d-flex">
+                    <label class="col-md-1">@SystemResource.Name_English</label>
+                    <input id="CurrencyDescE" disabled name="CurrencyDescE" type="text" class="form-control input-sm  text_Display addable editable" placeholder="@SystemResource.Name_English">
+                </div>
+
+                <div class="col-md-4 d-flex">
+                    <label class="col-md-2">@SystemResource.LastModifiedDate</label>
+                    <input id="LastModify" disabled name="LastModify" type="date" class="form-control input-sm  text_Display addable" placeholder="@SystemResource.LastModifiedDate">
+                </div>
+                <div class="col-md-4 d-flex">
+                    <label class="col-md-1">@SystemResource.Symbol</label>
+                    <input id="CurrencySymbol" disabled name="CurrencySymbol" type="text" class="form-control input-sm  text_Display addable" placeholder="@SystemResource.Symbol">
+                </div>
+                <div class="col-md-4 d-flex">
+                    <label class="col-md-2">@SystemResource.fractionalUnit</label>
+                    <input id="fractionalUnit" disabled name="fractionalUnit" type="text" class="form-control input-sm  text_Display addable" placeholder="@SystemResource.fractionalUnit">
+                </div>
+
+                <div class="col-md-12 d-flex">
+                    <label style="clear:both;" class="col-md-1 ">@SystemResource.Notes</label>
+                    <textarea id="Remarks" disabled name="Remarks" class="form-control input-sm  text_Display addable editable" placeholder="@SystemResource.Notes"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div id="currencyCategories" class="tab-pane fade">
+            <div class="col-lg-12">
+                <table id="divCurrencyCategoryGrid"></table>
+            </div>
+        </div>
+
+        <div id="currencyNames" class="tab-pane fade">
+            <div class="row">
+                <div id="_3omla" class="col-lg-6 p-0 div_Balance">
+                    <div class="col-md-12 ">
+                        <label class="col-lg-12 text-center"> @SystemResource.BaseCurrency </label>
+                    </div>
+                    <div class="col-md-12 ">
+                        <div class="row">
+                            <label class="col-md-2 ">@SystemResource.Name @SystemResource.singleCurrency</label>
+                            <div class="col-md-5">
+                                <input id="singleCurencyname" disabled name="singleCurencyname" type="text" class="form-control input-sm text_Display" placeholder="@SystemResource.Name 1">
+                            </div>
+                            <div class="col-md-5">
+                                <input id="singleCurencyname2" disabled name="singleCurencyname2" type="text" class="form-control input-sm text_Display" placeholder="@SystemResource.Name 2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 ">
+                        <div class="row">
+                            <label class="col-md-2 ">@SystemResource.Name @SystemResource.DoubleCurrency</label>
+                            <div class="col-md-5">
+                                <input id="DoubleCurencyname" disabled name="DoubleCurencyname" type="text" class="form-control input-sm text_Display" placeholder="@SystemResource.Name 1">
+                            </div>
+                            <div class="col-md-5">
+                                <input id="DoubleCurencyname2" disabled name="DoubleCurencyname2" type="text" class="form-control input-sm text_Display" placeholder="@SystemResource.Name 2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 ">
+                        <div class="row">
+                            <label class="col-md-2 ">@SystemResource.Name @SystemResource.Currency (3-10)</label>
+                            <div class="col-md-5">
+                                <input id="CurrancyNameOverthree" disabled name="CurrancyNameOverthree" type="text" class="form-control input-sm  text_Display " placeholder="@SystemResource.Name 1">
+                            </div>
+                            <div class="col-md-5">
+                                <input id="CurrancyNameOverthree2" disabled name="CurrancyNameOverthree2" type="text" class="form-control input-sm  text_Display" placeholder="@SystemResource.Name 2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 ">
+                        <div class="row">
+                            <label class="col-md-2 ">@SystemResource.Name @SystemResource.currencyCollection</label>
+                            <div class="col-md-5">
+                                <input id="CollectionCurrencyName" disabled name="CollectionCurrencyName" type="text" class="form-control input-sm  text_Display " placeholder="@SystemResource.Name 1">
+                            </div>
+                            <div class="col-md-5">
+                                <input id="CollectionCurrencyName2" disabled name="CollectionCurrencyName2" type="text" class="form-control input-sm  text_Display" placeholder="@SystemResource.Name 2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="Ma7ali" class="col-lg-6 p-0 div_Balance">
+                    <div class="col-md-12 ">
+                        <label class="col-lg-12 text-center"> @SystemResource.fractionalUnit </label>
+                    </div>
+                    <div class="col-md-12 ">
+                        <div class="row">
+                            <label class="col-md-2 ">@SystemResource.Name @SystemResource.singleCurrency</label>
+                            <div class="col-md-5">
+                                <input id="singleCurencyFractionname" disabled name="singleCurencyFractionname" type="text" class="form-control input-sm text_Display" placeholder="@SystemResource.Name 1">
+                            </div>
+                            <div class="col-md-5">
+                                <input id="singleCurencyFractionname2" disabled name="singleCurencyFractionname2" type="text" class="form-control input-sm text_Display" placeholder="@SystemResource.Name 2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 ">
+                        <div class="row">
+                            <label class="col-md-2 ">@SystemResource.Name @SystemResource.DoubleCurrency</label>
+                            <div class="col-md-5">
+                                <input id="DoubleCurencyFractionname" disabled name="DoubleCurencyFractionname" type="text" class="form-control input-sm text_Display" placeholder="@SystemResource.Name 1">
+                            </div>
+                            <div class="col-md-5">
+                                <input id="DoubleCurencyFractionname2" disabled name="DoubleCurencyFractionname2" type="text" class="form-control input-sm text_Display" placeholder="@SystemResource.Name 2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 ">
+                        <div class="row">
+                            <label class="col-md-2 ">@SystemResource.Name @SystemResource.Currency (3-10)</label>
+                            <div class="col-md-5">
+                                <input id="CurrancyNameFractionOverthree" disabled name="CurrancyNameFractionOverthree" type="text" class="form-control input-sm  text_Display " placeholder="@SystemResource.Name 1">
+                            </div>
+                            <div class="col-md-5">
+                                <input id="CurrancyNameFractionOverthree2" disabled name="CurrancyNameFractionOverthree2" type="text" class="form-control input-sm  text_Display" placeholder="@SystemResource.Name 2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 ">
+                        <div class="row">
+                            <label class="col-md-2 ">@SystemResource.Name @SystemResource.currencyCollection</label>
+                            <div class="col-md-5">
+                                <input id="CollectionCurrencyFractionName" disabled name="CollectionCurrencyFractionName" type="text" class="form-control input-sm  text_Display " placeholder="@SystemResource.Name 1">
+                            </div>
+                            <div class="col-md-5">
+                                <input id="CollectionCurrencyFractionName2" disabled name="CollectionCurrencyFractionName2" type="text" class="form-control input-sm  text_Display" placeholder="@SystemResource.Name 2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="CurrencyParityRates" class="tab-pane fade">
+            <div class="col-lg-12">
+                <table id="divCurrencyRateGrid"></table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 mt-3">
+        <table data-main="mainTable" id="divCurrenciesGrid"></table>
+    </div>
+</div>
+
+<script src="~/ClientApp/Pages/Acc/MS_Currency.js"></script>

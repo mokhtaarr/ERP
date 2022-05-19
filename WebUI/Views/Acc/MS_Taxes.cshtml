@@ -1,0 +1,114 @@
+﻿@using Inv.WebUI.Resources
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+    ViewBag.Title = SystemResource.Taxes;
+}
+
+<style>
+    .cardTremDetails {
+        box-shadow: -2px -5px 3px #d2d2d2;
+    }
+
+    .cardTrem {
+        /*border: 2px solid #ddd;*/
+        margin-bottom: 10px;
+        padding: 16px !important;
+    }
+
+    .d-flex {
+        align-items: center;
+        height: 45px;
+        margin-bottom: 1px;
+    }
+
+        .d-flex label {
+            min-width: 25%;
+            margin-bottom: 0;
+        }
+
+        .d-flex input[type="checkbox"] {
+            width: 20px;
+            margin: 0 6px !important;
+        }
+
+    .cardTremDetails i.fa {
+        margin-left: 5px;
+    }
+</style>
+
+<div class="row bg-white pt-3">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-2 d-flex">
+                <label class="">@SystemResource.Code</label>
+                <input class="form-control" type="text" name="TaxCode" id="TaxCode" value="" placeholder="@SystemResource.Code" />
+            </div>
+
+            <div class="col-md-2 d-flex">
+                <button type="button" class="src-btn btn btn-warning " id="btnMS_TaxesSearch" name="btnSearch">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+
+            <div class="col-md-4 d-flex">
+                <label class="">@SystemResource.TaxCode</label>
+                <input class="form-control" type="text" name="EtaxCode" id="EtaxCode" value="" placeholder="@SystemResource.TaxCode" />
+            </div>
+
+            <div class="d-flex align-items-center justify-content-around col-md-4">
+                <label for="IsAccomulative" class="col-md-4">@SystemResource.CumulativeCalculation</label>
+                <div class="switch-button switch-button-yesno">
+                    <input type="checkbox" name="IsAccomulative" id="IsAccomulative"><span>
+                        <label for="IsAccomulative"></label>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-4 d-flex">
+                <label class="">@SystemResource.Name_Arabic</label>
+                <input class="form-control" type="text" name="TaxNameA" id="TaxNameA" value="" placeholder="@SystemResource.Name_Arabic" />
+            </div>
+            <div class="col-md-4 d-flex">
+                <label class="">@SystemResource.Name_English</label>
+                <input class="form-control" type="text" name="TaxNameE" id="TaxNameE" value="" placeholder="@SystemResource.Name_English" />
+            </div>
+            <div class="col-md-4 d-flex">
+                <label for="SystemIssuedOnly" class="">@SystemResource.Notes</label>
+                <textarea class="form-control" type="checkbox" name="Remarks" id="Remarks" value="" placeholder="@SystemResource.Notes"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-4 d-flex">
+                <label class="">@SystemResource.TaxDirection</label>
+                <select id="PlusOrMinus" name="PlusOrMinus" class="form-control">
+                    <option value="null">@SystemResource.TaxDirection</option>
+                    <option value="0">@SystemResource.Discount3</option>
+                    <option value="1">@SystemResource.Addition</option>
+                </select>
+            </div>
+            <div class="col-md-4 d-flex">
+                <label class="">@SystemResource.TaxStyle</label>
+                <select id="TaxStyle" name="TaxStyle" class="form-control">
+                    <option value="null">@SystemResource.TaxStyle</option>
+                    <option value="0">@SystemResource.percentage2</option>
+                    <option value="1">@SystemResource.Value2</option>
+                    <option value="2">@SystemResource.Exempt</option>
+                </select>
+            </div>
+            <div class="col-md-4 d-flex">
+                <label for="SystemIssuedOnly" class="">@SystemResource.App_Tax</label>
+                <input class="form-control" type="number" name="TaxRate" id="TaxRate" value="" placeholder="@SystemResource.App_Tax" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/ClientApp/Pages/Acc/MS_Taxes.js"></script>

@@ -1,0 +1,34 @@
+﻿@using Inv.WebUI.Resources
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+    ViewBag.Title = SystemResource.Cities;
+}
+
+<div class="row">
+    <div class="col-12 row bg-white p-3">
+        <label class="col-md-1 pading_2">@SystemResource.Code</label>
+        <div class="col-md-4">
+            <input id="CityCode" disabled name="CityCode" type="text" class="form-control input-sm  text_Display addable">
+        </div>
+        <div class="col-md-2 text-center">
+            <button type="button" class="src-btn btn btn-warning xaddable xeditable" id="btnMSGA_CitySearch" name="btnSearch">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+        <label class="col-md-1">@SystemResource.City</label>
+        <div class="col-md-4">
+            <input id="CityName" disabled name="CityName" type="text" class="form-control input-sm  text_Display addable editable">
+        </div>
+        <label class="col-md-1 pading_2">@SystemResource.City</label>
+        <div class="col-md-11">
+            <textarea id="Remarks" disabled name="Remarks" type="text" class="form-control text_Display addable editable"></textarea>
+        </div>
+    </div>
+
+    <div class="col-12 bg-white p-3 mt-4">
+        <table data-main="mainTable" id="divCitiesGrid"></table>
+    </div>
+</div>
+
+<script src="~/ClientApp/Pages/Definitions/MSGA_City.js"></script>

@@ -1,0 +1,269 @@
+﻿@using Inv.WebUI.Resources
+@{
+    ViewBag.Title = "LoginIndex";
+    Layout = "~/Views/Shared/LoginLayout.cshtml";
+}
+
+<input type="hidden" id="OnLogged" name="name" value="@Url.Action("OnLogged","Login")" />
+<input type="hidden" id="GetAPIUrl" name="name" value="@System.Configuration.ConfigurationManager.AppSettings["ServiceUrl"]" />
+
+<style>
+    .hide {
+        display:none !important;
+    }
+    .form-control {
+        /*margin: 10px;*/
+    }
+
+    #DataBaseLogin .form-conatiner {
+        padding: 50px 3px 16px 19px;
+    }
+
+    .container2 .clock {
+        width: 100% !important;
+    }
+
+    .d-flex {
+        display: flex;
+        align-items: center;
+    }
+
+    .CustmoLabel {
+        min-width: fit-content;
+        margin-right: 0px;
+        color: #ebebeb;
+        margin-bottom: 0;
+    }
+
+    #divConnection {
+        direction: rtl;
+    }
+
+    #AddDatabses .CustmoLabel{
+        color:#000;
+    }
+
+    #AddDatabses .select2-container {
+        margin: 10px
+    }
+
+    .form-group label, .form-group input {
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .ConnectionStringText {
+        background-color: #b5e9616e;
+        margin-bottom: 11px !important;
+        text-align: left;
+    }
+
+    .ColumPadding {
+        text-align: center !important;
+        min-width: 200px !important;
+    }
+
+    /*.select2-container {
+        width: 100%;
+    }*/
+</style>
+
+
+<div class="intro">
+    <div class="container2">
+        <div class="clock">
+            <div id="Date"></div>
+
+            <ul id="ul_clock">
+                <li id="hours"> </li>
+                <li id="point">:</li>
+                <li id="min"> </li>
+                <li id="point">:</li>
+                <li id="sec"> </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div class="" style="height: 100vh;">
+    <div class="content">
+        <div id="large-header" class="large-header bg" style="height:797px;">
+            <div class="col-xs-12" id="">
+                <div class="row">
+                    @**@
+                    <div id="DataBaseLogin" style="width: 60vw; margin: 15vh auto 0;">
+                        <div id="divConnection" class="form-conatiner">
+                            <div id="padding">
+                                <div class="form-group d-flex">
+                                    <label class="CustmoLabel">@SystemResource.ChooseDatabase</label>
+                                    <select class="form-control" id="Database" name="Database"></select>
+                                </div>
+                                @*<div class="form-group d-flex">
+                                    <label class="CustmoLabel">@SystemResource.UserName</label>
+                                    <input type="text" name="UserName" value="" class="form-control" id="UserName" placeholder="@SystemResource.UserName" />
+                                </div>
+                                <div class="form-group d-flex">
+                                    <label class="CustmoLabel">@SystemResource.App_Password</label>
+                                    <input type="text" name="Password" value="" class="form-control" id="Password" placeholder="@SystemResource.App_Password" />
+                                </div>*@
+                                <div class="form-group d-flex">
+                                    @*<input type="submit" class="btn btn-info form-control" id="" value="@SystemResource.ChooseDatabase" />*@
+                                    <input type="submit" class="btn btn-info form-control" id="Enter" value="دخول" />
+                                    <input type="submit" class="btn btn-warning form-control" id="Advanced" value="@SystemResource.Advanced" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="width: 60vw;">
+                            <table dir="rtl" style="display:none" class="text-center" id="GridConnection"></table>
+                        </div>
+                    </div>
+
+                    <div id="UserLoginInfo" style="display: none;">
+                        <div class="col-md-4  col-sm-4  col-xs-12"></div>
+                        <div class="col-md-4  col-sm-4  col-xs-12">
+                            <div id="divLogin" class="form-conatiner">
+                                <input type="hidden" class="login_input2" id="txtYear" placeholder="2018">
+                                <div id="">
+                                    <div class="text-center">
+                                        <img src="~/Content/Login/images/logo3.png" alt="logo" style="height: 125px; margin-bottom: 15px;">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" id="txtUserName" class="form-control" placeholder="enter your Name" required autocomplete="off">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" id="txtUserPassword" placeholder="enter your Password" required autocomplete="off">
+                                    </div>
+                                    <dvi class="form-group">
+                                        <select class="form-control" id="cmbLanguage">
+                                            <option value="ar">عربي</option>
+                                            <option value="en">English</option>
+                                        </select>
+                                    </dvi>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="chkRemember"> Remember me
+                                        </label>
+                                    </div>
+                                    <input type="button" class="btn btn-success btn-block" id="btnLogin" value="Login">
+                                </div>
+                            </div>
+                            <div id="divCompanies" class="form-conatiner" style="display: none;">
+                                <div id="">
+                                    <div id="padding">
+                                        <div class="text-center">
+                                            <img src="~/Content/Login/images/logo3.png" alt="logo" style="height: 125px; margin-bottom: 15px;">
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-control" id="cmbCompany" name="CompCode"></select>
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-control" id="cmbBranch" name="Language"></select>
+                                        </div>
+                                        <div class="clear"></div>
+                                        <div style="height: 35px;">
+                                            <input type="button" class="btn btn-warning" id="btnBack" value="back" style="margin-top:25px;float: left;">
+                                            <input type="submit" class="btn btn-success" id="btnOk" value="Enter" style="margin-top:25px;float: right;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4  col-sm-4  col-xs-12"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="AddDatabses" class="modal" tabindex="-1" role="dialog">
+    <input type="hidden" name="mode" id="mode" value="" />
+    <input type="hidden" name="ConnectionNumber" id="ConnectionNumber" value="" />
+    <div class="modal-dialog" role="document" dir="rtl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center">الاتصال بقاعدة البيانات</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group d-flex">
+                    <label class="CustmoLabel">اختر الخادم</label>
+                    <select name="ServerName" value="" class="form-control" id="ServerName"></select>
+                </div>
+                <div class="form-group d-flex">
+                    <label class="CustmoLabel">اختر قاعدة البيانات</label>
+                    <select name="InitialCatalog" value="" class="form-control" id="InitialCatalog"></select>
+                </div>
+                <div class="form-group d-flex">
+                    <label class="CustmoLabel">@SystemResource.UserName</label>
+                    <input type="text" name="DbUserName" value="" class="form-control" id="DbUserName" placeholder="@SystemResource.UserName" />
+                </div>
+                <div class="form-group d-flex">
+                    <label class="CustmoLabel">@SystemResource.App_Password</label>
+                    <input type="text" name="DbPassword" value="" class="form-control" id="DbPassword" placeholder="@SystemResource.App_Password" />
+                </div>
+                <div class="form-group d-flex">
+                    <label class="CustmoLabel" for="IntegratedSecurity">Integrated Security</label>
+                    <input type="checkbox" name="IntegratedSecurity" value="" class="form-control" id="IntegratedSecurity" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="form-group d-flex ConnectionStringText">
+                    <p class="col-md-12" id="connectionString"></p>
+                </div>
+                <button type="button" id="testConnectionString" class="btn btn-success">test connection</button>
+                <button type="button" id="saveConnectionString" class="btn btn-primary">@SystemResource.App_save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">@SystemResource.App_Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--    .........................login...............-->
+@*<div class="modal message_popup fade" id="MessageBoxDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="MessageBoxTitle">حذف</h4>
+                </div>
+                <div class="modal-body" style="max-height:200px; overflow:auto; text-align: center;">
+                    <div class="col-xs-12"> <h3 id="MessageBoxMessage">هل تريد الحذف حقا</h3></div>
+
+                    <div class="col-xs-5 text-center">
+                        <i class="glyphicon btn-danger"></i>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="MessageBoxOk" class="btn btn-danger">موافق</button>
+                    <button type="button" id="MessageBoxCancel" class="btn btn-warning" data-dismiss="modal">الغاء</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal message_popup fade" id="MessageBoxDialogwithoutclick" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="MessageBoxTitlewithoutclick">حذف</h4>
+                </div>
+                <div class="modal-body" style="max-height:200px; overflow:auto; text-align: center;">
+                    <div class="col-xs-12"> <h3 id="MessageBoxMessagewithoutclick"></h3></div>
+
+                    <div class="col-xs-5 text-center">
+                        <i class="glyphicon btn-danger"></i>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>*@
+
+<script src="~/ClientApp/MessageBox.js"></script>
+@*<script src="~/ClientApp/Pages/LoginComponent.js"></script>*@
+<script src="~/ClientApp/Pages/Login_.js"></script>

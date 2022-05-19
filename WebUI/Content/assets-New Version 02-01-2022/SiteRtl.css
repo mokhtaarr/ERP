@@ -1,0 +1,151 @@
+﻿@font-face {
+    font-family: 'DroidKufi-Regular';
+    src: url('../../fonts/DroidKufi-Regular.ttf') format('truetype');
+}
+
+*, body, html {
+    font-family: "DroidKufi-Regular" !important;
+    direction: rtl;
+    text-align: right;
+    font-size: 13px;
+}
+
+.tab-content label, .Div_Tree {
+    font-size: 13px;
+}
+
+ul.navbar-nav.ml-auto.navbar-right-top {
+    margin-right: auto !important;
+    margin-left: 0 !important;
+}
+
+.navbar-brand {
+    margin-left: 1rem;
+    margin-right: 0rem !important;
+}
+
+.navbar-brand span, .navbar-brand{
+    font-family: 'Circular Std Book' !important;
+}
+
+.navbar-right-top .nav-item {
+    border-right: 1px solid #e6e6f2 !important;
+    border-left: none !important;
+}
+
+.navbar-right-top .nav-item:first-child {
+    border: none !important;
+}
+
+.dropdown-menu-right {
+    right: unset !important;
+    left: 0 !important;
+}
+
+.nav-user-info .status {
+    float: right !important;
+    top: 7px !important;
+    left: 0px !important;
+    background-color: #7ee22b;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-left: 8px;
+}
+
+.statusUser {
+    display: flex;
+    align-items: center;
+}
+
+.mr-2, .mx-2 {
+    margin-left: 0.5rem !important;
+    margin-right: 0 !important;
+}
+
+.notification-list-user-img {
+    float: right !important;
+}
+
+.notification-list-user-block {
+    padding-left: 0 !important;
+    padding-right: 50px !important;
+}
+
+.notification-list-user-block span {
+    margin-left: 8px;
+    margin-right: 0 !important;
+    display: inline-flex;
+}
+
+.notification-list-user-block span:last-child{
+    margin-left: unset !important;
+}
+
+.connection-item span {
+    text-align: center;
+}
+
+.notification-info .notification-date {
+    display: inline-block !important;
+}
+
+#statusText {
+    margin-left: 0 !important;
+    margin-right: 0.5rem !important;
+}
+
+.dropdown-menu.dropdown-menu-right.nav-user-dropdown.show {
+    text-align: right;
+}
+
+.top-search-bar {
+    padding-right: 0px !important;
+    padding-left: 24px;
+}
+
+.fa, .fas, .far {
+    font-family: 'Font Awesome 5 Free' !important;
+}
+
+.fab {
+    font-family: 'Font Awesome 5 Brands' !important;
+}
+
+#cont {
+    margin: 0px 0px 0px !important;
+}
+
+.controleTree span {
+    padding-right: 10px;
+}
+
+.modal-footer > :not(:last-child) {
+    margin-right: 0 !important;
+    margin-left: 0.25rem;
+}
+
+.modal-header .close {
+    margin: -1rem auto -1rem -1rem;
+}
+
+#MessageBoxDialog .modal-header {
+    flex-direction: row-reverse;
+}
+
+#MessageBoxDialog .modal-body {
+    display: flex;
+    align-items: center;
+}
+
+.switch-button input[type=checkbox]:checked + span label {
+    float: left;
+}
+
+.switch-button label:before {
+    text-align: left;
+    padding-left: 10px;
+}
+.switch-button input[type=checkbox]:checked + span label:before {
+    padding-left: 24px;
+}

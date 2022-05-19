@@ -1,0 +1,272 @@
+﻿@using Inv.WebUI.Resources
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+    ViewBag.Title = SystemResource.CostCenter;
+}
+
+<style>
+    .disabledDiv {
+        pointer-events: none;
+        opacity: 0.6;
+    }
+    #Ma7ali::after {
+        top: 0;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-3 Div_Tree CustomStyleTree max-h-500 bg-white">
+        <div id="left" class="col-12 span3">
+            <div class="controleTree">
+                <input class="form-control customInputSearch" autocomplete="off" id="Tree_search" type="text">
+                <span data-toggle="collapse" class="Refrash">
+                    <a id="Refrash" href="#" title="Refrash">
+                        <span data-toggle="collapse">
+                            <i id="RE" class="fas fa-sync-alt" style="color: #e26d09;"></i>
+                        </span>
+                    </a>
+                </span>
+            </div>
+            <div id='Tree'></div>
+        </div>
+    </div>
+
+    <div class="col-md-9 Div_Tree bg-white max-h-500 p-3">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" data-toggle="tab" href="#home">بيانات مراكز التكلفة</a>
+                <a class="nav-item nav-link " data-toggle="tab" href="#Balances">الارصدة</a>
+                <a class="nav-item nav-link " data-toggle="tab" href="#BalancMonthly">الارصده الشهريه</a>
+            </div>
+        </nav>
+
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade show active col-12">
+                <div class="row">
+                    <div class="col-md-2 d-flex">
+                        <label>@SystemResource.Code</label>
+                        <input id="CostCenterCode" placeholder="@SystemResource.Code"  name="CostCenterCode" type="number" class="form-control">
+                    </div>
+
+                    <div class="col-md-1">
+                        <button type="button" class="src-btn btn btn-warning" id="btnCal_CostCentersSearch" name="btnSearch">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <div class="col-md-2 d-flex">
+                        <label>@SystemResource.level</label>
+                        <input id="CostCenterLevel" placeholder="@SystemResource.level"  name="CostCenterLevel" type="text" class="form-control">
+                    </div>
+
+                    <div class="col-md-3 d-flex">
+                        <label>@SystemResource.Center_type</label>
+                        <select id="CostType" name="CostType"  class="form-control">
+                            <option value="null"> @SystemResource.Center_type</option>
+                            <option value="1">@SystemResource.Main</option>
+                            <option value="2">فرعي</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label>طبيعة المركز</label>
+                        <select id="CenterCategory" name="CenterCategory"  class="form-control">
+                            <option value="null"> طبيعة المركز</option>
+                            <option value="1">اصول</option>
+                            <option value="2">خصوم</option>
+                            <option value="3">ايرادات</option>
+                            <option value="4">مصروفات</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-6 d-flex">
+                        <label>@SystemResource.Name_Arabic</label>
+                        <input id="CostCenterNameA" placeholder="@SystemResource.Name_Arabic"  name="CostCenterNameA" type="text" class="form-control">
+                    </div>
+                  
+                    <div class="col-md-6 d-flex">
+                        <label>@SystemResource.Name_English</label>
+                        <input id="CostCenterNameE" placeholder="@SystemResource.Name_English"  name="CostCenterNameE" type="text" class="form-control">
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label>@SystemResource.maincenter</label>
+                        <select id="mainCostCenterId" name="mainCostCenterId"  class="form-control">
+                            <option value="null">@SystemResource.maincenter</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-5 d-flex">
+                        <label>قائمة التدفقات النقديه</label>
+                        <select id="CashFlowList" name="CashFlowList"  class="form-control">
+                            <option value="null">قائمة التدفقات النقديه</option>
+                            <option value="1">بدون</option>
+                            <option value="2">انشطة</option>
+                            <option value="3">انشطة استثمارية</option>
+                            <option value="4">انشطة تمويلية</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3 d-flex">
+                        <label>@SystemResource.Code2 @SystemResource.Currency</label>
+                        <select id="CurrencyId" name="CurrencyId"  class="form-control">
+                            <option value="null">@SystemResource.Code2 @SystemResource.Currency</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label>@SystemResource.ConversionFactor</label>
+                        <input id="Rate"  name="Rate" placeholder="@SystemResource.ConversionFactor" type="number" class="form-control">
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label>@SystemResource.AnalyticalCode</label>
+                        <select id="CurrencyCode" name="CurrencyCode"  class="form-control">
+                            <option value="null">@SystemResource.AnalyticalCode</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label>المراكز المجمعة</label>
+                        <select id="CurrencyCode" name="CurrencyCode"  class="form-control">
+                            <option value="null">المراكز المجمعة</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-12 d-flex">
+                        <label>@SystemResource.Notes</label>
+                        <textarea id="RemarksA"  name="RemarksA" type="text" class="form-control"> ملاحظات</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Balances" class="tab-pane fade">
+                <div class="row">
+                    <div id="_3omla" class="col-lg-6 p-0 div_Balance">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <label class="col-md-2 "> @SystemResource.Currency </label>
+                                <div class="col-md-5 text-center">
+                                    <label class="text-center"> @SystemResource.Debtor </label>
+                                </div>
+                                <div class="col-md-5 text-center ">
+                                    <label class=" text-center "> @SystemResource.Creditor </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <label class="col-md-2   ">  @SystemResource.OpeningBalance </label>
+                                <div class="col-md-5">
+                                    <input id="OpenningBalanceDepitCurncy"  name="OpenningBalanceDepitCurncy" type="number" class="form-control ">
+                                </div>
+                                <div class="col-md-5">
+                                    <input id="OpenningBalanceCreditCurncy"  name="OpenningBalanceCreditCurncy" type="number" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <label class="col-md-2  ">@SystemResource.CurrentMovement</label>
+                                <div class="col-md-5">
+                                    <input id="CostCenterCurrTrancDepitCurncy"  name="CostCenterCurrTrancDepitCurncy" type="number" class="form-control ">
+                                </div>
+                                <div class="col-md-5">
+                                    <input id="CostCenterCurrTrancCreditCurncy"  name="CostCenterCurrTrancCreditCurncy" type="number" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <label class="col-md-2  "> @SystemResource.Total  </label>
+                                <div class="col-md-5">
+                                    <input id="CostCenterTotalDebitCurncy"  name="CostCenterTotalDebitCurncy" type="number" class="form-control ">
+                                </div>
+                                <div class="col-md-5">
+                                    <input id="CostCenterTotaCreditCurncy"  name="CostCenterTotaCreditCurncy" type="number" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <label class="col-md-2   "> @SystemResource.Balance  </label>
+                                <div class="col-md-5">
+                                    <input id="BalanceDebitCurncy"  name="BalanceDebitCurncy" type="number" class="form-control ">
+                                </div>
+                                <div class="col-md-5">
+                                    <input id="BalanceCreditCurncy"  name="BalanceCreditCurncy" type="number" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="Ma7ali" class="col-lg-6 p-0 div_Balance">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <label class=" col-md-2 "> @SystemResource.Local </label>
+                                <div class="col-md-5 text-center">
+                                    <label class=" text-center"> @SystemResource.Debtor </label>
+                                </div>
+                                <div class="col-md-5 text-center">
+                                    <label class=" text-center"> @SystemResource.Creditor </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <label class="col-md-2  ">  @SystemResource.OpeningBalance </label>
+                                <div class="col-md-5">
+                                    <input id="OpenningBalanceDepit"  name="OpenningBalanceDepit" type="number" class="form-control">
+                                </div>
+                                <div class="col-md-5">
+                                    <input id="OpenningBalanceCredit"  name="OpenningBalanceCredit" type="number" class="form-control ">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <label class="col-md-2  ">@SystemResource.CurrentMovement</label>
+                                <div class="col-md-5">
+                                    <input id="CostCenterCurrTrancDepit"  name="CostCenterCurrTrancDepit" type="number" class="form-control ">
+                                </div>
+                                <div class="col-md-5">
+                                    <input id="CostCenterCurrTrancCredit"  name="CostCenterCurrTrancCredit" type="number" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <label class="col-md-2  ">@SystemResource.Total</label>
+                                <div class="col-md-5">
+                                    <input id="CostCenterTotalDebit"  name="CostCenterTotalDebit" type="number" class="form-control ">
+                                </div>
+                                <div class="col-md-5">
+                                    <input id="CostCenterTotaCredit"  name="CostCenterTotaCredit" type="number" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <label class="col-md-2  ">@SystemResource.Balance</label>
+                                <div class="col-md-5">
+                                    <input id="BalanceDebitLocal"  name="BalanceDebitLocal" type="number" class="form-control ">
+                                </div>
+                                <div class="col-md-5">
+                                    <input id="BalanceCreditLocal"  name="BalanceCreditLocal" type="number" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="BalancMonthly" class="tab-pane fade">
+                <div class="col-lg-12  ">
+                    <table id="divBalancMonthlyGrid"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/ClientApp/Pages/Acc/CostCenters.js"></script>

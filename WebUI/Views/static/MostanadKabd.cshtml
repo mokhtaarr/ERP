@@ -1,0 +1,917 @@
+﻿@{
+    Layout = "~/Views/Acc/static/SataticLayout.cshtml";
+    ViewBag.Titel = "مستند القبض";
+}
+
+<div class="container">
+    <div class="tab-content">
+        <nav class="">
+            <ul class="nav nav-pills">
+                <li class="active"><a data-toggle="pill" href="#home">مستند القبض</a></li>
+                <li><a data-toggle="pill" href="#menu1">فئات العملات</a></li>
+                <li><a data-toggle="pill" href="#menu2">الاقساط</a></li>
+                <li><a data-toggle="pill" href="#menu3">مبالغ اخرى</a></li>
+                <li><a data-toggle="pill" href="#menu4">الشيك</a></li>
+                <li><a data-toggle="pill" href="#menu5">بيانات اضافية</a></li>
+                <li><a data-toggle="pill" href="#menu6">عمولة التحصيل</a></li>
+                <li><a data-toggle="pill" href="#menu7">فواتير</a></li>
+                <li><a data-toggle="pill" href="#menu8">المرفقات</a></li>
+            </ul>
+        </nav>
+        <!--######################################################################################################################################3-->
+        <div class="container form-conatiner tab-pane fade in active" style="direction: rtl;" id="home">
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium;">كود البنك</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 50px;width: 200px">
+                    <input class="form-control input-sm" id="text" name="text" style="width: 204px">
+                    <label style="font-size:medium; margin-right: 100px;">رقم الحافظه</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 15px; width: 300px">
+
+
+
+                </div>
+            </form>
+            <p></p>
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium;">رقم الحساب</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 30px; width: 408px">
+                </div>
+                <div class="form-group" style="margin-right: 20px;">
+                    <label style="font-size:medium;margin-right: 80px;">رقم مستند الحافظه</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 20px; width: 245px;">
+                </div>
+            </form>
+
+            <form class="form-inline" action="/action_page.php" style="margin-top: 20px;">
+                <div class="form-group">
+                    <label style="font-size:medium;">كود البنك الجهه</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 10px;width: 200px">
+                    <input class="form-control input-sm" id="text" name="text" style="width: 205px">
+                </div>
+            </form>
+
+            <form class="form-inline" action="/action_page.php" style="margin-top: 20px;">
+                <div class="form-group">
+                    <label style="font-size:medium;">رقم حساب الجهه</label>
+                    <input class="form-control input-sm" id="text" name="text" style="width: 407px">
+                </div>
+            </form>
+
+            <form class="form-inline" action="/action_page.php" style="margin-top: 20px;">
+                <div class="form-group">
+                    <label style="font-size:medium;">رقم الشيك</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 38px;width: 407px">
+                </div>
+            </form>
+
+            <form class="form-inline" action="/action_page.php" style="margin-top: 20px;">
+                <div class="form-group">
+                    <label style="font-size:medium;">تاريخ الاستحقاق</label>
+                    <select class="form-control" style="direction: ltr; width: 407px; margin-right: 8px;">
+                        <option>1/11/2021</option>
+                        <option>1/12/2021</option>
+                        <option>1/01/2022</option>
+                        <option>1/02/2022</option>
+                        <option>1/03/2022</option>
+                        <option>1/04/2022</option>
+                        <option>1/05/2022</option>
+                        <option>1/06/2022</option>
+                        <option>1/07/2022</option>
+                        <option>1/08/2022</option>
+                        <option>1/09/2022</option>
+                        <option>1/10/2022</option>
+                        <option>1/11/2022</option>
+                        <option>1/12/2022</option>
+
+                    </select>
+
+                    <label style="font-size:medium; margin-right: 100px;">تاريخ الدفع</label>
+                    <select class="form-control" style="direction: ltr; width: 310px; margin-right: 20px;">
+                        <option>1/11/2021</option>
+                        <option>1/12/2021</option>
+                        <option>1/01/2022</option>
+                        <option>1/02/2022</option>
+                        <option>1/03/2022</option>
+                        <option>1/04/2022</option>
+                        <option>1/05/2022</option>
+                        <option>1/06/2022</option>
+                        <option>1/07/2022</option>
+                        <option>1/08/2022</option>
+                        <option>1/09/2022</option>
+                        <option>1/10/2022</option>
+                        <option>1/11/2022</option>
+                        <option>1/12/2022</option>
+
+                    </select>
+                </div>
+            </form>
+
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="margin-right: 190px;margin-top: 10px;">
+                        <input type="checkbox" id="checkboxSuccess" value="option1">
+                        كمبياله
+                    </label>
+
+                </div>
+            </form>
+            <!--#########################################################################################################################3-->
+            <form class="form-inline" action="/action_page.php" style="margin-top: 2px;">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary" style="font-size: large;border-radius: 10px; width: 150px; background-color: #3361b7;">غير مسدد</button>
+                    <label style="margin-right: 5px;">
+                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" style="margin-right: 30px;">
+                        مسدد
+                    </label>
+                </div>
+
+                <div class="form-group" style="margin-right: 150px;">
+                    <label style="font-size:medium; margin-right: 20px;">رقم الشعار</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 10px;width: 200px;">
+                </div>
+                <div class="form-group" style="margin-right: 5px;">
+                    <label style="font-size:medium;">رقم مرجع الشعار</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 10px; width: 200px;">
+                </div>
+            </form>
+            <!--#############################################################################################################################-->
+            <form class="form-inline" action="/action_page.php" style="margin-top: 2px;">
+                <div class="form-group">
+                    <label style="margin-right: 188px;">
+                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                        مرتد
+                    </label>
+                    <label style="font-size:medium; margin-right: 180px;">تاريخ الارتداد</label>
+                    <select class="form-control" style="direction: ltr; width: 170px; margin-right: 10px; width: 200px;">
+                        <option>1/11/2021</option>
+                        <option>1/12/2021</option>
+                        <option>1/01/2022</option>
+                        <option>1/02/2022</option>
+                        <option>1/03/2022</option>
+                        <option>1/04/2022</option>
+                        <option>1/05/2022</option>
+                        <option>1/06/2022</option>
+                        <option>1/07/2022</option>
+                        <option>1/08/2022</option>
+                        <option>1/09/2022</option>
+                        <option>1/10/2022</option>
+                        <option>1/11/2022</option>
+                        <option>1/12/2022</option>
+
+                    </select>
+                </div>
+
+
+            </form>
+            <form class="form-inline" action="/action_page.php" style="margin-top: 2px;">
+                <div class="form-group">
+                    <label style="margin-right: 188px;">
+                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                        نقل تبعيه
+                    </label>
+                </div>
+
+
+            </form>
+        </div>
+        <!--#3########################################################################################################################################3-->
+        <div class="container form-conatiner tab-pane fade" style="direction: rtl;" id="menu1">
+            <p></p>
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium;">رقم سند القبض</label>
+                    <input type="search" class="form-control input-sm" id="text" name="text" style="width: 200px;margin-right: 15px; height: 35px;">
+                    <select class="form-control" style="direction: rtl; width: 200px;">
+                        <option>CRE</option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label style="font-size:medium; margin-right: 45px;">نوع المستند</label>
+                    <select class="form-control" style="width: 250px;margin-right: 20px;">
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+
+                    </select>
+                </div>
+            </form>
+            <!--##############################################################################################3333333-->
+            <p></p>
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium;">الجهه</label>
+                    <select class="form-control" style="width: 405px;margin-right: 80px;">
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label style="font-size:medium; margin-right: 45px;">تاريخ التحرير</label>
+                    <select class="form-control" style="direction: ltr; margin-right:22px; width: 250px; ">
+                        <option>1/1/2021</option>
+                        <option>1/2/2021</option>
+                        <option>1/3/2021</option>
+                        <option>1/4/2021</option>
+                        <option>1/5/2021</option>
+                        <option>1/6/2021</option>
+                        <option>1/7/2021</option>
+                        <option>1/8/2021</option>
+                        <option>1/9/2021</option>
+                        <option>1/10/2021</option>
+                        <option>1/11/2021</option>
+                        <option>1/12/2021</option>
+
+                    </select>
+
+                    <label style="margin-right: 15px; color: #ffffff;border: #337ab7 solid 1px; border-radius: 15px; width: 110px; background-color: #337ab7; text-align: center;">
+                        <input type="checkbox" id="checkboxSuccess" value="option1">
+                        ورقه افتتاحيه
+                    </label>
+                </div>
+            </form>
+            <p></p>
+            <!--3############################3333333333333#########################33##############################3-->
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium; margin-right: 12px;;">نوع القبض</label>
+                    <select class="form-control" style="width: 405px;margin-right: 35px;">
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+
+                    </select>
+                </div>
+            </form>
+            <p></p>
+            <!--###################################################################################################3-->
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium;">مرجع</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 80px;width: 407px;">
+                </div>
+            </form>
+            <p></p>
+            <!--###################################################################################################3-->
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium;">عميل</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 78px; width: 200px;">
+                    <input class="form-control input-sm" id="text" name="text" style="width: 205px;">
+
+                </div>
+            </form>
+            <p></p>
+            <!--###################################################################################################3-->
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium;">خزينه</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 80px;">
+                    <input class="form-control input-sm" id="text" name="text">
+                    <input class="form-control input-sm" id="text" name="text">
+                </div>
+            </form>
+            <p></p>
+            <!--###################################################################################################3-->
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium;">العمله</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 70px; width: 200px;">
+                    <input class="form-control input-sm" id="text" name="text" style="width: 210px;">
+                </div>
+            </form>
+            <p></p>
+            <!--###################################################################################################3-->
+            <!--##################################################################################################33-->
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium;">مبلغ القبض(عمله)</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 5px; width: 180px;">
+                    <label style="font-size:medium;margin-right: 20PX;">م.التحويل</label>
+                    <input class="form-control input-sm" id="text" name="text">
+                    <label style="font-size:medium;margin-right: 45PX;">مبلغ القبض(محلى)</label>
+                    <input class="form-control input-sm" id="text" name="text" style="width: 230px;">
+                </div>
+            </form>
+            <p></p>
+            <!--######################################################################################################33-->
+            <!--###################################################################################################3-->
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium;">كود تحليلى</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 48px; width: 200px;">
+                    <input class="form-control input-sm" id="text" name="text" style="width: 210px;">
+                </div>
+            </form>
+            <p></p>
+            <!--###################################################################################################3-->
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <select class="form-control" style="width: 270px;">
+                        <option>مبلغ القبض(محلى)</option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                    </select>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 36px; width: 350px;">
+                    <select class="form-control" style="width: 235px; margin-right: 40px;">
+                        <option>عربى</option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                    </select>
+
+                </div>
+            </form>
+            <p></p>
+            <!--###################################################################################################3-->
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium; border: #87898b solid 1px; border-radius: 15px; width: 210px; background-color: #337ab7;color: white; text-align: center;">الاجمالى</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 46px;">
+                    <input class="form-control input-sm" id="text" name="text">
+                </div>
+            </form>
+            <p></p>
+            <!--###################################################################################################3-->
+
+
+
+
+        </div>
+        <!--######################################################################################################################################33-->
+        <div class="container form-conatiner tab-pane fade" style="direction: rtl;" id="menu2">
+            <p></p>
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium;">العمله</label>
+                    <input class="form-control input-sm" id="text" name="text" style="width: 340px;margin-right: 65px;">
+                </div>
+
+                <div class="form-group">
+                    <label style="font-size:medium; margin-right: 100px;">م.التحويل</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 42px; width: 300px;">
+                </div>
+            </form>
+            <!--##############################################################################################3333333-->
+            <p></p>
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium;">ديون معدومه</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 22px; width: 150px;">
+                    <input class="form-control input-sm" id="text" name="text" style="width: 188px">
+                </div>
+
+                <div class="form-group">
+                    <label style="font-size:medium; margin-right: 100px;">ضريبه</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 60px;">
+                    <input class="form-control input-sm" id="text" name="text" style="width: 163px;">
+
+                </div>
+            </form>
+            <p></p>
+            <!--###################################################################################################3-->
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium;">مصروفات تحصيل</label>
+                    <input class="form-control input-sm" id="text" name="text">
+                    <input class="form-control input-sm" id="text" name="text" style="width: 195px;">
+                </div>
+
+                <div class="form-group">
+                    <label style="font-size:medium; margin-right: 100px;">خصم</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 65px;">
+                    <input class="form-control input-sm" id="text" name="text" style="width: 163px;">
+
+                </div>
+            </form>
+            <p></p>
+            <!--###################################################################################################3-->
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium;"> غرامات</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 62px;width: 150px;">
+                    <input class="form-control input-sm" id="text" name="text" style="width: 188px;">
+                </div>
+
+                <div class="form-group">
+                    <label style="font-size:medium; margin-right: 100px;">دمغات</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 55px;">
+                    <input class="form-control input-sm" id="text" name="text" style="width: 163px;">
+
+                </div>
+            </form>
+            <p></p>
+            <!--###################################################################################################3-->
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium;">تأمين ابتدائى</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 30px;width: 150px;">
+                    <input class="form-control input-sm" id="text" name="text" style="width: 188px;">
+                </div>
+
+                <div class="form-group">
+                    <label style="font-size:medium; margin-right: 100px;">تأمين نهائى</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 30px;">
+                    <input class="form-control input-sm" id="text" name="text" style="width: 163px;">
+
+                </div>
+            </form>
+            <p></p>
+            <!--###################################################################################################3-->
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium;">قيمه اضافيه9</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 20px;width: 150px;">
+                    <input class="form-control input-sm" id="text" name="text" style="width: 188px;">
+                </div>
+
+                <div class="form-group">
+                    <label style="font-size:medium; margin-right: 92px;">قيمه أضافيه 10</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 8px;">
+                    <input class="form-control input-sm" id="text" name="text" style="width: 165px;">
+
+                </div>
+            </form>
+            <p></p>
+            <!--###################################################################################################3-->
+            <!--##################################################################################################33-->
+            <p></p>
+            <p></p>
+            <p></p>
+            <!--######################################################################################################33-->
+            <p></p>
+            <p></p>
+            <p></p>
+            <br>
+            <form class="form-inline" action="/action_page.php" style="margin-top: 100px;">
+                <div class="form-group">
+                    <label style="font-size:medium; border: #337ab7 solid 1px; border-radius: 15px; width: 210px; background-color: #337ab7;color: white; text-align: center;">الاجمالى</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 55px;width: 200px;">
+                    <input class="form-control input-sm" id="text" name="text" style="width: 200px;">
+                </div>
+
+
+
+        </div>
+        <!--######################################################################################################################################33-->
+        <div class="container form-conatiner tab-pane fade" style="direction: rtl;" id="menu3">
+
+            <form class="form-inline" action="/action_page.php" style="margin-top: 20px;">
+                <div class="form-inline">
+                    <label style="font-size:medium;">مندوب</label>
+                    <select class="form-control" style="direction: rtl; width: 200px; margin-right: 51px; width: 301px;">
+                        <option></option>
+                        <option></option>
+                    </select>
+                </div>
+            </form>
+            <p></p>
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium;">نسبه العموله</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 10px; width: 300px;">
+                </div>
+            </form>
+            <p></p>
+
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium;">عموله تحصيل</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right:5px ; width: 301px;">
+                </div>
+            </form>
+        </div>
+        <!--3###############################################################################################################################3-->
+        <div class="container form-conatiner tab-pane fade" style="direction: rtl;" id="menu4">
+            <p></p>
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium;">حقل اضافى 1</label>
+                    <input class="form-control input-sm" id="text" name="text" style="width: 300px; margin-right: 20px;">
+                </div>
+            </form>
+            <p></p>
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium;">حقل اضافى 2</label>
+                    <input class="form-control input-sm" id="text" name="text" style="width: 300px;margin-right: 20px;">
+                </div>
+            </form>
+
+            <form class="form-inline" action="/action_page.php" style="margin-top: 20px;">
+                <div class="form-group">
+                    <label style="font-size:medium;">ملاحظات</label>
+                    <textarea class="form-control" rows="3" style="width: 300px; margin-right: 45px;"></textarea>
+                </div>
+            </form>
+        </div>
+        <!--3###############################################################################################################################3-->
+        <!--3###############################################################################################################################3-->
+        <div class="container form-conatiner tab-pane fade" style="direction: rtl;" id="menu5">
+            <p></p>
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium; border: #337ab7 solid 1px; border-radius: 15px; width: 110px; background-color: #337ab7;color: white; text-align: center;">المبلغ</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 10px;width: 200px;">
+                </div>
+
+                <div class="form-group">
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 12px;width: 200px;">
+                </div>
+            </form>
+
+        </div>
+        <!--3###############################################################################################################################3-->
+        <!--3###############################################################################################################################3-->
+        <div class="container form-conatiner tab-pane fade" style="direction: rtl;" id="menu6">
+            <h2></h2>
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium;">الاجمالى</label>
+                    <input class="form-control input-sm" id="text" name="text">
+                </div>
+                <div class="form-group">
+                    <label style="font-size:medium;margin-right: 30px;">مبلغ الدفع</label>
+                    <input class="form-control input-sm" id="text" name="text">
+
+                </div>
+                <div class="form-group">
+                    <label style="font-size:medium;margin-right: 30px;">الفرق</label>
+                    <input class="form-control input-sm" id="text" name="text">
+                </div>
+            </form>
+
+            <div class="container table-responsive" style="margin-top: 15px; direction: rtl; width: 1100px;">
+                <table class="table table-bordered table table-hover table">
+                    <thead style="text-align: right;">
+                        <tr style="background-color: #337ab7;">
+                            <th style="text-align: right;">#</th>
+                            <th style="text-align: right;">كود الصنف</th>
+                            <th style="text-align: right;">باركود</th>
+                            <th style="text-align: right;">اسم </th>
+                            <th style="text-align: right;">الوحده</th>
+                            <th style="text-align: right;">عدد</th>
+                            <th style="text-align: right;">تم تنفيذ</th>
+                            <th style="text-align: right;">سعر</th>
+                            <th style="text-align: right;"> القيمه</th>
+                            <th style="text-align: right;"> ملاحظات1</th>
+                            <th style="text-align: right;"> ملاحظات2</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+        <!--3###############################################################################################################################3-->
+        <!--3###############################################################################################################################3-->
+        <div class="container form-conatiner tab-pane fade" style="direction: rtl;" id="menu7">
+            <h2></h2>
+            <form class="form-inline" action="/action_page.php" style="margin-top: 15px;">
+                <div class="form-group">
+                    <button type="button" class="btn btn-info" style="width: 200px; font-size:medium;border-radius: 10px; font-weight: bold;background-color: #337ab7;">تحميل المرفقات</button>
+                </div>
+            </form>
+            <div class="container table-responsive" style="margin-top: 15px; direction: rtl;width: 1100px;">
+                <table class="table table-bordered table table-hover table">
+                    <thead style="text-align: right;">
+                        <tr style="background-color: #337ab7;">
+                            <th style="text-align: right;">#</th>
+                            <th style="text-align: right;">نوع الملف</th>
+                            <th style="text-align: right;">وصف 1</th>
+                            <th style="text-align: right;">وصف 2 </th>
+                            <th style="text-align: right;">Encrypted</th>
+                            <th style="text-align: right;">image</th>
+                        </tr>
+
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <!--3###############################################################################################################################3-->
+        <div class="container form-conatiner tab-pane fade" style="direction: rtl;" id="menu8">
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium;">الجهه</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 10px;">
+                    <input class="form-control input-sm" id="text" name="text">
+                </div>
+                <div class="form-group">
+                    <label style="font-size:medium;margin-right: 30px;">الرصيد</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 10px;">
+                </div>
+            </form>
+            <!--##########################3###########################################################################33333333333333-->
+            <form class="form-inline" action="/action_page.php" style="margin-top: 15px;">
+                <div class="form-group">
+                    <label style="font-size:medium;">الاجمالى(عمله)</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 10px;">
+                </div>
+                <div class="form-group">
+                    <label style="font-size:medium;margin-right: 30px;">عمله</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 10px;">
+                    <input class="form-control input-sm" id="text" name="text">
+
+                </div>
+                <div class="form-group">
+                    <label style="font-size:medium;margin-right: 30px;">الاجمالى(محلي)</label>
+                    <input class="form-control input-sm" id="text" name="text" style="margin-right: 10px;">
+                </div>
+            </form>
+
+            <!--#####################################################################################################################-->
+            <h1></h1>
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group">
+                    <label style="font-size:medium;">رقم العقد/الحجز</label>
+                    <select class="form-control" style="direction: rtl; width: 150px;">
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                    </select>
+                    <input type="search" class="form-control input-sm" id="text" name="text" style="width: 150px;margin-right: 15px;">
+                    <label style="font-size:medium;margin-right: 20px;">الاقساط حتي تاريخ</label>
+                    <select class="form-control" style="direction: rtl; width: 150px;">
+                        <option>1/11/2021</option>
+                        <option>1/12/2021</option>
+                        <option>1/02/2022</option>
+                        <option>1/03/2022</option>
+                        <option>1/04/2022</option>
+                        <option>1/05/2022</option>
+                        <option>1/06/2022</option>
+                        <option>1/07/2022</option>
+                        <option>1/08/2022</option>
+                        <option>1/09/2022</option>
+                        <option>1/10/2022</option>
+                        <option>1/11/2022</option>
+                        <option>1/12/2022</option>
+                    </select>
+                    <button type="button" class="btn btn-primary" style="font-size: large;border-radius: 10px; width: 80px; background-color: #337ab7; margin-right: 20px;">تجميع</button>
+
+
+                </div>
+            </form>
+
+            <div class="container table-responsive" style="margin-top: 15px; direction: rtl;width: 1000px;">
+                <table class="table table-bordered table table-hover table">
+                    <thead style="text-align: right;">
+                        <tr style="background-color: #337ab7;">
+                            <th style="text-align: right;">#</th>
+                            <th style="text-align: right;">نوع الدفعه</th>
+                            <th style="text-align: right;">رقم القسط</th>
+                            <th style="text-align: right;">تاريخ الاستحقاق </th>
+                            <th style="text-align: right;">تاريخ الدفع</th>
+                            <th style="text-align: right;">قيمه القسط</th>
+                            <th style="text-align: right;">اجمالى مدفوع نقدى</th>
+                            <th style="text-align: right;"> مدفوع بالمستند</th>
+                            <th style="text-align: right;"> المتبقي</th>
+                            <th style="text-align: right;">مدفوه بالكامل</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+        <!--3###############################################################################################################################3-->
+        <!--3###############################################################################################################################3-->
+    </div>
+</div>
+
+<script>
+    $('#headertop1').addClass('display_none');
+    $('#headertop2').removeClass('display_none');
+</script>

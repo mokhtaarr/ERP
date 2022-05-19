@@ -1,0 +1,485 @@
+﻿@using Inv.WebUI.Resources
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+    ViewBag.Title = "الموردين";
+}
+
+<div class="row">
+    <div class="col-md-12 bg-white border border-1 rounded shadow-sm">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" data-toggle="tab" href="#main">@SystemResource.BasicData</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#balance">@SystemResource.Balance</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#additionalData">@SystemResource.AdditionalData</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#branches">@SystemResource.Branches</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#pricingPolicies">@SystemResource.PricingPolicies</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#Users">@SystemResource.Users</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#contacts">@SystemResource.Contacts</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#accounts">@SystemResource.Accounts</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#attachments">@SystemResource.Attachments</a>
+            </div>
+        </nav>
+
+        <div class="tab-content text-center row" id="nav-tabContent">
+            <div id="main" class="tab-pane fade show active">
+                <form id="formMain">
+                    <div class="col-lg-12 row">
+                        <div class="col-md-6 row">
+                            <div class="form-group col-md-5">
+                                <input class="form-control" type="text" name="VendorCode" id="VendorCode" value="" placeholder="@SystemResource.Code" />
+                            </div>
+                            <div class="col-md-1">
+                                <button type="button" class="src-btn btn btn-warning" id="btnVendorSearch" name="btnSearch">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                            <div class="row  col-md-6">
+                                <div class="form-group col-md-3 p-0">
+                                    <label class="form-label">@SystemResource.VendorType</label>
+                                </div>
+                                <div class="form-group col-md-9 p-0">
+                                    <select class="form-control" name="VendorTypeId" id="VendorTypeId">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input class="form-control" type="text" name="VendorDescA" id="VendorDescA" value="" placeholder="@SystemResource.Name_Arabic" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input class="form-control" type="text" name="VendorDescE" id="VendorDescE" value="" placeholder="@SystemResource.Name_English" />
+                            </div>
+                            <div class="row  col-md-6">
+                                <div class="form-group col-md-3 p-0">
+                                    <label class="form-label">@SystemResource.Account</label>
+                                </div>
+                                <div class="form-group col-md-9 p-0">
+                                    <select class="form-control" name="BasicAccCode" id="BasicAccCode">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row  col-md-6">
+                                <div class="form-group col-md-3 p-0">
+                                    <label class="form-label">@SystemResource.Category</label>
+                                </div>
+                                <div class="form-group col-md-9 p-0">
+                                    <select class="form-control" name="VendorCatId" id="VendorCatId">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <select class="form-control" name="CurrencyId" id="CurrencyId">
+                                    <option value="" disabled selected>@SystemResource.Currency</option>
+                                </select>
+                            </div>
+                            <div class="form-group form-control  col-md-2">
+                                <label for="IsActive" class="form-label ">@SystemResource.IsActive</label>
+                                <input type="checkbox" name="IsActive" id="IsActive" value="" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <input class="form-control" name="Nationality" id="Nationality" placeholder="@SystemResource.Nationality" />
+                            </div>
+                            <div class="form-group form-control  col-md-4">
+                                <label for="ForAdjustOnly" class="form-label ">@SystemResource.JustForInsulting</label>
+                                <input type="checkbox" name="ForAdjustOnly" id="ForAdjustOnly" value="" />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <select class="form-control" name="CityId" id="CityId">
+                                    <option value="" disabled selected>@SystemResource.Governorate</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input class="form-control" type="number" name="CreditPeriod" id="CreditPeriod" value="" placeholder="@SystemResource.CreditPeriod" />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input class="form-control" type="number" name="CreditLimit" id="CreditLimit" value="" placeholder="@SystemResource.TermWorkersLimits" />
+                            </div>
+                        </div>
+                        <div class="col-md-6 row">
+                            <div class="form-group col-md-6">
+                                <select class="form-control" name="CostCenterId" id="CostCenterId">
+                                    <option value="" disabled selected>@SystemResource.CostCenter</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <select class="form-control" name="EmpId" id="EmpId">
+                                    <option value="" disabled selected>@SystemResource.Representative</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input class="form-control" type="tel" name="Tel" id="Tel" value="" placeholder="@SystemResource.Phone 1" />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input class="form-control" type="tel" name="Tel2" id="Tel2" value="" placeholder="@SystemResource.Phone 2" />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input class="form-control" type="tel" name="Tel3" id="Tel3" value="" placeholder="@SystemResource.Phone 3" />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input class="form-control" type="tel" name="Tel4" id="Tel4" value="" placeholder="@SystemResource.Phone 4" />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input class="form-control" type="tel" name="Tel5" id="Tel5" value="" placeholder="@SystemResource.Phone 5" />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input class="form-control" type="text" name="Fax" id="Fax" value="" placeholder="@SystemResource.Fax" />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input class="form-control" type="email" name="Email" id="Email" value="" placeholder="@SystemResource.Email 1" />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input class="form-control" type="email" name="Email2" id="Email2" value="" placeholder="@SystemResource.Email 2" />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input class="form-control" type="email" name="Email3" id="Email3" value="" placeholder="@SystemResource.Email 3" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input class="form-control" type="text" name="Address" id="Address" value="" placeholder="@SystemResource.Address 1" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input class="form-control" type="text" name="Address2" id="Address2" value="" placeholder="@SystemResource.Address 2" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="balance" class="tab-pane fade pb-2">
+                <div class="col-lg-12 row align-items-center justify-content-center p-0 m-0">
+                    <div id="_3omla" class="col-lg-6 row p-0 div_Balance">
+                        <div class="col-md-12 row">
+                            <label class="col-md-2"> @SystemResource.Currency </label>
+
+                            <div class="col-md-5 text-center">
+                                <label class=" text-center "> @SystemResource.Debtor </label>
+                            </div>
+                            <div class="col-md-5 text-center ">
+                                <label class="  text-center "> @SystemResource.Creditor </label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 row">
+                            <label class="col-md-2    ">  @SystemResource.OpeningBalance </label>
+                            <div class="col-md-5">
+                                <input id="txt_OpenningBalanceDepitCurncy" disabled name="OpenningBalanceDepitCurncy" type="number" class="form-control input-sm  text_Display ">
+                            </div>
+                            <div class="col-md-5">
+                                <input id="txt_OpenningBalanceCreditCurncy" disabled name="OpenningBalanceCreditCurncy" type="number" class="form-control input-sm  text_Display">
+                            </div>
+                        </div>
+                        <div class="col-md-12 row">
+                            <label class="col-md-2   ">@SystemResource.CurrentMovement</label>
+                            <div class="col-md-5">
+                                <input id="txt_AccCurrTrancDepitCurncy" disabled name="AccCurrTrancDepitCurncy" type="number" class="form-control input-sm  text_Display ">
+                            </div>
+                            <div class="col-md-5">
+                                <input id="txt_AccCurrTrancCreditCurncy" disabled name="AccCurrTrancCreditCurncy" type="number" class="form-control input-sm  text_Display">
+                            </div>
+                        </div>
+                        <div class="col-md-12 row">
+                            <label class="col-md-2   "> @SystemResource.Total  </label>
+                            <div class="col-md-5">
+                                <input id="txt_AccTotalDebitCurncy" disabled name="AccTotalDebitCurncy" type="number" class="form-control input-sm  text_Display ">
+                            </div>
+                            <div class="col-md-5">
+                                <input id="txt_AccTotaCreditCurncy" disabled name="AccTotaCreditCurncy" type="number" class="form-control input-sm  text_Display">
+                            </div>
+                        </div>
+                        <div class="col-md-12 row">
+                            <label class="col-md-2 "> @SystemResource.Balance  </label>
+                            <div class="col-md-5">
+                                <input id="txt_BalanceDebitCurncy" disabled name="BalanceDebitCurncy" type="number" class="form-control input-sm  text_Display ">
+                            </div>
+                            <div class="col-md-5">
+                                <input id="txt_BalanceCreditCurncy" disabled name="BalanceCreditCurncy" type="number" class="form-control input-sm  text_Display">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="Ma7ali" class="col-lg-6 row p-1 div_Balance">
+                        <div class="col-md-12 row">
+                            <label class=" col-md-2"> @SystemResource.Local </label>
+                            <div class="col-md-5 text-center">
+                                <label class="  text-center"> @SystemResource.Debtor </label>
+                            </div>
+                            <div class="col-md-5 text-center">
+                                <label class="  text-center"> @SystemResource.Creditor </label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 row">
+                            <label class="col-md-2">  @SystemResource.OpeningBalance </label>
+                            <div class="col-md-5">
+                                <input id="txt_OpenningBalanceDepit" disabled name="Debit" type="number" class="form-control input-sm  text_Display">
+                            </div>
+                            <div class="col-md-5">
+                                <input id="txt_OpenningBalanceCredit" disabled name="Openbalance" type="number" class="form-control input-sm  text_Display ">
+                            </div>
+                        </div>
+                        <div class="col-md-12 row">
+                            <label class="col-md-2 ">@SystemResource.CurrentMovement</label>
+                            <div class="col-md-5">
+                                <input id="txt_AccCurrTrancDepit" disabled name="AccCurrTrancDepit" type="number" class="form-control input-sm  text_Display ">
+                            </div>
+                            <div class="col-md-5">
+                                <input id="txt_AccCurrTrancCredit" disabled name="AccCurrTrancCredit" type="number" class="form-control input-sm  text_Display">
+                            </div>
+                        </div>
+                        <div class="col-md-12 row">
+                            <label class="col-md-2 ">@SystemResource.Total</label>
+                            <div class="col-md-5">
+                                <input id="txt_AccTotalDebit" disabled name="AccTotalDebit" type="number" class="form-control input-sm  text_Display ">
+                            </div>
+                            <div class="col-md-5">
+                                <input id="txt_AccTotaCredit" disabled name="AccTotaCredit" type="number" class="form-control input-sm  text_Display">
+                            </div>
+                        </div>
+                        <div class="col-md-12 row">
+                            <label class="col-md-2 ">@SystemResource.Balance</label>
+                            <div class="col-md-5">
+                                <input id="txt_BalanceDebitLocal" disabled name="BalanceDebitLocal" type="number" class="form-control input-sm  text_Display ">
+                            </div>
+                            <div class="col-md-5">
+                                <input id="txt_BalanceCreditLocal" disabled name="BalanceCreditLocal" type="number" class="form-control input-sm  text_Display">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="additionalData" class="tab-pane fade">
+                <form id="formAdditionalData">
+                    <div class="row justify-content-center align-items-center m-0">
+                        <div class="col-md-6 row">
+                            <div class="form-group form-control col-md-6">
+                                <label for="DateOfBirth" class="form-label">@SystemResource.DateOfBirth</label>
+                                <input style="border: unset; margin-top: -2px;" type="date" name="DateOfBirth" id="DateOfBirth" value="" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input class="form-control" type="text" name="PassPortIssuePlace" id="PassPortIssuePlace" value="" placeholder="@SystemResource.PlacePassport" />
+                            </div>
+                            <div class="form-group form-control  col-md-3">
+                                <label for="InternationalLicense" class="form-label">@SystemResource.HasInternationalLicense</label>
+                                <input  type="checkbox" name="InternationalLicense" id="InternationalLicense" value="" />
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <input class="form-control" type="number" max="14" name="CustID" id="CustID" value="" placeholder="@SystemResource.IDCardNumber" />
+                            </div>
+                            <div class="form-group col-md-5">
+                                <input class="form-control" type="text" name="PassPortNo" id="PassPortNo" value="" placeholder="@SystemResource.Passport" />
+                            </div>
+                            <div class="form-group col-md-5">
+                                <input class="form-control" type="text" name="CarLicenseNo" id="CarLicenseNo" value="" placeholder="@SystemResource.DrivingLicense" />
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="CarLicenseIssuePlace" id="CarLicenseIssuePlace" value="" placeholder="@SystemResource.PlaceDriverLicense" />
+                            </div>
+                            <div class="form-group form-control col-md-6">
+                                <label for="PassPortIssueDate" class="form-label">@SystemResource.PassportIssueDate</label>
+                                <input style="border: unset; margin-top: -2px;" type="date" name="PassPortIssueDate" id="PassPortIssueDate" value="" />
+                            </div>
+                            <div class="form-group form-control col-md-6">
+                                <label for="CarLicenseIssueDate" class="form-label">@SystemResource.DrivingLicenseIssuanceDate</label>
+                                <input style="border: unset; margin-top: -2px;" type="date" name="CarLicenseIssueDate" id="CarLicenseIssueDate" value="" />
+                            </div>
+                            <div class="form-group form-control col-md-6">
+                                <label for="dtReg" class="form-label">@SystemResource.CommercialRegistryIssuanceDate</label>
+                                <input style="border: unset; margin-top: -2px;" type="date" name="dtReg" id="dtReg" value="" />
+                            </div>
+                            <div class="form-group form-control col-md-6">
+                                <label for="PassPortExpiryDate" class="form-label">@SystemResource.PassportExpiryDate</label>
+                                <input style="border: unset; margin-top: -2px;" type="date" name="PassPortExpiryDate" id="PassPortExpiryDate" value="" />
+                            </div>
+                        </div>
+                        <div class="col-md-6 row">
+                            <div class="form-group form-control col-md-6">
+                                <label for="CarLicenseExpiryDate" class="form-label">@SystemResource.DrivingLicenseExpirationDate</label>
+                                <input style="border: unset; margin-top: -2px;" type="date" name="CarLicenseExpiryDate" id="CarLicenseExpiryDate" value="" />
+                            </div>
+                            <div class="form-group form-control col-md-6">
+                                <label for="dtRegRenew" class="form-label">@SystemResource.RecordRenewalDate</label>
+                                <input style="border: unset; margin-top: -2px;" type="date" name="dtRegRenew" id="dtRegRenew" value="" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input class="form-control" type="text" name="Address3" id="Address3" value="" placeholder="@SystemResource.Address 3" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input class="form-control" type="text" name="Address4" id="Address4" value="" placeholder="@SystemResource.Address 4" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input class="form-control" type="text" name="AddField1" id="AddField1" value="" placeholder="@SystemResource.ExtraField 1" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input class="form-control" type="text" name="AddField2" id="AddField2" value="" placeholder="@SystemResource.ExtraField 2" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input class="form-control" type="text" name="AddField3" id="AddField3" value="" placeholder="@SystemResource.ExtraField 3" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input class="form-control" type="text" name="AddField4" id="AddField4" value="" placeholder="@SystemResource.ExtraField 4" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input class="form-control" type="text" name="AddField5" id="AddField5" value="" placeholder="@SystemResource.ExtraField 5" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <textarea class="form-control" name="Remarks" id="Remarks" value="" placeholder="@SystemResource.Notes"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="branches" class="tab-pane fade">
+                <div class="col-lg-12">
+                    <table id="divBranchesGrid"></table>
+                </div>
+            </div>
+            <div id="pricingPolicies" class="col-12 tab-pane fade">
+                <form id="formPricingPolicies">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="form-group col-md-2">
+                            <input class="form-control" type="text" name="DefaultDisc" id="DefaultDisc" value="" placeholder="@SystemResource.BasicDiscount" />
+                        </div>
+                        <div class="form-group form-control  col-md-2">
+                            <label for="IsDiscountByItem" class="form-label">@SystemResource.ItemLevelDiscount</label>
+                            <input type="checkbox" name="IsDiscountByItem" id="IsDiscountByItem" value="" />
+                        </div>
+                        <div class="form-group col-md-2">
+                            <select class="form-control" name="Barcode" id="Barcode">
+                                <option value="" disabled selected>@SystemResource.NoBarcode</option>
+                                <option value="1">@SystemResource.Barcode 1</option>
+                                <option value="2">@SystemResource.Barcode 2</option>
+                                <option value="3">@SystemResource.Barcode 3</option>
+                                <option value="4">@SystemResource.Barcode 4</option>
+                                <option value="5">@SystemResource.Barcode 5</option>
+                                <option value="6">@SystemResource.Barcode 6</option>
+                                <option value="7">@SystemResource.Barcode 7</option>
+                                <option value="8">@SystemResource.Barcode 8</option>
+                                <option value="9">@SystemResource.Barcode 9</option>
+                                <option value="10">@SystemResource.Barcode 10</option>
+                                <option value="11">@SystemResource.Barcode 11</option>
+                                <option value="12">@SystemResource.Barcode 12</option>
+                                <option value="13">@SystemResource.Barcode 13</option>
+                                <option value="14">@SystemResource.Barcode 14</option>
+                                <option value="15">@SystemResource.Barcode 15</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <select class="form-control" name="SalPrice" id="SalPrice">
+                                <option value="" disabled selected>@SystemResource.NoSalePrice</option>
+                                <option value="1">@SystemResource.SellingPrice 1</option>
+                                <option value="2">@SystemResource.SellingPrice 2</option>
+                                <option value="3">@SystemResource.SellingPrice 3</option>
+                                <option value="4">@SystemResource.SellingPrice 4</option>
+                                <option value="5">@SystemResource.SellingPrice 5</option>
+                                <option value="6">@SystemResource.SellingPrice 6</option>
+                                <option value="7">@SystemResource.SellingPrice 7</option>
+                                <option value="8">@SystemResource.SellingPrice 8</option>
+                                <option value="9">@SystemResource.SellingPrice 9</option>
+                                <option value="10">@SystemResource.SellingPrice 10</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="form-group col-md-2">
+                            <input class="form-control" type="text" name="ReportDiscValu" id="ReportDiscValu" value="" placeholder="@SystemResource.DiscountReports" />
+                        </div>
+                        <div class="form-group form-control  col-md-2">
+                            <label for="DiscPercentOrVal" class="form-label">@SystemResource.percentageDiscount</label>
+                            <input type="checkbox" name="DiscPercentOrVal" id="DiscPercentOrVal" value="" />
+                        </div>
+                        <div class="form-group form-control  col-md-2">
+                            <label for="IsTaxExempted" class="form-label">@SystemResource.TaxExemption</label>
+                            <input type="checkbox" name="IsTaxExempted" id="IsTaxExempted" value="" />
+                        </div>
+                        <div class="col-md-3"></div>
+                    </div>
+                </form>
+            </div>
+            <div id="Users" class="tab-pane fade">
+                <div class="col-lg-12">
+                    <table id="divUsersGrid"></table>
+                </div>
+            </div>
+            <div id="contacts" class="Div_Tree tab-pane fade"  style="overflow: auto;">
+                <div class="col-lg-12">
+                    <table id="divContactsGrid"></table>
+                </div>
+            </div>
+            <div id="accounts" class="col-12 tab-pane fade">
+                <div class="row col-md-12 m-0 p-1" id="AddAccounts">
+                    <div class="form-group col-md-3 p-1">
+                        <select class="form-control" name="AddAccountCode1" id="AddAccountCode1">
+                            <option value="null">@SystemResource.ExtraAccount 1</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3 p-1">
+                        <select class="form-control" name="AddAccountCode2" id="AddAccountCode2">
+                            <option value="null">@SystemResource.ExtraAccount 2</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3 p-1">
+                        <select class="form-control" name="AddAccountCode3" id="AddAccountCode3">
+                            <option value="null">@SystemResource.ExtraAccount 3</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3 p-1">
+                        <select class="form-control" name="AddAccountCode4" id="AddAccountCode4">
+                            <option value="null">@SystemResource.ExtraAccount 4</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3 p-1">
+                        <select class="form-control" name="AddAccountCode5" id="AddAccountCode5">
+                            <option value="null">@SystemResource.ExtraAccount 5</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3 p-1">
+                        <select class="form-control" name="AddAccountCode6" id="AddAccountCode6">
+                            <option value="null">@SystemResource.ExtraAccount 6</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3 p-1">
+                        <select class="form-control" name="AddAccountCode7" id="AddAccountCode7">
+                            <option value="null">@SystemResource.ExtraAccount 7</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3 p-1">
+                        <select class="form-control" name="AddAccountCode8" id="AddAccountCode8">
+                            <option value="null">@SystemResource.ExtraAccount 8</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3 p-1">
+                        <select class="form-control" name="AddAccountCode9" id="AddAccountCode9">
+                            <option value="null">@SystemResource.ExtraAccount 9</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3 p-1">
+                        <select class="form-control" name="AddAccountCode10" id="AddAccountCode10">
+                            <option value="null">@SystemResource.ExtraAccount 10</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div id="attachments" class="tab-pane fade">
+                <div class="col-lg-12"> </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 p-0 pt-3 bg-white border border-1 rounded shadow-sm mt-4">
+        <table data-main="mainTable" id="divVendorGrid"></table>
+    </div>
+</div>
+<script src="~/ClientApp/Pages/Definitions/MS_Vendor.js"></script>

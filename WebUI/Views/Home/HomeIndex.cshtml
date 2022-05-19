@@ -1,0 +1,439 @@
+﻿@using Inv.WebUI.Resources
+@{
+    ViewBag.Title = SystemResource.App_Home;
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/assets-New Version 02-01-2022/vendor/charts/chartist-bundle/chartist.css">
+
+<link rel="stylesheet" href="~/Content/assets-New Version 02-01-2022/vendor/bootstrap/css/bootstrap.min.css">
+<link href="~/Content/assets-New Version 02-01-2022/vendor/fonts/circular-std/style.css" rel="stylesheet">
+<link rel="stylesheet" href="~/Content/assets-New Version 02-01-2022/libs/css/style.css">
+<link rel="stylesheet" href="~/Content/assets-New Version 02-01-2022/vendor/charts/chartist-bundle/chartist.css">
+<link rel="stylesheet" href="~/Content/assets-New Version 02-01-2022/vendor/charts/morris-bundle/morris.css">
+<link rel="stylesheet" href="~/Content/assets-New Version 02-01-2022/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
+<link rel="stylesheet" href="~/Content/assets-New Version 02-01-2022/vendor/charts/c3charts/c3.css">
+<link rel="stylesheet" href="~/Content/assets-New Version 02-01-2022/vendor/fonts/flag-icon-css/flag-icon.min.css">
+
+<style>
+    .icon, .icon .fas {
+        font-size: 90px !important;
+    }
+
+    .navbar-brand span {
+        font-size :30px !important;
+    }
+
+    .form-control {
+        padding: 0.375rem 0.75rem !important;
+    }
+</style>
+
+@{
+    #region OldCode
+
+    @*<link rel="stylesheet" href="~/Content/assets-New Version 02-01-2022/vendor/charts/morris-bundle/morris.css">
+        <link rel="stylesheet" href="~/Content/assets-New Version 02-01-2022/vendor/charts/c3charts/c3.css">*@
+
+    //< !--Custom CSS-- >
+    @*<link href="~/Content/Dashboard/dist/css/style.min.css" rel="stylesheet" />*@
+
+    @*<style>
+                /*.row {
+                margin: 0;
+            }
+
+            .totalCount {
+                color: #fff;
+                font-weight: bold;
+            }
+
+            #chartInfo {
+                align-content: center;
+                justify-content: center;
+                align-items: flex-end;
+            }*/
+        </style>*@
+
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <!--<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5"
+         data-sidebartype="full"
+         data-sidebar-position="absolute"
+         data-header-position="absolute"
+         data-boxed-layout="full">-->
+    <!-- ============================================================== -->
+    <!-- Page wrapper  -->
+    <!-- ============================================================== -->
+    <!--<div class="page-wrapper mt-5">-->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <!--<div class="container-fluid">-->
+    <!-- ============================================================== -->
+    <!-- Sales Cards  -->
+    <!-- ============================================================== -->
+    <!--<div class="row">-->
+    <!-- Column -->
+    <!--<div class="col-md-6 col-lg-3 col-xlg-3">
+        <div class="card card-hover">
+            <div class="box bg-cyan text-center">
+                <h1 class="font-light text-white">
+                    <i class="mdi mdi-view-dashboard"></i>
+                </h1>
+                <a href="~/Home/Ms_ReceiptNoteIndex" class="text-white"> @SystemResource.ReceiptDocument</a>
+                <p class="totalCount" id="ReceiptCount">15</p>
+            </div>
+        </div>
+    </div>-->
+    <!-- Column -->
+    <!--<div class="col-md-6 col-lg-3 col-xlg-3">
+        <div class="card card-hover">
+            <div class="box bg-success text-center">
+                <h1 class="font-light text-white">
+                    <i class="mdi mdi-collage"></i>
+                </h1>
+                <a href="~/Home/MS_PaymentNoteIndex" class="text-white"> @SystemResource.Voucher</a>
+                <p class="totalCount" id="PaymentCount">15</p>
+            </div>
+        </div>
+    </div>-->
+    <!-- Column -->
+    <!--<div class="col-md-6 col-lg-3 col-xlg-3">
+        <div class="card card-hover">
+            <div class="box bg-danger text-center">
+                <h1 class="font-light text-white">
+                    <i class="mdi mdi-border-outside"></i>
+                </h1>
+                <a href="~/Home/MS_CustomerIndex" class="text-white"> العملاء</a>
+                <p class="totalCount" id="CustomerCount">15</p>
+            </div>
+        </div>
+    </div>-->
+    <!-- Column -->
+    <!--<div class="col-md-6 col-lg-3 col-xlg-3">
+        <div class="card card-hover">
+            <div class="box bg-info text-center">
+                <h1 class="font-light text-white">
+                    <i class="mdi mdi-arrow-all"></i>
+                </h1>
+                <a href="~/Home/MS_VendorIndex" class="text-white"> الموردين</a>
+                <p class="totalCount" id="VendorCount">15</p>
+            </div>
+        </div>
+    </div>-->
+    <!-- Column -->
+    <!--</div>-->
+    <!-- ============================================================== -->
+    <!-- Sales chart -->
+    <!-- ============================================================== -->
+    <!--<div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-md-flex align-items-center">
+                        <div>
+                            <h4 class="card-title">Site Analysis</h4>
+                            <h5 class="card-subtitle">Overview of Latest Month</h5>
+                        </div>
+                    </div>
+                    <div id="chartInfo" class="row">-->
+    <!-- column -->
+    <!--<div class="col-md-12 mb-5">
+        <div class="row">
+            <div class="col-md-6">
+                <canvas id="myChart" style="width: 50%; max-width: 600px"></canvas>
+            </div>
+            <div class="col-md-6">
+                <canvas id="myChart3" style="width: 50%; max-width: 600px"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-9">
+        <div class="row">
+            <div class="col-md-12">
+                <canvas id="myChart2" style="width: 50%; max-width: 600px"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        <div class="row">
+            <div class="col-6">
+                <div class="bg-dark p-10 text-white text-center">
+                    <i class="mdi mdi-account fs-3 mb-1 font-16"></i>
+                    <h5 id="UsersCount" class="mb-0 mt-1">2540</h5>
+                    <small class="font-light">Total Users</small>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="bg-dark p-10 text-white text-center">
+                    <i class="mdi mdi-plus fs-3 font-16"></i>
+                    <h5 class="mb-0 mt-1">120</h5>
+                    <small class="font-light">New Users</small>
+                </div>
+            </div>
+            <div class="col-6 mt-3">
+                <div class="bg-dark p-10 text-white text-center">
+                    <i class="mdi mdi-cart fs-3 mb-1 font-16"></i>
+                    <h5 class="mb-0 mt-1">656</h5>
+                    <small class="font-light">Total Shop</small>
+                </div>
+            </div>
+            <div class="col-6 mt-3">
+                <div class="bg-dark p-10 text-white text-center">
+                    <i class="mdi mdi-tag fs-3 mb-1 font-16"></i>
+                    <h5 class="mb-0 mt-1">9540</h5>
+                    <small class="font-light">Total Orders</small>
+                </div>
+            </div>
+            <div class="col-6 mt-3">
+                <div class="bg-dark p-10 text-white text-center">
+                    <i class="mdi mdi-table fs-3 mb-1 font-16"></i>
+                    <h5 class="mb-0 mt-1">100</h5>
+                    <small class="font-light">Pending Orders</small>
+                </div>
+            </div>
+            <div class="col-6 mt-3">
+                <div class="bg-dark p-10 text-white text-center">
+                    <i class="mdi mdi-web fs-3 mb-1 font-16"></i>
+                    <h5 class="mb-0 mt-1">8540</h5>
+                    <small class="font-light">Online Orders</small>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <!-- column -->
+    <!--</div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <!-- ============================================================== -->
+    <!-- Sales chart -->
+    <!--</div>-->
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!--</div>
+    </div>-->
+    #endregion
+}
+
+<div class="row">
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="text-muted">@SystemResource.ReceiptDocument</h5>
+                <div class="metric-value d-inline-block">
+                    <h1 id="ReceiptCount" class="mb-1"> </h1>
+                </div>
+
+                <div class="icon">
+                    <i class="fas fa-money-check-alt"></i>
+                </div>
+
+                @*<div class="metric-label d-inline-block float-right text-success font-weight-bold">
+                        <span><i class="fa fa-fw fa-arrow-up"></i></span><span>5.86%</span>
+                    </div>*@
+            </div>
+            @* <div id="sparkline-revenue"><canvas width="232" height="100" style="display: inline-block; width: 232.578px; height: 100px; vertical-align: top;"></canvas></div>*@
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="text-muted">@SystemResource.Voucher</h5>
+                <div class="metric-value d-inline-block">
+                    <h1 id="PaymentCount" class="mb-1"> </h1>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+
+                @*<div class="metric-label d-inline-block float-right text-success font-weight-bold">
+                        <span><i class="fa fa-fw fa-arrow-up"></i></span><span>5.86%</span>
+                    </div>*@
+            </div>
+            @*<div id="sparkline-revenue2"><canvas width="232" height="100" style="display: inline-block; width: 232.578px; height: 100px; vertical-align: top;"></canvas></div>*@
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="text-muted">العملاء</h5>
+                <div class="metric-value d-inline-block">
+                    <h1 id="CustomerCount" class="mb-1"> </h1>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-id-card-alt"></i>
+                </div>
+
+                @*<div class="metric-label d-inline-block float-right text-primary font-weight-bold">
+                        <span>N/A</span>
+                    </div>*@
+            </div>
+            @*<div id="sparkline-revenue3"><canvas width="232" height="100" style="display: inline-block; width: 232.578px; height: 100px; vertical-align: top;"></canvas></div>*@
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="text-muted">الموردين</h5>
+                <div class="metric-value d-inline-block">
+                    <h1 id="VendorCount" class="mb-1"></h1>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                @*<div class="metric-label d-inline-block float-right text-secondary font-weight-bold">
+                        <span>-2.00%</span>
+                    </div>*@
+            </div>
+            @*<div id="sparkline-revenue4"><canvas width="232" height="100" style="display: inline-block; width: 232.578px; height: 100px; vertical-align: top;"></canvas></div>*@
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- ============================================================== -->
+    <!-- total revenue  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- category revenue  -->
+    <!-- ============================================================== -->
+    <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <h5 class="card-header">Revenue by Category</h5>
+            <div class="card-body">
+                <div id="c3chart_category" style="height: 420px; max-height: 420px; position: relative;" class="c3"><svg width="369.578125" height="420" style="overflow: hidden;"><defs><clipPath id="c3-1643732113522-clip"><rect width="369.578125" height="376"></rect></clipPath><clipPath id="c3-1643732113522-clip-xaxis"><rect x="-31" y="-20" width="431.578125" height="60"></rect></clipPath><clipPath id="c3-1643732113522-clip-yaxis"><rect x="-29" y="-4" width="20" height="400"></rect></clipPath><clipPath id="c3-1643732113522-clip-grid"><rect width="369.578125" height="376"></rect></clipPath><clipPath id="c3-1643732113522-clip-subchart"><rect width="369.578125" height="0"></rect></clipPath></defs><g transform="translate(0.5,4.5)"><text class="c3-text c3-empty" text-anchor="middle" dominant-baseline="middle" x="184.7890625" y="188" style="opacity: 0;"></text><g clip-path="url(file:///F:/Course/Programming/my%20work/templete/C-Panel/concept-master/concept-master/index.html#c3-1643732113522-clip)" class="c3-regions" style="visibility: hidden;"></g><g clip-path="url(file:///F:/Course/Programming/my%20work/templete/C-Panel/concept-master/concept-master/index.html#c3-1643732113522-clip-grid)" class="c3-grid" style="visibility: hidden;"><g class="c3-xgrid-focus"><line class="c3-xgrid-focus" x1="-10" x2="-10" y1="0" y2="376" style="visibility: hidden;"></line></g></g><g clip-path="url(file:///F:/Course/Programming/my%20work/templete/C-Panel/concept-master/concept-master/index.html#c3-1643732113522-clip)" class="c3-chart"><g class="c3-chart-bars"><g class="c3-chart-bar c3-target c3-target-Men" style="pointer-events: none;"><g class=" c3-shapes c3-shapes-Men c3-bars c3-bars-Men" style="cursor: pointer;"></g></g><g class="c3-chart-bar c3-target c3-target-Women" style="pointer-events: none;"><g class=" c3-shapes c3-shapes-Women c3-bars c3-bars-Women" style="cursor: pointer;"></g></g><g class="c3-chart-bar c3-target c3-target-Accessories" style="pointer-events: none;"><g class=" c3-shapes c3-shapes-Accessories c3-bars c3-bars-Accessories" style="cursor: pointer;"></g></g><g class="c3-chart-bar c3-target c3-target-Children" style="pointer-events: none;"><g class=" c3-shapes c3-shapes-Children c3-bars c3-bars-Children" style="cursor: pointer;"></g></g><g class="c3-chart-bar c3-target c3-target-Apperal" style="pointer-events: none;"><g class=" c3-shapes c3-shapes-Apperal c3-bars c3-bars-Apperal" style="cursor: pointer;"></g></g></g><g class="c3-chart-lines"><g class="c3-chart-line c3-target c3-target-Men" style="opacity: 1; pointer-events: none;"><g class=" c3-shapes c3-shapes-Men c3-lines c3-lines-Men"></g><g class=" c3-shapes c3-shapes-Men c3-areas c3-areas-Men"></g><g class=" c3-selected-circles c3-selected-circles-Men"></g><g class=" c3-shapes c3-shapes-Men c3-circles c3-circles-Men" style="cursor: pointer;"></g></g><g class="c3-chart-line c3-target c3-target-Women" style="opacity: 1; pointer-events: none;"><g class=" c3-shapes c3-shapes-Women c3-lines c3-lines-Women"></g><g class=" c3-shapes c3-shapes-Women c3-areas c3-areas-Women"></g><g class=" c3-selected-circles c3-selected-circles-Women"></g><g class=" c3-shapes c3-shapes-Women c3-circles c3-circles-Women" style="cursor: pointer;"></g></g><g class="c3-chart-line c3-target c3-target-Accessories" style="opacity: 1; pointer-events: none;"><g class=" c3-shapes c3-shapes-Accessories c3-lines c3-lines-Accessories"></g><g class=" c3-shapes c3-shapes-Accessories c3-areas c3-areas-Accessories"></g><g class=" c3-selected-circles c3-selected-circles-Accessories"></g><g class=" c3-shapes c3-shapes-Accessories c3-circles c3-circles-Accessories" style="cursor: pointer;"></g></g><g class="c3-chart-line c3-target c3-target-Children" style="opacity: 1; pointer-events: none;"><g class=" c3-shapes c3-shapes-Children c3-lines c3-lines-Children"></g><g class=" c3-shapes c3-shapes-Children c3-areas c3-areas-Children"></g><g class=" c3-selected-circles c3-selected-circles-Children"></g><g class=" c3-shapes c3-shapes-Children c3-circles c3-circles-Children" style="cursor: pointer;"></g></g><g class="c3-chart-line c3-target c3-target-Apperal" style="opacity: 1; pointer-events: none;"><g class=" c3-shapes c3-shapes-Apperal c3-lines c3-lines-Apperal"></g><g class=" c3-shapes c3-shapes-Apperal c3-areas c3-areas-Apperal"></g><g class=" c3-selected-circles c3-selected-circles-Apperal"></g><g class=" c3-shapes c3-shapes-Apperal c3-circles c3-circles-Apperal" style="cursor: pointer;"></g></g></g><g class="c3-chart-arcs" transform="translate(184.7890625,183)"><text class="c3-chart-arcs-title" style="text-anchor: middle; opacity: 1;"></text><g class="c3-chart-arc c3-target c3-target-Men"><g class=" c3-shapes c3-shapes-Men c3-arcs c3-arcs-Men"><path class=" c3-shape c3-shape c3-arc c3-arc-Men" transform="" style="fill: rgb(89, 105, 255); cursor: pointer;" d="M1.0645242301588367e-14,-173.85A173.85,173.85,0,0,1,143.8937323295754,97.56237131325017L86.33623939774525,58.5374227879501A104.30999999999999,104.30999999999999,0,0,0,6.38714538095302e-15,-104.30999999999999Z"></path></g><text dy=".35em" class="" transform="translate(122.87885514155289,-65.14624593252681)" style="opacity: 1; text-anchor: middle; pointer-events: none;"></text></g><g class="c3-chart-arc c3-target c3-target-Women"><g class=" c3-shapes c3-shapes-Women c3-arcs c3-arcs-Women"><path class=" c3-shape c3-shape c3-arc c3-arc-Women" transform="" style="fill: rgb(255, 64, 123); cursor: pointer;" d="M143.8937323295754,97.56237131325017A173.85,173.85,0,0,1,-119.55655092166761,126.2143162708363L-71.73393055300056,75.72858976250178A104.30999999999999,104.30999999999999,0,0,0,86.33623939774525,58.5374227879501Z"></path></g><text dy=".35em" class="" transform="translate(15.037193082401837,138.26470708102835)" style="opacity: 1; text-anchor: middle; pointer-events: none;"></text></g><g class="c3-chart-arc c3-target c3-target-Accessories"><g class=" c3-shapes c3-shapes-Accessories c3-arcs c3-arcs-Accessories"><path class=" c3-shape c3-shape c3-arc c3-arc-Accessories" transform="" style="fill: rgb(37, 213, 242); cursor: pointer;" d="M-119.55655092166761,126.2143162708363A173.85,173.85,0,0,1,-167.51316619946692,-46.50980165330492L-100.50789971968015,-27.90588099198295A104.30999999999999,104.30999999999999,0,0,0,-71.73393055300056,75.72858976250178Z"></path></g><text dy=".35em" class="" transform="translate(-134.0105329595735,37.20784132264409)" style="opacity: 1; text-anchor: middle; pointer-events: none;"></text></g><g class="c3-chart-arc c3-target c3-target-Children"><g class=" c3-shapes c3-shapes-Children c3-arcs c3-arcs-Children"><path class=" c3-shape c3-shape c3-arc c3-arc-Children" transform="" style="fill: rgb(255, 199, 80); cursor: pointer;" d="M-167.51316619946692,-46.50980165330492A173.85,173.85,0,0,1,-72.99772030625205,-157.78198670979586L-43.798632183751224,-94.6691920258775A104.30999999999999,104.30999999999999,0,0,0,-100.50789971968015,-27.90588099198295Z"></path></g><text dy=".35em" class="" transform="translate(-106.00149862715175,-90.03848448745654)" style="opacity: 1; text-anchor: middle; pointer-events: none;"></text></g><g class="c3-chart-arc c3-target c3-target-Apperal"><g class=" c3-shapes c3-shapes-Apperal c3-arcs c3-arcs-Apperal"><path class=" c3-shape c3-shape c3-arc c3-arc-Apperal" transform="" style="fill: rgb(46, 197, 81); cursor: pointer;" d="M-72.99772030625205,-157.78198670979586A173.85,173.85,0,0,1,-3.19357269047651e-14,-173.85L-1.916143614285906e-14,-104.30999999999999A104.30999999999999,104.30999999999999,0,0,0,-43.798632183751224,-94.6691920258775Z"></path></g><text dy=".35em" class="" transform="translate(-29.898088824549266,-135.82838688815886)" style="opacity: 1; text-anchor: middle; pointer-events: none;"></text></g></g><g class="c3-chart-texts"><g class="c3-chart-text c3-target c3-target-Men  " style="opacity: 1; pointer-events: none;"><g class=" c3-texts c3-texts-Men"></g></g><g class="c3-chart-text c3-target c3-target-Women  " style="opacity: 1; pointer-events: none;"><g class=" c3-texts c3-texts-Women"></g></g><g class="c3-chart-text c3-target c3-target-Accessories  " style="opacity: 1; pointer-events: none;"><g class=" c3-texts c3-texts-Accessories"></g></g><g class="c3-chart-text c3-target c3-target-Children  " style="opacity: 1; pointer-events: none;"><g class=" c3-texts c3-texts-Children"></g></g><g class="c3-chart-text c3-target c3-target-Apperal  " style="opacity: 1; pointer-events: none;"><g class=" c3-texts c3-texts-Apperal"></g></g></g><g class="c3-event-rects" style="fill-opacity: 0;"><rect class="c3-event-rect" x="0" y="0" width="369.578125" height="376"></rect></g></g><g clip-path="url(file:///F:/Course/Programming/my%20work/templete/C-Panel/concept-master/concept-master/index.html#c3-1643732113522-clip-grid)" class="c3-grid c3-grid-lines"><g class="c3-xgrid-lines"></g><g class="c3-ygrid-lines"></g></g><g class="c3-axis c3-axis-x" clip-path="url(file:///F:/Course/Programming/my%20work/templete/C-Panel/concept-master/concept-master/index.html#c3-1643732113522-clip-xaxis)" transform="translate(0,376)" style="visibility: visible; opacity: 0;"><text class="c3-axis-x-label" transform="" style="text-anchor: end;" x="369.578125" dx="-0.5em" dy="-0.5em"></text><g class="tick" transform="translate(185, 0)" style="opacity: 1;"><line x1="0" x2="0" y2="6"></line><text x="0" y="9" transform="" style="text-anchor: middle; display: block;"><tspan x="0" dy=".71em" dx="0">0</tspan></text></g><path class="domain" d="M0,6V0H369.578125V6"></path></g><g class="c3-axis c3-axis-y" clip-path="url(file:///F:/Course/Programming/my%20work/templete/C-Panel/concept-master/concept-master/index.html#c3-1643732113522-clip-yaxis)" transform="translate(0,0)" style="visibility: visible; opacity: 0;"><text class="c3-axis-y-label" transform="rotate(-90)" style="text-anchor: end;" x="0" dx="-0.5em" dy="1.2em"></text><g class="tick" transform="translate(0,345)" style="opacity: 1;"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">20</tspan></text></g><g class="tick" transform="translate(0,306)" style="opacity: 1;"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">30</tspan></text></g><g class="tick" transform="translate(0,267)" style="opacity: 1;"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">40</tspan></text></g><g class="tick" transform="translate(0,228)" style="opacity: 1;"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">50</tspan></text></g><g class="tick" transform="translate(0,189)" style="opacity: 1;"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">60</tspan></text></g><g class="tick" transform="translate(0,150)" style="opacity: 1;"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">70</tspan></text></g><g class="tick" transform="translate(0,111)" style="opacity: 1;"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">80</tspan></text></g><g class="tick" transform="translate(0,72)" style="opacity: 1;"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">90</tspan></text></g><g class="tick" transform="translate(0,33)" style="opacity: 1;"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">100</tspan></text></g><path class="domain" d="M-6,1H0V376H-6"></path></g><g class="c3-axis c3-axis-y2" transform="translate(369.578125,0)" style="visibility: hidden; opacity: 0;"><text class="c3-axis-y2-label" transform="rotate(-90)" style="text-anchor: end;" x="0" dx="-0.5em" dy="-0.5em"></text><g class="tick" transform="translate(0,376)" style="opacity: 1;"><line x2="6"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0</tspan></text></g><g class="tick" transform="translate(0,339)" style="opacity: 1;"><line x2="6"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.1</tspan></text></g><g class="tick" transform="translate(0,301)" style="opacity: 1;"><line x2="6"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.2</tspan></text></g><g class="tick" transform="translate(0,264)" style="opacity: 1;"><line x2="6"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.3</tspan></text></g><g class="tick" transform="translate(0,226)" style="opacity: 1;"><line x2="6"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.4</tspan></text></g><g class="tick" transform="translate(0,189)" style="opacity: 1;"><line x2="6"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.5</tspan></text></g><g class="tick" transform="translate(0,151)" style="opacity: 1;"><line x2="6"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.6</tspan></text></g><g class="tick" transform="translate(0,114)" style="opacity: 1;"><line x2="6"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.7</tspan></text></g><g class="tick" transform="translate(0,76)" style="opacity: 1;"><line x2="6"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.8</tspan></text></g><g class="tick" transform="translate(0,39)" style="opacity: 1;"><line x2="6"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.9</tspan></text></g><g class="tick" transform="translate(0,1)" style="opacity: 1;"><line x2="6"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">1</tspan></text></g><path class="domain" d="M6,1H0V376H6"></path></g></g><g transform="translate(0.5,420.5)" style="visibility: hidden;"><g clip-path="url(file:///F:/Course/Programming/my%20work/templete/C-Panel/concept-master/concept-master/index.html#c3-1643732113522-clip-subchart)" class="c3-chart"><g class="c3-chart-bars"></g><g class="c3-chart-lines"></g></g><g clip-path="url(file:///F:/Course/Programming/my%20work/templete/C-Panel/concept-master/concept-master/index.html#c3-1643732113522-clip)" class="c3-brush" fill="none" pointer-events="all" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><rect class="overlay" pointer-events="all" cursor="crosshair" x="0" y="0" width="369.578125" height="0"></rect><rect class="selection" cursor="move" fill="#777" fill-opacity="0.3" stroke="#fff" shape-rendering="crispEdges" style="display: none;"></rect><rect class="handle handle--e" cursor="ew-resize" style="display: none;"></rect><rect class="handle handle--w" cursor="ew-resize" style="display: none;"></rect></g><g class="c3-axis-x" transform="translate(0,0)" clip-path="url(file:///F:/Course/Programming/my%20work/templete/C-Panel/concept-master/concept-master/index.html#c3-1643732113522-clip-xaxis)" style="opacity: 0;"><g class="tick" transform="translate(185, 0)" style="opacity: 1;"><line x1="0" x2="0" y2="6"></line><text x="0" y="9" transform="" style="text-anchor: middle; display: block;"><tspan x="0" dy=".71em" dx="0">0</tspan></text></g><path class="domain" d="M0,6V0H369.578125V6"></path></g></g><g transform="translate(0,380)"><g class="c3-legend-item c3-legend-item-Men" style="visibility: visible; cursor: pointer;"><text x="41.802162170410156" y="9" style="pointer-events: none;">Men</text><rect class="c3-legend-item-event" x="27.802162170410156" y="-5" width="54.83198547363281" height="18" style="fill-opacity: 0;"></rect><line class="c3-legend-item-tile" x1="25.802162170410156" y1="4" x2="35.802162170410156" y2="4" stroke-width="10" style="stroke: rgb(89, 105, 255); pointer-events: none;"></line></g><g class="c3-legend-item c3-legend-item-Women" style="visibility: visible; cursor: pointer;"><text x="96.63414764404297" y="9" style="pointer-events: none;">Women</text><rect class="c3-legend-item-event" x="82.63414764404297" y="-5" width="76.15997314453125" height="18" style="fill-opacity: 0;"></rect><line class="c3-legend-item-tile" x1="80.63414764404297" y1="4" x2="90.63414764404297" y2="4" stroke-width="10" style="stroke: rgb(255, 64, 123); pointer-events: none;"></line></g><g class="c3-legend-item c3-legend-item-Accessories" style="visibility: visible; cursor: pointer;"><text x="172.79412078857422" y="9" style="pointer-events: none;">Accessories</text><rect class="c3-legend-item-event" x="158.79412078857422" y="-5" width="101.76789855957031" height="18" style="fill-opacity: 0;"></rect><line class="c3-legend-item-tile" x1="156.79412078857422" y1="4" x2="166.79412078857422" y2="4" stroke-width="10" style="stroke: rgb(37, 213, 242); pointer-events: none;"></line></g><g class="c3-legend-item c3-legend-item-Children" style="visibility: visible; cursor: pointer;"><text x="274.56201934814453" y="9" style="pointer-events: none;">Children</text><rect class="c3-legend-item-event" x="260.56201934814453" y="-5" width="81.21394348144531" height="18" style="fill-opacity: 0;"></rect><line class="c3-legend-item-tile" x1="258.56201934814453" y1="4" x2="268.56201934814453" y2="4" stroke-width="10" style="stroke: rgb(255, 199, 80); pointer-events: none;"></line></g><g class="c3-legend-item c3-legend-item-Apperal" style="visibility: visible; cursor: pointer;"><text x="165.6190948486328" y="27" style="pointer-events: none;">Apperal</text><rect class="c3-legend-item-event" x="151.6190948486328" y="13" width="66.33993530273438" height="18" style="fill-opacity: 0;"></rect><line class="c3-legend-item-tile" x1="149.6190948486328" y1="22" x2="159.6190948486328" y2="22" stroke-width="10" style="stroke: rgb(46, 197, 81); pointer-events: none;"></line></g></g><text class="c3-title" x="184.7890625" y="0"></text></svg><div class="c3-tooltip-container" style="position: absolute; pointer-events: none; display: none;"></div></div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end category revenue  -->
+    <!-- ============================================================== -->
+
+    <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0"> Product Sales</h5>
+            </div>
+            <div class="card-body">
+                <div class="ct-chart-product ct-golden-section"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/ClientApp/Partial/Background.js"></script>
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>*@
+
+<!-- slimscroll js -->
+<script src="~/Content/assets-New Version 02-01-2022/vendor/slimscroll/jquery.slimscroll.js"></script>
+<!-- main js -->
+<script src="~/Content/assets-New Version 02-01-2022/libs/js/main-js.js"></script>
+<!-- chart chartist js -->
+<script src="~/Content/assets-New Version 02-01-2022/vendor/charts/chartist-bundle/chartist.min.js"></script>
+<!-- sparkline js -->
+<script src="~/Content/assets-New Version 02-01-2022/vendor/charts/sparkline/jquery.sparkline.js"></script>
+<!-- morris js -->
+<script src="~/Content/assets-New Version 02-01-2022/vendor/charts/morris-bundle/raphael.min.js"></script>
+<script src="~/Content/assets-New Version 02-01-2022/vendor/charts/morris-bundle/morris.js"></script>
+<!-- chart c3 js -->
+<script src="~/Content/assets-New Version 02-01-2022/vendor/charts/c3charts/c3.min.js"></script>
+<script src="~/Content/assets-New Version 02-01-2022/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
+<script src="~/Content/assets-New Version 02-01-2022/vendor/charts/c3charts/C3chartjs.js"></script>
+<script src="~/Content/assets-New Version 02-01-2022/libs/js/dashboard-ecommerce.js"></script>
+
+<!-- sparkline js -->
+<!--<script src="~/Content/assets-New Version 02-01-2022/vendor/charts/sparkline/jquery.sparkline.js"></script>-->
+<!-- morris js -->
+<!--<script src="~/Content/assets-New Version 02-01-2022/vendor/charts/morris-bundle/raphael.min.js"></script>
+<script src="~/Content/assets-New Version 02-01-2022/vendor/charts/morris-bundle/morris.js"></script>-->
+<!-- chart c3 js -->
+<!--<script src="~/Content/assets-New Version 02-01-2022/vendor/charts/c3charts/c3.min.js"></script>
+<script src="~/Content/assets-New Version 02-01-2022/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
+<script src="~/Content/assets-New Version 02-01-2022/vendor/charts/c3charts/C3chartjs.js"></script>-->
+@*<script>
+        var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+        var yValues = [55, 49, 44, 24, 15];
+        var barColors = [
+            "#b91d47",
+            "#00aba9",
+            "#2b5797",
+            "#e8c3b9",
+            "#1e7145"
+        ];
+
+        new Chart("myChart3", {
+            type: "pie",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "World Wide Wine Production 2018"
+                }
+            }
+        });
+        //var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+        //var yValues = [55, 49, 44, 24, 15];
+        //var barColors = [
+        //    "#b91d47",
+        //    "#00aba9",
+        //    "#2b5797",
+        //    "#e8c3b9",
+        //    "#1e7145"
+        //];
+
+        new Chart("myChart", {
+            type: "doughnut",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "World Wide Wine Production 2018"
+                }
+            }
+        });
+
+        //var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+        //var yValues = [55, 49, 44, 24, 15];
+        //var barColors = ["red", "green", "blue", "orange", "brown"];
+
+        new Chart("myChart2", {
+            type: "bar",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: [55, 49, 44, 24, 30]
+                }]
+            },
+            options: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: "World Wine Production 2018"
+                }
+            }
+        });
+
+    </script>*@
+
+<!-- Bootstrap tether Core JavaScript -->
+@*<script src="~/Content/Dashboard/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+

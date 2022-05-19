@@ -1,0 +1,606 @@
+﻿@using Inv.WebUI.Resources
+<!doctype html>
+<html id="body_img" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Free Web tutorials">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="John Doe">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="~/images/newlogo.jpg">
+    <title>@ViewBag.Title - ERP</title>
+    @Styles.Render("~/Bundles/AppStyle2")
+    <link id="bootstrap_rtl" href="~/Style_design/bootstrap-rtl.css" rel="stylesheet" />
+    <link id="Style_Arabic" href="~/Style_design/Style_Arabic.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Style_design/js/jquery-3.4.1.js"></script>
+    @Scripts.Render("~/Bundles/AppScript2")
+    <script src="~/Style_design/jquery.cookie.min.js"></script>
+    @Scripts.Render("~/Bundles/AppScript3")
+    <link href="~/Style_design/Stylelayout.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/TreePlugin/themes/default/style.min.css" />
+    <link href="~/Content/Toastr/toastr.min.css" rel="stylesheet" />
+    <link href="~/Content/Loading/src/css/preloader.css" rel="stylesheet" />
+    <link href="~/Content/style2.css" rel="stylesheet" />
+</head>
+
+<body id="main-menu" class=" materialdesign">
+    <div id="MainLoading">
+        @Html.Partial("_MainLoading")
+    </div>
+    <div class="card-body"> </div>
+    <input type="hidden" id="GetActionUrl" name="name" value="@Url.Action("GetActionUrl","ClientTools")" />
+    <input type="hidden" id="GetAPIUrl" name="name" value="@System.Configuration.ConfigurationManager.AppSettings["ServiceUrl"]" />
+    <div class="wrapper-pro">
+        <!-- Header top area start المنيو اللي في الجنب  -->
+        <div id="mySidenav" class="sidenav">
+            <div class=" " style="margin-bottom:13px">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            </div>
+            <div class="row allDeopInMinu">
+                <div class="col-md-4 dropdownsInMinuCol">
+                    <a id="btnHome" href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown liItem nav-link dropdown-toggle">
+                        <span id="btnHome" class="mini-dn"> @SystemResource.Men_Home </span><i id="btnHome" class="fa fa-home"></i>
+                    </a>
+
+                    <div class="dropdown">
+                        <a href="#AboutUs" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <span class="caret" style="color: wheat;"></span> من نحن <i class="fa fa-file-text-o" aria-hidden="true" style="color: white;"></i>
+                        </a>
+                        <ul class="collapse list-unstyled" id="AboutUs" style="background-color:#052940 ;">
+                            <li class="liItem dropdown-item" id="btnbranches" key=""><a id="btnbranches">فروعنا</a></li>
+                            <li class="liItem dropdown-item" id="btnContact" key=""><a id="">للتواصل </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown">
+                        <a href="#navbarSupportedContent" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <span class="caret" style="color: wheat;"></span> التعريفات <i class="fa fa-file-text-o" aria-hidden="true" style="color: white;"></i>
+                        </a>
+                        <ul class="collapse list-unstyled" id="navbarSupportedContent" style="background-color:#052940 ;">
+                            @*<li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">الاصناف </a></li>
+                                <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">أكواد تحليله</a></li>
+                                <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  فئات الموردين  </a></li>
+                                <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  أكواد الموردين     </a></li>
+                                <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  الصناديق     </a></li>
+                                <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  البنوك     </a></li>
+                                <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  المصروفات     </a></li>
+                                <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">وحدات الاصناف </a></li>*@
+
+                            <li class="liItem dropdown-item" id="" key="DefBranches"><a id="btnDefBranches">الفروع</a></li>
+                            <li class="liItem dropdown-item" id="btnMS_ItemCategory" key=""><a id="">  فئات الاصناف  </a></li>
+                            <li class="liItem dropdown-item" id="btnMS_CustomerCategory" key="btnMS_CustomerCategory"><a id="">  فئات العملاء  </a></li>
+                            <li class="liItem dropdown-item" id="btnMs_CustomerTypes" key=""><a id=""> أنواع العملاء   </a></li>
+                            <li class="liItem dropdown-item" id="btnSys_Books" key="btnSys_Books"><a id="">  دفتر الحركات     </a></li>
+                            <li class="liItem dropdown-item" id="btnMS_Customer" key="btnMS_Customer"><a id="">  العملاء  </a></li>
+                            <li class="liItem dropdown-item" id="btnMs_VendorTypes" key=""><a id="">  انواع الموردين  </a></li>
+                            <li class="liItem dropdown-item" id="btnMS_Vendor" key="btnMS_Vendor"><a id="">  الموردين  </a></li>
+                            <li class="liItem dropdown-item" id="btnHr_Employees" key="btnHr_Employees"><a id="">  الموظفين     </a></li>
+                            <li class="liItem dropdown-item" id="btnHr_Jobs" key="btnHr_Jobs"><a id="">  الوظائف     </a></li>
+                            <li class="liItem dropdown-item" id="btnHr_Departments" key="btnHr_Departments"><a id="">  الهيكل الاداري     </a></li>
+                            <li class="liItem dropdown-item" id="btnMSGA_City" key="btnMSGA_City"><a id="">المدن</a></li>
+                            <li class="liItem dropdown-item" id="btnSr_VehicleTypes" key=""><a id="">  @SystemResource.VehicleTypes  </a></li>
+                            <li class="liItem dropdown-item" id="btnSr_VehicleShapes" key=""><a id="">  @SystemResource.VehicleShapes  </a></li>
+                            <li class="liItem dropdown-item" id="btnProd_Equipments" key=""><a id="">  @SystemResource.Prod_Equipments  </a></li>
+
+                        </ul>
+                    </div>
+
+                    <div class="dropdown">
+                        <a href="#navbarSupportedContent2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <span class="caret" style="color: wheat;"></span> المخازن <i class="fa fa-table" aria-hidden="true" style="color: white;"></i>
+                        </a>
+                        <ul class="collapse list-unstyled" id="navbarSupportedContent2" style="background-color:#052940;">
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  الفروع  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  الاصناف  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  فئات الاصناف  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  خصائص الاصناف  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  وحدات الاصناف  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  2طباغة بركود  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  طلب تحويل مخازن  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  تحويل مخازن  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  أصناف ذات خصائص  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  جرد الأصناف  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">   مستند توريد مخزني    </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">   مستند صرف مخزني     </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">   تسعيرة الأصناف     </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">   تسعير الأصناف     </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">   تغييراكواد الأصناف    </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">   ضبط تكاليف وكميات     </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">   كارت الميزان     </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown">
+                        <a href="#navbarSupportedContent3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <span class="caret" style="color: wheat;"></span> مشتريات <i class="fa fa-list-alt" aria-hidden="true" style="color: white;"></i>
+                        </a>
+                        <ul class="collapse list-unstyled" id="navbarSupportedContent3" style="background-color:#052940 ;">
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  فاتورة مشتريات  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  توريد مخزني  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  فئات الموردين  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  أنواع الموردين  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  الموردين  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  أمر شراء  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  مرتجعات مشتريات  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  كارت الميزان  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  طلب شراء  </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown">
+                        <a href="#navbarSupportedContent4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <span class="caret" style="color: wheat;"></span> مبيعات <i class="fa fa-opencart" aria-hidden="true" style="color: white;"></i>
+                        </a>
+                        <ul class="collapse list-unstyled" id="navbarSupportedContent4" style="background-color:#052940 ;">
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  فاتورة المبيعات  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  أمر شراء  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  عرض سعر  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  تسليم فاتورة مبيعات  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  أنواع العملاء  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  العملاء  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  فئات العملاء  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  مرتجعات مبيعات  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  كارت الميزان  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  استعلام صنف  </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown">
+                        <a href="#navbarSupportedContent5" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <span class="caret" style="color: wheat;"></span> @SystemResource.meue_Accounts <i class="fa fa-calculator" aria-hidden="true" style="color: white;"></i>
+                        </a>
+                        <ul class="collapse list-unstyled" id="navbarSupportedContent5" style="background-color:#052940 ;">
+                            <li class="liItem dropdown-item" id="btnAcc" key=""><a id="">  @SystemResource.AccountsChart  </a></li>
+                            <li class="liItem dropdown-item" id="btnCod_AccountClassification" key=""><a id="">  @SystemResource.ClassificationAccounts  </a></li>
+                            <li class="liItem dropdown-item" id="btnCod_AccountCategorie" key=""><a id="">   @SystemResource.AccountsTab  </a></li>
+                            <li class="liItem dropdown-item" id="btnCal_CostCenters" key="btnCal_CostCenters"><a id="">  @SystemResource.CostCenter  </a></li>
+                            <li class="liItem dropdown-item" id="btnCurrencyCategory" key="CurrencyCategory"><a id="btnCurrencyCategory"> @SystemResource.CurrencyClasses</a></li>
+                            <li class="liItem dropdown-item" id="btnMS_Currency" key="btnMS_Currency"><a id="btnCurrencyCategory">@SystemResource.Currencies</a></li>
+                            <li class="liItem dropdown-item" id="btnMs_ReceiptNote" key="btnMs_ReceiptNote"><a id=""> @SystemResource.ReceiptDocument </a></li>
+                            <li class="liItem dropdown-item" id="btnMS_PaymentNote" key="btnMS_PaymentNote"><a id="">  @SystemResource.Voucher</a></li>
+                            <li class="liItem dropdown-item" id="btnStaticMostanad3ohda" key="btnStaticMostanad3ohda"><a id="">  @SystemResource.LiquidateReign  </a></li>
+                            <li class="liItem dropdown-item" id="btnSataicFtaratMalia" key="btnSataicFtaratMalia"><a id="">  @SystemResource.FinancialPeriods  </a></li>
+                            <li class="liItem dropdown-item" id="btnCal_JurnalEntry" key="btnCal_JurnalEntry"><a id="">@SystemResource.DailyVoucherDocuments</a></li>
+                            <li class="liItem dropdown-item" id="btnMs_Terms" key="btnMs_Terms"><a id="">  @SystemResource.DocumentType  </a></li>
+                            <li class="liItem dropdown-item" id="btnMS_BoxBank" key="btnMS_BoxBank"><a id="">@SystemResource.Box</a></li>
+                            <li class="liItem dropdown-item" id="btnMS_Taxes" key=""><a id="">  @SystemResource.Taxes  </a></li>
+                            <li class="liItem dropdown-item" id="btnMS_Expenses" key=""><a id="">  @SystemResource.Expenses  </a></li>
+                            <li class="liItem dropdown-item" id="btnSys_FinancialYears" key="btnSys_FinancialYears"><a id="">@SystemResource.FinancialPeriods </a></li>
+                            @*<li class="liItem dropdown-item" id="btnSataticMostanadKabdYomia" key="btnSataticMostanadKabdYomia"><a id="">  مستندات قيد يومية </a></li>
+                                <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  تحويلات ماليه  </a></li>
+                                <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  تسويات  </a></li>
+                                <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  أرصده افتتاحية  </a></li>
+                                <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  أكواد تحليلة  </a></li>
+                                <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  العملاء     </a></li>
+                                <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  ظبط التأثيرات المحاسبية     </a></li>
+                                <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  موازنة مالية     </a></li>
+                            *@
+                        </ul>
+                    </div>
+
+                    <div class="dropdown">
+                        <a href="#navbarSupportedContent6" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <span class="caret" style="color: wheat;"></span> البنوك <i class="fa fa-university" aria-hidden="true" style="color: white;"></i>
+                        </a>
+                        <ul class="collapse list-unstyled" id="navbarSupportedContent6" style="background-color:#052940 ;">
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  البنوك والحسابات البنكية  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  الحافظة البنكية  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  اشعار بنكي  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  أنواع خطابات الضمان  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  فئات خطاب الضمان  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  حالات خطابات الضمان  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  خطابات الضمان  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  حركةخطاب الضمان  </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown">
+                        <a href="#navbarSupportedContent7" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <span class="caret" style="color: wheat;"></span> أدوات البرنامج <i class="fa fa-cog" aria-hidden="true" style="color: white;"></i>
+                        </a>
+                        <ul class="collapse list-unstyled" id="navbarSupportedContent7" style="background-color:#052940 ;">
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  نظام الأرشف  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  تصدير بيانات  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  استيراد بيانات  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  أدوات المستخدمين  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  المستخدمين  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  صلاحيات المستخدمين  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  أساسيات البرنامج  </a></li>
+                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  مصمم التقارير  </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown">
+                        <a href="#navbarSupportedContent8" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <span class="caret" style="color: wheat;"></span> التقارير <i class="fa fa-file-text-o" aria-hidden="true" style="color: white;"></i>
+                        </a>
+                        <ul class="collapse list-unstyled" id="navbarSupportedContent8" style="background-color:#052940 ;">
+                            <li class="liItem dropdown-item" id="btnCustomerReports" key="CustomerReports"><a id=""> كشف العملاء </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown">
+                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <span class="caret" style="color: wheat;"></span> @SystemResource.mnue_Tools <i class="fa fa-files-o" aria-hidden="true" style="color: white;"></i>
+                        </a>
+                        <ul class="collapse list-unstyled" id="pageSubmenu" style="background-color:#052940 ;">
+                            <li class="liItem dropdown-item" id="btnUSERS" key="USERS"><a id=""> @SystemResource.User </a></li>
+                            <li class="liItem dropdown-item" id="btnSearch" key="Search"><a id=""> @SystemResource.SearchWindow </a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <a href="#">@SystemResource.Favorites <i class="fa fa-bookmark"></i></a>
+                </div>
+                <div class="col-md-4">
+                    <a href="#">@SystemResource.LastNews <i class="fa fa-newspaper-o"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Header top area start منيو الشاشات اللي فوق  -->
+        <div id="headertop2" class="icon-bar">
+            <a id="btnHome" class="active" href="/Home/HomeIndex"><i class="fa fa-home"></i></a>
+            <button id="Add_New" href="#"><i class="fa fa-plus"></i></button>
+            <button id="btnEdit" href="#"><i class="fa fa-edit"></i></button>
+            <button id="btnDelete" href="#"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button id="btnsave" href="#"><i class="fa fa-save" aria-hidden="true"></i></button>
+            <button id="btnUndo" href="#"><i class="fa fa-undo"></i></button>
+            <button id="btnPrint"><i class="fa fa-print" aria-hidden="true"></i></button>
+            <button id="btnRefrash" href="#"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+            <button id="btnPreview" href="#"><i class="fa fa-eye" aria-hidden="true"></i></button>
+
+            <button id="btnFirst"><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
+            <button id="btnPrev" href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+            <input class="text-center" name="nav" type="text" id="txtNavigator" readonly style="width: 40px; height: 100%;" />
+            <button id="btnNext" href="#"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+            <button id="btnLast"><i class="fa fa-angle-double-left" aria-hidden="true"></i></button>
+
+            <button><i class="fa fa-book fa-fw" aria-hidden="true" style="cursor: pointer;"></i></button>
+            <button><i class="fa fa-sign-out" aria-hidden="true"></i></button>
+        </div>
+
+        <!-- Header top area start منيو الشاشه الرئيسية  -->
+        <div id="headertop1" class="content-inner-all fixed-header-top">
+            <div class="header-top-area">
+                <div class="fixed-header-top">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div id="custom-search" class="col-sm-3 col-xs-12">
+                                <div class="top-search-bar col-xs-12">
+                                    <input class="form-control" type="text" placeholder="Search..">
+                                </div>
+                            </div>
+                            @*<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 sidebarCollapse margin-right_5"></div>*@
+                            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3  posation_titel_top_par">
+                                <div class="header-top-menu tabl-d-n">
+                                    <label id="Screen_name" class="pading_titelpag"></label>
+                                    <label id="TitleSpan" class="pading_titelpag"></label>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4 pl-0 pr-0">
+                                <div class="header-top-menu tabl-d-n">
+                                    <label id="camp_name" class="pading_titelpag"></label>
+                                    <label id="TitleSpan" class="pading_titelpag"></label>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-5 col-sm-6 col-xs-12">
+                                <div class="header-right-info">
+                                    <ul class="col-lg-12 nav vbar-nav mai-top-nav header-right-menu">
+                                        <li class="liItem nav-item dropdown1" key="tol_messagestoppar" id="tol_messagestoppar">
+                                            <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span class="adminpro-icon adminpro-chat-pro"></span><span class="indicator-nt"></span>@*<span class="indicator-ms"></span>*@</a>
+                                            <div role="menu" class="admintab-wrap menu-setting-wrap menu-setting-wrap-bg dropdown-menu animated flipInX">
+                                                <ul class="nav nav-tabs custon-set-tab">
+                                                    <li class="active">
+                                                        <a data-toggle="tab" href="#Notes">  @SystemResource.tol_Notifications</a>
+                                                    </li>
+                                                    <li>
+                                                        <a data-toggle="tab" href="#Projects"> @SystemResource.tol_messages </a>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    @*____________________  اشعارات ____________________*@
+                                                    <div id="Notes" class="tab-pane fade in active">
+                                                        <div class="notes-area-wrap">
+                                                            <div class="note-heading-indicate">
+                                                                <h2>
+                                                                    <i class="fa fa-bell-o">
+                                                                    </i>
+                                                                </h2>
+                                                            </div>
+                                                            <div class="notes-list-area notes-menu-scrollbar">
+                                                                <ul class="notes-menu-list" id="creatnotesmassg"></ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @*______________رسائل  ____________________*@
+                                                    <div id="Projects" class="tab-pane fade rtl-menu">
+                                                        <div class="projects-settings-wrap">
+                                                            <div class="note-heading-indicate">
+                                                                <i class="adminpro-icon adminpro-chat-pro" style="color:#fff;font-weight: bold;font-size: 20px;">
+                                                                </i>
+                                                            </div>
+                                                            <div class="project-st-list-area project-st-menu-scrollbar">
+                                                                <ul class="projects-st-menu-list" id="creatmassg"></ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="liItem nav-item " id="tol_allnotification" key="tol_allnotification">
+                                            <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa fa-bell-o" aria-hidden="true"></i><span class="indicator-nt"></span></a>
+                                            <div role="menu" class="notification-author dropdown-menu animated flipInX">
+                                                <div class="notification-single-top">
+                                                    <h1 style="color:white!important">@SystemResource.tol_Notifications</h1>
+                                                </div>
+                                                <div class="notifcations" id="notification">
+                                                    <div class="notic_triangle"></div>
+                                                    <ul class="list-unstyled" id="notificationUL"></ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="liItem nav-item" id="tol_Userstoppar">
+                                            <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+                                                <span class="adminpro-icon adminpro-user-rounded header-riht-inf"></span>
+                                                <span id="Admin_name" class="admin-name"></span>
+                                                <span class="author-project-icon adminpro-icon adminpro-down-arrow"></span>
+                                            </a>
+                                            <ul role="menu" class="liItem dropdown-header-top author-log dropdown-menu animated flipInX">
+                                                <li>
+                                                    <a class="liItem" href="#" id="LanguageButtonHome"> <span id="LanguageButtonHome" class="adminpro-icon adminpro-money author-log-ic"></span> </a>
+                                                </li>
+                                                <li>
+                                                    <a class="liItem" href="#" id="btnUsers" data-toggle="modal" data-target="#user_setting"> @SystemResource.tol_change_Password<span id="btn_G_User" class="adminpro-icon adminpro-locked author-log-ic"></span>  </a>
+                                                </li>
+                                                <li>
+                                                    <a class="liItem" id="btn_loguotuser" href="#">  تسجيل الخروج @*@SystemResource.l_Log_Out*@<span class="adminpro-icon adminpro-reload author-log-ic"></span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Header top area end-->
+            <!-- Mobile Menu start  موبيل منيو -->
+            <!-- Mobile Menu end -->
+            <!-- Breadcome End-->
+        </div>
+
+        <div id="cont" class="divcont row">
+            <h2 class="text-center" id="headerTitle"></h2>
+
+            @RenderBody()
+
+            <nav class="navbar-fixed-bottom navbarBottom" style="padding:0">
+                <ul class="nav nav-pills" style="background-color:#052940">
+                    <li id="startMinuLogo"><img src="~/images/logo3.png" style="width: 50px; height: 45px; cursor: pointer;margin: 1px; margin-left: 5px;"></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!--..............................user setting..................................................-->
+    <div class="modal fade" id="user_setting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">@SystemResource.App_UserSetting </h4>
+                </div>
+                <div class="user_2">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-3 control-label">@SystemResource.App_OldPassword </label>
+                            <div class="col-sm-8">
+                                <input type="password" class="form-control" id="txtOldPassword">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label"> @SystemResource.App_NewPassword</label>
+                            <div class="col-sm-8">
+                                <input type="password" class="form-control" id="txtNewPassword">
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" id="btnChangePassword" class="btn btn-danger">@SystemResource.App_Confirm </button>
+                        <button type="button" class="btn btn-primary btn_back">@SystemResource.App_Return</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">@SystemResource.App_Close </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="glyphicon glyphicon-arrow-up	"></i></a>
+    <input type="hidden" id="GetActionUrl" name="name" value="@Url.Action("GetActionUrl","ClientTools")" />
+    <input type="hidden" id="ModelPreview" name="name" value="" />
+    <input type="hidden" id="SearchControlName" name="name" value="" />
+
+    <div class="modal fade messagealert" id="MessageBoxDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="MessageBoxTitle">حذف!!</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="col-xs-9"> <h3 id="MessageBoxMessage">هل تريد حقا الحذف ؟</h3></div>
+                    <div class="col-xs-3 text-center model-Logo">
+                        <i class="fa fa-exclamation-triangle"></i>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="MessageBoxOk" class="btn btn-danger">@SystemResource.App_Confirm</button>
+                    <button type="button" id="MessageBoxCancel" class="btn btn-warning" data-dismiss="modal">إلغاء</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="help-pop modal fade in" id="myModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel">@SystemResource.App_Help</h4>
+                </div>
+                <div class="modal-body content content-8" id="modalHelpRep">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">@SystemResource.App_Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="SearchBox" class=" fade styleserch" style="display: none; z-index: 1041;">
+        <button id="resetSearch" style="margin-left: 45%;position: absolute;top: 5px;z-index: 1;left: 0;" class="btn btn-warning"><i class="fa fa-refresh"></i></button>
+        <div style="background-color:#03a9f4!important; position:absolute;top:0px;left:0px;width:100%;height:40px;cursor:move;border-top-right-radius: 13px!important;border-top-left-radius: 13px!important;">
+            <input type="button" onclick="$('#SearchBox').modal('hide');" id="btnCloseSearch" name="name" value="x" class="btn colose_lay_btn btn-danger" style="height: 40px;
+              width: 38px;font-size: 20px;float: left;border-color: #ef6603!important;background-color: #03a9f4!important;" />
+            <h4 id="searchTitle" class="col-xs-3" style="color: #fff;line-height: 36px;text-align:right"></h4>
+        </div>
+        <div>
+            <div id="tableDiv" class="table table-bordered table-hover" style="width:100%;"> </div>
+            <h4 id="searchDes" class="col-xs-12 text-center" style=""></h4>
+        </div>
+    </div>
+
+    <div id="caret_script" style="display:none!important"> </div>
+
+    @*<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>*@
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    @Scripts.Render("~/Bundles/AppScript4")
+    <script>
+        $('#sidebarCollapse').on('click', function () {
+            $('#cont').toggleClass('colapsdivcont');
+        });
+        $('#chinng_languag').on('click', function () {
+            $('#main-menu').toggleClass('rtl-menu');
+        });
+        var elem = document.documentElement;
+
+        function openFullscreen() {
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) { /* Safari */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE11 */
+                elem.msRequestFullscreen();
+            }
+        }
+
+        function closeFullscreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) { /* Safari */
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { /* IE11 */
+                document.msExitFullscreen();
+            }
+        }
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebarCollapse').toggleClass('stylebtnmenu');
+            $('#sidebarCollapse').toggleClass('bla');
+            $('#cont').toggleClass('colapsdivcont');
+        });
+
+        $('#chinng_languag').on('click', function () {
+            $('#main-menu').toggleClass('rtl-menu');
+        });
+
+        $(document).ready(function () {
+            $("#btnclosefooter").click(function () {
+                $("#displaydiv").removeClass("display_none");
+                $("#btnclosefooter").addClass("display_none");
+                $("#chevron2").removeClass("display_none");
+                $("#footer").animate({ width: '500px', opacity: '0.8' }, "slow");
+                $("#chevron").toggleClass("glyphicon-hand-right");
+                $("#chevron").toggleClass("glyphicon-chevron-left");
+            });
+            $("#chevron2").click(function () {
+                $("#displaydiv").addClass("display_none");
+                $("#btnclosefooter").removeClass("display_none");
+                $("#footer").animate({ width: '0px', opacity: '0' }, "slow");
+                $("#chevron").toggleClass("glyphicon-hand-right");
+                $("#chevron").toggleClass("glyphicon-chevron-left");
+            });
+        });
+    </script>
+    <script src="~/Style_design/messages_Script.js"></script>
+    <script src="~/Content/Toastr/toastr.min.js"></script>
+    <script src="~/Content/Loading/src/js/jquery.preloader.js"></script>
+
+    <script src="~/Style_design/js/moment.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('select').val('null').select2().css("width", "100%");
+            $(window).load(function () {
+                $('#MainLoading').fadeOut(1000, function () { $('#MainLoading').remove(); });
+            });
+            ChangeColorOfLabel();
+        });
+
+        function ChangeColorOfLabel() {
+            try {
+                let allInputCheckbox = $("input[type='checkbox");
+                let allInputRadio = $("input[type='radio");
+                for (var i = 0; i < allInputCheckbox.length; i++) {
+                    $("label[for=" + allInputCheckbox[i].id + "]").css("color", "#e91a1a");
+                }
+                for (var i = 0; i < allInputRadio.length; i++) {
+                    $("label[for=" + allInputRadio[i].id + "]").css("color", "#e91a1a");
+                }
+            } catch (e) {
+
+            }
+        }
+
+        $(document).ajaxStart(function () {
+            $("body").preloader({ text: '@SystemResource.Loading', zIndex: '99999999999' });
+        });
+
+        $(document).ajaxComplete(function () {
+            $("body").preloader('remove');
+        });
+
+        $('#startMinuLogo').click(function () {
+            $("#mySidenav").toggleClass("startMinuShow");
+        });
+
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "50%";
+        }
+
+        function closeNav() {
+            $("#mySidenav").toggleClass("startMinuShow");
+        }
+
+        var ignoreClickOnMeElement = document.getElementById('mySidenav');
+        document.addEventListener('click', function (event) {
+            var isClickInsideElement = ignoreClickOnMeElement.contains(event.target);
+            if (event.target.id == 'startMinuLogo' || event.target.parentNode.id == 'startMinuLogo') {
+
+            }
+            else {
+                let ifElmentHasClass = $("#mySidenav").hasClass("startMinuShow");
+                if (isClickInsideElement == false && ifElmentHasClass == true) {
+                    $("#mySidenav").toggleClass("startMinuShow");
+                }
+            }
+        });
+    </script>
+</body>
+</html>

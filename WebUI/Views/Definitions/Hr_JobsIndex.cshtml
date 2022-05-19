@@ -1,0 +1,115 @@
+﻿@using Inv.WebUI.Resources
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+    ViewBag.Title = SystemResource.Jobs;
+}
+
+<div class="row">
+    <div class="col-md-3 Div_Tree CustomStyleTree max-h-500 bg-white">
+        <div id="left" class="col-12 span3">
+            <div class="controleTree">
+                <input class="form-control customInputSearch" autocomplete="off" id="Tree_search" type="text">
+                <span data-toggle="collapse" class="Refrash">
+                    <a id="Refrash" href="#" title="Refrash">
+                        <span data-toggle="collapse">
+                            <i id="RE" class="fas fa-sync-alt" style="color: #e26d09;"></i>
+                        </span>
+                    </a>
+                </span>
+            </div>
+            <div id='Tree'></div>
+        </div>
+    </div>
+
+    <div class="col-md-9 Div_Tree bg-white max-h-500 p-3">
+        <div class="tab-content">
+            <div class="col-md-12 row">
+                <div class="row col-12 mb-2 align-items-center">
+                    <div class="col-md-4 d-flex">
+                        <label>@SystemResource.Code</label>
+                        <input id="JCode" disabled name="JCode" type="text" class="form-control input-sm text_Display" placeholder="@SystemResource.Code">
+                    </div>
+
+                    <div class="text-center col-md-2">
+                        <button type="button" class="src-btn btn btn-warning" id="btnHr_JobsSearch" name="btnSearch">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label>@SystemResource.Code</label>
+                        <select id="ParentId" name="ParentId" disabled class="form-control input-sm text_Display">
+                            <option value="null">@SystemResource.ThereIsNo</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 p-0">
+                    <div class="col-md-12 d-flex">
+                        <label>@SystemResource.Name_Arabic</label>
+                        <input id="JName1" disabled name="JName1" type="text" class="form-control input-sm text_Display" placeholder="@SystemResource.Name_Arabic">
+                    </div>
+                    <div class="col-md-12 d-flex">
+                        <label>@SystemResource.Name_English</label>
+                        <input id="JName2" disabled name="JName2" type="text" class="form-control input-sm text_Display" placeholder="@SystemResource.Name_English">
+                    </div>
+                </div>
+                
+                <div class="col-md-6 d-flex">
+                    <label>واجبات الوظيفه</label>
+                    <textarea id="JDuties" disabled name="JDuties" type="text" class="form-control input-sm ">واجبات الوظيفه</textarea>
+                </div>
+
+                <div class="col-md-6  d-flex" style="clear: both;">
+                    <label>مؤهلات الوظيفه</label>
+                    <textarea id="JQualifications" disabled name="JQualifications" type="text" class="form-control input-sm ">مؤهلات الوظيفه</textarea>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <label>مسئوليات الوظيفه</label>
+                    <textarea id="JResponsibilities" disabled name="JResponsibilities" type="text" class="form-control input-sm ">مسئوليات الوظيفه</textarea>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <label>@SystemResource.App_desc</label>
+                    <textarea id="JDesc" disabled name="JDesc" type="text" class="form-control input-sm ">@SystemResource.App_desc</textarea>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <label>@SystemResource.Notes</label>
+                    <textarea id="Remarks" disabled name="Remarks" type="text" class="form-control input-sm ">@SystemResource.Notes</textarea>
+                </div>
+            </div>
+            
+            <hr class="col-md-12" />
+
+            <div class="col-md-12 row">
+                <h4 class="text-center col-md-12 police-header" style="font-weight: bold;">سياسات الوظائف</h4>
+
+                <div class="col-md-6 row">
+                    <label class="form-label col-md-6">متوسط الاجر الشهري</label>
+                    <input id="StandardMonthlyWage" disabled name="StandardMonthlyWage" type="number" class="form-control col-md-6 input-sm text_Display" placeholder="@SystemResource.StandardMonthlyCost">
+                </div>
+                <div class="col-md-6 row">
+                    <label class="form-label col-md-6">عدد ايام الاجازات الشهرية</label>
+                    <input id="StandardHolyDays" disabled name="StandardHolyDays" type="number" class="form-control col-md-6 input-sm text_Display" placeholder="@SystemResource.StandardHolyDays">
+                </div>
+                <div class="col-md-6 row">
+                    <label class="form-label col-md-6">متوسط الاجر اليومي</label>
+                    <input id="StandardDailyWage" disabled name="StandardDailyWage" type="number" class="form-control col-md-6 input-sm text_Display" placeholder="@SystemResource.StandardDailyCost">
+                </div>
+                <div class="col-md-6 row">
+                    <label class="form-label col-md-6">متوسط عدد ساعات العمل اليومي</label>
+                    <input id="StandardDailyWorkHours" disabled name="StandardDailyWorkHours" type="number" class="form-control col-md-6 input-sm text_Display" placeholder="@SystemResource.StandardDailyWorkHours ">
+                </div>
+                <div class="col-md-6 row">
+                    <label class="form-label col-md-6">متوسط اجر الساعة</label>
+                    <input id="StandardHourlyWage" disabled name="StandardHourlyWage" type="number" class="form-control col-md-6 input-sm text_Display" placeholder="@SystemResource.StandardHourlyCost">
+                </div>
+                <div class="col-md-6 row">
+                    <label class="form-label col-md-6">العدد المتاح</label>
+                    <input id="NumberAvailable" disabled name="NumberAvailable" type="number" class="form-control col-md-6 input-sm text_Display" placeholder="@SystemResource.NumberAvailable">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/ClientApp/Pages/Definitions/Hr_Jobs.js"></script>

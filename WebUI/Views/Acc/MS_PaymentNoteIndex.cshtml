@@ -1,0 +1,618 @@
+﻿@using Inv.WebUI.Resources
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+    ViewBag.Title = SystemResource.Voucher;
+}
+
+<style>
+    .form-group {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .d-flex {
+        justify-content: center;
+    }
+
+    label {
+        min-width: fit-content;
+        padding: 4px;
+    }
+</style>
+
+<div class="row bg-white">
+    <!--الشريط الي بيحتوي علي تابات التنقل-->
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" data-toggle="pill" href="#home" >
+                @SystemResource.Voucher  <i class="fa-solid fa fa-file" aria-hidden="true"></i>
+            </a>
+            <a class="nav-item nav-link" data-toggle="pill" href="#menu1">
+                الشيك
+                <i class="fa fa-solid fa-file-invoice" aria-hidden="true"></i>
+            </a>
+            <a class="nav-item nav-link" data-toggle="pill" href="#menu2" >
+                المبالغ <i class="fa fa-usd" aria-hidden="true"></i>
+            </a>
+            <a class="nav-item nav-link" data-toggle="pill" href="#menu3" >
+                عهده <i class="fa fa-suitcase" aria-hidden="true"></i>
+            </a>
+            <a class="nav-item nav-link" data-toggle="pill" href="#menu4" >
+                معلومات أضافيه <i class="fa fa-plus-circle" aria-hidden="true"></i>
+            </a>
+            <a class="nav-item nav-link" data-toggle="pill" href="#menu5" >
+                فئات العملات <i class="fa fa-users" aria-hidden="true"></i>
+            </a>
+            <a class="nav-item nav-link" data-toggle="pill" href="#menu6" >
+                أصناف <i class="fa fa-files-o" aria-hidden="true"></i>
+            </a>
+            <a class="nav-item nav-link" data-toggle="pill" href="#menu7" >
+                مرفقات <i class="fa fa-link" aria-hidden="true"></i>
+            </a>
+            <a class="nav-item nav-link" data-toggle="pill" href="#menu8" >
+                الفواتير <i class="fa fa-calendar" aria-hidden="true"></i>
+            </a>
+        </div>
+    </nav>
+
+    <div class="tab-content col-12">
+        <!--#########################################################################################################################################33-->
+        <!--                                                        الشيك                         -->
+        <div class="tab-pane fade" id="menu1">
+            <div class="row">
+                <div class="form-group col-md-4  d-flex">
+                    <label for="inputZip"> @SystemResource.BankNoticId </label>
+                    <select id="BankNoticId" name="BankNoticId" class="form-control">
+                        <option value=""></option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4 d-flex">
+                    <label for="inputState">@SystemResource.AccountNo</label>
+                    <select id="BankAccNumber" name="BankAccNumber" class="form-control"> </select>
+                </div>
+                <div class="form-group col-md-4  d-flex">
+                    <label for="inputZip"> @SystemResource.CheckNumber </label>
+                    <input type="number" name="CheckNumber" id="CheckNumber" class="form-control">
+                </div>
+
+                <div class="form-group col-md-3 d-flex" style="clear: both;">
+                    <label>@SystemResource.DueDate</label>
+                    <input type="date" class="form-control" id="DueDate" name="DueDate">
+                </div>
+
+                <div class="form-group col-md-3  d-flex">
+                    <label>@SystemResource.PaidDate</label>
+                    <input type="date" class="form-control" id="PaidDate" name="PaidDate">
+                </div>
+
+                <div class="form-group col-md-3 d-flex">
+                    <label for="RefNo">رقم مرجع الإشعار</label>
+                    <input type="number" class="form-control" id="RefNo" name="RefNo" disabled>
+                </div>
+
+                <div class="form-group col-md-3 d-flex">
+                    <label for="DocTrNo">رقم الإشعار</label>
+                    <input type="number" class="form-control" id="DocTrNo" name="DocTrNo" disabled>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="IsKembiala">@SystemResource.IsKembiala</label>
+                    <div class="switch-button switch-button-yesno">
+                        <input type="checkbox" name="IsKembiala" id="IsKembiala" value="false" disabled=""><span>
+                            <label for="IsKembiala" style="color: rgb(233, 26, 26);"></label>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="NotPaid" class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" name="CheckType" id="NotPaid" class="custom-control-input" value="0" disabled="">
+                        <span class="custom-control-label">@SystemResource.NotPaid</span>
+                    </label>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="Paid" class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" name="CheckType" id="Paid" class="custom-control-input" value="1" disabled="">
+                        <span class="custom-control-label">@SystemResource.Paid</span>
+                    </label>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="Apostate" class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" name="CheckType" id="Apostate" class="custom-control-input" value="2" disabled="">
+                        <span class="custom-control-label">@SystemResource.Apostate</span>
+                    </label>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="DependencyTransfer" class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" name="CheckType" id="DependencyTransfer" class="custom-control-input" value="3" disabled="">
+                        <span class="custom-control-label">@SystemResource.DependencyTransfer</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!--#3########################################################################################################################################3-->
+        <!--      ---------------------    مستند صرف      -----------------     -->
+        <div class="tab-pane fade in show active" id="home">
+            <div class="row">
+                <div class="form-group col-md-3 d-flex">
+                    <label for="inputZip"> @SystemResource.TrNo </label>
+                    <input type="number" name="TrNo" id="TrNo" class="form-control">
+                </div>
+                <div class="form-group col-md-2 d-flex">
+                    <select id="BookId" name="BookId" class="form-control">
+                        <option value="null"></option>
+                    </select>
+                </div>
+
+                <div class="col-md-1 text-center d-flex">
+                    <button type="button" class="src-btn btn btn-warning xaddable xeditable" id="btnMS_PaymentNoteSearch" name="btnSearch">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+
+                <div class="form-group col-md-3 d-flex">
+                    <label for="inputCity">@SystemResource.DocumentType</label>
+                    <select id="TermId" name="TermId" class="form-control">
+                        <option value="null">@SystemResource.DocumentType</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-3 d-flex">
+                    <label>@SystemResource.Side</label>
+                    <select class="form-control" id="RectSourceType" name="RectSourceType"> </select>
+                </div>
+
+                <div class="form-group col-md-3 d-flex">
+                    <label>@SystemResource.EditingDate</label>
+                    <input type="date" class="form-control" id="TrDate" name="TrDate">
+                </div>
+
+                <div class="form-group col-md-3 d-flex">
+                    <label>@SystemResource.Reference</label>
+                    <input type="text" class="form-control" id="ManualTrNo" name="ManualTrNo">
+                </div>
+
+                <div class="form-group col-md-3 d-flex">
+                    <label>@SystemResource.App_Drainage_Type</label>
+                    <select class="form-control" id="TranType" name="TranType">
+                        <option value="0">@SystemResource.ChooseType</option>
+                        <option value="1">@SystemResource.App_Cash</option>
+                        <option value="2">@SystemResource.checkname</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="ChequeOpenId">@SystemResource.OpeningPaper</label>
+                    <div class="switch-button switch-button-yesno">
+                        <input type="checkbox" name="ChequeOpenId" id="ChequeOpenId" value="false" disabled=""><span>
+                            <label for="ChequeOpenId" style="color: rgb(233, 26, 26);"></label>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-3 d-flex" id="selectMode">
+                    <label>@SystemResource.Client</label>
+                    <select name="EmpId" id="EmpId" class="form-control"> </select>
+                </div>
+
+                <div class="form-group col-md-3 d-flex">
+                    <label for="inputState">@SystemResource.Safe</label>
+                    <select name="BoxId" id="BoxId" class="form-control"> </select>
+                </div>
+
+                <div class="form-group col-md-3 d-flex">
+                    <label for="inputState">@SystemResource.Currency</label>
+                    <select name="CurrencyId" id="CurrencyId" class="form-control"> </select>
+                </div>
+
+                <div class="form-group col-md-3 d-flex">
+                    <label for="Rate">@SystemResource.M_Transfer</label>
+                    <input type="number" class="form-control" id="Rate" name="Rate">
+                </div>
+
+                <div class="form-group col-md-3 d-flex" style="clear: both;">
+                    <label for="ValueBeforeRate">@SystemResource.PaymentAmountlocal</label>
+                    <input type="number" class="form-control" id="ValueBeforeRate" name="ValueBeforeRate">
+                </div>
+
+                <div class="form-group col-md-3 d-flex">
+                    <label for="PaidPrice">@SystemResource.PaymentAmountcurrency</label>
+                    <input type="number" class="form-control" id="PaidPrice" name="PaidPrice">
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="AId">@SystemResource.AnalyticalCode</label>
+                    <select value="null" name="AId" id="AId" class="form-control"> AnalyticalCode</select>
+                </div>
+
+                <div class="form-group col-md-3 d-flex">
+                    <label>@SystemResource.TotalItems</label>
+                    <input type="number" class="form-control" id="TotalCurancy" name="TotalCurancy" disabled>
+                    <input type="number" class="form-control" id="TotalItems" name="TotalItems" disabled>
+                </div>
+
+                <!--###################################################################################################3-->
+                @*<form class="form-inline text-center" action="/action_page.php">
+                        <div class="form-group">
+                            <label style="font-size:medium; border: #87898b solid 1px; border-radius: 5px; width: 110px; background-color: #337ab7;color: white; text-align: center; height: 30px;">الاجمالى</label>
+                            <input type="text" class="form-control" id="inputCity">
+                        </div>
+                    </form>*@
+            </div>
+        </div>
+        <!--######################################################################################################################################33-->
+        <!--                                                        المبالغ                         -->
+        <div class="tab-pane fade" id="menu2">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">قيمة 1</label>
+                    <input type="number" class="form-control SalaryBefor" id="Value1BeforeRate" name="Value1BeforeRate">
+                    <input type="number" class="form-control" id="Value1" name="Value1">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">قيمة 4 </label>
+                    <input type="number" class="form-control SalaryBefor" id="Value4BeforeRate" name="Value4BeforeRate">
+                    <input type="number" class="form-control" id="Value4" name="Value4">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">قيمة 2</label>
+                    <input type="number" class="form-control SalaryBefor" id="Value2BeforeRate" name="Value2BeforeRate">
+                    <input type="number" class="form-control" id="Value2" name="Value2">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">قيمة 5</label>
+                    <input type="number" class="form-control SalaryBefor" id="Value5BeforeRate" name="Value5BeforeRate">
+                    <input type="number" class="form-control" id="Value5" name="Value5">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">قيمة 3</label>
+                    <input type="number" class="form-control SalaryBefor" id="Value3BeforeRate" name="Value3BeforeRate">
+                    <input type="number" class="form-control" id="Value3" name="Value3">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">قيمة 6</label>
+                    <input type="number" class="form-control SalaryBefor" id="Value6BeforeRate" name="Value6BeforeRate">
+                    <input type="number" class="form-control" id="Value6" name="Value6">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">تأمين ابتدائى</label>
+                    <input type="number" class="form-control SalaryBefor" id="Value7BeforeRate" name="Value7BeforeRate">
+                    <input type="number" class="form-control" id="Value7" name="Value7">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">تأمين نهائى </label>
+                    <input type="number" class="form-control SalaryBefor" id="Value8BeforeRate" name="Value8BeforeRate">
+                    <input type="number" class="form-control" id="Value8" name="Value8">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">قيمه اضافيه9</label>
+                    <input type="number" class="form-control SalaryBefor" id="Value9BeforeRate" name="Value9BeforeRate">
+                    <input type="number" class="form-control" id="Value9" name="Value9">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">قيمه أضافيه 10 </label>
+                    <input type="number" class="form-control SalaryBefor" id="Value10BeforeRate" name="Value10BeforeRate">
+                    <input type="number" class="form-control" id="Value10" name="Value10">
+                </div>
+                </div>
+            </div>
+        <!--######################################################################################################################################33-->
+        <!--                                                        عهده                         -->
+        <div class="tab-pane fade" id="menu3">
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label class="btn btn-primary">
+                            <input type="checkbox" id="checkboxSuccess" value="option1">
+                            مستند عهده
+                        </label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <select class="form-control">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+        </div>
+        <!--3###############################################################################################################################3-->
+        <!--                                                       معلومات اضافيه                         -->
+        <div class="tab-pane fade" id="menu4">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group col-md-12">
+                        <label>حقل اضافى 1</label>
+                        <input type="text" class="form-control" id="strCustm1" name="strCustm1">
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label>حقل اضافى 2</label>
+                        <input type="text" class="form-control" id="strCustm2" name="strCustm2">
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label>ملاحظات</label>
+                    <textarea class="form-control " rows="4" id="Remarks" name="Remarks"></textarea>
+                </div>
+            </div>
+        </div>
+        <!--3###############################################################################################################################3-->
+        <!--                                                       مستند  فئات عملاء                          -->
+        <div class="tab-pane fade" id="menu5">
+            <div class="col-xs-12">
+                <table data-allModeDisable="true" id="CuranciesGridId"></table>
+            </div>
+        </div>
+        <!--3###############################################################################################################################3-->
+        <!--                                                       مستند  اصناف                          -->
+        <div class="tab-pane fade" id="menu6">
+            <form>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="inputEmail4">الفرق</label>
+                        <input type="email" class="form-control" id="inputEmail4">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputPassword4">مبلغ الدفع</label>
+                        <input type="password" class="form-control" id="inputPassword4">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputPassword4">الإجمالى</label>
+                        <input type="password" class="form-control" id="inputPassword4">
+                    </div>
+                </div>
+            </form>
+            <table class="table table-bordered" data-main="mainTable">
+                <thead>
+                    <tr style="background-color: #337ab7;">
+                        <th style="text-align: right;">#</th>
+                        <th style="text-align: right;">	كود الصنف</th>
+                        <th style="text-align: right;">باركود</th>
+                        <th style="text-align: right;">اسم</th>
+                        <th style="text-align: right;">الوحده</th>
+                        <th style="text-align: right;">عدد</th>
+                        <th style="text-align: right;">تنفيذ	</th>
+                        <th style="text-align: right;">سعر</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+        <!--3###############################################################################################################################3-->
+        <!--                                                       مرفقات                         -->
+        <div class="tab-pane fade" id="menu7">
+            <form class="form-inline" action="/action_page.php" style="margin-top: 15px;">
+                <div class="form-group">
+                    <button type="button" class="btn btn-info" style="width: 200px; font-size:medium;border-radius: 5px; font-weight: bold;background-color: #337ab7;">تحميل المرفقات</button>
+                </div>
+            </form>
+            <p></p>
+            <table class="table table-bordered" data-main="mainTable">
+                <thead>
+                    <tr style="background-color: #337ab7;">
+                        <th style="text-align: right;">#</th>
+                        <th style="text-align: right;">	نوع الملف	</th>
+                        <th style="text-align: right;">وصف 1	</th>
+                        <th style="text-align: right;">وصف 2	</th>
+                        <th style="text-align: right;">Encrypted</th>
+                        <th style="text-align: right;">image</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+        <!--3###############################################################################################################################3-->
+        <!--                                                       الفواتير                         -->
+        <div class="tab-pane fade" id="menu8">
+            <form>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">الرصيد</label>
+                        <input type="email" class="form-control" id="inputEmail4">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPassword4">الجهه</label>
+                        <input type="password" class="form-control" id="inputPassword4">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="inputEmail4">مبلغ الصرف(محلي)</label>
+                        <input type="email" class="form-control" id="inputEmail4">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputPassword4">عمله</label>
+                        <input type="password" class="form-control" id="inputPassword4">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputPassword4">مبلغ الصرف(عمله)</label>
+                        <input type="password" class="form-control" id="inputPassword4">
+                    </div>
+                </div>
+            </form>
+
+            <table class="table table-bordered" data-main="mainTable">
+                <thead>
+                    <tr style="background-color: #337ab7;">
+                        <th style="text-align: right;">#</th>
+                        <th style="text-align: right;">نوع المستند	</th>
+                        <th style="text-align: right;">رقم المستند</th>
+                        <th style="text-align: right;">عمله الفاتوره	</th>
+                        <th style="text-align: right;">م.التحويل بالفاتوره</th>
+                        <th style="text-align: right;">اجمالى بالفاتوره</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+        <!--3###############################################################################################################################3-->
+    </div>
+</div>
+
+<script src="~/ClientApp/Pages/Acc/MS_PaymentNote.js"></script>

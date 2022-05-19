@@ -1,0 +1,283 @@
+﻿@using Inv.WebUI.Resources
+
+@{
+    ViewBag.Title = "كتاب دوري";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<style>
+    tr td, tr th {
+        text-align: center;
+    }
+
+    legend {
+        font-size: 15px
+    }
+
+    .btn {
+        line-height: .9;
+    }
+
+    .table .thead-dark th {
+        background-color: #052940;
+        border-color: #384d5a;
+    }
+</style>
+
+<div class="row">
+    <div class="col-12 Div_Tree bg-white p-3">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-md-3 d-flex align-items-center">
+                        <label>رقم المستند</label>
+                        <input type="number" class="form-control" id="" name="">
+                    </div>
+
+                    <div class="col-md-3 d-flex align-items-center">
+                        <label>تاريخ التحرير</label>
+                        <input type="date" class="form-control" id="" name="">
+                    </div>
+
+                    <div class="col-md-6 d-flex align-items-center">
+                        <label class="mr-1">استيراد</label>
+                        <input type="text" class="form-control" id="" name="">
+                    </div>
+
+
+                    <div class="col-md-3 d-flex align-items-center">
+                        <label>كود الكتاب</label>
+                        <input type="text" class="form-control" id="" name="">
+                    </div>
+
+                    <div class="col-md-3 d-flex justify-content-around align-items-center">
+                        <label class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">شاسيه</span>
+                        </label>
+                        <label class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">موتور</span>
+                        </label>
+                    </div>
+
+                    <div class="col-md-3 d-flex align-items-center">
+                        <label>الموديل</label>
+                        <input type="text" class="form-control" id="" name="">
+                    </div>
+
+                    <div class="col-md-3 d-flex justify-content-around align-items-center">
+                        <label class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">تسلسل اتوماتيكي</span>
+                        </label>
+                        <label class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">تسلسل الاكسيل</span>
+                        </label>
+                    </div>
+
+                    <div class="col-md-3 d-flex align-items-center">
+                        <label>المورد</label>
+                        <select class="form-control" id="" name="">
+                            <option selected value="value">3 - هاوجيانج</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3 d-flex align-items-center">
+                        <label>السعة</label>
+                        <select class="form-control" id="" name="">
+                            <option selected value="value">1 - 150 سم3</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3 d-flex align-items-center">
+                        <label>بداية المسلسل</label>
+                        <input type="number" class="form-control" id="" name="">
+                    </div>
+
+                    <div class="col-md-3 d-flex align-items-center">
+                        <label>نهاية المسلسل</label>
+                        <input type="number" class="form-control" id="" name="">
+                    </div>
+
+                    <div class="col-md-3 d-flex align-items-center">
+                        <label>حروف البداية</label>
+                        <input type="text" class="form-control" id="" name="">
+                    </div>
+
+                    <div class="col-md-3 d-flex align-items-center">
+                        <label>حروف النهاية</label>
+                        <input type="text" class="form-control" id="" name="">
+                    </div>
+
+                    <div class="col-md-2 d-flex align-items-center">
+                        <input type="button" class="btn btn-danger" id="" name="" value="انشاء الكتاب">
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label>مسلسل من 0 - </label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="switch-button switch-button-xs">
+                                    <input type="checkbox" name="" id=""><span>
+                                        <label for=""></label>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>معتمد</label>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="switch-button switch-button-xs">
+                                    <input type="checkbox" name="" id=""><span>
+                                        <label for=""></label>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 d-flex align-items-center">
+                        <input type="date" class="form-control" id="" name="">
+                    </div>
+
+                    <div class="col-md-2 d-flex align-items-center">
+                        <label>عدد البنود</label>
+                        <input type="number" class="form-control" id="" name="">
+                    </div>
+
+                    <div class="col-md-1 d-flex align-items-center">
+                        <input type="button" class="btn btn-default" id="" name="" value="رتب البنود">
+                    </div>
+
+                    <div class="col-md-2 d-flex align-items-center">
+                        <input type="button" class="btn btn-primary" id="" name="" value="شاسيه بدون جواب">
+                    </div>
+
+                    <div class="col-md-2 d-flex align-items-center">
+                        <input type="button" class="btn btn-primary" id="" name="" value="موتور بدون جواب">
+                    </div>
+
+                    <div class="col-md-2">
+                        <label class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">نموذج 1</span>
+                        </label>
+                        <label class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">نموذج 2</span>
+                        </label>
+                    </div>
+
+                    <div class="col-md-4 d-flex align-items-center">
+                        <label>انشاء</label>
+                        <input type="text" class="form-control" id="" name="">
+                    </div>
+
+                    <div class="col-md-4 d-flex align-items-center">
+                        <label class="col-md-3">غلاف 1</label>
+                        <input type="text" class="form-control" id="" name="">
+                        <i class="fas fa-arrow-circle-left fa-fw fa-2x pl-1 pr-1"></i>
+                    </div>
+
+                    <div class="col-md-4 d-flex align-items-center">
+                        <label class="col-md-3">غلاف 2</label>
+                        <input type="text" class="form-control" id="" name="">
+                        <i class="fas fa-arrow-circle-left fa-fw fa-2x pl-1 pr-1"></i>
+                    </div>
+
+                    <div class="col-md-4 d-flex align-items-center">
+                        <label class="col-md-3">شعار 1</label>
+                        <input type="text" class="form-control" id="" name="">
+                        <i class="fas fa-arrow-circle-left fa-fw fa-2x pl-1 pr-1"></i>
+                    </div>
+
+                    <div class="col-md-4 d-flex align-items-center">
+                        <label class="col-md-3">شعار 2</label>
+                        <input type="text" class="form-control" id="" name="">
+                        <i class="fas fa-arrow-circle-left fa-fw fa-2x pl-1 pr-1"></i>
+                    </div>
+
+                    <div class="col-md-4 d-flex align-items-center">
+                        <label class="col-md-3">شعار 3</label>
+                        <input type="text" class="form-control" id="" name="">
+                        <i class="fas fa-arrow-circle-left fa-fw fa-2x pl-1 pr-1 text-success"></i>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="row mb-3 mt-2">
+                            <div class="col-md-8 m-auto">
+                                <fieldset class="border p-2 bg-light">
+                                    <legend class="w-auto text-primary">استعلام عن اي رقم شاسيه أو موتور</legend>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">شاسيه</span>
+                                            </label>
+                                            <label class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">موتور</span>
+                                            </label>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <input type="text" class="form-control" id="" name="">
+                                        </div>
+
+                                        <div class="col-md-2 d-flex align-items-center">
+                                            <input type="button" class="btn btn-outline-dark" id="" name="" value="بـــحـــث">
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="table table-bordered table table-hover table-responsive ">
+                            <table data-main="maintable" class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">مسلسل</th>
+                                        <th scope="col">رقم الموتور</th>
+                                        <th scope="col">ملاحظــــات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">309</th>
+                                        <td>18828008</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">310</th>
+                                        <td>18828512</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">311</th>
+                                        <td>18828055</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">312</th>
+                                        <td>18828948</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">313</th>
+                                        <td>18828156</td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/ClientApp/Pages/Answers/PeriodicalBook.js"></script>

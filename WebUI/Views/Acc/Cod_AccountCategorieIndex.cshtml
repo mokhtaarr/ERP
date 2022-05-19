@@ -1,0 +1,81 @@
+﻿@using Inv.WebUI.Resources
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+    ViewBag.Title = SystemResource.AccountsTab;
+}
+
+<div class="row">
+    <div class="col-md-3 Div_Tree CustomStyleTree max-h-500 bg-white">
+        <div id="left" class="col-12 span3">
+            <div class="controleTree">
+                <input class="form-control customInputSearch" autocomplete="off" id="Tree_search" type="text">
+                <span data-toggle="collapse" class="Refrash">
+                    <a id="Refrash" href="#" title="Refrash">
+                        <span data-toggle="collapse">
+                            <i id="RE" class="fas fa-sync-alt" style="color: #e26d09;"></i>
+                        </span>
+                    </a>
+                </span>
+            </div>
+            <div id='Tree'></div>
+        </div>
+    </div>
+
+    <div class="col-md-9 Div_Tree bg-white max-h-500 p-3">
+        <div class="row mb-2">
+            <div class="col-md-3 d-flex">
+                <label class="col-md-4 pading_2">كود التبويب</label>
+                <div class="col-md-8">
+                    <input id="Code" disabled name="Code" type="number" class="form-control input-sm text_Display">
+                </div>
+            </div>
+
+            <div class="col-md-1">
+                <button type="button" class="src-btn btn btn-warning" id="btnAccCategorySearch" name="btnSearch">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+
+            <div class="col-md-4 d-flex">
+                <label class="col-md-1 pading_2">تبويب جذري</label>
+                <select id="ParentAccountCatId" name="ParentAccountCatId" disabled class="form-control input-sm text_Display">
+                    <option value="null"></option>
+                </select>
+            </div>
+
+            <div class="col-md-4 d-flex">
+                <label class="col-md-1 pading_2 text-end">كود تحليلي</label>
+                <select id="AId" name="AId" disabled class="form-control input-sm text_Display">
+                    <option value="null"></option>
+                </select>
+            </div>
+
+            <div class="col-md-12 mt-2"></div>
+
+            <div class="col-md-6 d-flex">
+                <label>1 اسم التبويب</label>
+                <input id="DescA" disabled name="DescA" type="text" class="form-control input-sm text_Display">
+            </div>
+
+            <div class="col-md-6 d-flex">
+                <label>2 اسم التبويب</label>
+                <input id="DescE" disabled name="DescE" type="text" class="form-control input-sm text_Display">
+            </div>
+
+            <div class="col-md-12"></div>
+
+            <div class="col-md-6 d-flex">
+                <label class="col-md-1">ملاحظات 1</label>
+                <textarea id="RemarksA" disabled name="RemarksA" type="text" class="form-control input-sm "></textarea>
+            </div>
+
+            <div class="col-md-6 d-flex">
+                <label class="col-md-1">ملاحظات 2</label>
+                <textarea id="RemarksE" disabled name="RemarksE" type="text" class="form-control input-sm "></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/ClientApp/Pages/Acc/Cod_AccountCategories.js"></script>

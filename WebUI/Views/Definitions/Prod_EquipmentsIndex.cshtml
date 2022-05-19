@@ -1,0 +1,112 @@
+﻿@using Inv.WebUI.Resources
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+    ViewBag.Title = SystemResource.Prod_Equipments;
+}
+
+<div class="row">
+    <div class="col-12 bg-white p-3 border border-1 rounded shadow-sm">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6 d-flex">
+                        <label class="form-label">@SystemResource.Code</label>
+                        <input id="EquipCode" disabled name="EquipCode" type="number" class="form-control" placeholder="@SystemResource.Code">
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <button type="button" class="src-btn btn btn-warning" id="btnProd_EquipmentsSearch" name="btnSearch">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center justify-content-around">
+                        <label for="IsScale" class="col-md-2">@SystemResource.IsScale</label>
+                        <div class="switch-button switch-button-yesno">
+                            <input type="checkbox" name="IsScale" id="IsScale"><span>
+                                <label for="IsScale"></label>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-12 d-flex">
+                        <label class="form-label">@SystemResource.Name_Arabic</label>
+                        <input id="EquipName1" disabled name="EquipName1" type="text" class="form-control" placeholder="@SystemResource.Name_Arabic">
+                    </div>
+                    <div class="col-md-12 d-flex">
+                        <label class="form-label">@SystemResource.Name_English</label>
+                        <input id="EquipName2" disabled name="EquipName2" type="text" class="form-control" placeholder="@SystemResource.Name_English">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12 d-flex">
+                        <label class="form-label">@SystemResource.App_desc</label>
+                        <textarea class="form-control" type="checkbox" name="JDesc" id="JDesc" value="" placeholder="@SystemResource.App_desc"></textarea>
+                    </div>
+                    <div class="col-md-12 d-flex">
+                        <label class="form-label">@SystemResource.Notes</label>
+                        <textarea class="form-control" type="checkbox" name="Remarks" id="Remarks" value="" placeholder="@SystemResource.Notes"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-4 d-flex">
+                        <label class="form-label">@SystemResource.MaxWeight</label>
+                        <input id="MaxWeight" disabled name="MaxWeight" type="number" class="form-control" placeholder="@SystemResource.MaxWeight">
+                    </div>
+                    <div class="col-md-4 d-flex">
+                        <label class="form-label">@SystemResource.MinWeight</label>
+                        <input id="MinWeight" disabled name="MinWeight" type="number" class="form-control" placeholder="@SystemResource.MinWeight">
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="form-label">@SystemResource.TimeRate</label>
+                        <input id="TimeRate" disabled name="TimeRate" type="number" class="form-control" placeholder="@SystemResource.TimeRate">
+                    </div>
+                </div>
+            </div>
+            @* -------------------------------------  ----------------------------------------------- *@
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-4 d-flex">
+                        <label class="form-label">@SystemResource.StandardMonthlyCost</label>
+                        <input id="StandardMonthlyCost" disabled name="StandardMonthlyCost" type="number" class="form-control" placeholder="@SystemResource.StandardMonthlyCost">
+                    </div>
+                    <div class="col-md-4 d-flex">
+                        <label class="form-label">@SystemResource.StandardHolyDays</label>
+                        <input id="StandardHolyDays" disabled name="StandardHolyDays" type="number" class="form-control" placeholder="@SystemResource.StandardHolyDays">
+                    </div>
+                    <div class="col-md-4 d-flex">
+                        <label class="form-label">@SystemResource.StandardDailyCost</label>
+                        <input id="StandardDailyCost" disabled name="StandardDailyCost" type="number" class="form-control" placeholder="@SystemResource.StandardDailyCost">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-4 d-flex">
+                        <label class="form-label">@SystemResource.StandardDailyWorkHours</label>
+                        <input id="StandardDailyWorkHours" disabled name="StandardDailyWorkHours" type="number" class="form-control" placeholder="@SystemResource.StandardDailyWorkHours">
+                    </div>
+                    <div class="col-md-4 d-flex">
+                        <label class="form-label">@SystemResource.StandardHourlyCost</label>
+                        <input id="StandardHourlyCost" disabled name="StandardHourlyCost" type="number" class="form-control" placeholder="@SystemResource.StandardHourlyCost">
+                    </div>
+                    <div class="col-md-4 d-flex">
+                        <label class="form-label">@SystemResource.NumberAvailable</label>
+                        <input id="NumberAvailable" disabled name="NumberAvailable" type="number" class="form-control" placeholder="@SystemResource.NumberAvailable">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 mt-3 bg-white p-3 border border-1 rounded shadow-sm">
+        <table data-main="mainTable" id="divProd_EquipmentsGrid"></table>
+    </div>
+</div>
+
+
+<script src="~/ClientApp/Pages/Definitions/Prod_Equipments.js"></script>

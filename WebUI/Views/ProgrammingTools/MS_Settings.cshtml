@@ -1,0 +1,1194 @@
+﻿@using Inv.WebUI.Resources
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+    ViewBag.Title = SystemResource.ProgramBasics;
+}
+
+<div class="row" id="Ms_settings">
+    <div class="col-md-12 bg-white border border-1 rounded shadow-sm">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" data-toggle="tab" href="#SystemsOptions">@SystemResource.SystemsOptions</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#OtherOptions">@SystemResource.OtherOptions</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#AlertOptions">@SystemResource.AlertOptions</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#ValidItems">@SystemResource.ValidItems</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#ItemOptions">@SystemResource.ItemOptions</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#ConnectToOtherDevices">@SystemResource.ConnectToOtherDevices</a>
+            </div>
+        </nav>
+
+        <div class="tab-content text-center" id="nav-tabContent">
+            <div id="SystemsOptions" class="tab-pane fade show active">
+                <div class="row">
+                    <div class="col-md-6">
+                        <fieldset class="border p-2">
+                            <legend class="w-auto">@SystemResource.SystemsOptions</legend>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-9 p-0">
+                                            <label>@SystemResource.ActivateBarcodeSystem</label>
+                                        </div>
+
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="UseBarCodes" id="UseBarCodes"><span>
+                                                    <label for="UseBarCodes"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-9 p-0">
+                                            <label>@SystemResource.ShowAlternateItemsColumn</label>
+                                        </div>
+
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="UseAlterItems" id="UseAlterItems"><span>
+                                                    <label for="UseAlterItems"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-9 p-0">
+                                            <label>@SystemResource.UseBarcodeOfBasic</label>
+                                        </div>
+
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="UseBasicOrAlterBarcod" id="UseBasicOrAlterBarcod"><span>
+                                                    <label for="UseBasicOrAlterBarcod"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-9 p-0">
+                                            <label>@SystemResource.ActivateTheSerialNumberSystemForItems</label>
+                                        </div>
+
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="UseSerialNumber" id="UseSerialNumber"><span>
+                                                    <label for="UseSerialNumber"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-9 p-0">
+                                            <label>@SystemResource.UseOfMultipleCurrencies</label>
+                                        </div>
+
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="UseCurrency" id="UseCurrency"><span>
+                                                    <label for="UseCurrency"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-9 p-0">
+                                            <label>@SystemResource.UseHijriDate</label>
+                                        </div>
+
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="UseHijiryDate" id="UseHijiryDate"><span>
+                                                    <label for="UseHijiryDate"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-9 p-0">
+                                            <label>@SystemResource.UsingScaleCard</label>
+                                        </div>
+
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="UseWeightCardSystem" id="UseWeightCardSystem"><span>
+                                                    <label for="UseWeightCardSystem"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-9 p-0">
+                                            <label>@SystemResource.ShowUnitColumn</label>
+                                        </div>
+
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="UseUnitColumn" id="UseUnitColumn"><span>
+                                                    <label for="UseUnitColumn"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-9 p-0">
+                                            <label>@SystemResource.ShowBranchCodeColumn</label>
+                                        </div>
+
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="UseBrancheCodeColumn" id="UseBrancheCodeColumn"><span>
+                                                    <label for="UseBrancheCodeColumn"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-9 p-0">
+                                            <label>@SystemResource.ShowBranchNameColumn</label>
+                                        </div>
+
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="UseBrancheNameColumn" id="UseBrancheNameColumn"><span>
+                                                    <label for="UseBrancheNameColumn"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-9 p-0">
+                                            <label>@SystemResource.ShowStoreCodeColumn</label>
+                                        </div>
+
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="UsePartitionCodeColumn" id="UsePartitionCodeColumn"><span>
+                                                    <label for="UsePartitionCodeColumn"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-9 p-0">
+                                            <label>@SystemResource.ShowStoreNameColumn</label>
+                                        </div>
+
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="UsePartitionNameColumn" id="UsePartitionNameColumn"><span>
+                                                    <label for="UsePartitionNameColumn"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        @*<fieldset class="border p-2">
+                            <legend class="w-auto">@SystemResource.ScreenOrientation</legend>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">@SystemResource.Up</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">@SystemResource.Bottom</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">@SystemResource.Right</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">@SystemResource.Left</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>*@
+                    </div>
+
+                    <div class="col-md-6">
+                        <fieldset class="border p-2">
+                            <legend class="w-auto">@SystemResource.Decimals</legend>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="d-flex form-group">
+                                        <div class="col-sm-6 p-0">
+                                            <label>@SystemResource.Quantity</label>
+                                        </div>
+                                        <div class="col-sm-6 p-0">
+                                            <input class="mw-100" type="number" name="QuantityDicimals" id="QuantityDicimals">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="d-flex form-group">
+                                        <div class="col-sm-6 p-0">
+                                            <label>@SystemResource.Ratio</label>
+                                        </div>
+                                        <div class="col-sm-6 p-0">
+                                            <input class="mw-100" type="number" name="PercentDicimals" id="PercentDicimals">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="d-flex form-group">
+                                        <div class="col-sm-6 p-0">
+                                            <label>@SystemResource.Price</label>
+                                        </div>
+                                        <div class="col-sm-6 p-0">
+                                            <input class="mw-100" type="number" name="PriceDicimals" id="PriceDicimals">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="d-flex form-group">
+                                        <div class="col-sm-6 p-0">
+                                            <label>@SystemResource.Dimensions</label>
+                                        </div>
+                                        <div class="col-sm-6 p-0">
+                                            <input class="mw-100" type="number" name="DimensionDicimals" id="DimensionDicimals">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="d-flex form-group">
+                                        <div class="col-sm-6 p-0">
+                                            <label>@SystemResource.Cost</label>
+                                        </div>
+                                        <div class="col-sm-6 p-0">
+                                            <input class="mw-100" type="number" name="CostDicimals" id="CostDicimals">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="d-flex form-group">
+                                        <div class="col-sm-6 p-0">
+                                            <label>@SystemResource.AccountBalances</label>
+                                        </div>
+                                        <div class="col-sm-6 p-0">
+                                            <input class="mw-100" type="number" name="AccountsDecimals" id="AccountsDecimals">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="d-flex form-group">
+                                        <div class="col-sm-6 p-0">
+                                            <label>@SystemResource.value</label>
+                                        </div>
+                                        <div class="col-sm-6 p-0">
+                                            <input class="mw-100" type="number" name="ValuesDicimals" id="ValuesDicimals">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="d-flex form-group">
+                                        <div class="col-sm-6 p-0">
+                                            <label>@SystemResource.Timing</label>
+                                        </div>
+                                        <div class="col-sm-6 p-0">
+                                            <input class="mw-100" type="number" name="TimeDecimals" id="TimeDecimals">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="border p-2">
+                            <legend class="w-auto">@SystemResource.VarietiesWithCharacteristics</legend>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-9 p-0">
+                                            <label>@SystemResource.UseSystemPropertiesAndDimensions</label>
+                                        </div>
+
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="UseAttributes" id="UseAttributes"><span>
+                                                    <label for="UseAttributes"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-9 p-0">
+                                            <label>@SystemResource.ShowColumnHeight</label>
+                                        </div>
+
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="UseHightColumn" id="UseHightColumn"><span>
+                                                    <label for="UseHightColumn"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-9 p-0">
+                                            <label>@SystemResource.ShowColumnWidth</label>
+                                        </div>
+
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="UseWidthColumn" id="UseWidthColumn"><span>
+                                                    <label for="UseWidthColumn"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-9 p-0">
+                                            <label>@SystemResource.ShowColumnLength</label>
+                                        </div>
+
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="UseLengthColumn" id="UseLengthColumn"><span>
+                                                    <label for="UseLengthColumn"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="border p-2">
+                            <legend class="w-auto">@SystemResource.AttachmentOptions</legend>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-3 p-0">
+                                            <label>@SystemResource.UserAlert</label>
+                                        </div>
+
+                                        <div class="col-md-9 p-0">
+                                            <select name="AskForAttachMove" id="AskForAttachMove" class="form-control">
+                                                <option value="1">@SystemResource.ProgramAlwaysCopiesFiles</option>
+                                                <option value="2">@SystemResource.ProgramAlwaysTransfersFiles</option>
+                                                <option value="3">@SystemResource.ProgramDoesNotCopyOrTransferFiles</option>
+                                                <option value="4">@SystemResource.ProgramAsksUser</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-3 p-0">
+                                            <label>@SystemResource.DefaultFolder</label>
+                                        </div>
+
+                                        <div class="col-md-9 p-0">
+                                            <input class="mw-100 w-100" type="file" name="AttachmentPath" id="AttachmentPath">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+
+            <div id="OtherOptions" class="tab-pane fade">
+                <div class="row">
+                    <div class="col-md-6">
+                        <fieldset class="border p-2">
+                            <legend class="w-auto">@SystemResource.QuickSearchOptions</legend>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-3 p-0">
+                                            <label>@SystemResource.ItemSearch</label>
+                                        </div>
+
+                                        <div class="col-md-9 p-0">
+                                            <select name="PartCodOrNam" id="PartCodOrNam" class="form-control">
+                                                <option value="false">@SystemResource.Itm_ItemCode</option>
+                                                <option value="true">@SystemResource.Itm_ItemName</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-3 p-0">
+                                            <label>@SystemResource.CustomerSearch</label>
+                                        </div>
+
+                                        <div class="col-md-9 p-0">
+                                            <select name="CustCodOrNam" id="CustCodOrNam" class="form-control">
+                                                <option value="false">@SystemResource.Code2 @SystemResource.App_Cutomer</option>
+                                                <option value="true">@SystemResource.Name @SystemResource.App_Cutomer</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-3 p-0">
+                                            <label>@SystemResource.SupplierSearch</label>
+                                        </div>
+
+                                        <div class="col-md-9 p-0">
+                                            <select name="VendCodOrNam" id="VendCodOrNam" class="form-control">
+                                                <option value="false">@SystemResource.Code2 @SystemResource.I_Vendor</option>
+                                                <option value="true">@SystemResource.Name @SystemResource.I_Vendor</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-3 p-0">
+                                            <label>SQL server date formate</label>
+                                        </div>
+
+                                        <div class="col-md-9 p-0">
+                                            <select name="SysDateFormat" id="SysDateFormat" class="form-control">
+                                                <option value="dd/MM/yyyy">dd/MM/yyyy</option>
+                                                <option value="MM/dd/yyyy">MM/dd/yyyy</option>
+                                                <option value="yyyy/MM/dd">yyyy/MM/dd</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-7">
+                                    <div class="d-flex form-group">
+                                        <div class="col-sm-9 p-0">
+                                            <label>@SystemResource.NumberItemNotesFieldsDocuments</label>
+                                        </div>
+                                        <div class="col-sm-3 p-0">
+                                            <input class="mw-100" type="number" name="NoOfItemRemarksFields" id="NoOfItemRemarksFields">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-9 p-0">
+                                            <label>@SystemResource.HideDeletedDocuments</label>
+                                        </div>
+
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="HideDeletedDocs" id="HideDeletedDocs"><span>
+                                                    <label for="HideDeletedDocs"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-8 p-0">
+                                            <label>@SystemResource.BrowseDocumentsOrderNotebooks</label>
+                                        </div>
+
+                                        <div class="col-md-2 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name=" " id=" "><span>
+                                                    <label for=" "></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group">
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="UseCatCodInItems" id="UseCatCodInItems"><span>
+                                                    <label for="UseCatCodInItems"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5 p-0">
+                                            <label>@SystemResource.ItemTypeCoding</label>
+                                        </div>
+                                        <div class="col-sm-4 p-0">
+                                            <input class="mw-100" type="text" name="ItemSeparator" id="ItemSeparator" placeholder="@SystemResource.Separator">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group">
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="UseCatCodInCust" id="UseCatCodInCust"><span>
+                                                    <label for="UseCatCodInCust"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5 p-0">
+                                            <label>@SystemResource.CodingByCustomerType</label>
+                                        </div>
+                                        <div class="col-sm-4 p-0">
+                                            <input class="mw-100" type="text" name="CustSeparator" id="CustSeparator" placeholder="@SystemResource.Separator">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group">
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="UseCatCodInVend" id="UseCatCodInVend"><span>
+                                                    <label for="UseCatCodInVend"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5 p-0">
+                                            <label>@SystemResource.ResourceTypeCoding</label>
+                                        </div>
+                                        <div class="col-sm-4 p-0">
+                                            <input class="mw-100" type="text" name="VendSeparator" id="VendSeparator" placeholder="@SystemResource.Separator">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="col-md-6">
+                        <fieldset class="border p-2">
+                            <legend class="w-auto">@SystemResource.DocumentOptions</legend>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-10 p-0">
+                                            <label>@SystemResource.HideClientBranchWithDocuments</label>
+                                        </div>
+                                        <div class="col-md-2 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="HideCustBranch" id="HideCustBranch"><span>
+                                                    <label for="HideCustBranch"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-10 p-0">
+                                            <label>@SystemResource.HideSellerInvoice</label>
+                                        </div>
+                                        <div class="col-md-2 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="HideSalesMan" id="HideSalesMan"><span>
+                                                    <label for="HideSalesMan"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-11 p-0">
+                                            <label>@SystemResource.DistributionValueDiscountWorkOrderItems</label>
+                                        </div>
+                                        <div class="col-md-1 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="DistDiscOnJobOrderItems" id="DistDiscOnJobOrderItems"><span>
+                                                    <label for="DistDiscOnJobOrderItems"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-10 p-0">
+                                            <label>@SystemResource.ConcealmentCollectorwithArrestDocument</label>
+                                        </div>
+                                        <div class="col-md-2 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="HideMoneyCollector" id="HideMoneyCollector"><span>
+                                                    <label for="HideMoneyCollector"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-10 p-0">
+                                            <label>@SystemResource.ActivateLinkageProductionWorkOrderSalesInvoice</label>
+                                        </div>
+                                        <div class="col-md-2 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="UseSalesJobOrders" id="UseSalesJobOrders"><span>
+                                                    <label for="UseSalesJobOrders"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-10 p-0">
+                                            <label>@SystemResource.ActivateAnalyticsCode</label>
+                                        </div>
+                                        <div class="col-md-2 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="UseAnalyticalCode" id="UseAnalyticalCode"><span>
+                                                    <label for="UseAnalyticalCode"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-10 p-0">
+                                            <label>@SystemResource.ActivatetaxAtItemLevelSales</label>
+                                        </div>
+                                        <div class="col-md-2 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="UseItemTaxInSales" id="UseItemTaxInSales"><span>
+                                                    <label for="UseItemTaxInSales"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-10 p-0">
+                                            <label>@SystemResource.ActivateTaxAtItemLevelPurchases</label>
+                                        </div>
+                                        <div class="col-md-2 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="UseItemTaxInPurch" id="UseItemTaxInPurch"><span>
+                                                    <label for="UseItemTaxInPurch"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-5 p-0">
+                                            <label>@SystemResource.AutomaticTaxForItem</label>
+                                        </div>
+
+                                        <div class="col-md-7 p-0">
+                                            <select name="ItemDefTax" id="ItemDefTax" class="form-control">
+                                                <option value="null">@SystemResource.ThereIsNo</option>
+                                                <option value="4">@SystemResource.ValueAddedTax</option>
+                                                <option value="5">@SystemResource.ZeroValueAddedTax</option>
+                                                <option value="6">@SystemResource.TaxDeductionAndAddition</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-10 p-0">
+                                            <label>@SystemResource.ItemPriceInclusiveOfSalesTax</label>
+                                        </div>
+                                        <div class="col-md-2 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="PriceIncludTaxInSales" id="PriceIncludTaxInSales"><span>
+                                                    <label for="PriceIncludTaxInSales"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-10 p-0">
+                                            <label>@SystemResource.ItemPriceIncludesPurchaseTax</label>
+                                        </div>
+                                        <div class="col-md-2 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="PriceIncludTaxInPurch" id="PriceIncludTaxInPurch"><span>
+                                                    <label for="PriceIncludTaxInPurch"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-10 p-0">
+                                            <label>@SystemResource.SearchingForItemsWithBalancesIsBasisOfSalesInvoice</label>
+                                        </div>
+                                        <div class="col-md-2 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="SearchItemWithQtySales" id="SearchItemWithQtySales"><span>
+                                                    <label for="SearchItemWithQtySales"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+
+            <div id="AlertOptions" class="tab-pane fade">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="d-flex form-group ">
+                                    <div class="col-md-9 p-0">
+                                        <label>@SystemResource.ActivateCheckAlertSystem</label>
+                                    </div>
+                                    <div class="col-md-3 p-0">
+                                        <div class="switch-button switch-button-xs">
+                                            <input type="checkbox" name="chekAlert" id="chekAlert"><span>
+                                                <label for="chekAlert"></label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex form-group ">
+                                    <div class="col-md-9 p-0">
+                                        <label>@SystemResource.ActivateOrderLimitAlertSystem</label>
+                                    </div>
+                                    <div class="col-md-3 p-0">
+                                        <div class="switch-button switch-button-xs">
+                                            <input type="checkbox" name="ItemLimitAlert" id="ItemLimitAlert"><span>
+                                                <label for="ItemLimitAlert"></label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="d-flex form-group">
+                                    <div class="col-sm-4 p-0">
+                                        <label>@SystemResource.UserAlertEvery</label>
+                                    </div>
+                                    <div class="col-sm-3 p-0">
+                                        <input class="mw-100" type="number" name="AlertTimeOut" id="AlertTimeOut">
+                                    </div>
+                                    <div class="col-sm-5 p-0">
+                                        <select name="" id="" class="form-control">
+                                            <option value="1">@SystemResource.Minute</option>
+                                            <option value="2">@SystemResource.Hour</option>
+                                            <option value="3">@SystemResource.day</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="d-flex form-group ">
+                                    <div class="col-md-9 p-0">
+                                        <label>@SystemResource.ActivateMaximumAlertSystem</label>
+                                    </div>
+                                    <div class="col-md-3 p-0">
+                                        <div class="switch-button switch-button-xs">
+                                            <input type="checkbox" name="ItemMaxAlert" id="ItemMaxAlert"><span>
+                                                <label for="ItemMaxAlert"></label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex form-group ">
+                                    <div class="col-md-9 p-0">
+                                        <label>@SystemResource.AlertInEventExpirationYourTermPeriodWithSupplier</label>
+                                    </div>
+                                    <div class="col-md-3 p-0">
+                                        <div class="switch-button switch-button-xs">
+                                            <input type="checkbox" name="AlertVendCredit" id="AlertVendCredit"><span>
+                                                <label for="AlertVendCredit"></label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex form-group ">
+                                    <div class="col-md-9 p-0">
+                                        <label>@SystemResource.AlertInEventExpiryTermCustomer</label>
+                                    </div>
+                                    <div class="col-md-3 p-0">
+                                        <div class="switch-button switch-button-xs">
+                                            <input type="checkbox" name="AlertCustCredit" id="AlertCustCredit"><span>
+                                                <label for="AlertCustCredit"></label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex form-group ">
+                                    <div class="col-md-9 p-0">
+                                        <label>@SystemResource.UseColorsToWarnOfApproachingExpirationDate</label>
+                                    </div>
+                                    <div class="col-md-3 p-0">
+                                        <div class="switch-button switch-button-xs">
+                                            <input type="checkbox" name="ExpUseColor" id="ExpUseColor"><span>
+                                                <label for="ExpUseColor"></label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ValidItems" class="tab-pane fade">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="d-flex form-group ">
+                                    <div class="col-md-9 p-0">
+                                        <label>@SystemResource.ActivateSystemOfItemsWithSimplifiedExpirationDates</label>
+                                    </div>
+                                    <div class="col-md-3 p-0">
+                                        <div class="switch-button switch-button-xs">
+                                            <input type="checkbox" name="UseSimpleExpirySystem" id="UseSimpleExpirySystem"><span>
+                                                <label for="UseSimpleExpirySystem"></label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex form-group ">
+                                    <div class="col-md-9 p-0">
+                                        <label>@SystemResource.ActivateValidItemsSystem</label>
+                                    </div>
+                                    <div class="col-md-3 p-0">
+                                        <div class="switch-button switch-button-xs">
+                                            <input type="checkbox" name="UseExpirySystem" id="UseExpirySystem"><span>
+                                                <label for="UseExpirySystem"></label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex form-group ">
+                                    <div class="col-md-9 p-0">
+                                        <label>@SystemResource.ShowExpiryDateColumn</label>
+                                    </div>
+                                    <div class="col-md-3 p-0">
+                                        <div class="switch-button switch-button-xs">
+                                            <input type="checkbox" name="UseExpiryDateColumn" id="UseExpiryDateColumn"><span>
+                                                <label for="UseExpiryDateColumn"></label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex form-group ">
+                                    <div class="col-md-9 p-0">
+                                        <label>@SystemResource.ShowProductionDateColumn</label>
+                                    </div>
+                                    <div class="col-md-3 p-0">
+                                        <div class="switch-button switch-button-xs">
+                                            <input type="checkbox" name="UseProducDateColumn" id="UseProducDateColumn"><span>
+                                                <label for="UseProducDateColumn"></label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8">
+                        <fieldset class="border p-2">
+                            <legend class="w-auto">@SystemResource.ValidityPatchModel</legend>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="d-flex form-group">
+                                        <div class="col-sm-5 p-0">
+                                            <label>@SystemResource.FirstSyllable</label>
+                                        </div>
+                                        <div class="col-sm-7 p-0">
+                                            <input class="mw-100" type="number" name="QuantityDicimals" id="QuantityDicimals">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">@SystemResource.BasedProductionDate</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">@SystemResource.BasedExpiryDate</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ItemOptions" class="col-12 tab-pane fade">
+                <div class="row">
+                    <div class="col-md-6">
+                        <fieldset class="border p-2">
+                            <legend class="w-auto">@SystemResource.CalculateAverageCostBasedOn</legend>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-9 p-0">
+                                            <label>@SystemResource.ActualQuantity_Supply_InventoryDocument</label>
+                                        </div>
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="" id=""><span>
+                                                    <label for=""></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-9 p-0">
+                                            <label>@SystemResource.BookQuantity_purchaseInvoice_SalesReturns_Inventory</label>
+                                        </div>
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="" id=""><span>
+                                                    <label for=""></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="col-md-6">
+                        <fieldset class="border p-2">
+                            <legend class="w-auto">@SystemResource.SalesReturnSupplyCostMethod</legend>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-9 p-0">
+                                            <label>@SystemResource.BasedOnAverageCost</label>
+                                        </div>
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="" id=""><span>
+                                                    <label for=""></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-9 p-0">
+                                            <label>@SystemResource.BasedOnSalesReturnPrice</label>
+                                        </div>
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="" id=""><span>
+                                                    <label for=""></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="col-md-6">
+                        <fieldset class="border p-2">
+                            <legend class="w-auto">@SystemResource.CostMerchandiseExchangeBasedMasterDocument</legend>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-9 p-0">
+                                            <label>@SystemResource.SameCostGoodsMainDocumentEtc</label>
+                                        </div>
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="" id=""><span>
+                                                    <label for=""></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-9 p-0">
+                                            <label>@SystemResource.UseCurrentCostInSelectedStore</label>
+                                        </div>
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="" id=""><span>
+                                                    <label for=""></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-6 p-0">
+                                            <label>@SystemResource.IfThereIsNoCostOnMainDocument</label>
+                                        </div>
+                                        <div class="col-md-6 p-0">
+                                            <select name="" id="" class="form-control">
+                                                <option value="1">@SystemResource.ThereIsNo</option>
+                                                <option value="1">@SystemResource.UseCurrentCostInSelectedStore</option>
+                                                <option value="1">@SystemResource.EnteringCostManuallyRequiresAuthorityReviewCost</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="col-md-6">
+                        <fieldset class="border p-2">
+                            <legend class="w-auto">@SystemResource.PurchaseReturnSupplyCostMethod</legend>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-9 p-0">
+                                            <label>@SystemResource.BasedOnAverageCost</label>
+                                        </div>
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="" id=""><span>
+                                                    <label for=""></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex form-group ">
+                                        <div class="col-md-9 p-0">
+                                            <label>@SystemResource.BasedOnPurchaseReturnPrice</label>
+                                        </div>
+                                        <div class="col-md-3 p-0">
+                                            <div class="switch-button switch-button-xs">
+                                                <input type="checkbox" name="" id=""><span>
+                                                    <label for=""></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ConnectToOtherDevices" class="tab-pane fade">
+                <fieldset class="border p-2">
+                    <legend class="w-auto">@SystemResource.LibraOptions</legend>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="d-flex form-group ">
+                                <div class="col-md-9 p-0">
+                                    <label>@SystemResource.AutomaticReadingFromScaleOnlyScaleCard</label>
+                                </div>
+                                <div class="col-md-3 p-0">
+                                    <div class="switch-button switch-button-xs">
+                                        <input type="checkbox" name="" id=""><span>
+                                            <label for=""></label>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="input-group mb-3">
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-primary">@SystemResource.BalanceProgram</button>
+                                </div>
+                                <input type="text" class="form-control" placeholder="@SystemResource.BalanceProgram">
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="input-group mb-3">
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-primary">@SystemResource.DataFile</button>
+                                </div>
+                                <input type="text" class="form-control" placeholder="@SystemResource.DataFile">
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/ClientApp/Pages/ProgrammingTools/Ms_Settings.js"></script>

@@ -1,0 +1,67 @@
+﻿@using Inv.WebUI.Resources
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+    ViewBag.Title = SystemResource.Expenses;
+}
+
+
+<div class="row bg-white pt-3">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-3 d-flex">
+                <label class="col-md-1">@SystemResource.Code</label>
+                <input id="ExpensesCode" disabled name="ExpensesCode" type="text" class="form-control input-sm  text_Display addable" placeholder="@SystemResource.Code">
+            </div>
+
+            <div class="col-md-1 text-center">
+                <button type="button" class="src-btn btn btn-warning xaddable xeditable" id="btnMS_ExpensesSearch" name="btnSearch">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+
+            <div class="col-md-4 d-flex">
+                <label class="">@SystemResource.Name_Arabic</label>
+                <input class="form-control" type="text" name="ExpensesDescA" id="ExpensesDescA" value="" placeholder="@SystemResource.Name_Arabic" />
+            </div>
+
+            <div class="col-md-4 d-flex">
+                <label class="">@SystemResource.Name_English</label>
+                <input class="form-control" type="text" name="ExpensesDescE" id="ExpensesDescE" value="" placeholder="@SystemResource.Name_English" />
+            </div>
+
+            <div class="col-md-4 d-flex">
+                <label for="SystemIssuedOnly" class="">@SystemResource.Notes</label>
+                <textarea class="form-control" type="checkbox" name="Remarks" id="Remarks" value="" placeholder="@SystemResource.Notes"></textarea>
+            </div>
+
+            <div class="col-md-4 d-flex">
+                <label class="">@SystemResource.ExpensesType</label>
+                <select id="ExpensesType" name="ExpensesType" class="form-control">
+                    <option value="null">@SystemResource.ExpensesType</option>
+                    <option value="1">@SystemResource.Purchase</option>
+                    <option value="2">@SystemResource.Men_Sales</option>
+                    <option value="3">@SystemResource.Other</option>
+                </select>
+            </div>
+
+            <div class="col-md-4 d-flex">
+                <label class="">@SystemResource.Account2</label>
+                <select id="AccountId" name="AccountId" class="form-control">
+                    <option value="null">@SystemResource.Account2</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <hr class="col-12" />
+</div>
+
+<div class="row bg-white pt-3">
+    <div class="col-md-12 mt-3">
+        <table data-main="mainTable" id="divExpensesGrid"></table>
+    </div>
+</div>
+
+<script src="~/ClientApp/Pages/Acc/MS_Expenses .js"></script>

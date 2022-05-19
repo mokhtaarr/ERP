@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="331a2ca0c71d4a2698019b0b4c70657e" Name="Diagram1" ZoomLevel="61">
+        <EntityTypeShape EntityType="InvEntities.Cal_AccountChart" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_AlertControl" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_AlertLog" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_AlertType" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_BRANCH" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_Codes" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_COMPANY" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_CONTROL" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_COST_CENTER" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_Currency" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_ModuleHelp" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_MODULES" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_NotificationCompany" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_PaperSize" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_PrintLog" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_REGION" Width="1.5" PointX="12.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_REGION_BRANCH" Width="1.5" PointX="10.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_ReportWebSetting" Width="1.5" PointX="12.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_Role" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_RoleModule" Width="1.5" PointX="14.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_RoleUsers" Width="1.5" PointX="14.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_SearchForm" Width="1.5" PointX="14.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_SUB_SYSTEMS" Width="1.5" PointX="4.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_SYSTEM" Width="1.5" PointX="6.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_TransCounter" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_TransCounterSetting" Width="1.5" PointX="16.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_USER_BRANCH" Width="1.5" PointX="16.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_USER_COMPANY" Width="1.5" PointX="8.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_USER_LOG" Width="1.5" PointX="16.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_USER_MODULE" Width="1.5" PointX="16.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_UserGroups" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_UserRole" Width="1.5" PointX="18.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_UserRolePermissions" Width="1.5" PointX="18.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_UserScreenFields" Width="1.5" PointX="4.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.G_VatNature" Width="1.5" PointX="14.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.I_Control" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.MS_ItemAlternatives" Width="1.5" PointX="0.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.MS_ItemCard" Width="1.5" PointX="6.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.Ms_ItemCardOffers" Width="1.5" PointX="8.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.MS_ItemCategory" Width="1.5" PointX="10.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.Ms_ItemCollection" Width="1.5" PointX="20.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.MS_ItemCostHistory" Width="1.5" PointX="20.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.MS_ItemImages" Width="1.5" PointX="22.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.Ms_ItemPartition" Width="1.5" PointX="22.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.MS_Partition" Width="1.5" PointX="22.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.MS_Stores" Width="1.5" PointX="12.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.HIJRA_CONVERT" Width="1.5" PointX="14.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvEntities.I_VW_GetCompStatus" Width="1.5" PointX="3.375" PointY="23.75" />
+        <EntityTypeShape EntityType="InvEntities.GQ_GetUserBarnchAccess" Width="1.5" PointX="23.75" PointY="17.75" />
+        <EntityTypeShape EntityType="InvEntities.GQ_GetUserBranch" Width="1.5" PointX="23.75" PointY="21.75" />
+        <EntityTypeShape EntityType="InvEntities.GQ_GetUserRole" Width="1.5" PointX="17.75" PointY="24.75" />
+        <EntityTypeShape EntityType="InvEntities.GQ_GetUsers" Width="1.5" PointX="19.75" PointY="24.75" />
+        <EntityTypeShape EntityType="InvEntities.GQ_ReportWebSetting" Width="1.5" PointX="21.75" PointY="24.75" />
+        <EntityTypeShape EntityType="InvEntities.Cal_AccountUsers" Width="1.5" PointX="24.375" PointY="24.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_Currency" Width="1.5" PointX="25.375" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_BoxBank" Width="1.5" PointX="9.375" PointY="25.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_CurrencyCategory" Width="1.5" PointX="17.375" PointY="19.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_CurrencyCategoryJoin" Width="1.5" PointX="25.375" PointY="10.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_AccountCategories" Width="1.5" PointX="3.375" PointY="26.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_AccountClassification" Width="1.5" PointX="26.375" PointY="13.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_CustomerTypes" Width="1.5" PointX="26.375" PointY="18.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_VendorTypes" Width="1.5" PointX="26.375" PointY="23.75" />
+        <EntityTypeShape EntityType="InvEntities.G_SearchFormModule" Width="1.5" PointX="27.375" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_CusromerUsers" Width="1.5" PointX="27.375" PointY="3.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_CustImgs" Width="1.5" PointX="27.375" PointY="7.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_Customer" Width="1.5" PointX="28.375" PointY="10.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_CustomerBranches" Width="1.5" PointX="15.375" PointY="28.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_CustomerCategory" Width="1.5" PointX="24.375" PointY="28.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_CustomerContacts" Width="1.5" PointX="26.375" PointY="28.75" />
+        <EntityTypeShape EntityType="InvEntities.Asset_AssetAddDoc" Width="1.5" PointX="28.75" PointY="28.75" />
+        <EntityTypeShape EntityType="InvEntities.Asset_AssetAddDocDetail" Width="1.5" PointX="29.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Asset_AssetCard" Width="1.5" PointX="30.75" PointY="4.75" />
+        <EntityTypeShape EntityType="InvEntities.Asset_AssetCategory" Width="1.5" PointX="30.75" PointY="20.75" />
+        <EntityTypeShape EntityType="InvEntities.Asset_AssetContacts" Width="1.5" PointX="30.75" PointY="25.75" />
+        <EntityTypeShape EntityType="InvEntities.Asset_AssetDeductDoc" Width="1.5" PointX="3.75" PointY="31.75" />
+        <EntityTypeShape EntityType="InvEntities.Asset_AssetDeductDocDetail" Width="1.5" PointX="31.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Asset_AssetDeliverDoc" Width="1.5" PointX="9.75" PointY="31.75" />
+        <EntityTypeShape EntityType="InvEntities.Asset_AssetDeliverDocDetail" Width="1.5" PointX="0.75" PointY="32.75" />
+        <EntityTypeShape EntityType="InvEntities.Asset_AssetFixDoc" Width="1.5" PointX="32.75" PointY="4.75" />
+        <EntityTypeShape EntityType="InvEntities.Asset_AssetFixDocDetail" Width="1.5" PointX="11.75" PointY="32.75" />
+        <EntityTypeShape EntityType="InvEntities.Asset_AssetMoveDoc" Width="1.5" PointX="32.75" PointY="13.75" />
+        <EntityTypeShape EntityType="InvEntities.Asset_AssetMoveDocDetail" Width="1.5" PointX="13.75" PointY="32.75" />
+        <EntityTypeShape EntityType="InvEntities.Asset_AssetReceiveDoc" Width="1.5" PointX="15.75" PointY="32.75" />
+        <EntityTypeShape EntityType="InvEntities.Asset_AssetReceiveDocDetail" Width="1.5" PointX="32.75" PointY="22.75" />
+        <EntityTypeShape EntityType="InvEntities.Asset_AssetSettingDetails" Width="1.5" PointX="32.75" PointY="26.75" />
+        <EntityTypeShape EntityType="InvEntities.Asset_AssetSettings" Width="1.5" PointX="32.75" PointY="30.75" />
+        <EntityTypeShape EntityType="InvEntities.Asset_DepreciationDoc" Width="1.5" PointX="17.75" PointY="33.75" />
+        <EntityTypeShape EntityType="InvEntities.Asset_DepreciationDocDetail" Width="1.5" PointX="19.75" PointY="33.75" />
+        <EntityTypeShape EntityType="InvEntities.Asset_Termination" Width="1.5" PointX="21.75" PointY="33.75" />
+        <EntityTypeShape EntityType="InvEntities.BNk_BankNotice" Width="1.5" PointX="23.75" PointY="33.75" />
+        <EntityTypeShape EntityType="InvEntities.BNK_BankNoticeDetail" Width="1.5" PointX="34.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Cal_AccChrtDailyAssist" Width="1.5" PointX="34.75" PointY="5.75" />
+        <EntityTypeShape EntityType="InvEntities.Cal_AccountClaasiJoin" Width="1.5" PointX="34.75" PointY="8.75" />
+        <EntityTypeShape EntityType="InvEntities.Cal_AccountingFix" Width="1.5" PointX="34.75" PointY="11.75" />
+        <EntityTypeShape EntityType="InvEntities.Cal_AssetAccounts" Width="1.5" PointX="34.75" PointY="14.75" />
+        <EntityTypeShape EntityType="InvEntities.Cal_Budget" Width="1.5" PointX="34.75" PointY="23.75" />
+        <EntityTypeShape EntityType="InvEntities.Cal_BudgetDetails" Width="1.5" PointX="34.75" PointY="29.75" />
+        <EntityTypeShape EntityType="InvEntities.Cal_BusinessPartnerAccounts" Width="1.5" PointX="34.75" PointY="33.75" />
+        <EntityTypeShape EntityType="InvEntities.Cal_CostCenterAccount" Width="1.5" PointX="36.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Cal_CostCenters" Width="1.5" PointX="0.75" PointY="36.75" />
+        <EntityTypeShape EntityType="InvEntities.Cal_CustAccounts" Width="1.5" PointX="36.75" PointY="3.75" />
+        <EntityTypeShape EntityType="InvEntities.Cal_EmpAccounts" Width="1.5" PointX="11.75" PointY="36.75" />
+        <EntityTypeShape EntityType="InvEntities.Cal_JurnalDetail" Width="1.5" PointX="36.75" PointY="12.75" />
+        <EntityTypeShape EntityType="InvEntities.Cal_JurnalEntry" Width="1.5" PointX="36.75" PointY="18.75" />
+        <EntityTypeShape EntityType="InvEntities.Cal_PostOrder" Width="1.5" PointX="36.75" PointY="33.75" />
+        <EntityTypeShape EntityType="InvEntities.Cal_QueueOrder" Width="1.5" PointX="25.75" PointY="37.75" />
+        <EntityTypeShape EntityType="InvEntities.Cal_VendAccounts" Width="1.5" PointX="27.75" PointY="37.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_BuildingDegree" Width="1.5" PointX="29.75" PointY="37.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_BuildingExploitation" Width="1.5" PointX="38.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_BuildingFinishingLevel" Width="1.5" PointX="38.75" PointY="5.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_BuildingInsuranceStatus" Width="1.5" PointX="38.75" PointY="10.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_BuildingStatus" Width="1.5" PointX="38.75" PointY="15.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_BuildingTypes" Width="1.5" PointX="38.75" PointY="20.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_BuildOccupTypes" Width="1.5" PointX="38.75" PointY="25.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_BuildPermitActiv" Width="1.5" PointX="38.75" PointY="30.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_BuildPerspective" Width="1.5" PointX="31.75" PointY="38.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_City" Width="1.5" PointX="38.75" PointY="35.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_Colors" Width="1.5" PointX="40.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_ContractType" Width="1.5" PointX="2.75" PointY="40.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_Country" Width="1.5" PointX="40.75" PointY="5.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_DailyAssistance" Width="1.5" PointX="40.75" PointY="11.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_ElectInsurStatus" Width="1.5" PointX="40.75" PointY="16.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_Explanations" Width="1.5" PointX="40.75" PointY="21.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_FurnitAndEqupmnts" Width="1.5" PointX="40.75" PointY="26.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_InstallmentTemps" Width="1.5" PointX="40.75" PointY="31.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_InstallmentTempsDetail" Width="1.5" PointX="40.75" PointY="36.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_InsuranceCases" Width="1.5" PointX="13.75" PointY="41.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_InsurCovTypes" Width="1.5" PointX="38.75" PointY="41.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_LandPermitActivJoin" Width="1.5" PointX="40.75" PointY="41.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_LandPermtActiv" Width="1.5" PointX="42.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_LandPositions" Width="1.5" PointX="42.75" PointY="5.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_LandPosJoin" Width="1.5" PointX="42.75" PointY="10.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_LandRetainResJoin" Width="1.5" PointX="42.75" PointY="13.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_LandRetainRsons" Width="1.5" PointX="15.75" PointY="42.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_Lands" Width="1.5" PointX="42.75" PointY="16.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_LandStatus" Width="1.5" PointX="17.75" PointY="42.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_LandTypes" Width="1.5" PointX="42.75" PointY="22.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_MaintenanceTypes" Width="1.5" PointX="23.75" PointY="42.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_NonRenewalReasons" Width="1.5" PointX="42.75" PointY="27.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_OperatingOrders" Width="1.5" PointX="42.75" PointY="32.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_OwnershipBonds" Width="1.5" PointX="33.75" PointY="42.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_PackingSize" Width="1.5" PointX="42.75" PointY="37.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_Parkings" Width="1.5" PointX="29.75" PointY="43.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_PaymentTerms" Width="1.5" PointX="44.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_PaymentTypes" Width="1.5" PointX="44.75" PointY="5.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_PostalCodes" Width="1.5" PointX="44.75" PointY="10.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_Region" Width="1.5" PointX="44.75" PointY="15.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_RentCase" Width="1.5" PointX="19.75" PointY="44.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_SavingFiles" Width="1.5" PointX="44.75" PointY="21.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_Services" Width="1.5" PointX="44.75" PointY="26.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_Shelves" Width="1.5" PointX="44.75" PointY="31.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_SubRegion" Width="1.5" PointX="35.75" PointY="44.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_TaskTypes" Width="1.5" PointX="44.75" PointY="36.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_TrmsModifiRsons" Width="1.5" PointX="40.75" PointY="44.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_UnitDegree" Width="1.5" PointX="44.75" PointY="41.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_UnitExploitation" Width="1.5" PointX="2.75" PointY="45.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_UnitFinishingLevel" Width="1.5" PointX="4.75" PointY="45.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_UnitInsuranceStatus" Width="1.5" PointX="6.75" PointY="45.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_UnitOccupancyTypes" Width="1.5" PointX="8.75" PointY="45.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_UnitPermittedActivity" Width="1.5" PointX="10.75" PointY="45.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_UnitPerspective" Width="1.5" PointX="46.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_UnitServices" Width="1.5" PointX="46.75" PointY="5.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_UnitStatus" Width="1.5" PointX="46.75" PointY="10.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_UnitTypes" Width="1.5" PointX="12.75" PointY="46.75" />
+        <EntityTypeShape EntityType="InvEntities.Cod_UntMntanItmBylndownrTnant" Width="1.5" PointX="46.75" PointY="15.75" />
+        <EntityTypeShape EntityType="InvEntities.Code_SubUnitTypes" Width="1.5" PointX="46.75" PointY="20.75" />
+        <EntityTypeShape EntityType="InvEntities.Contr_InstallMent" Width="1.5" PointX="46.75" PointY="25.75" />
+        <EntityTypeShape EntityType="InvEntities.Contr_InstallMentDetail" Width="1.5" PointX="25.75" PointY="46.75" />
+        <EntityTypeShape EntityType="InvEntities.CRM_Leads" Width="1.5" PointX="46.75" PointY="35.75" />
+        <EntityTypeShape EntityType="InvEntities.CRM_LeadsMembers" Width="1.5" PointX="37.75" PointY="46.75" />
+        <EntityTypeShape EntityType="InvEntities.CRM_LeadsMembersDetails" Width="1.5" PointX="42.75" PointY="46.75" />
+        <EntityTypeShape EntityType="InvEntities.CRM_LeadsMembersJoin" Width="1.5" PointX="14.75" PointY="47.75" />
+        <EntityTypeShape EntityType="InvEntities.CRM_LeadTypes" Width="1.5" PointX="16.75" PointY="47.75" />
+        <EntityTypeShape EntityType="InvEntities.CRM_MarketChannels" Width="1.5" PointX="21.75" PointY="47.75" />
+        <EntityTypeShape EntityType="InvEntities.CRM_SalesPlan" Width="1.5" PointX="31.75" PointY="47.75" />
+        <EntityTypeShape EntityType="InvEntities.CRM_SalesPlanDetail" Width="1.5" PointX="48.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.CRM_Survey" Width="1.5" PointX="48.75" PointY="3.75" />
+        <EntityTypeShape EntityType="InvEntities.CRM_SurveyMemberJoin" Width="1.5" PointX="48.75" PointY="9.75" />
+        <EntityTypeShape EntityType="InvEntities.CRM_TeamMembers" Width="1.5" PointX="48.75" PointY="12.75" />
+        <EntityTypeShape EntityType="InvEntities.CRM_Teams" Width="1.5" PointX="48.75" PointY="19.75" />
+        <EntityTypeShape EntityType="InvEntities.CRM_Visits" Width="1.5" PointX="48.75" PointY="25.75" />
+        <EntityTypeShape EntityType="InvEntities.CRM_VisitSurveys" Width="1.5" PointX="27.75" PointY="48.75" />
+        <EntityTypeShape EntityType="InvEntities.CRM_VisitTypes" Width="1.5" PointX="48.75" PointY="31.75" />
+        <EntityTypeShape EntityType="InvEntities.G_Nationality" Width="1.5" PointX="48.75" PointY="36.75" />
+        <EntityTypeShape EntityType="InvEntities.G_News" Width="1.5" PointX="48.75" PointY="39.75" />
+        <EntityTypeShape EntityType="InvEntities.G_Noteifications" Width="1.5" PointX="48.75" PointY="43.75" />
+        <EntityTypeShape EntityType="InvEntities.G_STORE" Width="1.5" PointX="48.75" PointY="47.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_ActivityDetailElements" Width="1.5" PointX="18.75" PointY="49.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_AttendanceDoc" Width="1.5" PointX="39.75" PointY="49.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_AttendanceElements" Width="1.5" PointX="50.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_AttendDocDetails" Width="1.5" PointX="0.75" PointY="50.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_AttendDocFactElements" Width="1.5" PointX="2.75" PointY="50.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_AttendElementTrans" Width="1.5" PointX="4.75" PointY="50.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_Departments" Width="1.5" PointX="50.75" PointY="5.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_Education" Width="1.5" PointX="6.75" PointY="50.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_EmpActivity" Width="1.5" PointX="8.75" PointY="50.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_EmpActivityDetail" Width="1.5" PointX="50.75" PointY="10.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_EmpDocTypes" Width="1.5" PointX="50.75" PointY="13.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_EmpDocuments" Width="1.5" PointX="50.75" PointY="18.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_EmpElementPeriodBalance" Width="1.5" PointX="50.75" PointY="28.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_EmpGroups" Width="1.5" PointX="50.75" PointY="32.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_EmpLoanRequest" Width="1.5" PointX="33.75" PointY="50.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_EmpLoans" Width="1.5" PointX="50.75" PointY="37.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_EmpMovePromotDetail" Width="1.5" PointX="43.75" PointY="50.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_EmpMovePromotion" Width="1.5" PointX="50.75" PointY="49.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_EmpSalaryDistribution" Width="1.5" PointX="10.75" PointY="51.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_EmpSalaryTypes" Width="1.5" PointX="12.75" PointY="51.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_EmpsSalaryTemp" Width="1.5" PointX="14.75" PointY="51.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_EmpVacation" Width="1.5" PointX="23.75" PointY="51.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_EmpVacationsDetails" Width="1.5" PointX="35.75" PointY="51.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_Jobs" Width="1.5" PointX="52.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_KPIS" Width="1.5" PointX="52.75" PointY="7.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_LeavePermision" Width="1.5" PointX="52.75" PointY="12.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_LeavPermissionRequest" Width="1.5" PointX="52.75" PointY="23.75" />
+        <EntityTypeShape EntityType="InvEntities.HR_MobileSetting" Width="1.5" PointX="25.75" PointY="52.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_PeriodsTables" Width="1.5" PointX="27.75" PointY="52.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_PeriodTableDetail" Width="1.5" PointX="29.75" PointY="52.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_PeriodTablePolicy" Width="1.5" PointX="52.75" PointY="33.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_PeriodTableVacations" Width="1.5" PointX="52.75" PointY="36.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_RewardAndPenalty" Width="1.5" PointX="52.75" PointY="39.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_SalaryCalcMethod" Width="1.5" PointX="52.75" PointY="50.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_SalaryIssueDetails" Width="1.5" PointX="16.75" PointY="53.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_SalaryIssueDistribution" Width="1.5" PointX="18.75" PointY="53.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_SalaryIssueDoc" Width="1.5" PointX="20.75" PointY="53.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_SalaryTypes" Width="1.5" PointX="43.75" PointY="53.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_Segments" Width="1.5" PointX="45.75" PointY="53.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_Shifts" Width="1.5" PointX="47.75" PointY="53.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_Termination" Width="1.5" PointX="54.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_VacationDoc" Width="1.5" PointX="54.75" PointY="10.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_VacationEdit" Width="1.5" PointX="54.75" PointY="21.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_VacationRequest" Width="1.5" PointX="54.75" PointY="32.75" />
+        <EntityTypeShape EntityType="InvEntities.La_Lands" Width="1.5" PointX="54.75" PointY="42.75" />
+        <EntityTypeShape EntityType="InvEntities.La_PropSerial" Width="1.5" PointX="54.75" PointY="46.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_AdjustMents" Width="1.5" PointX="54.75" PointY="49.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_Attachments" Width="1.5" PointX="4.75" PointY="55.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_BankAccount" Width="1.5" PointX="10.75" PointY="55.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_BoxCurrency" Width="1.5" PointX="56.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_BoxTransferDetail" Width="1.5" PointX="56.75" PointY="4.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_BoxTransferNote" Width="1.5" PointX="56.75" PointY="8.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_BoxUsers" Width="1.5" PointX="12.75" PointY="56.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_BusinessPartnerCategory" Width="1.5" PointX="56.75" PointY="15.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_BusinessPartners" Width="1.5" PointX="56.75" PointY="20.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_BusinessPartnerType" Width="1.5" PointX="35.75" PointY="56.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_CashTransactionDetail" Width="1.5" PointX="56.75" PointY="38.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_CheqBooks" Width="1.5" PointX="56.75" PointY="44.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_ChequesOpenning" Width="1.5" PointX="56.75" PointY="49.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_ChequeTransfer" Width="1.5" PointX="56.75" PointY="56.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_ChequeTransferDetail" Width="1.5" PointX="29.75" PointY="57.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_Commission" Width="1.5" PointX="58.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_Company" Width="1.5" PointX="58.75" PointY="4.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_CurrencyDailyRateChanges" Width="1.5" PointX="6.75" PointY="58.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_CurrencyRate" Width="1.5" PointX="8.75" PointY="58.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_DeliverItemCard" Width="1.5" PointX="14.75" PointY="58.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_DeliverSalesInvoice" Width="1.5" PointX="58.75" PointY="15.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_DeliverSalesInvoiceExpenses" Width="1.5" PointX="16.75" PointY="58.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_DeliverSalesInvoiceMultiAccounts" Width="1.5" PointX="58.75" PointY="28.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_Description" Width="1.5" PointX="58.75" PointY="34.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_Expenses" Width="1.5" PointX="58.75" PointY="37.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_ItemCardVendors" Width="1.5" PointX="37.75" PointY="58.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_ItemSerials" Width="1.5" PointX="58.75" PointY="42.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_ItemSerialsTransactions" Width="1.5" PointX="58.75" PointY="52.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_ItemShortage" Width="1.5" PointX="58.75" PointY="55.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_ItemStartQty" Width="1.5" PointX="22.75" PointY="59.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_ItemStockAdjustment" Width="1.5" PointX="24.75" PointY="59.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_ItemStockAdjustmentDetail" Width="1.5" PointX="49.75" PointY="59.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_ItemUnit" Width="1.5" PointX="51.75" PointY="59.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_ItemUnitPackingJoin" Width="1.5" PointX="53.75" PointY="59.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_ItemVendors" Width="1.5" PointX="60.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_KeeperBank" Width="1.5" PointX="60.75" PointY="7.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_KeeperBankDetail" Width="1.5" PointX="10.75" PointY="60.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_LetterOfGuarantee" Width="1.5" PointX="60.75" PointY="16.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_LetterOfGuaranteeCategory" Width="1.5" PointX="60.75" PointY="26.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_LetterOfGuaranteeStatus" Width="1.5" PointX="29.75" PointY="60.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_LetterOfGuaranteeTrans" Width="1.5" PointX="60.75" PointY="30.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_LetterOfGuaranteeTypes" Width="1.5" PointX="31.75" PointY="60.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_LotNumberConfiguration" Width="1.5" PointX="60.75" PointY="44.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_LotNumberExpiry" Width="1.5" PointX="60.75" PointY="56.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_PaymentNote" Width="1.5" PointX="0.75" PointY="61.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_PaymentNoteCurrencies" Width="1.5" PointX="2.75" PointY="61.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_PaymentNoteItems" Width="1.5" PointX="33.75" PointY="61.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_Pettycash" Width="1.5" PointX="35.75" PointY="61.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_PettyCashDetails" Width="1.5" PointX="37.75" PointY="61.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_PettyPaymentJoin" Width="1.5" PointX="62.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_PosItemCategory" Width="1.5" PointX="62.75" PointY="3.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_PosPaymentMethods" Width="1.5" PointX="62.75" PointY="6.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_POSSettings" Width="1.5" PointX="62.75" PointY="10.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_PosSpecialItems" Width="1.5" PointX="16.75" PointY="62.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_PurchaseInvoiceCostReceived" Width="1.5" PointX="62.75" PointY="26.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_PurchaseInvoiceExpenses" Width="1.5" PointX="62.75" PointY="29.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_PurchaseInvoiceItemCard" Width="1.5" PointX="62.75" PointY="33.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_PurchasInvoice" Width="1.5" PointX="62.75" PointY="52.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_PurchasInvoiceCurrencies" Width="1.5" PointX="55.75" PointY="62.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_PurchasInvoiceMultiAccounts" Width="1.5" PointX="57.75" PointY="62.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_PurchasOrder" Width="1.5" PointX="4.75" PointY="63.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_PurchasOrderRequest" Width="1.5" PointX="6.75" PointY="63.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_PurchInvVehicleJobOrderJoin" Width="1.5" PointX="18.75" PointY="63.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_PurchOrderDetail" Width="1.5" PointX="20.75" PointY="63.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_PurchOrderReqDetail" Width="1.5" PointX="64.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_ReceiptNote" Width="1.5" PointX="8.75" PointY="64.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_ReceiptNoteCurrencies" Width="1.5" PointX="10.75" PointY="64.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_RecPayDocJoin" Width="1.5" PointX="64.75" PointY="13.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_ReturnPurchase" Width="1.5" PointX="64.75" PointY="17.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_ReturnPurchaseCurrencies" Width="1.5" PointX="29.75" PointY="64.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_ReturnPurchaseExpenses" Width="1.5" PointX="64.75" PointY="34.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_ReturnPurchaseItem" Width="1.5" PointX="64.75" PointY="39.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_ReturnPurchaseMultiAccounts" Width="1.5" PointX="43.75" PointY="64.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_ReturnSales" Width="1.5" PointX="64.75" PointY="56.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_ReturnSalesCurrencies" Width="1.5" PointX="59.75" PointY="65.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_ReturnSalesExpenses" Width="1.5" PointX="66.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_ReturnSalesItemCard" Width="1.5" PointX="66.75" PointY="4.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_ReturnSalesMultiAccounts" Width="1.5" PointX="66.75" PointY="23.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_SalesInvJobOrderJoin" Width="1.5" PointX="66.75" PointY="29.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_SalesInvoice" Width="1.5" PointX="66.75" PointY="32.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_SalesInvoiceCurrencies" Width="1.5" PointX="66.75" PointY="53.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_SalesInvoiceExpenses" Width="1.5" PointX="53.75" PointY="66.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_SalesInvoiceItemCard" Width="1.5" PointX="66.75" PointY="57.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_SalesInvoiceItemCard_Deleted" Width="1.5" PointX="16.75" PointY="67.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_SalesInvoiceMultiAccounts" Width="1.5" PointX="31.75" PointY="67.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_SalesInvoiceQualityDeliveryDocs" Width="1.5" PointX="39.75" PointY="67.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_SalesInvoiceQualityMissedItems" Width="1.5" PointX="68.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_SalesInvVehiclJobOrderJoin" Width="1.5" PointX="68.75" PointY="6.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_SalesItemsOffers" Width="1.5" PointX="68.75" PointY="9.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_SalesItemsOffersDetails" Width="1.5" PointX="10.75" PointY="68.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_SalesOffer" Width="1.5" PointX="68.75" PointY="16.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_SalesOfferItemCard" Width="1.5" PointX="68.75" PointY="35.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_SalesOfferItemRequest" Width="1.5" PointX="68.75" PointY="51.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_SalesOfferRequest" Width="1.5" PointX="55.75" PointY="68.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_SalesOrder" Width="1.5" PointX="68.75" PointY="66.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_SalesOrderItemCard" Width="1.5" PointX="22.75" PointY="69.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_Settings" Width="1.5" PointX="24.75" PointY="69.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_StockReceiptItemCard" Width="1.5" PointX="26.75" PointY="69.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_StockRecript" Width="1.5" PointX="28.75" PointY="69.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_StockRecriptExpenses" Width="1.5" PointX="45.75" PointY="69.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_StockRecriptMultiAccounts" Width="1.5" PointX="47.75" PointY="69.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_StockTranItemCard" Width="1.5" PointX="57.75" PointY="69.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_StockTranItemCardReq" Width="1.5" PointX="59.75" PointY="69.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_StockTransferNote" Width="1.5" PointX="70.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_StockTransferNoteRequest" Width="1.5" PointX="70.75" PointY="9.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_Terms" Width="1.5" PointX="70.75" PointY="23.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_TermsCostCenter" Width="1.5" PointX="70.75" PointY="29.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_TermsDetails" Width="1.5" PointX="37.75" PointY="70.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_UserAuthentications" Width="1.5" PointX="70.75" PointY="39.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_VendImgs" Width="1.5" PointX="39.75" PointY="70.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_VendorBranches" Width="1.5" PointX="70.75" PointY="43.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_VendorCategory" Width="1.5" PointX="70.75" PointY="47.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_VendorContacts" Width="1.5" PointX="70.75" PointY="52.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_VendorUsers" Width="1.5" PointX="70.75" PointY="61.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_WeightCard" Width="1.5" PointX="70.75" PointY="65.75" />
+        <EntityTypeShape EntityType="InvEntities.Ms_WeightcardItems" Width="1.5" PointX="33.75" PointY="71.75" />
+        <EntityTypeShape EntityType="InvEntities.MsGA_Capacity" Width="1.5" PointX="61.75" PointY="71.75" />
+        <EntityTypeShape EntityType="InvEntities.MSGA_City" Width="1.5" PointX="72.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.MsGA_LetterExport" Width="1.5" PointX="72.75" PointY="5.75" />
+        <EntityTypeShape EntityType="InvEntities.MsGA_LetterExportDetail" Width="1.5" PointX="72.75" PointY="10.75" />
+        <EntityTypeShape EntityType="InvEntities.MsGA_LetterFayum" Width="1.5" PointX="12.75" PointY="72.75" />
+        <EntityTypeShape EntityType="InvEntities.MsGA_LetterFayumDetail" Width="1.5" PointX="72.75" PointY="15.75" />
+        <EntityTypeShape EntityType="InvEntities.MsGA_LetterNormal" Width="1.5" PointX="72.75" PointY="20.75" />
+        <EntityTypeShape EntityType="InvEntities.MsGA_LetterNormalDetail" Width="1.5" PointX="72.75" PointY="24.75" />
+        <EntityTypeShape EntityType="InvEntities.MsGA_MachineType" Width="1.5" PointX="72.75" PointY="29.75" />
+        <EntityTypeShape EntityType="InvEntities.MsGA_Moror" Width="1.5" PointX="72.75" PointY="33.75" />
+        <EntityTypeShape EntityType="InvEntities.MsGA_MotorSN" Width="1.5" PointX="72.75" PointY="37.75" />
+        <EntityTypeShape EntityType="InvEntities.MsGA_MotorSNDetail" Width="1.5" PointX="72.75" PointY="42.75" />
+        <EntityTypeShape EntityType="InvEntities.MsGA_Shipment" Width="1.5" PointX="72.75" PointY="47.75" />
+        <EntityTypeShape EntityType="InvEntities.MsGA_ShipmentDetail" Width="1.5" PointX="49.75" PointY="72.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_AttributeValue" Width="1.5" PointX="51.75" PointY="72.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_BasicUnits" Width="1.5" PointX="72.75" PointY="52.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_BillOfMaterial" Width="1.5" PointX="72.75" PointY="57.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_BillOfMaterialItems" Width="1.5" PointX="72.75" PointY="64.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_BillOfMaterialSecondaryItems" Width="1.5" PointX="72.75" PointY="70.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_Equipments" Width="1.5" PointX="30.75" PointY="73.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_EquipProfile" Width="1.5" PointX="43.75" PointY="73.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_ItemAttributes" Width="1.5" PointX="74.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_ItemAttributesBatche" Width="1.5" PointX="74.75" PointY="6.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_ItemAttributesBatchesDetails" Width="1.5" PointX="74.75" PointY="16.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_ItemAttributsJoin" Width="1.5" PointX="74.75" PointY="19.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_ItemBatchPartition" Width="1.5" PointX="74.75" PointY="23.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_ItemcardExpenses" Width="1.5" PointX="74.75" PointY="31.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_JobOrder" Width="1.5" PointX="74.75" PointY="34.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_JobOrderClosing" Width="1.5" PointX="74.75" PointY="50.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_JobOrderEmpCostDoc" Width="1.5" PointX="74.75" PointY="59.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_JobOrderEmpCostDocDetail" Width="1.5" PointX="74.75" PointY="68.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_JobOrderEquipCostDoc" Width="1.5" PointX="74.75" PointY="72.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_JobOrderEquipCostDocDetail" Width="1.5" PointX="45.75" PointY="75.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_JobOrderEquipment" Width="1.5" PointX="63.75" PointY="75.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_JobOrderExpenses" Width="1.5" PointX="76.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_JobOrderGoStock" Width="1.5" PointX="76.75" PointY="6.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_JobOrderJobs" Width="1.5" PointX="10.75" PointY="76.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_JobOrderMaterials" Width="1.5" PointX="12.75" PointY="76.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_JobOrderProducts" Width="1.5" PointX="76.75" PointY="17.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_JobOrderPurchaseInvoices" Width="1.5" PointX="18.75" PointY="76.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_JobOrderScrap" Width="1.5" PointX="76.75" PointY="30.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_JobOrderServices" Width="1.5" PointX="32.75" PointY="76.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_JobOrderTasks" Width="1.5" PointX="34.75" PointY="76.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_JobOrderType" Width="1.5" PointX="76.75" PointY="41.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_JobOrderWorkFlow" Width="1.5" PointX="76.75" PointY="52.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_JoinTaskEquipments" Width="1.5" PointX="76.75" PointY="56.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_JoinTaskJob" Width="1.5" PointX="76.75" PointY="60.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_ProductionLine" Width="1.5" PointX="76.75" PointY="64.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_ProductionLineDetails" Width="1.5" PointX="76.75" PointY="69.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_ProductionOrder" Width="1.5" PointX="76.75" PointY="73.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_ProductionOrderDetail" Width="1.5" PointX="47.75" PointY="77.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_Recipe" Width="1.5" PointX="70.75" PointY="77.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_RecipeDetail" Width="1.5" PointX="78.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_Settings" Width="1.5" PointX="78.75" PointY="3.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_Tasks" Width="1.5" PointX="78.75" PointY="10.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_WorkOrder" Width="1.5" PointX="78.75" PointY="15.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_WorkOrderEquipment" Width="1.5" PointX="78.75" PointY="28.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_WorkOrderExpenses" Width="1.5" PointX="78.75" PointY="35.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_WorkOrderItemRecQualityDocs" Width="1.5" PointX="78.75" PointY="41.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_WorkOrderMaterials" Width="1.5" PointX="78.75" PointY="44.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_WorkOrderProdItems" Width="1.5" PointX="49.75" PointY="78.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_WorkOrderScrap" Width="1.5" PointX="51.75" PointY="78.75" />
+        <EntityTypeShape EntityType="InvEntities.Prod_WorkOrderServices" Width="1.5" PointX="78.75" PointY="55.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_Accounts" Width="1.5" PointX="78.75" PointY="61.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_EstimateItems" Width="1.5" PointX="78.75" PointY="64.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_Expenses" Width="1.5" PointX="65.75" PointY="78.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_Fund" Width="1.5" PointX="78.75" PointY="68.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_ProjectItemEmpJoin" Width="1.5" PointX="78.75" PointY="72.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_ProjectItems" Width="1.5" PointX="78.75" PointY="75.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_ProjectItemsJoin" Width="1.5" PointX="43.75" PointY="79.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_ProjectItemsVendors" Width="1.5" PointX="80.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_Projects" Width="1.5" PointX="2.75" PointY="80.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_ProjExploitJoin" Width="1.5" PointX="80.75" PointY="3.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_ProjInsurance" Width="1.5" PointX="4.75" PointY="80.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_ProjInsuranceUnit" Width="1.5" PointX="80.75" PointY="6.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_ProjItemEmpTaskJoin" Width="1.5" PointX="80.75" PointY="9.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_ProjOccupTypeJoin" Width="1.5" PointX="80.75" PointY="13.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_ProjOwnerJoin" Width="1.5" PointX="14.75" PointY="80.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_ProjParkingJoin" Width="1.5" PointX="80.75" PointY="16.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_ProjPermitActivityJoin" Width="1.5" PointX="16.75" PointY="80.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_ProjUnitExploitJoin" Width="1.5" PointX="18.75" PointY="80.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_ProjUnitInstallTemp" Width="1.5" PointX="80.75" PointY="19.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_ProjUnitOccupTypeJoin" Width="1.5" PointX="80.75" PointY="22.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_ProjUnitOwnerJoin" Width="1.5" PointX="80.75" PointY="25.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_ProjUnitPermitActivityJoin" Width="1.5" PointX="80.75" PointY="30.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_ProjUnits" Width="1.5" PointX="80.75" PointY="33.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_ProjUnitService" Width="1.5" PointX="45.75" PointY="80.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_ProjUnitSubUnits" Width="1.5" PointX="80.75" PointY="46.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_RealItems" Width="1.5" PointX="80.75" PointY="52.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_ReInstallment" Width="1.5" PointX="80.75" PointY="56.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_ReserveUnitOwners" Width="1.5" PointX="57.75" PointY="80.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_ReserveUnitSellers" Width="1.5" PointX="59.75" PointY="80.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_ReservInstallments" Width="1.5" PointX="80.75" PointY="66.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_UnitConcession" Width="1.5" PointX="80.75" PointY="73.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_UnitHistoryLog" Width="1.5" PointX="34.75" PointY="81.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_UnitReplacement" Width="1.5" PointX="72.75" PointY="81.75" />
+        <EntityTypeShape EntityType="InvEntities.Proj_UnitReservation" Width="1.5" PointX="82.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Quality_Categories" Width="1.5" PointX="82.75" PointY="14.75" />
+        <EntityTypeShape EntityType="InvEntities.Quality_ItemDeliverDetails" Width="1.5" PointX="82.75" PointY="19.75" />
+        <EntityTypeShape EntityType="InvEntities.Quality_ItemDelivery" Width="1.5" PointX="82.75" PointY="28.75" />
+        <EntityTypeShape EntityType="InvEntities.Quality_ItemDeliveryPackages" Width="1.5" PointX="30.75" PointY="82.75" />
+        <EntityTypeShape EntityType="InvEntities.Quality_ItemRecCheck" Width="1.5" PointX="82.75" PointY="39.75" />
+        <EntityTypeShape EntityType="InvEntities.Quality_ItemRecCheckDetail" Width="1.5" PointX="82.75" PointY="50.75" />
+        <EntityTypeShape EntityType="InvEntities.Quality_ItemReceivTypes" Width="1.5" PointX="82.75" PointY="58.75" />
+        <EntityTypeShape EntityType="InvEntities.Quality_ItemRecieve" Width="1.5" PointX="61.75" PointY="82.75" />
+        <EntityTypeShape EntityType="InvEntities.Quality_ItemRecieveDetails" Width="1.5" PointX="82.75" PointY="63.75" />
+        <EntityTypeShape EntityType="InvEntities.Quality_ItemRecPackages" Width="1.5" PointX="63.75" PointY="82.75" />
+        <EntityTypeShape EntityType="InvEntities.Repair_JobOrder" Width="1.5" PointX="65.75" PointY="82.75" />
+        <EntityTypeShape EntityType="InvEntities.Repair_JobOrderComments" Width="1.5" PointX="82.75" PointY="69.75" />
+        <EntityTypeShape EntityType="InvEntities.Repair_JobOrderEmps" Width="1.5" PointX="82.75" PointY="72.75" />
+        <EntityTypeShape EntityType="InvEntities.Repair_JobOrderItems" Width="1.5" PointX="82.75" PointY="78.75" />
+        <EntityTypeShape EntityType="InvEntities.Repair_JobOrderScrapItems" Width="1.5" PointX="78.75" PointY="82.75" />
+        <EntityTypeShape EntityType="InvEntities.Repair_JobOrederExpenses" Width="1.5" PointX="16.75" PointY="83.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_Accomodation" Width="1.5" PointX="18.75" PointY="83.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_Complaints" Width="1.5" PointX="26.75" PointY="83.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_ContainerTypes" Width="1.5" PointX="74.75" PointY="83.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_Drivers" Width="1.5" PointX="84.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_EmpServicTypes" Width="1.5" PointX="4.75" PointY="84.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_Extension" Width="1.5" PointX="84.75" PointY="6.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_Flight" Width="1.5" PointX="84.75" PointY="9.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_Garage" Width="1.5" PointX="84.75" PointY="14.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_Harbors" Width="1.5" PointX="84.75" PointY="18.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_Hotels" Width="1.5" PointX="84.75" PointY="23.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_JobAdditionalCost" Width="1.5" PointX="84.75" PointY="35.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_JobComments" Width="1.5" PointX="36.75" PointY="84.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_JobExtrnalExpens" Width="1.5" PointX="84.75" PointY="38.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_JobFiles" Width="1.5" PointX="38.75" PointY="84.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_JobOrder" Width="1.5" PointX="40.75" PointY="84.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_JobSparts" Width="1.5" PointX="84.75" PointY="42.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_JobSWages" Width="1.5" PointX="42.75" PointY="84.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_Programs" Width="1.5" PointX="84.75" PointY="46.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_ReceptionImages" Width="1.5" PointX="84.75" PointY="51.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_Reciption" Width="1.5" PointX="84.75" PointY="54.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_ReciptionDetail" Width="1.5" PointX="84.75" PointY="60.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_ReqOfQoutation" Width="1.5" PointX="84.75" PointY="63.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_ServiceTypes" Width="1.5" PointX="67.75" PointY="84.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_ShippingDeclaration" Width="1.5" PointX="69.75" PointY="84.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_TaskEmp" Width="1.5" PointX="84.75" PointY="74.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_TaskItem" Width="1.5" PointX="84.75" PointY="77.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_Tasks" Width="1.5" PointX="84.75" PointY="80.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_TrafficLinePriceList" Width="1.5" PointX="20.75" PointY="85.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_TrafficLines" Width="1.5" PointX="28.75" PointY="85.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_Transportation" Width="1.5" PointX="30.75" PointY="85.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_TripAccomDetail" Width="1.5" PointX="32.75" PointY="85.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_TripProgramJoin" Width="1.5" PointX="44.75" PointY="85.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_Trips" Width="1.5" PointX="46.75" PointY="85.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_VehicleItemCard" Width="1.5" PointX="84.75" PointY="85.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_VehicleJobOrder" Width="1.5" PointX="86.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_VehicleJobOrderDetail" Width="1.5" PointX="6.75" PointY="86.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_VehicleRenalContract" Width="1.5" PointX="8.75" PointY="86.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_VehicleRentPayJoin" Width="1.5" PointX="86.75" PointY="17.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_VehicleRentPurchJoin" Width="1.5" PointX="86.75" PointY="21.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_VehicleRentRecJoin" Width="1.5" PointX="22.75" PointY="86.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_VehicleRentSalesInvJoin" Width="1.5" PointX="86.75" PointY="25.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_Vehicles" Width="1.5" PointX="86.75" PointY="29.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_VehicleShapes" Width="1.5" PointX="86.75" PointY="38.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_VehicleTypes" Width="1.5" PointX="86.75" PointY="42.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_VheicleJobOrderType" Width="1.5" PointX="86.75" PointY="46.75" />
+        <EntityTypeShape EntityType="InvEntities.Sr_Warranty" Width="1.5" PointX="86.75" PointY="53.75" />
+        <EntityTypeShape EntityType="InvEntities.Stock_Archives" Width="1.5" PointX="53.75" PointY="86.75" />
+        <EntityTypeShape EntityType="InvEntities.Stock_Brokers" Width="1.5" PointX="55.75" PointY="86.75" />
+        <EntityTypeShape EntityType="InvEntities.Stock_CapitalUpdate" Width="1.5" PointX="57.75" PointY="86.75" />
+        <EntityTypeShape EntityType="InvEntities.Stock_CashTransfer" Width="1.5" PointX="86.75" PointY="59.75" />
+        <EntityTypeShape EntityType="InvEntities.Stock_CashWithdrawalReasons" Width="1.5" PointX="86.75" PointY="66.75" />
+        <EntityTypeShape EntityType="InvEntities.Stock_Categories" Width="1.5" PointX="86.75" PointY="71.75" />
+        <EntityTypeShape EntityType="InvEntities.Stock_Dealers" Width="1.5" PointX="86.75" PointY="76.75" />
+        <EntityTypeShape EntityType="InvEntities.Stock_Markets" Width="1.5" PointX="86.75" PointY="82.75" />
+        <EntityTypeShape EntityType="InvEntities.Stock_OpenningBalance" Width="1.5" PointX="10.75" PointY="87.75" />
+        <EntityTypeShape EntityType="InvEntities.Stock_OpenningBalanceDetails" Width="1.5" PointX="12.75" PointY="87.75" />
+        <EntityTypeShape EntityType="InvEntities.Stock_Portfolio" Width="1.5" PointX="34.75" PointY="87.75" />
+        <EntityTypeShape EntityType="InvEntities.Stock_PortfolioAccounts" Width="1.5" PointX="36.75" PointY="87.75" />
+        <EntityTypeShape EntityType="InvEntities.Stock_PortfolioStockArchives" Width="1.5" PointX="86.75" PointY="87.75" />
+        <EntityTypeShape EntityType="InvEntities.Stock_PortfolioStocks" Width="1.5" PointX="88.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.Stock_SalesPurchase" Width="1.5" PointX="88.75" PointY="3.75" />
+        <EntityTypeShape EntityType="InvEntities.Stock_SalesPurchaseDetails" Width="1.5" PointX="88.75" PointY="9.75" />
+        <EntityTypeShape EntityType="InvEntities.Stock_Sectors" Width="1.5" PointX="88.75" PointY="14.75" />
+        <EntityTypeShape EntityType="InvEntities.Stock_ShareholdersNames" Width="1.5" PointX="88.75" PointY="19.75" />
+        <EntityTypeShape EntityType="InvEntities.Stock_Stocks" Width="1.5" PointX="88.75" PointY="24.75" />
+        <EntityTypeShape EntityType="InvEntities.Stock_Transfer" Width="1.5" PointX="24.75" PointY="88.75" />
+        <EntityTypeShape EntityType="InvEntities.Stock_TransferDetail" Width="1.5" PointX="88.75" PointY="34.75" />
+        <EntityTypeShape EntityType="InvEntities.Stock_TranTypes" Width="1.5" PointX="88.75" PointY="38.75" />
+        <EntityTypeShape EntityType="InvEntities.sys_AnalyticalCodeProccess" Width="1.5" PointX="88.75" PointY="43.75" />
+        <EntityTypeShape EntityType="InvEntities.Sys_AnalyticalCodes" Width="1.5" PointX="88.75" PointY="48.75" />
+        <EntityTypeShape EntityType="InvEntities.sys_AnalyticalCodeUpdates" Width="1.5" PointX="88.75" PointY="60.75" />
+        <EntityTypeShape EntityType="InvEntities.sys_AnalyticalCodeUpdateTypes" Width="1.5" PointX="88.75" PointY="72.75" />
+        <EntityTypeShape EntityType="InvEntities.Sys_Basket" Width="1.5" PointX="88.75" PointY="77.75" />
+        <EntityTypeShape EntityType="InvEntities.Sys_Books" Width="1.5" PointX="88.75" PointY="83.75" />
+        <EntityTypeShape EntityType="InvEntities.Sys_City" Width="1.5" PointX="14.75" PointY="89.75" />
+        <EntityTypeShape EntityType="InvEntities.Sys_Counter" Width="1.5" PointX="16.75" PointY="89.75" />
+        <EntityTypeShape EntityType="InvEntities.Sys_Countries" Width="1.5" PointX="42.75" PointY="89.75" />
+        <EntityTypeShape EntityType="InvEntities.Sys_FinancialIntervals" Width="1.5" PointX="74.75" PointY="89.75" />
+        <EntityTypeShape EntityType="InvEntities.Sys_FinancialYears" Width="1.5" PointX="80.75" PointY="89.75" />
+        <EntityTypeShape EntityType="InvEntities.Sys_FinancialYearsClosing" Width="1.5" PointX="82.75" PointY="89.75" />
+        <EntityTypeShape EntityType="InvEntities.sys_FlexLists" Width="1.5" PointX="88.75" PointY="89.75" />
+        <EntityTypeShape EntityType="InvEntities.Sys_Naming" Width="1.5" PointX="90.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InvEntities.sysdiagrams" Width="1.5" PointX="90.75" PointY="7.75" />
+        <EntityTypeShape EntityType="InvEntities.Tr_OpenningBalance" Width="1.5" PointX="90.75" PointY="10.75" />
+        <EntityTypeShape EntityType="InvEntities.Tr_OpenningBalanceDetails" Width="1.5" PointX="90.75" PointY="15.75" />
+        <EntityTypeShape EntityType="InvEntities.YearMonthes" Width="1.5" PointX="90.75" PointY="18.75" />
+        <EntityTypeShape EntityType="InvEntities.G_SearchFormSetting" Width="1.5" PointX="0.75" PointY="15.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_Vendor" Width="1.5" PointX="19.75" PointY="91.75" />
+        <EntityTypeShape EntityType="InvEntities.Hr_Employees" Width="1.5" PointX="85.375" PointY="90.75" />
+        <EntityTypeShape EntityType="InvEntities.Cal_Clauses" Width="1.5" PointX="40.375" PointY="58.75" />
+        <EntityTypeShape EntityType="InvEntities.VW_SearchAllAccounts" Width="1.5" PointX="0.75" PointY="24.75" />
+        <EntityTypeShape EntityType="InvEntities.G_USERS" Width="1.5" PointX="40.375" PointY="73.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_Taxes" Width="1.5" PointX="31.375" PointY="90.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

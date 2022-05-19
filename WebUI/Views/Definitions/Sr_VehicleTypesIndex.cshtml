@@ -1,0 +1,42 @@
+﻿@using Inv.WebUI.Resources
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+    ViewBag.Title = SystemResource.VehicleTypes;
+}
+
+<div class="row">
+    <div class="col-12 bg-white p-3 p-3 border border-1 rounded shadow-sm">
+        <div class="row">
+            <div class="col-md-3 d-flex">
+                <label class="">@SystemResource.Code</label>
+                <input class="form-control" id="TypeCode" name="TypeCode" type="text" placeholder="@SystemResource.Code">
+            </div>
+
+            <div class="col-md-1 text-center">
+                <button type="button" class="src-btn btn btn-warning xaddable xeditable" id="btnSr_VehicleTypesSearch" name="btnSearch">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+
+            <div class="col-md-4 d-flex">
+                <label class="">@SystemResource.Name_Arabic</label>
+                <input  class="form-control" type="text" name="Name1" id="Name1" value="" placeholder="@SystemResource.Name_Arabic" />
+            </div>
+
+            <div class="col-md-4 d-flex">
+                <label class="">@SystemResource.Name_English</label>
+                <input class="form-control" type="text" name="Name2" id="Name2" value="" placeholder="@SystemResource.Name_English" />
+            </div>
+            <div class="col-md-12 d-flex">
+                <label for="SystemIssuedOnly" class="">@SystemResource.Notes</label>
+                <textarea class="form-control" type="checkbox" name="Remark" id="Remark" value="" placeholder="@SystemResource.Notes"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 mt-3 bg-white p-3 border border-1 rounded shadow-sm">
+        <table data-main="mainTable" id="divVehicleTypesGrid"></table>
+    </div>
+</div>
+<script src="~/ClientApp/Pages/Definitions/Sr_VehicleTypes.js"></script>

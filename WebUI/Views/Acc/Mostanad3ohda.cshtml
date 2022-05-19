@@ -1,0 +1,244 @@
+﻿@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+    ViewBag.Title = "مستند عهدة";
+}
+
+<div class="row bg-white">
+    <!--الشريط الي بيحتوي علي تابات التنقل-->
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" data-toggle="pill" href="#home">
+                مستند عهده  <i class="fa-solid fa fa-file" aria-hidden="true"></i>
+            </a>
+            <a class="nav-item nav-link" data-toggle="pill" href="#menu1">
+                بيانات اضافية  <i class="fa-solid fa fa-file" aria-hidden="true"></i>
+            </a>
+            <a class="nav-item nav-link" data-toggle="pill" href="#menu2">
+                مرفقات  <i class="fa-solid fa fa-file" aria-hidden="true"></i>
+            </a>
+        </div>
+    </nav>
+
+    <div class="tab-content col-12">
+        <div class="tab-pane fade in show active" id="home">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">نوع المستند</label>
+                    <select id="inputState" class="form-control">
+                        <option selected></option>
+                        <option>...</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">رقم المستند</label>
+                    <input type="password" class="form-control" id="inputPassword4">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="inputEmail4">تاريخ التحرير</label>
+                    <select id="inputState" class="form-control">
+                        <option>1/1/2021</option>
+                        <option>1/2/2021</option>
+                        <option>1/3/2021</option>
+                        <option>1/4/2021</option>
+                        <option>1/5/2021</option>
+                        <option>1/6/2021</option>
+                        <option>1/7/2021</option>
+                        <option>1/8/2021</option>
+                        <option>1/9/2021</option>
+                        <option>1/10/2021</option>
+                        <option>1/11/2021</option>
+                        <option>1/12/2021</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputPassword4">المرجع</label>
+                    <input type="password" class="form-control" id="inputPassword4">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputEmail4">مستندات صرف للتصفيه</label>
+                    <input type="password" class="form-control" id="inputPassword4">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputPassword4">كود تحليلى</label>
+                    <input type="password" class="form-control" id="inputPassword4">
+                </div>
+
+
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="inputEmail4">الفرق</label>
+                    <input type="password" class="form-control" id="inputPassword4">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputPassword4">تم التصفيه</label>
+                    <input type="password" class="form-control" id="inputPassword4">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputPassword4">رصيد العهده</label>
+                    <input type="password" class="form-control" id="inputPassword4">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputPassword4">أ.ش مركبة</label>
+                    <select id="inputState" class="form-control">
+                        <option selected></option>
+                        <option>...</option>
+                    </select>
+                </div>
+            </div>
+
+            <table class="table table-bordered" data-main="mainTable">
+                <thead>
+                    <tr style="background-color: #337ab7;">
+                        <th style="text-align: right;">#</th>
+                        <th style="text-align: right;">كود المصروف	</th>
+                        <th style="text-align: right;">اسم المصروف</th>
+                        <th style="text-align: right;">تاريخ العمليه	</th>
+                        <th style="text-align: right;">القيمه</th>
+                        <th style="text-align: right;">بيان</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <!--####################################################################################################################################-->
+        <!--                                                         الشاشه الثانيه بيانات اضافيه                         -->
+        <div class="  tab-pane fade" style="direction: rtl;" id="menu1">
+            <p></p>
+            <!--3############################3333333333333####الصف الثالث #####################33##############################3-->
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputEmail4">ملاحظات</label>
+                        <textarea class="form-control"></textarea>
+                    </div>
+                </div>
+            </form>
+            <p></p>
+            <table class="table table-bordered" data-main="mainTable">
+                <thead>
+                    <tr style="background-color: #337ab7;">
+                        <th style="text-align: right;">#</th>
+                        <th style="text-align: right;">كود المصروف	</th>
+                        <th style="text-align: right;">اسم المصروف</th>
+                        <th style="text-align: right;">القيمه	</th>
+                        <th style="text-align: right;">بيان</th>
+                        <th style="text-align: right;">كود الصنف</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>52303</td>
+                        <td>وقود وزيوت</td>
+                        <td>100,0000</td>
+                        <td>بنزين محطه المرج</td>
+                        <td>
+                            <label>
+                                <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>52308</td>
+                        <td>رسوم</td>
+                        <td>10,0000</td>
+                        <td>كارته سفر</td>
+                        <td>
+                            <label>
+                                <input type="checkbox" id="blankCheckbox" value="option1" aria-label="..." checked>
+                            </label>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <!--###################################################################################################3-->
+        <!--                                                         الشاشه الثالثه تابه المرفقات                   -->
+        <div class=" tab-pane fade" style="direction: rtl;" id="menu2">
+            <!--3############################3333333333333####الصف الثالث #####################33##############################3-->
+            <div class="form-group">
+                <button type="button" class="btn btn-info" style="width: 200px; font-size:medium;border-radius: 5px; font-weight: bold;background-color: #3361b7;">تحميل المرفقات</button>
+            </div>
+            <p></p>
+            <table class="table table-bordered" data-main="mainTable">
+                <thead>
+                    <tr style="background-color: #337ab7;">
+                        <th style="text-align: right;">#</th>
+                        <th style="text-align: right;">نوع الملف</th>
+                        <th style="text-align: right;">وصف 1</th>
+                        <th style="text-align: right;">وصف 2</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>
+
+<script src="~/ClientApp/Pages/Acc/Mostanad3ohda.js"></script>

@@ -1,0 +1,137 @@
+﻿@using Inv.WebUI.Resources
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+    ViewBag.Title = SystemResource.DailyVoucherDocuments;
+}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.css">
+<style>
+    .police-header:before, .police-header:after {
+        background: #0f9eba;
+        content: "";
+        display: block;
+        height: 3px;
+        position: absolute;
+        width: 43%;
+        top: 6px;
+    }
+
+    .police-header:before {
+        left: 0;
+        border-radius: 90px 0 0 90px;
+        -moz-border-radius: 90px 0 0 90px;
+        -webkit-border-radius: 90px 0 0 90px;
+    }
+
+    .police-header:after {
+        right: 0;
+        border-radius: 10px;
+        -moz-border-radius: 0 90px 90px 0;
+        -webkit-border-radius: 0 90px 90px 0;
+    }
+</style>
+
+<div class="">
+    <div hidden class="container Div_Tree CustomStyleTree">
+            <div  id="left" class="col-lg-12 col-md-12 col-sm-12 col-md-12 span3">
+                <div class="controleTree">
+                    <input class="form-control customInputSearch" autocomplete="off" id="Tree_search" type="text">
+                    <span data-toggle="collapse" class="Refrash">
+                        <a id="Refrash" href="#" title="Refrash">
+                            <span data-toggle="collapse">
+                                <i id="RE" class="glyphicon glyphicon glyphicon-refresh" style="color: #e26d09;"></i>
+                            </span>
+                        </a>
+                    </span>
+                </div>
+                <div id='Tree'></div>
+            </div>
+        </div>
+    
+    <div class="row bg-white pt-3">
+        <div class="col-md-2 d-flex">
+            <label>@SystemResource.Code</label>
+            <input id="TrNo" disabled name="TrNo" type="text" class="form-control input-sm text_Display" placeholder="@SystemResource.App_DocumentNo">
+        </div>
+
+        <div class="col-md-1 text-center">
+            <select id="" name="" disabled class="form-control input-sm text_Display">
+                <option selected value="null"></option>
+            </select>
+        </div>
+
+        <div class="col-md-1 text-center">
+            <button type="button" class="src-btn btn btn-warning" id="btnCal_JurnalEntrySearch" name="btnSearch">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+
+        <div class="col-md-4 d-flex">
+            <label for="TrDate" class="form-label col-md-4">@SystemResource.PublicationDate</label>
+            <div class="col-md-8">
+                <input id="TrDate" disabled name="TrDate" type="date" class="form-control input-sm text_Display" placeholder="@SystemResource.PublicationDate">
+            </div>
+        </div>
+
+        <div class="col-md-4 d-flex">
+            <label>@SystemResource.DocumentType</label>
+            <select id="TermId" name="TermId" disabled class="form-control input-sm text_Display">
+                <option selected value="null">@SystemResource.DocumentType</option>
+            </select>
+        </div>
+
+        <div class="col-md-4 d-flex">
+            <label for="ManualTrNo">@SystemResource.Reference</label>
+            <input id="ManualTrNo" disabled name="ManualTrNo" type="text" class="form-control input-sm text_Display col-md-9" placeholder="@SystemResource.Reference">
+        </div>
+
+        <div class="col-md-5 d-flex">
+            <label for="ManualTrNo">@SystemResource.AnalyticalCode</label>
+            <select id="Aid" name="Aid" disabled class="form-control input-sm text_Display">
+                <option selected value="null">@SystemResource.AnalyticalCode</option>
+            </select>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-around col-md-3">
+            <label for="IsOpenning" class="col-md-2">@SystemResource.OpeningEntry</label>
+            <div class="switch-button switch-button-yesno">
+                <input type="checkbox" name="IsOpenning" id="IsOpenning"><span>
+                    <label for="IsOpenning"></label>
+                </span>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <select id="" name="" disabled class="form-control input-sm text_Display">
+                <option selected value="null">@SystemResource.BasedOn</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <select id="" name="" disabled class="form-control input-sm text_Display">
+                <option selected value="null">البنود</option>
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <textarea id="JurnalDesc" disabled name="JurnalDesc" class="form-control input-sm" placeholder="@SystemResource.ExplanationRestriction"></textarea>
+        </div>
+
+        <div class="col-md-12 mt-5 Div_Tree" style="overflow:auto">
+            <table data-main id="datatable" class=""> </table>
+
+            <table data-Sub="True" id="divJurnalDetailGrid"></table>
+        </div>
+
+        <div class="col-12">
+            <div class="row">
+                <div class="col-md-4" id="TotalDebit"><label class="text-primary">اجمالى مدين: </label> <span class="text-secondary"></span></div>
+                <div class="col-md-4" id="TotalCredit"><label class="text-primary">اجمالى دائن: </label> <span class="text-secondary"></span></div>
+                <div class="col-md-4" id="def"><label class="text-primary">الفرق: </label> <span class="text-secondary"></span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
+<script src="~/ClientApp/Pages/Acc/Cal_JurnalEntry.js"></script>

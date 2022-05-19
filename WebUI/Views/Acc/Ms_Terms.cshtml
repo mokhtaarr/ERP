@@ -1,0 +1,601 @@
+﻿@using Inv.WebUI.Resources
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+    ViewBag.Title = SystemResource.DocumentType;
+}
+
+@section Style{
+    <style>
+        label {
+            min-width: fit-content;
+            padding: 2px 3px;
+        }
+        .d-flex {
+            align-items: center;
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-12 Div_Tree CustomStyleTree bg-white pt-3 pb-3">
+        <div class="row">
+            <div class="col-md-3 d-flex">
+                <label class="">@SystemResource.Code2 @SystemResource.DocumentType</label>
+                <input class="form-control" type="text" name="TermCode" id="TermCode" value="" placeholder="@SystemResource.Code2 @SystemResource.DocumentType" />
+            </div>
+            <div class="col-md-1 text-center">
+                <button type="button" class="src-btn btn btn-warning" id="btnMs_TermsSearch" name="btnSearch">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+            <div class="col-md-4 d-flex">
+                <label class="">@SystemResource.DocumentType</label>
+                <select id="TermType" name="TermType" class="form-control">
+                    <option value="null">@SystemResource.DocumentType</option>
+                </select>
+            </div>
+            <div class="col-md-4 d-flex">
+                <label class="">@SystemResource.Name @SystemResource.DocumentType</label>
+                <input class="form-control" type="text" name="TermName" id="TermName" value="" placeholder="@SystemResource.Name @SystemResource.DocumentType" />
+            </div>
+
+            <div class="d-flex align-items-center justify-content-around col-col-md-3">
+                <label for="SystemIssuedOnly" class="col-md-2">@SystemResource.ForAutomaticallyExportedDocumentsOnly</label>
+                <div class="switch-button switch-button-yesno">
+                    <input type="checkbox" name="SystemIssuedOnly" id="SystemIssuedOnly"><span>
+                        <label for="SystemIssuedOnly"></label>
+                    </span>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-around col-col-md-2">
+                <label for="IsStopped" class="col-md-2">@SystemResource.StopDealing</label>
+                <div class="switch-button switch-button-yesno">
+                    <input type="checkbox" name="IsStopped" id="IsStopped"><span>
+                        <label for="IsStopped"></label>
+                    </span>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-around col-col-md-3">
+                <label for="IsOpenningTerm" class="col-md-2">@SystemResource.ImpactOnOpeningBalances</label>
+                <div class="switch-button switch-button-yesno">
+                    <input type="checkbox" name="IsOpenningTerm" id="IsOpenningTerm"><span>
+                        <label for="IsOpenningTerm"></label>
+                    </span>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-around col-col-md-2">
+                <label for="IsDefaultTerm" class="col-md-2">@SystemResource.PrimaryDocumentType</label>
+                <div class="switch-button switch-button-yesno">
+                    <input type="checkbox" name="IsDefaultTerm" id="IsDefaultTerm"><span>
+                        <label for="IsDefaultTerm"></label>
+                    </span>
+                </div>
+            </div>
+            
+            <div class="d-flex align-items-center justify-content-around col-col-md-2">
+                <label for="AnalaticalCodeMust" class="col-md-2">@SystemResource.AnalyticalCodeMandatory</label>
+                <div class="switch-button switch-button-yesno">
+                    <input type="checkbox" name="AnalaticalCodeMust" id="AnalaticalCodeMust"><span>
+                        <label for="AnalaticalCodeMust"></label>
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-md-4 d-flex">
+                <label class="">@SystemResource.Notebook</label>
+                <select id="BookId" name="BookId" class="form-control">
+                    <option value="null">@SystemResource.Notebook</option>
+                </select>
+            </div>
+            <div class="col-md-4 d-flex">
+                <label class="">@SystemResource.RecordBook</label>
+                <select id="JournalEntryBookId" name="JournalEntryBookId" class="form-control">
+                    <option value="null">@SystemResource.RecordBook</option>
+                </select>
+            </div>
+            <div class="col-md-4 d-flex">
+                <label class="">@SystemResource.EntryDocumentType</label>
+                <select id="JournalEntryTermId" name="JournalEntryTermId" class="form-control">
+                    <option value="null">@SystemResource.EntryDocumentType</option>
+                </select>
+            </div>
+            <div class="col-md-4 d-flex">
+                <label class="">@SystemResource.MovementType</label>
+                <select id="CashOrCredit" name="CashOrCredit" class="form-control">
+                    <option value="null">@SystemResource.MovementType</option>
+                </select>
+            </div>
+            <div class="col-md-4 d-flex">
+                <label class="">@SystemResource.SupplyBook</label>
+                <select id="InventoryBookId" name="InventoryBookId" class="form-control">
+                    <option value="null">@SystemResource.SupplyBook</option>
+                </select>
+            </div>
+            <div class="col-md-4 d-flex">
+                <label class="">@SystemResource.SupplyDocumentType</label>
+                <select id="InventoryTermId" name="InventoryTermId" class="form-control">
+                    <option value="null">@SystemResource.SupplyDocumentType</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <hr class="col-12" />
+
+    <div class="col-12 Div_Tree bg-white p-3">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" data-toggle="tab" href="#Debtor"><i class="fa fa-credit-card"></i> @SystemResource.App_Debtor</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#Creditor"><i class="far fa-credit-card"></i> @SystemResource.Creditor</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#Discount"><i class="fa fa-bullhorn"></i> @SystemResource.Discount2</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#Taxes"><i class="fab fa-cc-paypal"></i> @SystemResource.Taxes</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#Cash"><i class="fas fa-wallet"></i> @SystemResource.Cash</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#Expenses"><i class="fas fa-hand-lizard"></i> @SystemResource.Expenses</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#ExtraAccount2"><i class="fas fa-money-bill-alt"></i> @SystemResource.ExtraAccount 2</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#ExtraAccount3"><i class="fas fa-money-bill-alt"></i> @SystemResource.ExtraAccount 3</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#ExtraAccount4"><i class="fas fa-money-bill-alt"></i> @SystemResource.ExtraAccount 4</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#ExtraAccount5"><i class="fas fa-money-bill-alt"></i> @SystemResource.ExtraAccount 5</a>
+            </div>
+        </nav>
+
+        <div class="tab-content">
+            <div id="Debtor" class="tab-pane fade active show">
+                <div class="row">
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.account_type</label>
+                        <select id="AccountDebitFixed" name="AccountDebitFixed" class="form-control">
+                            <option value="null">@SystemResource.account_type</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.Account2</label>
+                        <select id="AccountIdDebit" name="AccountIdDebit" class="form-control">
+                            <option value="null">@SystemResource.Account2</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.value</label>
+                        <select id="ValuAccountDebit" name="ValuAccountDebit" class="form-control">
+                            <option value="null">@SystemResource.value</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.Center_type</label>
+                        <select id="CostCenterDebitFixed" name="CostCenterDebitFixed" class="form-control">
+                            <option value="null">@SystemResource.Center_type</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.CostCenter</label>
+                        <select id="CostCenterIdDebit" name="CostCenterIdDebit" class="form-control">
+                            <option value="null">@SystemResource.CostCenter</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Creditor" class="tab-pane fade">
+                <div class="row">
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.account_type</label>
+                        <select id="AccountCreditFixed" name="AccountCreditFixed" class="form-control">
+                            <option value="null">@SystemResource.account_type</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.Account2</label>
+                        <select id="AccountIdCredit" name="AccountIdCredit" class="form-control">
+                            <option value="null">@SystemResource.Account2</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.value</label>
+                        <select id="ValuAccountCredit" name="ValuAccountCredit" class="form-control">
+                            <option value="null">@SystemResource.value</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.Center_type</label>
+                        <select id="CostCenterCreditFixed" name="CostCenterCreditFixed" class="form-control">
+                            <option value="null">@SystemResource.Center_type</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.CostCenter</label>
+                        <select id="CostCenterIdCredit" name="CostCenterIdCredit" class="form-control">
+                            <option value="null">@SystemResource.CostCenter</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Discount" class="tab-pane fade">
+                <div class="row">
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.account_type</label>
+                        <select id="AccountDiscIsFixed" name="AccountDiscIsFixed" class="form-control">
+                            <option value="null">@SystemResource.account_type</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.Account2</label>
+                        <select id="AccountIdDisc" name="AccountIdDisc" class="form-control">
+                            <option value="null">@SystemResource.Account2</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.value</label>
+                        <select id="ValuAccountDisc" name="ValuAccountDisc" class="form-control">
+                            <option value="null">@SystemResource.value</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.AppearsInTheSide</label>
+                        <select id="AccDiscDebitOrCredit" name="AccDiscDebitOrCredit" class="form-control">
+                            <option value="null">@SystemResource.AppearsInTheSide</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.Center_type</label>
+                        <select id="CostCenterDiscIsFixed" name="CostCenterDiscIsFixed" class="form-control">
+                            <option value="null">@SystemResource.Center_type</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.CostCenter</label>
+                        <select id="CostCenterIdDisc" name="CostCenterIdDisc" class="form-control">
+                            <option value="null">@SystemResource.CostCenter</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Taxes" class="tab-pane fade">
+                <div class="row">
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.account_type</label>
+                        <select id="AccountTaxIsFixed" name="AccountTaxIsFixed" class="form-control">
+                            <option value="null">@SystemResource.account_type</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.Account2</label>
+                        <select id="AccountIdTax" name="AccountIdTax" class="form-control">
+                            <option value="null">@SystemResource.Account2</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.value</label>
+                        <select id="ValuAccountTax" name="ValuAccountTax" class="form-control">
+                            <option value="null">@SystemResource.value</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.AppearsInTheSide</label>
+                        <select id="AccTaxDebitOrCredit" name="AccTaxDebitOrCredit" class="form-control">
+                            <option value="null">@SystemResource.AppearsInTheSide</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.Center_type</label>
+                        <select id="CostCenterTaxIsFixed" name="CostCenterTaxIsFixed" class="form-control">
+                            <option value="null">@SystemResource.Center_type</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex clearfix">
+                        <label class="">@SystemResource.CostCenter</label>
+                        <select id="CostCenterIdTax" name="CostCenterIdTax" class="form-control">
+                            <option value="null">@SystemResource.CostCenter</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex" style="clear:both">
+                        <label class="">@SystemResource.TaxUse</label>
+                        <select id="UseItemTax" name="UseItemTax" class="form-control">
+                            <option value="null">@SystemResource.TaxUse</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Cash" class="tab-pane fade">
+                <div class="row">
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.account_type</label>
+                        <select id="AccountCashIsFixed" name="AccountCashIsFixed" class="form-control">
+                            <option value="null">@SystemResource.account_type</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.Account2</label>
+                        <select id="AccountIdCash" name="AccountIdCash" class="form-control">
+                            <option value="null">@SystemResource.Account2</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.value</label>
+                        <select id="ValuAccountCash" name="ValuAccountCash" class="form-control">
+                            <option value="null">@SystemResource.value</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.AppearsInTheSide</label>
+                        <select id="AccCashDebitOrCredit" name="AccCashDebitOrCredit" class="form-control">
+                            <option value="null">@SystemResource.AppearsInTheSide</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.Center_type</label>
+                        <select id="CostCenterCashIsFixed" name="CostCenterCashIsFixed" class="form-control">
+                            <option value="null">@SystemResource.Center_type</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.CostCenter</label>
+                        <select id="CostCenterIdCash" name="CostCenterIdCash" class="form-control">
+                            <option value="null">@SystemResource.CostCenter</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Expenses" class="tab-pane fade">
+                <div class="row">
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.account_type 1</label>
+                        <select id="AddAccount1IsFixed" name="AddAccount1IsFixed" class="form-control">
+                            <option value="null">@SystemResource.account_type 1</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.ExtraAccount 1</label>
+                        <select id="AddAccountId1" name="AddAccountId1" class="form-control">
+                            <option value="null">@SystemResource.ExtraAccount 1</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.value</label>
+                        <select id="ValuAddAccount1" name="ValuAddAccount1" class="form-control">
+                            <option value="null">@SystemResource.value</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.AppearsInTheSide</label>
+                        <select id="AddAcc1DebitOrCredit" name="AddAcc1DebitOrCredit" class="form-control">
+                            <option value="null">@SystemResource.AppearsInTheSide</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.Center_type</label>
+                        <select id="AddCostCenter1IsFixed" name="AddCostCenter1IsFixed" class="form-control">
+                            <option value="null">@SystemResource.Center_type</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.CostCenter</label>
+                        <select id="AddCostCenterId1" name="AddCostCenterId1" class="form-control">
+                            <option value="null">@SystemResource.CostCenter</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ExtraAccount2" class="tab-pane fade">
+                <div class="row">
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.account_type 2</label>
+                        <select id="AddAccountIsFixed2" name="AddAccountIsFixed2" class="form-control">
+                            <option value="null">@SystemResource.account_type 2</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.ExtraAccount 2</label>
+                        <select id="AddAccountId2" name="AddAccountId2" class="form-control">
+                            <option value="null">@SystemResource.ExtraAccount 2</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.value</label>
+                        <select id="ValuAddAccount2" name="ValuAddAccount2" class="form-control">
+                            <option value="null">@SystemResource.value</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.AppearsInTheSide</label>
+                        <select id="AddAcc2DebitOrCredit" name="AddAcc2DebitOrCredit" class="form-control">
+                            <option value="null">@SystemResource.AppearsInTheSide</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.Center_type</label>
+                        <select id="AddCostCenterIsFixed2" name="AddCostCenterIsFixed2" class="form-control">
+                            <option value="null">@SystemResource.Center_type</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.CostCenter</label>
+                        <select id="AddCostCenterId2" name="AddCostCenterId2" class="form-control">
+                            <option value="null">@SystemResource.CostCenter</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ExtraAccount3" class="tab-pane fade">
+                <div class="row">
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.account_type 3</label>
+                        <select id="AddAccountIsFixed3" name="AddAccountIsFixed3" class="form-control">
+                            <option value="null">@SystemResource.account_type 3</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.ExtraAccount 3</label>
+                        <select id="AddAccountId3" name="AddAccountId3" class="form-control">
+                            <option value="null">@SystemResource.ExtraAccount 3</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.value</label>
+                        <select id="ValuAddAccount3" name="ValuAddAccount3" class="form-control">
+                            <option value="null">@SystemResource.value</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.AppearsInTheSide</label>
+                        <select id="AddAcc3DebitOrCredit" name="AddAcc3DebitOrCredit" class="form-control">
+                            <option value="null">@SystemResource.AppearsInTheSide</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.Center_type</label>
+                        <select id="AddCostCenterIsFixed3" name="AddCostCenterIsFixed3" class="form-control">
+                            <option value="null">@SystemResource.Center_type</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.CostCenter</label>
+                        <select id="AddCostCenterId3" name="AddCostCenterId3" class="form-control">
+                            <option value="null">@SystemResource.CostCenter</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ExtraAccount4" class="tab-pane fade">
+                <div class="row">
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.account_type 4</label>
+                        <select id="AddAccountIsFixed4" name="AddAccountIsFixed4" class="form-control">
+                            <option value="null">@SystemResource.account_type 4</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.ExtraAccount 4</label>
+                        <select id="AddAccountId4" name="AddAccountId4" class="form-control">
+                            <option value="null">@SystemResource.ExtraAccount 4</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.value</label>
+                        <select id="ValuAddAccount4" name="ValuAddAccount4" class="form-control">
+                            <option value="null">@SystemResource.value</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.AppearsInTheSide</label>
+                        <select id="AddAcc4DebitOrCredit" name="AddAcc4DebitOrCredit" class="form-control">
+                            <option value="null">@SystemResource.AppearsInTheSide</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.Center_type</label>
+                        <select id="AddCostCenterIsFixed4" name="AddCostCenterIsFixed4" class="form-control">
+                            <option value="null">@SystemResource.Center_type</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.CostCenter</label>
+                        <select id="AddCostCenterId4" name="AddCostCenterId4" class="form-control">
+                            <option value="null">@SystemResource.CostCenter</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ExtraAccount5" class="tab-pane fade">
+                <div class="row">
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.account_type 5</label>
+                        <select id="AddAccountIsFixed5" name="AddAccountIsFixed5" class="form-control">
+                            <option value="null">@SystemResource.account_type 5</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.ExtraAccount 5</label>
+                        <select id="AddAccountId5" name="AddAccountId5" class="form-control">
+                            <option value="null">@SystemResource.ExtraAccount 5</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.value</label>
+                        <select id="ValuAddAccount5" name="ValuAddAccount5" class="form-control">
+                            <option value="null">@SystemResource.value</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.AppearsInTheSide</label>
+                        <select id="AddAcc5DebitOrCredit" name="AddAcc5DebitOrCredit" class="form-control">
+                            <option value="null">@SystemResource.AppearsInTheSide</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.Center_type</label>
+                        <select id="AddCostCenterIsFixed5" name="AddCostCenterIsFixed5" class="form-control">
+                            <option value="null">@SystemResource.Center_type</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex">
+                        <label class="">@SystemResource.CostCenter</label>
+                        <select id="AddCostCenterId5" name="AddCostCenterId5" class="form-control">
+                            <option value="null">@SystemResource.CostCenter</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/ClientApp/Pages/Acc/Ms_Terms.js"></script>

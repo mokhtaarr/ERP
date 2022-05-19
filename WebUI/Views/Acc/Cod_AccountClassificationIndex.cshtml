@@ -1,0 +1,130 @@
+﻿@using Inv.WebUI.Resources
+
+@{
+    ViewBag.Title = SystemResource.ClassificationAccounts;
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-3 Div_Tree CustomStyleTree max-h-500 bg-white">
+        <div id="left" class="col-12 span3">
+            <div class="controleTree">
+                <input class="form-control customInputSearch" autocomplete="off" id="Tree_search" type="text">
+                <span data-toggle="collapse" class="Refrash">
+                    <a id="Refrash" href="#" title="Refrash">
+                        <span data-toggle="collapse">
+                            <i id="RE" class="fas fa-sync-alt" style="color: #e26d09;"></i>
+                        </span>
+                    </a>
+                </span>
+            </div>
+            <div id='Tree'></div>
+        </div>
+    </div>
+
+    <div class="col-md-9 Div_Tree bg-white max-h-500 p-3">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" data-toggle="tab" href="#MainData">بيانات اساسية</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#Optiondata">بيانات اضافية</a>
+            </div>
+        </nav>
+
+        <div class="tab-content text-center row" id="nav-tabContent">
+            <div id="MainData" class="tab-pane fade show active col-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="row">
+                            <label class="col-md-4">كود التصنيف</label>
+                            <div class="col-md-8">
+                                <input id="Code" disabled name="Code" type="number" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-1 text-center">
+                        <button type="button" class="src-btn btn btn-warning" id="btnAccountClassSearch" name="btnSearch">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="row">
+                            <label class="col-md-2">1 اسم التصنيف</label>
+                            <div class="col-md-4">
+                                <input id="DescA" disabled name="DescA" type="text" class="form-control">
+                            </div>
+                            <label class="col-md-2">2 اسم التصنيف</label>
+                            <div class="col-md-4">
+                                <input id="DescE" disabled name="DescE" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @*<div class="col-md-12 d-flex justify-content-center customRadio">
+                        <p>
+                            <input type="radio" id="Main" name="AccountClassType" value="1">
+                            <label for="Main">رئيسي</label>
+                        </p>
+                        <p>
+                            <input type="radio" id="Genral" name="AccountClassType" value="2">
+                            <label for="Genral">عام</label>
+                        </p>
+                        <p>
+                            <input type="radio" id="Sub" name="AccountClassType" value="3">
+                            <label for="Sub">فرعي</label>
+                        </p>
+                    </div>*@
+
+            <div class="row mt-3">
+                <label class="col-md-1">تصنيف جذري</label>
+                <div class="col-md-2">
+                    <select id="ParentAccountClassId" name="ParentAccountClassId" disabled class="form-control">
+                        <option value="null"></option>
+                    </select>
+                </div>
+
+                <label class="col-md-1">مستوى التصنيف</label>
+                <div class="col-md-2">
+                    <select id="AccountClassType" name="AccountClassType" disabled class="form-control">
+                        <option value="null"></option>
+                        <option value="1">رئيسي</option>
+                        <option value="2">عام</option>
+                        <option value="3">فرعي</option>
+                    </select>
+                </div>
+
+                <label class="col-md-1">كود تحليلي</label>
+                <div class="col-md-2">
+                    <select id="AId" name="AId" disabled class="form-control">
+                        <option value="null"></option>
+                    </select>
+                </div>
+
+                <label class="col-md-1">كود التبويب</label>
+                <div class="col-md-2">
+                    <select id="AccountCatId" name="AccountCatId" disabled class="form-control">
+                        <option value="null"></option>
+                    </select>
+                </div>
+            </div>
+            </div>
+
+            <div id="Optiondata" class="tab-pane fade col-12">
+                <div class="row">
+                    <label class="col-md-1">ملاحظات 1</label>
+                    <div class="col-md-5">
+                        <textarea id="RemarksA" disabled name="RemarksA" type="text" class="form-control"></textarea>
+                    </div>
+
+                    <label class="col-md-1">ملاحظات 2</label>
+                    <div class="col-md-5">
+                        <textarea id="RemarksE" disabled name="RemarksE" type="text" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/ClientApp/Pages/Acc/Cod_AccountClassification.js"></script>

@@ -1,0 +1,41 @@
+﻿
+.under-construction {
+	background-image: url('../images/black-board.jpg');
+}
+.intro {
+    background-image: url('../images/Background/Intro2.jpg');
+}
+/*.large-header {
+    background-image: url('../images/Background/Fr6.jpg');
+}*/
+.large-header, .bg {
+    /*background-image: url('../images/Background/Fruitstore1.jpg');*/
+    /*background-image: url('../images/Background/544750.jpg');*/
+    background: url(../Content/Login/images/img1.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.form-conatiner {
+    border: 0px solid #fff;
+    padding: 50px 60px;
+    margin-top: 20vh;
+    box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+    -webkit-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+}
+
+.checkbox{
+    color:#fff;
+}
+input[type="checkbox"] {
+    margin-top: 0;
+}
+#chkRemember {
+    margin: 4px 0 0;
+    margin-top: 1px\9;
+    line-height: normal;
+    margin-left: -20px;
+}

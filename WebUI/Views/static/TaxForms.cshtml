@@ -1,0 +1,115 @@
+﻿@using Inv.WebUI.Resources
+
+@{
+    ViewBag.Title = "نماذج الضرائب";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<style>
+    tr td, tr th {
+        text-align: center;
+    }
+
+    legend {
+        font-size: 15px
+    }
+
+    .btn {
+        line-height: .9;
+    }
+
+    .table .thead-dark th {
+        background-color: #052940;
+        border-color: #384d5a;
+    }
+</style>
+
+<div class="row">
+    <div class="col-12 Div_Tree bg-white max-h-500 p-3">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-md-2 d-flex align-items-center">
+                        <label>الكود</label>
+                        <input type="number" class="form-control" id="" name="">
+                    </div>
+
+                    <div class="col-md-5 d-flex align-items-center">
+                        <label class="col-md-3">الاسم عربي</label>
+                        <input type="number" class="form-control" id="" name="">
+                    </div>
+
+                    <div class="col-md-5 d-flex align-items-center">
+                        <label class="col-md-3">الاسم انجليزي</label>
+                        <input type="number" class="form-control" id="" name="">
+                    </div>
+
+                    <div class="col-md-2 d-flex align-items-center">
+                        <label>المبلغ</label>
+                        <input type="number" class="form-control" id="" name="">
+                    </div>
+
+                    <div class="col-md-2 d-flex align-items-center">
+                        <label>الكمية</label>
+                        <input type="number" class="form-control" id="" name="">
+                    </div>
+
+                    <div class="col-md-2 d-flex align-items-center">
+                        <label>الكمية المستغله</label>
+                        <input type="number" class="form-control" id="" name="">
+                    </div>
+
+                    <div class="col-md-2 d-flex align-items-center">
+                        <label class="w-50">النسبه %</label>
+                        <input type="number" class="form-control" id="" name="">
+                    </div>
+
+                    <div class="col-md-2 d-flex align-items-center">
+                        <label class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">الوطنية</span>
+                        </label>
+                        <label class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">الدولية</span>
+                        </label>
+                    </div>
+
+                    <div class="col-md-2 d-flex align-items-center">
+                        <label>قيمة الضريبه</label>
+                        <input type="number" class="form-control" id="" name="">
+                    </div>
+
+                    <div class="col-12 mt-3">
+                        <div class="table table-bordered table table-hover table-responsive ">
+                            <table data-main="maintable" class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">الكود</th>
+                                        <th scope="col">الاسم العربي</th>
+                                        <th scope="col">الاسم الانجليزي</th>
+                                        <th scope="col">السعر</th>
+                                        <th scope="col">النسبة</th>
+                                        <th scope="col">قيمة الضريبه</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>35</td>
+                                        <td>نموذج 35</td>
+                                        <td>نموذج 35</td>
+                                        <td>4150.00</td>
+                                        <td>14.00</td>
+                                        <td>581.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/ClientApp/Pages/Answers/TaxForms.js"></script>

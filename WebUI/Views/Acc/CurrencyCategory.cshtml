@@ -1,0 +1,45 @@
+﻿@using Inv.WebUI.Resources
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+    ViewBag.Title = SystemResource.CurrencyClasses;
+}
+
+<div class="row bg-white">
+    <div class="col-md-12 p-3">
+        <div class="row">
+            <label class="col-md-1">كود الفئة</label>
+            <div class="col-md-4">
+                <input id="txt_code" disabled name="code" type="text" class="form-control addable searchable">
+            </div>
+            
+            <div class="col-md-1 text-center">
+                <button type="button" class="src-btn btn btn-warning xaddable xeditable" id="btnCurrencyCateSearch" name="btnSearch">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+            
+            <label class="col-md-2 "> قيمة الفئة بالعملة الاساسية</label>
+            <div class="col-md-4">
+                <input id="txt_Value" disabled name="Value" type="number" class="form-control addable editable">
+            </div>
+            <label class="col-lg-1 col-md-1 col-sm-1  col-xs-1   ">اسم الفئة 1</label>
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 ">
+                <input id="txt_CurrencyCategoryNameA" disabled name="CurrencyCategoryNameA" type="text" class="form-control addable editable">
+            </div>
+            <label class="col-lg-1 col-md-1 col-sm-1  col-xs-1  ">اسم الفئة 2</label>
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 ">
+                <input id="txt_CurrencyCategoryNameE" disabled name="CurrencyCategoryNameE" type="text" class="form-control addable editable">
+            </div>
+            <label class="col-md-1">ملاحظات</label>
+            <div class="col-md-11">
+                <textarea id="txt_RemarksA" disabled name="RemarksA" type="text" class="form-control addable editable"></textarea>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-12">
+        <table data-main="mainTable" id="divCurrencyCategoryGrid"></table>
+    </div>
+</div>
+
+<script src="~/ClientApp/Pages/Acc/CurrencyCategory.js"></script>

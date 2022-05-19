@@ -1,0 +1,601 @@
+﻿@model Inv.DAL.Domain.Hr_Employees
+@using Inv.WebUI.Resources
+@using Inv.WebUI.Enum
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+    ViewBag.Title = SystemResource.Employees;
+}
+
+<div class="row">
+    <div class="col-md-12 bg-white border border-1 rounded shadow-sm mb-4">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" data-toggle="tab" href="#BasicData">@SystemResource.BasicData</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#balance">@SystemResource.Balance</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#additionalData">@SystemResource.AdditionalData</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#VacationContract">@SystemResource.VacationContract</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#accounts">@SystemResource.Accounts</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#salary">الراتب</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#attachments">@SystemResource.Attachments</a>
+            </div>
+        </nav>
+
+        <div class="tab-content text-center" id="allElements">
+            <div id="BasicData" class="pb-4 pt-2 tab-pane fade show active">
+                <form id="formMain" class="row align-items-center justify-content-center">
+                    <div class="col-md-6 row">
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.EmpCode, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.Code } })
+                        </div>
+                        <div class="col-md-1">
+                            <button type="button" class="src-btn btn btn-warning" id="btnEmployeeSearch" name="btnSearch">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Name1, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.Name_Arabic } })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Name2, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.Name_English } })
+                        </div>
+
+                        <div class="col-12 mt-2">
+                            <div class="d-flex">
+                                <label class="col-md-3 form-label">@SystemResource.EmployeeAccount</label>
+                                <select class="form-control col-md-8" name="BasicAccCode" id="BasicAccCode">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.KidsNo, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.KidsNo } })
+                        </div>
+                        <div class="col-md-5">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.Email } })
+                        </div>
+                        <div class="col-md-5">
+                            <select class="form-control" name="CurrencyId" id="CurrencyId">
+                                <option value="" disabled selected>@SystemResource.Currency</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Address1, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.Address + " 1" } })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Address2, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.Address + " 2" } })
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" name="DepartMentId" id="DepartMentId">
+                                <option value="" disabled selected>@SystemResource.Department2</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" name="JobId" id="JobId">
+                                <option value="" disabled selected>@SystemResource.Job</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" name="StoreId" id="StoreId">
+                                <option value="" disabled selected>@SystemResource.Branch</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.DropDownListFor(model => model.Religion, EnumHelper.GetSelectList(typeof(Religion)), SystemResource.Religion, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.DropDownListFor(model => model.Nationality, EnumHelper.GetSelectList(typeof(Nationality)), SystemResource.Nationality, new { @class = "form-control" })
+                        </div>
+
+                        <div class="col-md-3">
+                            @Html.DropDownListFor(model => model.EtaxCustType, EnumHelper.GetSelectList(typeof(EtaxCustType)), SystemResource.TaxType, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.TaxRefNo, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.TaxNo } })
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 row">
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.DeviceEmpCode, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.DeviceEmpCode } })
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class=" form-control">
+                                <label for="BirthDate" class="form-label">@SystemResource.DateOfBirth</label>
+                                <input type="date" name="BirthDate" id="BirthDate" value="" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-control d-flex justify-content-center">
+                                <label for="IsTechnician" class="form-label">@SystemResource.IsTechnician</label>
+                                @*<input class="" type="checkbox" name="IsTechnician" id="IsTechnician" value="" />*@
+                                <div class="switch-button switch-button-yesno ml-1">
+                                    <input type="checkbox" name="IsTechnician" id="IsTechnician"><span>
+                                        <label for="IsTechnician"></label>
+                                    </span>
+                                </div>
+
+                                <label for="IsSales" class="form-label ">@SystemResource.IsSales</label>
+                                @*<input class="" type="checkbox" name="IsSales" id="IsSales" value="" />*@
+                                <div class="switch-button switch-button-yesno ml-1">
+                                    <input type="checkbox" name="IsSales" id="IsSales"><span>
+                                        <label for="IsSales"></label>
+                                    </span>
+                                </div>
+
+                                <label for="IsMoneyCollector" class="form-label">@SystemResource.IsMoneyCollector</label>
+                                @*<input class="" type="checkbox" name="IsMoneyCollector" id="IsMoneyCollector" value="" />*@
+                                <div class="switch-button switch-button-yesno ml-1">
+                                    <input type="checkbox" name="IsMoneyCollector" id="IsMoneyCollector"><span>
+                                        <label for="IsMoneyCollector"></label>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.IDNo, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.IDCardNumber } })
+                        </div>
+                        <div class="col-md-6" style="clear: both;">
+                            <div class=" form-control">
+                                <label for="IDIssueDate" class="form-label">@SystemResource.IDCardIssueDate</label>
+                                <input type="date" name="IDIssueDate" id="IDIssueDate" value="" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class=" form-control">
+                                <label for="IDExpiryDate" class="form-label">@SystemResource.IDExpiryDate</label>
+                                <input type="date" name="IDExpiryDate" id="IDExpiryDate" value="" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Phone1, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.Phone + " 1" } })
+                        </div>
+
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Phone2, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.Phone + " 2" } })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Phone3, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.Phone + " 3" } })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control", placeholder = SystemResource.Notes })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.TextAreaFor(model => model.Qualification, new { @class = "form-control", placeholder = SystemResource.Qualification })
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div id="balance" class="pb-4 pt-2 tab-pane fade">
+                <div class="row align-items-center justify-content-center">
+                    <div id="_3omla" class="row col-lg-6 p-0 div_Balance">
+                        <div class="row col-md-12">
+                            <label class="col-lg-2 col-md-2 col-sm-2 col-md-2 pading_2"> @SystemResource.Currency </label>
+
+                            <div class="col-md-5 text-center">
+                                <label class="  pading_2 text-center "> @SystemResource.Debtor </label>
+                            </div>
+                            <div class="col-md-5 text-center ">
+                                <label class=" pading_2 text-center "> @SystemResource.Creditor </label>
+                            </div>
+                        </div>
+                        <div class="row col-md-12">
+                            <label class="col-lg-2 col-md-2 col-sm-2 col-md-2 pading_2">  @SystemResource.OpeningBalance </label>
+                            <div class="col-md-5">
+                                <input id="txt_OpenningBalanceDepitCurncy" disabled name="OpenningBalanceDepitCurncy" type="number" class="form-control input-sm  text_Display ">
+                            </div>
+                            <div class="col-md-5">
+                                <input id="txt_OpenningBalanceCreditCurncy" disabled name="OpenningBalanceCreditCurncy" type="number" class="form-control input-sm  text_Display">
+                            </div>
+                        </div>
+                        <div class="row col-md-12">
+                            <label class="col-lg-2 col-md-2 col-sm-2 col-md-2 pading_2">@SystemResource.CurrentMovement</label>
+                            <div class="col-md-5">
+                                <input id="txt_AccCurrTrancDepitCurncy" disabled name="AccCurrTrancDepitCurncy" type="number" class="form-control input-sm  text_Display ">
+                            </div>
+                            <div class="col-md-5">
+                                <input id="txt_AccCurrTrancCreditCurncy" disabled name="AccCurrTrancCreditCurncy" type="number" class="form-control input-sm  text_Display">
+                            </div>
+                        </div>
+                        <div class="row col-md-12">
+                            <label class="col-lg-2 col-md-2 col-sm-2 col-md-2 pading_2"> @SystemResource.Total  </label>
+                            <div class="col-md-5">
+                                <input id="txt_AccTotalDebitCurncy" disabled name="AccTotalDebitCurncy" type="number" class="form-control input-sm  text_Display ">
+                            </div>
+                            <div class="col-md-5">
+                                <input id="txt_AccTotaCreditCurncy" disabled name="AccTotaCreditCurncy" type="number" class="form-control input-sm  text_Display">
+                            </div>
+                        </div>
+                        <div class="row col-md-12">
+                            <label class="col-lg-2 col-md-2 col-sm-2 col-md-2  pading_2"> @SystemResource.Balance  </label>
+                            <div class="col-md-5">
+                                <input id="txt_BalanceDebitCurncy" disabled name="BalanceDebitCurncy" type="number" class="form-control input-sm  text_Display ">
+                            </div>
+                            <div class="col-md-5">
+                                <input id="txt_BalanceCreditCurncy" disabled name="BalanceCreditCurncy" type="number" class="form-control input-sm  text_Display">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="Ma7ali" class="row col-lg-6 p-0 div_Balance">
+                        <div class="row col-md-12">
+                            <label class=" col-lg-2 col-md-2 col-sm-2 col-md-2 pading_2"> @SystemResource.Local </label>
+                            <div class="col-md-5 text-center">
+                                <label class=" pading_2 text-center"> @SystemResource.Debtor </label>
+                            </div>
+                            <div class="col-md-5 text-center">
+                                <label class=" pading_2 text-center"> @SystemResource.Creditor </label>
+                            </div>
+                        </div>
+                        <div class="row col-md-12">
+                            <label class="col-lg-2 col-md-2 col-sm-2 col-md-2  pading_2">  @SystemResource.OpeningBalance </label>
+                            <div class="col-md-5">
+                                <input id="txt_OpenningBalanceDepit" disabled name="Debit" type="number" class="form-control input-sm  text_Display">
+                            </div>
+                            <div class="col-md-5">
+                                <input id="txt_OpenningBalanceCredit" disabled name="Openbalance" type="number" class="form-control input-sm  text_Display ">
+                            </div>
+                        </div>
+                        <div class="row col-md-12">
+                            <label class="col-lg-2 col-md-2 col-sm-2 col-md-2 pading_2">@SystemResource.CurrentMovement</label>
+                            <div class="col-md-5">
+                                <input id="txt_AccCurrTrancDepit" disabled name="AccCurrTrancDepit" type="number" class="form-control input-sm  text_Display ">
+                            </div>
+                            <div class="col-md-5">
+                                <input id="txt_AccCurrTrancCredit" disabled name="AccCurrTrancCredit" type="number" class="form-control input-sm  text_Display">
+                            </div>
+                        </div>
+                        <div class="row col-md-12">
+                            <label class="col-lg-2 col-md-2 col-sm-2 col-md-2 pading_2">@SystemResource.Total</label>
+                            <div class="col-md-5">
+                                <input id="txt_AccTotalDebit" disabled name="AccTotalDebit" type="number" class="form-control input-sm  text_Display ">
+                            </div>
+                            <div class="col-md-5">
+                                <input id="txt_AccTotaCredit" disabled name="AccTotaCredit" type="number" class="form-control input-sm  text_Display">
+                            </div>
+                        </div>
+                        <div class="row col-md-12">
+                            <label class="col-lg-2 col-md-2 col-sm-2 col-md-2 pading_2">@SystemResource.Balance</label>
+                            <div class="col-md-5">
+                                <input id="txt_BalanceDebitLocal" disabled name="BalanceDebitLocal" type="number" class="form-control input-sm  text_Display ">
+                            </div>
+                            <div class="col-md-5">
+                                <input id="txt_BalanceCreditLocal" disabled name="BalanceCreditLocal" type="number" class="form-control input-sm  text_Display">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="additionalData" class="pb-4 pt-2 tab-pane fade">
+                <form id="formAdditionalData" class="row align-items-center justify-content-center">
+                    <div class="row col-lg-12">
+                        <div class="row col-md-6">
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.Car, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.CarLicense } })
+                            </div>
+
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.DrivingLicense, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.DrivingLicense2 } })
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="DrivingIssueDate" class="form-label">@SystemResource.DrivingLicenseIssuanceDate</label>
+                                <input  type="date" name="DrivingIssueDate" id="DrivingIssueDate" value="" />
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="DrivingExpiryDate" class="form-label">@SystemResource.DrivingLicenseExpirationDate</label>
+                                <input  type="date" name="DrivingExpiryDate" id="DrivingExpiryDate" value="" />
+                            </div>
+
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.PassportNo, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.Passport } })
+                            </div>
+
+                            <div class="col-md-6" style="clear:both;">
+                                <label for="PassportExpiryDate" class="form-label">@SystemResource.PassportExpiryDate</label>
+                                <input  type="date" name="PassportExpiryDate" id="PassportExpiryDate" value="" />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="PassportIssueDate" class="form-label">@SystemResource.PassportIssueDate</label>
+                                <input  type="date" name="PassportIssueDate" id="PassportIssueDate" value="" />
+                            </div>
+                        </div>
+
+                        <div class="row col-md-6">
+                            <div class="col-md-7">
+                                <label for="DrivingRenewalDate" class="form-label">@SystemResource.DrivingRenewalDate</label>
+                                <input type="date" name="DrivingRenewalDate" id="DrivingRenewalDate" value="" />
+                            </div>
+
+                            <div class="text-center col-md-5">
+                                <input class="form-control" accept="image/*" type='file' disabled id="EmployeeImage" />
+                                <img id="PreviewEmployeeImage" hidden src="#" alt="your image" />
+                            </div>
+
+                            <div class="col-md-6">
+                                <p class="text-center font-weight-bold mb-1">@SystemResource.MaritalStatus</p>
+                                
+                                <div class="d-flex justify-content-center">
+                                    <label for="Single" class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="MaritalStatus" id="Single" value="1" class="custom-control-input">
+                                        <span class="custom-control-label">@SystemResource.Single</span>
+                                    </label>
+
+                                    <label for="Married" class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="MaritalStatus" id="Married" value="2" class="custom-control-input">
+                                        <span class="custom-control-label">@SystemResource.Married</span>
+                                    </label>
+                                </div>
+                                @*<label for="Single" class="form-label">@SystemResource.Single</label>
+                                <input class="" type="radio" name="MaritalStatus" id="Single" value="1" />
+                                <label for="Married" class="form-label ">@SystemResource.Married</label>
+                                <input class="" type="radio" name="MaritalStatus" id="Married" value="2" />*@
+                            </div>
+                            <div class="col-md-6">
+                                <p class="text-center font-weight-bold mb-1">@SystemResource.Gender</p>
+
+                                <div class="d-flex justify-content-center">
+                                    <label for="Male" class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="Gender" id="Male" value="1" class="custom-control-input">
+                                        <span class="custom-control-label">@SystemResource.Male</span>
+                                    </label>
+
+                                     <label for="Female" class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="Gender" id="Female" value="1" class="custom-control-input">
+                                        <span class="custom-control-label">@SystemResource.Female</span>
+                                    </label>
+
+                                    @*<label for="Male" class="form-label">@SystemResource.Male</label>
+                                    <input class="" type="radio" name="Gender" id="Male" value="true" />
+                                    <label for="Female" class="form-label">@SystemResource.Female</label>
+                                    <input class="" type="radio" name="Gender" id="Female" value="false" />*@
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div id="VacationContract" class="pb-4 pt-2 tab-pane fade">
+                <form id="formVacationContract" class="row align-items-center justify-content-center">
+                    <div class="col-md-12 row">
+                        <div class="col-md-6 row">
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.MaxVacsBalance, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.MaxVacsBalance } })
+                            </div>
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.syndicate, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.syndicate } })
+                            </div>
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.syndicateID, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.syndicateID } })
+                            </div>
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.SocialSecurityID, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.SocialSecurity } })
+                            </div>
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.HealthInsID, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.HealthIns } })
+                            </div>
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.CommisionPercent, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.CommisionPercent } })
+                            </div>
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.CommisionCollectionPerc, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.CommisionCollectionPerc } })
+                            </div>
+
+                            <label for="IsCommissionAfterDisc" class="ml-1"> @SystemResource.IsCommissionAfterDisc</label>
+                            <div class="switch-button switch-button-yesno">
+                                <input type="checkbox" name="IsCommissionAfterDisc" id="IsCommissionAfterDisc"><span>
+                                    <label for="IsCommissionAfterDisc"></label>
+                                </span>
+                            </div>
+
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.AnnualVacs, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.AnnualVacations } })
+                            </div>
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.AnnualVacsBalance, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.AnnualLeaveBalance } })
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 row">
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.ReservedVacs, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.DeservedVacations } })
+                            </div>
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.ReservedVacsBalance, new { htmlAttributes = new { @class = "form-control", placeholder = SystemResource.PaidLeaveBalance } })
+                            </div>
+                            <div class="col-md-6">
+                                <div class=" form-control">
+                                    <label for="ContractSrtDate" class="form-label">@SystemResource.DateOfContract</label>
+                                    <input  type="date" name="ContractSrtDate" id="ContractSrtDate" value="" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class=" form-control">
+                                    <label for="WorkStartDate" class="form-label">@SystemResource.WorkStartDate</label>
+                                    <input  type="date" name="WorkStartDate" id="WorkStartDate" value="" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class=" form-control">
+                                    <label for="ContractEndDate" class="form-label">@SystemResource.ContractEndDate</label>
+                                    <input  type="date" name="ContractEndDate" id="ContractEndDate" value="" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex form-control">
+                                    <label for="HealthInsEndDate" class="form-label">@SystemResource.DateHealthRenewalDate</label>
+                                    <input  type="date" name="HealthInsEndDate" id="HealthInsEndDate" value="" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class=" form-control">
+                                    <label for="LastVacsUpdate" class="form-label">@SystemResource.LatestUpdateForVacations</label>
+                                    <input  type="date" name="LastVacsUpdate" id="LastVacsUpdate" value="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div id="accounts" class="tab-pane fade">
+                <div class="row col-md-12 m-0 p-1" id="AddAccounts">
+                    <div class="form-group col-md-3 p-1">
+                        <select class="form-control" name="AddAccountCode1" id="AddAccountCode1">
+                            <option value="null">@SystemResource.AdvanceAccount</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3 p-1">
+                        <select class="form-control" name="AddAccountCode2" id="AddAccountCode2">
+                            <option value="null">@SystemResource.AccountOfHisReign</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3 p-1">
+                        <select class="form-control" name="AddAccountCode3" id="AddAccountCode3">
+                            <option value="null">@SystemResource.CustomVacations</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3 p-1">
+                        <select class="form-control" name="AddAccountCode4" id="AddAccountCode4">
+                            <option value="null">@SystemResource.EndOfServiceSpecifier</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3 p-1">
+                        <select class="form-control" name="AddAccountCode5" id="AddAccountCode5">
+                            <option value="null">@SystemResource.OwedAccount</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3 p-1">
+                        <select class="form-control" name="AddAccountCode6" id="AddAccountCode6">
+                            <option value="null">@SystemResource.LostTimeCalculation</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3 p-1">
+                        <select class="form-control" name="AddAccountCode7" id="AddAccountCode7">
+                            <option value="null">@SystemResource.CustomTickets</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3 p-1">
+                        <select class="form-control" name="AddAccountCode8" id="AddAccountCode8">
+                            <option value="null">@SystemResource.ExtraAccount 8</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3 p-1">
+                        <select class="form-control" name="AddAccountCode9" id="AddAccountCode9">
+                            <option value="null">@SystemResource.ExtraAccount 9</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3 p-1">
+                        <select class="form-control" name="AddAccountCode10" id="AddAccountCode10">
+                            <option value="null">@SystemResource.SellingCommissionAccount</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="salary" class="pb-4 pt-2 tab-pane fade" >
+                <div class="row align-items-center justify-content-center">
+                    <div class="row col-md-6">
+                        <div class="col-md-6">
+                            <select class="form-control" name="ShiftId" id="ShiftId">
+                                <option value="" disabled selected>فترة الراتب</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <select class="form-control" name="PeriodTableId" id="PeriodTableId">
+                                <option value="" disabled selected>جدول المواعيد</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" id="BankName" name="BankName" value="" placeholder="اسم البنك" />
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" id="BankAccNo" name="BankAccNo" value="" placeholder="رقم الحساب" />
+                        </div>
+                    </div>
+
+                    <div class="row col-md-6">
+                        <h4 class="text-center col-md-12 police-header" style="font-weight: bold; font-size: 18px;">خصائص الراتب</h4>
+
+                        <div class="col-md-6 row">
+                            <label class="form-label col-md-6">الاجر يوم</label>
+                            <input id="DailyCost" disabled name="DailyCost" type="number" class="form-control col-md-6 input-sm text_Display" placeholder="الاجر يوم">
+                        </div>
+                        <div class="col-md-6 row">
+                            <label class="form-label col-md-6">الاجر ساعة</label>
+                            <input id="HourlyCost" disabled name="HourlyCost" type="number" class="form-control col-md-6 input-sm text_Display" placeholder="الاجر ساعة">
+                        </div>
+                        <div class="col-md-6 row">
+                            <label class="form-label col-md-6"> اجمالي الاجر يوم</label>
+                            <input id="TotalDailyCost" disabled name="TotalDailyCost" type="number" class="form-control col-md-6 input-sm text_Display" placeholder="اجمالي الاجر يوم">
+                        </div>
+                        <div class="col-md-6 row">
+                            <label class="form-label col-md-6">اجمالي الاجر ساعة</label>
+                            <input id="TotalHourlyCost" disabled name="TotalHourlyCost" type="number" class="form-control col-md-6 input-sm text_Display" placeholder="اجمالي الاجر ساعة">
+                        </div>
+
+                        <div class="col-md-12 row justify-content-center align-items-center mt-2">
+                            <label class="form-label ml-1 mr-1">اصدار الراتب</label>
+                            <div class="switch-button switch-button-yesno">
+                                <input type="checkbox" name="IssueSalary" id="IssueSalary"><span>
+                                    <label for="IssueSalary"></label>
+                                </span>
+                            </div>
+
+                            <label class="form-label ml-1 mr-1">حساب الاجر تلقائياً</label>
+                            <div class="switch-button switch-button-yesno">
+                                <input type="checkbox" name="AutosalaryIssue" id="AutosalaryIssue"><span>
+                                    <label for="AutosalaryIssue"></label>
+                                </span>
+                            </div>
+
+                            <label class="form-label ml-1 mr-1">توزيع الراتب</label>
+                            <div class="switch-button switch-button-yesno">
+                                <input type="checkbox" name="DistributeSalary" id="DistributeSalary"><span>
+                                    <label for="DistributeSalary"></label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row col-md-12 mb-3">
+                        <h4 class="text-center col-md-12 police-header" style="font-weight: bold; font-size: 18px;">مفرادات الراتب الخاصة بالموظف</h4>
+                        <div class="col-md-12" style="overflow: auto;">
+                            <table data-main="mainTable" id="divSalaryTypesGrid"> </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="attachments" class="pb-4 pt-2 tab-pane fade">
+                <div class="col-lg-12">
+                    <table id="divEmpDocumentsGrid"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 pb-2 pt-4 bg-white border border-1 rounded shadow-sm">
+        <table data-main="mainTable" id="divEmployeeGrid"></table>
+    </div>
+</div>
+
+<script src="~/ClientApp/Pages/Definitions/Hr_Employees.js"></script>

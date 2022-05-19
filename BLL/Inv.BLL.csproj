@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FAB4E0B7-AA99-44F2-A5F5-44B9D54A89B1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Inv.BLL</RootNamespace>
+    <AssemblyName>Inv.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.5.0.0\lib\net461\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Pipelines.Sockets.Unofficial, Version=1.0.0.0, Culture=neutral, PublicKeyToken=42ea0a778e13fbe2, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pipelines.Sockets.Unofficial.2.2.0\lib\net461\Pipelines.Sockets.Unofficial.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Diagnostics.PerformanceCounter, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.PerformanceCounter.5.0.0\lib\net461\System.Diagnostics.PerformanceCounter.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Pipelines, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Pipelines.5.0.0\lib\net461\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Channels, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Channels.5.0.0\lib\net461\System.Threading.Channels.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CalBusinessPartnerAccounts\Cal_BusinessPartnerAccountsService.cs" />
+    <Compile Include="Services\CalBusinessPartnerAccounts\ICal_BusinessPartnerAccountsService.cs" />
+    <Compile Include="Services\CalCostCenters\CalCostCentersService.cs" />
+    <Compile Include="Services\CalCostCenters\ICalCostCentersService.cs" />
+    <Compile Include="Services\AssetAssetCard\Asset_AssetCardService.cs" />
+    <Compile Include="Services\AssetAssetCard\IAsset_AssetCardService.cs" />
+    <Compile Include="Services\AssetAssetCategory\IAsset_AssetCategoryService.cs" />
+    <Compile Include="Services\AssetAssetCategory\Asset_AssetCategoryService.cs" />
+    <Compile Include="Services\CalPostOrder\ICal_PostOrderService.cs" />
+    <Compile Include="Services\CalPostOrder\Cal_PostOrderService.cs" />
+    <Compile Include="Services\MsReceiptNote\IMs_ReceiptNoteService.cs" />
+    <Compile Include="Services\MsReceiptNote\Ms_ReceiptNoteService.cs" />
+    <Compile Include="Services\MSPaymentNote\IMS_PaymentNoteService.cs" />
+    <Compile Include="Services\MSPaymentNote\MS_PaymentNoteService.cs" />
+    <Compile Include="Services\ProdJobOrder\IProd_JobOrderService.cs" />
+    <Compile Include="Services\ProdJobOrder\Prod_JobOrderService.cs" />
+    <Compile Include="Services\SrVehicles\ISys_AnalyticalCodesService.cs" />
+    <Compile Include="Services\SrVehicles\Sys_AnalyticalCodesService.cs" />
+    <Compile Include="Services\SysAnalyticalCodes\ISys_AnalyticalCodesService.cs" />
+    <Compile Include="Services\SysAnalyticalCodes\Sys_AnalyticalCodesService.cs" />
+    <Compile Include="Services\Prod_Equipment\IProd_EquipmentsService.cs" />
+    <Compile Include="Services\Prod_Equipment\Prod_EquipmentsService.cs" />
+    <Compile Include="Services\ProgrammingTools\MsSettings\Ms_SettingsService.cs" />
+    <Compile Include="Services\ProgrammingTools\MsSettings\IMs_SettingsService.cs" />
+    <Compile Include="Services\SrVehicleShapes\ISr_VehicleShapesService.cs" />
+    <Compile Include="Services\SrVehicleShapes\Sr_VehicleShapesService.cs" />
+    <Compile Include="Services\SrVehicleTypes\ISr_VehicleTypesService.cs" />
+    <Compile Include="Services\SrVehicleTypes\Sr_VehicleTypesService.cs" />
+    <Compile Include="Services\MSExpenses\IMS_ExpensesService.cs" />
+    <Compile Include="Services\MSExpenses\MS_ExpensesService.cs" />
+    <Compile Include="Services\SysFinancialYears\ISys_FinancialYearsService.cs" />
+    <Compile Include="Services\SysFinancialYears\Sys_FinancialYearsService.cs" />
+    <Compile Include="Services\SysBooks\ISys_BooksService.cs" />
+    <Compile Include="Services\SysBooks\Sys_BooksService.cs" />
+    <Compile Include="Services\MSTaxes\IMS_TaxesService.cs" />
+    <Compile Include="Services\MSTaxes\MS_TaxesService.cs" />
+    <Compile Include="Services\MsTerms\Ms_TermsService.cs" />
+    <Compile Include="Services\MsTerms\IMs_TermsService.cs" />
+    <Compile Include="Services\MSCurrency\IMS_CurrencyService.cs" />
+    <Compile Include="Services\MSCurrency\MS_CurrencyService.cs" />
+    <Compile Include="Services\CalJurnalEntry\ICal_JurnalEntryService.cs" />
+    <Compile Include="Services\CalJurnalEntry\Cal_JurnalEntryService.cs" />
+    <Compile Include="Services\MSGACity\MSGA_CityService.cs" />
+    <Compile Include="Services\MSGACity\IMSGA_CityService.cs" />
+    <Compile Include="Services\HrEmployees\IHr_EmployeesService.cs" />
+    <Compile Include="Services\HrEmployees\Hr_EmployeesService.cs" />
+    <Compile Include="Services\HrDepartments\Hr_DepartmentsService.cs" />
+    <Compile Include="Services\HrDepartments\IHr_DepartmentsService.cs" />
+    <Compile Include="Services\MSCustomerCategory\IMS_CustomerCategoryService.cs" />
+    <Compile Include="Services\MSCustomerCategory\MS_CustomerCategoryService.cs" />
+    <Compile Include="Services\HrJobs\IHr_JobsService.cs" />
+    <Compile Include="Services\HrJobs\Hr_JobsService.cs" />
+    <Compile Include="Services\Shared\ISharedService.cs" />
+    <Compile Include="Services\Shared\SharedService.cs" />
+    <Compile Include="Services\SySearch\ISearchService.cs" />
+    <Compile Include="Services\SySearch\SearchService.cs" />
+    <Compile Include="Services\MSVendor\IMS_VendorService.cs" />
+    <Compile Include="Services\MSVendor\MS_VendorService.cs" />
+    <Compile Include="Services\MSCustomer\IMS_CustomerService.cs" />
+    <Compile Include="Services\MSCustomer\MS_CustomerService.cs" />
+    <Compile Include="Services\MsVendorTypes\IMs_VendorTypesService.cs" />
+    <Compile Include="Services\MsVendorTypes\Ms_VendorTypesService.cs" />
+    <Compile Include="Services\MSItemCategory\IMS_ItemCategoryService.cs" />
+    <Compile Include="Services\MSItemCategory\MS_ItemCategoryService.cs" />
+    <Compile Include="Services\MsCustomerTypes\Ms_CustomerTypesService.cs" />
+    <Compile Include="Services\MsCustomerTypes\IMs_CustomerTypesService.cs" />
+    <Compile Include="Services\AccountClassification\Cod_AccountClassificationService.cs" />
+    <Compile Include="Services\AccountClassification\ICod_AccountClassificationService.cs" />
+    <Compile Include="Services\AccountUsers\Cal_AccountUsersService.cs" />
+    <Compile Include="Services\AccountUsers\ICal_AccountUsersService.cs" />
+    <Compile Include="Services\AccountCategories\AccountCategoriesService.cs" />
+    <Compile Include="Services\AccountCategories\IAccountCategoriesService.cs" />
+    <Compile Include="Services\CurrencyCategory\IMS_CurrencyCategoryService.cs" />
+    <Compile Include="Services\CurrencyCategory\MS_CurrencyCategoryService.cs" />
+    <Compile Include="Services\GAlertControl\G_AlertControlService.cs" />
+    <Compile Include="Services\GAlertControl\IG_AlertControlService.cs" />
+    <Compile Include="Services\GCompany\GCompanyService.cs" />
+    <Compile Include="Services\GCompany\IGCompanyService.cs" />
+    <Compile Include="Services\CompStatus\II_VW_GetCompStatusService.cs" />
+    <Compile Include="Services\CompStatus\I_VW_GetCompStatusService.cs" />
+    <Compile Include="Services\GLDefAccount\GLDefAccountService.cs" />
+    <Compile Include="Services\GLDefAccount\IGLDefAccountService.cs" />
+    <Compile Include="Services\GLDefAccount\VM\Cal_AccountUsersVM.cs" />
+    <Compile Include="Services\MSBoxBank\IMS_BoxBankService.cs" />
+    <Compile Include="Services\MSBoxBank\MS_BoxBankService.cs" />
+    <Compile Include="Services\MSPartition\IMS_PartitionService.cs" />
+    <Compile Include="Services\MSPartition\MS_PartitionService.cs" />
+    <Compile Include="Services\MSStores\IMS_StoresService.cs" />
+    <Compile Include="Services\MSStores\MS_StoresService.cs" />
+    <Compile Include="Services\USER_BRANCH\G_USER_BRANCHService.cs" />
+    <Compile Include="Services\USER_BRANCH\IG_USER_BRANCHService.cs" />
+    <Compile Include="Services\G_SubSystem\G_SubSystem.cs" />
+    <Compile Include="Services\G_SubSystem\IG_SubSystemService.cs" />
+    <Compile Include="Services\G_Control\G_ControlService.cs" />
+    <Compile Include="Services\G_Control\IG_ControlService.cs" />
+    <Compile Include="Services\GCostCenter\GCostCenterService.cs" />
+    <Compile Include="Services\GCostCenter\IGCostCenterService.cs" />
+    <Compile Include="Services\GRoleUsers\GRoleUsersService.cs" />
+    <Compile Include="Services\GRoleUsers\IGRoleUsersService.cs" />
+    <Compile Include="Services\GRole\GRoleService.cs" />
+    <Compile Include="Services\GRole\IGRoleService.cs" />
+    <Compile Include="Services\GUSERS\G_USERSService.cs" />
+    <Compile Include="Services\GUSERS\IG_USERSService.cs" />
+    <Compile Include="Services\IControl\II_ControlService.cs" />
+    <Compile Include="Services\IControl\I_ControlService.cs" />
+    <Compile Include="Services\IGCodes\IGCodesService.cs" />
+    <Compile Include="Services\IGCodes\IIGCodesService.cs" />
+    <Compile Include="Services\GBRANCH\IGBRANCHService.cs" />
+    <Compile Include="Services\GBRANCH\GBRANCHService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Inv.DAL\Inv.DAL.csproj">
+      <Project>{4a500666-7d24-47e3-a374-2f4a28cb26b5}</Project>
+      <Name>Inv.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
+    <Folder Include="bin\Release\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

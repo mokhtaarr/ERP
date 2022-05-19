@@ -1,0 +1,63 @@
+﻿@using Inv.WebUI.Resources
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+    ViewBag.Title = SystemResource.AdministrativeStructure;
+}
+
+<div class="row">
+    <div class="col-md-3 Div_Tree CustomStyleTree max-h-500 bg-white">
+        <div id="left" class="col-12 span3">
+            <div class="controleTree">
+                <input class="form-control customInputSearch" autocomplete="off" id="Tree_search" type="text">
+                <span data-toggle="collapse" class="Refrash">
+                    <a id="Refrash" href="#" title="Refrash">
+                        <span data-toggle="collapse">
+                            <i id="RE" class="fas fa-sync-alt" style="color: #e26d09;"></i>
+                        </span>
+                    </a>
+                </span>
+            </div>
+            <div id='Tree'></div>
+        </div>
+    </div>
+
+    <div class="col-md-9 Div_Tree bg-white max-h-500 p-3">
+        <div class="row">
+            <div class="row col-12 mb-2">
+                <div class="col-md-4 d-flex">
+                    <label>@SystemResource.Code</label>
+                    <input id="DepartCode" disabled name="DepartCode" type="text" class="form-control input-sm text_Display" placeholder="@SystemResource.Code">
+                </div>
+                <div class="col-md-2 text-center">
+                    <button type="button" class="src-btn btn btn-warning" id="btnHr_DepartmentsSearch" name="btnSearch">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+                <div class="col-md-4 d-flex">
+                    <label>اختر ادارة رئيسية</label>
+                    <select id="ParentId" name="ParentId" disabled class="form-control input-sm text_Display">
+                        <option value="null">اختر ادارة رئيسية</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6 d-flex">
+                    <label>@SystemResource.Name_Arabic</label>
+                <input id="DepartName1" disabled name="DepartName1" type="text" class="form-control input-sm text_Display" placeholder="@SystemResource.Name_Arabic">
+            </div>
+            <div class="col-md-6 d-flex">
+                    <label>@SystemResource.Name_English</label>
+                <input id="DepartName2" disabled name="DepartName2" type="text" class="form-control input-sm text_Display" placeholder="@SystemResource.Name_English">
+            </div>
+            <div class="col-md-6 d-flex">
+                    <label>@SystemResource.description</label>
+                <textarea id="DepartTask" disabled name="DepartTask" type="text" class="form-control input-sm " placeholder="@SystemResource.description"></textarea>
+            </div>
+            <div class="col-md-6 d-flex">
+                    <label>@SystemResource.Notes</label>
+                <textarea id="Remarks" disabled name="Remarks" type="text" class="form-control input-sm " placeholder="@SystemResource.Notes"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/ClientApp/Pages/Definitions/Hr_Departments.js"></script>

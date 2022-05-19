@@ -1,0 +1,1864 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4A500666-7D24-47E3-A374-2F4A28CB26B5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Inv.DAL</RootNamespace>
+    <AssemblyName>Inv.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.5.0.0\lib\net461\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Pipelines.Sockets.Unofficial, Version=1.0.0.0, Culture=neutral, PublicKeyToken=42ea0a778e13fbe2, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pipelines.Sockets.Unofficial.2.2.0\lib\net461\Pipelines.Sockets.Unofficial.dll</HintPath>
+    </Reference>
+    <Reference Include="StackExchange.Redis, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c219ff1ca8c2ce46, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.2.2.50\lib\net461\StackExchange.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="StackExchange.Redis.Extensions.Core, Version=7.1.1.0, Culture=neutral, PublicKeyToken=d7d863643bcd13ef, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.Extensions.Core.7.1.1\lib\net461\StackExchange.Redis.Extensions.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="StackExchange.Redis.Extensions.Newtonsoft, Version=7.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.Extensions.Newtonsoft.7.1.1\lib\net461\StackExchange.Redis.Extensions.Newtonsoft.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Diagnostics.PerformanceCounter, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.PerformanceCounter.5.0.0\lib\net461\System.Diagnostics.PerformanceCounter.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Pipelines, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Pipelines.5.0.0\lib\net461\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Channels, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Channels.5.0.0\lib\net461\System.Threading.Channels.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Domain\Asset_AssetAddDoc.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Asset_AssetAddDocDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Asset_AssetCard.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Asset_AssetCategory.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Asset_AssetContacts.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Asset_AssetDeductDoc.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Asset_AssetDeductDocDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Asset_AssetDeliverDoc.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Asset_AssetDeliverDocDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Asset_AssetFixDoc.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Asset_AssetFixDocDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Asset_AssetMoveDoc.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Asset_AssetMoveDocDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Asset_AssetReceiveDoc.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Asset_AssetReceiveDocDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Asset_AssetSettingDetails.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Asset_AssetSettings.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Asset_DepreciationDoc.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Asset_DepreciationDocDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Asset_Termination.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\BNk_BankNotice.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\BNK_BankNoticeDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cal_AccChrtDailyAssist.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cal_AccountChart.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cal_AccountClaasiJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cal_AccountingFix.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cal_AccountUsers.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cal_AssetAccounts.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cal_Budget.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cal_BudgetDetails.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cal_BusinessPartnerAccounts.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cal_Clauses.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cal_CostCenterAccount.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cal_CostCenters.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cal_CustAccounts.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cal_EmpAccounts.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cal_JurnalDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cal_JurnalEntry.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cal_PostOrder.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cal_QueueOrder.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cal_VendAccounts.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Code_SubUnitTypes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_AccountCategories.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_AccountClassification.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_BuildingDegree.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_BuildingExploitation.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_BuildingFinishingLevel.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_BuildingInsuranceStatus.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_BuildingStatus.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_BuildingTypes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_BuildOccupTypes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_BuildPermitActiv.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_BuildPerspective.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_City.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_Colors.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_ContractType.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_Country.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_DailyAssistance.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_ElectInsurStatus.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_Explanations.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_FurnitAndEqupmnts.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_InstallmentTemps.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_InstallmentTempsDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_InsuranceCases.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_InsurCovTypes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_LandPermitActivJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_LandPermtActiv.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_LandPositions.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_LandPosJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_LandRetainResJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_LandRetainRsons.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_Lands.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_LandStatus.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_LandTypes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_MaintenanceTypes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_NonRenewalReasons.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_OperatingOrders.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_OwnershipBonds.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_PackingSize.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_Parkings.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_PaymentTerms.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_PaymentTypes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_PostalCodes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_Region.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_RentCase.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_SavingFiles.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_Services.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_Shelves.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_SubRegion.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_TaskTypes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_TrmsModifiRsons.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_UnitDegree.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_UnitExploitation.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_UnitFinishingLevel.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_UnitInsuranceStatus.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_UnitOccupancyTypes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_UnitPermittedActivity.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_UnitPerspective.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_UnitServices.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_UnitStatus.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_UnitTypes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Cod_UntMntanItmBylndownrTnant.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Contr_InstallMent.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Contr_InstallMentDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\CRM_Leads.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\CRM_LeadsMembers.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\CRM_LeadsMembersDetails.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\CRM_LeadsMembersJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\CRM_LeadTypes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\CRM_MarketChannels.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\CRM_SalesPlan.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\CRM_SalesPlanDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\CRM_Survey.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\CRM_SurveyMemberJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\CRM_TeamMembers.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\CRM_Teams.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\CRM_Visits.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\CRM_VisitSurveys.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\CRM_VisitTypes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\GetAllJurnalDetailes_Result.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\GFunc_GetPrivilageRole_Result.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\GFunc_GetPrivilage_Result.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\GFun_Companies_Result.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\GFun_UserCompanyBranch_Result.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\GQ_GetUserBarnchAccess.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\GQ_GetUserBranch.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\GQ_GetUserModule.cs" />
+    <Compile Include="Domain\GQ_GetUserRole.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\GQ_GetUsers.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\GQ_ReportWebSetting.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_AlertControl.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_AlertLog.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_AlertType.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_BRANCH.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_Codes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_COMPANY.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_CONTROL.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_COST_CENTER.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_Currency.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_ModuleHelp.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_MODULES.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_Nationality.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_News.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_Noteifications.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_NotificationCompany.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_PaperSize.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_PrintLog.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_REGION.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_REGION_BRANCH.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_ReportWebSetting.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_Role.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_RoleModule.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_RoleUsers.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_SearchForm.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_SearchFormModule.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_SearchFormSetting.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_STORE.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_SUB_SYSTEMS.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_SYSTEM.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_TransCounter.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_TransCounterSetting.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_UserGroups.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_UserRole.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_UserRolePermissions.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_USERS.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_UserScreenFields.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_USER_BRANCH.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_USER_COMPANY.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_USER_LOG.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_USER_MODULE.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\G_VatNature.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\HIJRA_CONVERT.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_ActivityDetailElements.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_AttendanceDoc.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_AttendanceElements.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_AttendDocDetails.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_AttendDocFactElements.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_AttendElementTrans.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_Departments.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_Education.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_EmpActivity.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_EmpActivityDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_EmpDocTypes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_EmpDocuments.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_EmpElementPeriodBalance.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_EmpGroups.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_EmpLoanRequest.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_EmpLoans.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_Employees.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_EmpMovePromotDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_EmpMovePromotion.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_EmpSalaryDistribution.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_EmpSalaryTypes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_EmpsSalaryTemp.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_EmpVacation.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_EmpVacationsDetails.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_Jobs.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_KPIS.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_LeavePermision.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_LeavPermissionRequest.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\HR_MobileSetting.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_PeriodsTables.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_PeriodTableDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_PeriodTablePolicy.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_PeriodTableVacations.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_RewardAndPenalty.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_SalaryCalcMethod.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_SalaryIssueDetails.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_SalaryIssueDistribution.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_SalaryIssueDoc.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_SalaryTypes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_Segments.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_Shifts.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_Termination.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_VacationDoc.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_VacationEdit.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Hr_VacationRequest.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\InvEntities.cs" />
+    <Compile Include="Domain\InvModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InvModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\InvModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\InvModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InvModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\I_Control.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\I_VW_GetCompStatus.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\La_Lands.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\La_PropSerial.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MsGA_Capacity.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MSGA_City.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MsGA_LetterExport.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MsGA_LetterExportDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MsGA_LetterFayum.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MsGA_LetterFayumDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MsGA_LetterNormal.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MsGA_LetterNormalDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MsGA_MachineType.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MsGA_Moror.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MsGA_MotorSN.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MsGA_MotorSNDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MsGA_Shipment.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MsGA_ShipmentDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_AdjustMents.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_Attachments.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_BankAccount.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_BoxBank.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_BoxCurrency.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_BoxTransferDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_BoxTransferNote.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_BoxUsers.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_BusinessPartnerCategory.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_BusinessPartners.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_BusinessPartnerType.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_CashTransactionDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_CheqBooks.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_ChequesOpenning.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_ChequeTransfer.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_ChequeTransferDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_Commission.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_Company.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_Currency.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_CurrencyCategory.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_CurrencyCategoryJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_CurrencyDailyRateChanges.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_CurrencyRate.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_CusromerUsers.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_CustImgs.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_Customer.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_CustomerBranches.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_CustomerCategory.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_CustomerContacts.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_CustomerTypes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_DeliverItemCard.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_DeliverSalesInvoice.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_DeliverSalesInvoiceExpenses.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_DeliverSalesInvoiceMultiAccounts.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_Description.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_Expenses.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_ItemAlternatives.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_ItemCard.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_ItemCardOffers.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_ItemCardVendors.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_ItemCategory.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_ItemCollection.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_ItemCostHistory.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_ItemImages.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_ItemPartition.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_ItemSerials.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_ItemSerialsTransactions.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_ItemShortage.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_ItemStartQty.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_ItemStockAdjustment.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_ItemStockAdjustmentDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_ItemUnit.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_ItemUnitPackingJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_ItemVendors.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_KeeperBank.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_KeeperBankDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_LetterOfGuarantee.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_LetterOfGuaranteeCategory.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_LetterOfGuaranteeStatus.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_LetterOfGuaranteeTrans.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_LetterOfGuaranteeTypes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_LotNumberConfiguration.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_LotNumberExpiry.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_Partition.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_PaymentNote.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_PaymentNoteCurrencies.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_PaymentNoteItems.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_Pettycash.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_PettyCashDetails.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_PettyPaymentJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_PosItemCategory.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_PosPaymentMethods.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_POSSettings.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_PosSpecialItems.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_PurchaseInvoiceCostReceived.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_PurchaseInvoiceExpenses.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_PurchaseInvoiceItemCard.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_PurchasInvoice.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_PurchasInvoiceCurrencies.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_PurchasInvoiceMultiAccounts.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_PurchasOrder.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_PurchasOrderRequest.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_PurchInvVehicleJobOrderJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_PurchOrderDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_PurchOrderReqDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_ReceiptNote.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_ReceiptNoteCurrencies.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_RecPayDocJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_ReturnPurchase.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_ReturnPurchaseCurrencies.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_ReturnPurchaseExpenses.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_ReturnPurchaseItem.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_ReturnPurchaseMultiAccounts.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_ReturnSales.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_ReturnSalesCurrencies.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_ReturnSalesExpenses.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_ReturnSalesItemCard.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_ReturnSalesMultiAccounts.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_SalesInvJobOrderJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_SalesInvoice.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_SalesInvoiceCurrencies.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_SalesInvoiceExpenses.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_SalesInvoiceItemCard.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_SalesInvoiceItemCard_Deleted.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_SalesInvoiceMultiAccounts.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_SalesInvoiceQualityDeliveryDocs.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_SalesInvoiceQualityMissedItems.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_SalesInvVehiclJobOrderJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_SalesItemsOffers.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_SalesItemsOffersDetails.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_SalesOffer.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_SalesOfferItemCard.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_SalesOfferItemRequest.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_SalesOfferRequest.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_SalesOrder.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_SalesOrderItemCard.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_Settings.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_StockReceiptItemCard.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_StockRecript.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_StockRecriptExpenses.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_StockRecriptMultiAccounts.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_StockTranItemCard.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_StockTranItemCardReq.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_StockTransferNote.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_StockTransferNoteRequest.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_Stores.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_Taxes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_Terms.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_TermsCostCenter.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_TermsDetails.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_UserAuthentications.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_VendImgs.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_Vendor.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_VendorBranches.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\MS_VendorCategory.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_VendorContacts.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_VendorTypes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_VendorUsers.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_WeightCard.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Ms_WeightcardItems.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\PartialClass.cs" />
+    <Compile Include="Domain\Prod_AttributeValue.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_BasicUnits.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_BillOfMaterial.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_BillOfMaterialItems.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_BillOfMaterialSecondaryItems.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_Equipments.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_EquipProfile.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_ItemAttributes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_ItemAttributesBatche.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_ItemAttributesBatchesDetails.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_ItemAttributsJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_ItemBatchPartition.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_ItemcardExpenses.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_JobOrder.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_JobOrderClosing.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_JobOrderEmpCostDoc.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_JobOrderEmpCostDocDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_JobOrderEquipCostDoc.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_JobOrderEquipCostDocDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_JobOrderEquipment.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_JobOrderExpenses.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_JobOrderGoStock.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_JobOrderJobs.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_JobOrderMaterials.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_JobOrderProducts.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_JobOrderPurchaseInvoices.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_JobOrderScrap.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_JobOrderServices.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_JobOrderTasks.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_JobOrderType.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_JobOrderWorkFlow.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_JoinTaskEquipments.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_JoinTaskJob.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_ProductionLine.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_ProductionLineDetails.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_ProductionOrder.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_ProductionOrderDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_Recipe.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_RecipeDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_Settings.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_Tasks.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_WorkOrder.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_WorkOrderEquipment.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_WorkOrderExpenses.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_WorkOrderItemRecQualityDocs.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_WorkOrderMaterials.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_WorkOrderProdItems.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_WorkOrderScrap.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Prod_WorkOrderServices.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_Accounts.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_EstimateItems.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_Expenses.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_Fund.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_ProjectItemEmpJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_ProjectItems.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_ProjectItemsJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_ProjectItemsVendors.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_Projects.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_ProjExploitJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_ProjInsurance.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_ProjInsuranceUnit.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_ProjItemEmpTaskJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_ProjOccupTypeJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_ProjOwnerJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_ProjParkingJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_ProjPermitActivityJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_ProjUnitExploitJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_ProjUnitInstallTemp.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_ProjUnitOccupTypeJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_ProjUnitOwnerJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_ProjUnitPermitActivityJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_ProjUnits.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_ProjUnitService.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_ProjUnitSubUnits.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_RealItems.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_ReInstallment.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_ReserveUnitOwners.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_ReserveUnitSellers.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_ReservInstallments.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_UnitConcession.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_UnitHistoryLog.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_UnitReplacement.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Proj_UnitReservation.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Quality_Categories.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Quality_ItemDeliverDetails.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Quality_ItemDelivery.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Quality_ItemDeliveryPackages.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Quality_ItemRecCheck.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Quality_ItemRecCheckDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Quality_ItemReceivTypes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Quality_ItemRecieve.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Quality_ItemRecieveDetails.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Quality_ItemRecPackages.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Repair_JobOrder.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Repair_JobOrderComments.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Repair_JobOrderEmps.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Repair_JobOrderItems.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Repair_JobOrderScrapItems.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Repair_JobOrederExpenses.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\RptCustomerBalanceDetail_Result.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\RptCustomerDetail_Result.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\RptCustomerInfo_Result.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\RptCustomerItem_Result.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\RPTCustomerPreviousBalance_Result.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\RptCustomersLicenses_Result.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\RPTCustomerStatement_Result.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_Accomodation.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_Complaints.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_ContainerTypes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_Drivers.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_EmpServicTypes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_Extension.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_Flight.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_Garage.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_Harbors.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_Hotels.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_JobAdditionalCost.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_JobComments.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_JobExtrnalExpens.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_JobFiles.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_JobOrder.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_JobSparts.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_JobSWages.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_Programs.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_ReceptionImages.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_Reciption.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_ReciptionDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_ReqOfQoutation.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_ServiceTypes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_ShippingDeclaration.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_TaskEmp.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_TaskItem.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_Tasks.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_TrafficLinePriceList.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_TrafficLines.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_Transportation.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_TripAccomDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_TripProgramJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_Trips.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_VehicleItemCard.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_VehicleJobOrder.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_VehicleJobOrderDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_VehicleRenalContract.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_VehicleRentPayJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_VehicleRentPurchJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_VehicleRentRecJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_VehicleRentSalesInvJoin.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_Vehicles.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_VehicleShapes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_VehicleTypes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_VheicleJobOrderType.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sr_Warranty.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Stock_Archives.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Stock_Brokers.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Stock_CapitalUpdate.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Stock_CashTransfer.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Stock_CashWithdrawalReasons.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Stock_Categories.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Stock_Dealers.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Stock_Markets.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Stock_OpenningBalance.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Stock_OpenningBalanceDetails.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Stock_Portfolio.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Stock_PortfolioAccounts.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Stock_PortfolioStockArchives.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Stock_PortfolioStocks.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Stock_SalesPurchase.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Stock_SalesPurchaseDetails.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Stock_Sectors.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Stock_ShareholdersNames.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Stock_Stocks.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Stock_Transfer.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Stock_TransferDetail.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Stock_TranTypes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\sysdiagrams.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\sys_AnalyticalCodeProccess.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sys_AnalyticalCodes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\sys_AnalyticalCodeUpdates.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\sys_AnalyticalCodeUpdateTypes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sys_Basket.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sys_Books.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sys_City.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sys_Counter.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sys_Countries.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sys_FinancialIntervals.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sys_FinancialYears.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sys_FinancialYearsClosing.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\sys_FlexLists.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Sys_Naming.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Tr_OpenningBalance.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Tr_OpenningBalanceDetails.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\VW_SearchAllAccounts.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\YearMonthes.cs">
+      <DependentUpon>InvModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RedisCache\RedisCache.cs" />
+    <Compile Include="Repository\GenericRepository.cs" />
+    <Compile Include="Repository\IGenericRepository.cs" />
+    <Compile Include="Repository\IUnitOfWork.cs" />
+    <Compile Include="Repository\UnitOfWork.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="Domain\InvModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>InvModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Domain\InvModel.edmx.diagram">
+      <DependentUpon>InvModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Domain\InvModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>InvModel.edmx</DependentUpon>
+      <LastGenOutput>InvModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Domain\InvModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>InvModel.edmx</DependentUpon>
+      <LastGenOutput>InvModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Inv.Static\Inv.Static.csproj">
+      <Project>{41e67ed6-6818-4dda-8619-0c5200f3dfcc}</Project>
+      <Name>Inv.Static</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

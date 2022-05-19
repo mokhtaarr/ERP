@@ -1,0 +1,89 @@
+﻿@using Inv.WebUI.Resources
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+    ViewBag.Title = "فئات الاصناف";
+}
+
+<div class="row">
+    <div class="col-md-3 Div_Tree CustomStyleTree max-h-500 bg-white">
+        <div id="left" class="col-12 span3">
+            <div class="controleTree">
+                <input class="form-control customInputSearch" autocomplete="off" id="Tree_search" type="text">
+                <span data-toggle="collapse" class="Refrash">
+                    <a id="Refrash" href="#" title="Refrash">
+                        <span data-toggle="collapse">
+                            <i id="RE" class="fas fa-sync-alt" style="color: #e26d09;"></i>
+                        </span>
+                    </a>
+                </span>
+            </div>
+            <div id='Tree'></div>
+        </div>
+    </div>
+
+    <div class="col-md-9 Div_Tree bg-white max-h-500 p-3">
+        <div id="MainData" class="row">
+            <label class="col-md-1">الكود</label>
+           
+            <div class="col-md-2">
+                <input id="Code" disabled name="Code" type="number" class="form-control">
+            </div>
+            
+            <div class="col-md-1 text-center">
+                <button type="button" class="src-btn btn btn-warning" id="btnItemCategorySearch" name="btnSearch">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+            
+            <label class="col-md-2">النوع الرئيسي</label>
+            <div class="col-md-3">
+                <select id="ParentItemCategoryId" name="ParentItemCategoryId" disabled class="form-control">
+                    <option value="null"></option>
+                </select>
+            </div>
+
+            <label class="col-md-1">المستوى</label>
+            
+            <div class="col-md-2">
+                <input id="ItemCategoryCatLevel" disabled name="ItemCategoryCatLevel" type="number" class="form-control">
+            </div>
+
+            <label class="col-md-2 text-end">اسم 1</label>
+            
+            <div class="col-md-4">
+                <input id="DescA" disabled name="DescA" type="text" class="form-control">
+            </div>
+            
+            <label class="col-md-2 text-end">اسم 2</label>
+            
+            <div class="col-md-4">
+                <input id="DescE" disabled name="DescE" type="text" class="form-control">
+            </div>
+            
+            <label class="col-md-1">نوع المستوى</label>
+            
+            <div class="col-md-3">
+                <select id="ItemCategoryType" name="ItemCategoryType" disabled class="form-control">
+                    <option value="null"></option>
+                    <option value="1">رئيسي</option>
+                    <option value="2">فرعي</option>
+                </select>
+            </div>
+            <label class="col-lg-1 col-md-1 col-sm-1 col-md-1 ">ملاحظات </label>
+            
+            <div class="col-md-4">
+                <textarea id="Remarks" disabled name="Remarks" type="text" class="form-control input-sm "></textarea>
+            </div>
+            
+            <div class="text-center col-3">
+                <input accept="image/*" type='file' disabled id="CategoryImage" />
+            </div>
+
+            <div class="col-6 m-auto">
+                <img id="PreviewCategoryImage" style="max-width: 100%;" hidden src="#" alt="your image" />
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/ClientApp/Pages/Definitions/MS_ItemCategory.js"></script>
