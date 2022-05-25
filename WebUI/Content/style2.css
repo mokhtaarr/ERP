@@ -1014,3 +1014,11 @@ select.form-control.input-sm[name="SearchDataTable_length"] {
 #headerTitle{
     font-size:19px;
 }
+
+td{
+    overflow:hidden;
+}
+
+td input, td select {
+    width: 100%;
+}

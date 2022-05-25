@@ -208,12 +208,16 @@ interface IJsGridColumn {
     validate?: any;
     id?: string;
     disabled?: boolean;
+    modeSwitchButton?: boolean;
+    editButton?: boolean;
 
     items?: any;
     valueField?: string;
     textField?: string;
     value?: string;
     
+    _createEditButton?: any;
+    //updateItem?: any;
     itemTemplate?: any;
     editTemplate?: any;
     editControl?: any;
@@ -739,6 +743,32 @@ var DocumentActions = {
             let properties = Object.getOwnPropertyNames(model);
             for (var property of properties) {
                 let element = document.getElementsByName(property)[0] as HTMLInputElement;
+                if (element != null) {
+                    if (element.type == "checkbox")
+                        model[property] = element.checked;
+                    else if (element.type == "radio") {
+                        let newElement = document.getElementsByName(property);
+                        for (var v = 0, length = newElement.length; v < length; v++) {
+                            if ($(newElement[v]).is(":checked")) {
+                                model[property] = element.checked;
+                                // only one radio can be logically checked, don't check the rest
+                                break;
+                            }
+                        }
+                    }
+                    else
+                        model[property] = element.value;
+                }
+            }
+        }
+        return model;
+    },
+
+    AssignToModelFormGridInEditMode: <T>(model: T): T => {
+        if (model != null) {
+            let properties = Object.getOwnPropertyNames(model);
+            for (var property of properties) {
+                let element = document.querySelector('#_idEdit #' + property) as HTMLInputElement;
                 if (element != null) {
                     if (element.type == "checkbox")
                         model[property] = element.checked;
@@ -1380,18 +1410,31 @@ class Resources {
     value: string;
 }
 
-function CreateElement(typeElement: string, className: string, defaultValue: string, minValue: string, id: string, step: string): HTMLInputElement {
+function CreateElement(typeElement: string, className: string, defaultValue: string, minValue: string, id: string, step: string, disabled: boolean = false): HTMLInputElement {
     typeElement = typeElement.toLocaleLowerCase();
     let element = DocumentActions.CreateElement<HTMLInputElement>("input");
     element.className = className;
     element.id = id;
-    //element.id = "h_" + id;
     element.type = typeElement;
     element.value = defaultValue;
     element.min = minValue;
     element.step = step;
+    element.disabled = disabled;
     return element;
 }
+
+function CreateElementString(typeElement: string, className: string, defaultValue: string, minValue: string, id: string, step: string): string {
+    typeElement = typeElement.toLocaleLowerCase();
+    let element = DocumentActions.CreateElement<HTMLInputElement>("input");
+    element.className = className;
+    element.id = id;
+    element.type = typeElement;
+    element.value = defaultValue;
+    element.min = minValue;
+    element.step = step;
+    return element.outerHTML;
+}
+
 
 //eslam 25 oct 2020
 function CreateLabelElement(defaultValue: string, id: string): HTMLElement {

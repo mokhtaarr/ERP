@@ -14,6 +14,8 @@
 
     return d.promise();
 };
+var JSGRID_ROW_DATA_KEY = "JSGridItem",
+    JSGRID_EDIT_ROW_DATA_KEY = "JSGridEditRow";
 
 class JsGrid {
     public SysSession = GetSystemSession();
@@ -42,8 +44,8 @@ class JsGrid {
     public OnRowDoubleClicked: () => void;
     public OnRowClicked: () => void;
     public InsertionMode: JsGridInsertionMode = JsGridInsertionMode.Internal;
-    public OnItemInserting: (args: JsGridInsertEventArgs) => void;
     public OnItemInserted: () => void;
+    public OnItemInserting: (args: JsGridInsertEventArgs) => void;
     public OnItemUpdating: (args: JsGridUpdateEventArgs) => void;
     public OnItemEditing: (args: JsGridEditEventArgs) => void;
     public OnItemDeleting: (args: JsGridDeleteEventArgs) => void;
@@ -85,7 +87,6 @@ class JsGrid {
                 fun: field,
                 Typefun: field,
                 value: field,
-
             };
             this.Columns.push(col);
         }
@@ -188,6 +189,22 @@ class JsGrid {
             //},
             
             //////// To Add Id in the row
+
+            _createInsertRow: function () {
+                if ($.isFunction(this.insertRowRenderer))
+                    return $(this.renderTemplate(this.insertRowRenderer, this));
+
+                var $result = $("<tr>").addClass(this.insertRowClass).attr('id', '_idAdd');
+
+                this._eachField(function (field) {
+                    this._prepareCell("<td>", field, "insertcss")
+                        .append(this.renderTemplate(field.insertTemplate, field))
+                        .appendTo($result);
+                });
+
+                return $result;
+            },
+
             _createEditRow: function (item) {
                 if ($.isFunction(this.editRowRenderer)) {
                     return $(this.renderTemplate(this.editRowRenderer, this, { item: item, itemIndex: this._itemIndex(item) }));
@@ -205,6 +222,49 @@ class JsGrid {
 
                 return $result;
             },
+
+            //_editRow: function ($row) {
+            //    debugger
+            //    if (!this.editing)
+            //        return;
+
+            //    var item = $row.data(JSGRID_ROW_DATA_KEY);
+
+            //    var args = this._callEventHandler(this.onItemEditing, {
+            //        row: $row,
+            //        item: item,
+            //        itemIndex: this._itemIndex(item)
+            //    });
+
+            //    if (args.cancel)
+            //        return;
+
+            //    if (this._editingRow) {
+            //        this.cancelEdit();
+            //    }
+
+            //    var $editRow = this._createEditRow(item);
+
+            //    this._editingRow = $row;
+            //    $row.hide();
+            //    $editRow.insertBefore($row);
+            //    $row.data(JSGRID_EDIT_ROW_DATA_KEY, $editRow);
+            //},
+
+            //updateItem: function (item, editedItem) {
+            //    debugger
+            //    if (arguments.length === 1) {
+            //        editedItem = item;
+            //    }
+
+            //    var $row = item ? this.rowByItem(item) : this._editingRow;
+            //    editedItem = editedItem || this._getValidatedEditedItem();
+
+            //    if (!editedItem)
+            //        return;
+
+            //    return this._updateRow($row, editedItem);
+            //},
 
             getFilter: function () {
                 var result = {};
@@ -463,7 +523,6 @@ class JsGrid {
                     e.Item = arg.item;
                     e.ItemIndex = arg.itemIndex;
                     e.Row = arg.row;
-
                     //MessageBox.Ask("هل أنت متأكد", "حذف",
                     //    () => {
                     //        this.OnItemDeleting(e);
@@ -473,7 +532,6 @@ class JsGrid {
                     //        arg.Cancel = true;
                     //    });
                     this.OnItemDeleting(e);
-
                 }
                 //else
                 //    arg.cancel = true;
@@ -483,7 +541,7 @@ class JsGrid {
             }
         });
 
-        $('select').select2().css("width", "100%");
+        //$('select').select2().css("width", "100%");
     }
 
     //public paginationGoToPage(i: any) {

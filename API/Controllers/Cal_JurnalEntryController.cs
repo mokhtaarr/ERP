@@ -232,11 +232,11 @@ namespace Inv.API.Controllers
                                 dbTransaction.Rollback();
                                 return Ok(new BaseResponse(HttpStatusCode.ExpectationFailed, PostOrder.Message + "\n\n" + PostOrder.MessageBox));
                             }
-                            return Ok(new BaseResponse(detailes));
+                            return Ok(new BaseResponse(detailes.JurnalEntry));
                         }
-                        return Ok(new BaseResponse(HttpStatusCode.ExpectationFailed));
+                        return Ok(new BaseResponse(HttpStatusCode.ExpectationFailed, "Header is null"));
                     }
-                    else return Ok(new BaseResponse(HttpStatusCode.ExpectationFailed));
+                    return Ok(new BaseResponse(HttpStatusCode.ExpectationFailed, "Header and Details is null"));
                 }
                 catch (Exception ex)
                 {
@@ -271,11 +271,11 @@ namespace Inv.API.Controllers
                                 dbTransaction.Rollback();
                                 return Ok(new BaseResponse(HttpStatusCode.ExpectationFailed, PostOrder.Message + "\n\n" + PostOrder.MessageBox));
                             }
-                            return Ok(new BaseResponse(detailes));
+                            return Ok(new BaseResponse(detailes.JurnalEntry));
                         }
-                        return Ok(new BaseResponse(HttpStatusCode.ExpectationFailed));
+                        return Ok(new BaseResponse(HttpStatusCode.ExpectationFailed, "Header is null"));
                     }
-                    return Ok(new BaseResponse(HttpStatusCode.ExpectationFailed));
+                    return Ok(new BaseResponse(HttpStatusCode.ExpectationFailed, "Header and Details is null"));
                 }
                 catch (Exception ex)
                 {

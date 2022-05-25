@@ -1,10 +1,11 @@
 ﻿@using Inv.WebUI.Resources
 
 @{
+    //Layout = null;
     Layout = "~/Views/Shared/Layout.cshtml";
     ViewBag.Title = SystemResource.DailyVoucherDocuments;
 }
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.css">
+
 <style>
     .police-header:before, .police-header:after {
         background: #0f9eba;
@@ -29,25 +30,29 @@
         -moz-border-radius: 0 90px 90px 0;
         -webkit-border-radius: 0 90px 90px 0;
     }
+
+    input.jsgrid-button.jsgrid-edit-button {
+        /*display: none;*/
+    }
 </style>
 
 <div class="">
     <div hidden class="container Div_Tree CustomStyleTree">
-            <div  id="left" class="col-lg-12 col-md-12 col-sm-12 col-md-12 span3">
-                <div class="controleTree">
-                    <input class="form-control customInputSearch" autocomplete="off" id="Tree_search" type="text">
-                    <span data-toggle="collapse" class="Refrash">
-                        <a id="Refrash" href="#" title="Refrash">
-                            <span data-toggle="collapse">
-                                <i id="RE" class="glyphicon glyphicon glyphicon-refresh" style="color: #e26d09;"></i>
-                            </span>
-                        </a>
-                    </span>
-                </div>
-                <div id='Tree'></div>
+        <div id="left" class="col-lg-12 col-md-12 col-sm-12 col-md-12 span3">
+            <div class="controleTree">
+                <input class="form-control customInputSearch" autocomplete="off" id="Tree_search" type="text">
+                <span data-toggle="collapse" class="Refrash">
+                    <a id="Refrash" href="#" title="Refrash">
+                        <span data-toggle="collapse">
+                            <i id="RE" class="glyphicon glyphicon glyphicon-refresh" style="color: #e26d09;"></i>
+                        </span>
+                    </a>
+                </span>
             </div>
+            <div id='Tree'></div>
         </div>
-    
+    </div>
+
     <div class="row bg-white pt-3">
         <div class="col-md-2 d-flex">
             <label>@SystemResource.Code</label>
@@ -118,8 +123,6 @@
         </div>
 
         <div class="col-md-12 mt-5 Div_Tree" style="overflow:auto">
-            <table data-main id="datatable" class=""> </table>
-
             <table data-Sub="True" id="divJurnalDetailGrid"></table>
         </div>
 
@@ -133,5 +136,4 @@
     </div>
 </div>
 
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
 <script src="~/ClientApp/Pages/Acc/Cal_JurnalEntry.js"></script>

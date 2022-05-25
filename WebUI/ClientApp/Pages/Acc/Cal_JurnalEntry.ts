@@ -44,11 +44,10 @@ namespace CalJurnalEntry {
     var flag: boolean = true;
     var flagTotal: boolean = true;
     var AccountId: number;
+    var rowId: string;
 
     var divJurnalDetailGrid: JsGrid = new JsGrid();
     var grid: JsGrid = new JsGrid();
-
-    const GridInputClassName = "form-control gridIput";
 
     var datatable;
     export function InitalizeComponent() {
@@ -86,309 +85,6 @@ namespace CalJurnalEntry {
         GetCurrency();
         GetAllTerms(13);
         InitializeJurnalDetailGrid();
-    }
-
-    function Initalizegrid(data: Array<CustomJurnalDetail>) {
-        datatable = $('#datatable').DataTable({
-            data: data,
-            columns: [
-                {
-                    title: "#", data: "", className: "jsgrid control", render: function (data, type, row, meta) {
-                        let tem = `<input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"> 
-                                    <input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete">`;
-                        return tem;
-                        //return meta.row + 1;
-                    }
-                },
-                {
-                    title: Resource.Code, type: "text", css: "ColumPadding", data: "AccountCode", id: "AccountCode", render: function (data, type, row) {
-                        return isNaN(data) ? "" : data;
-                    }
-                    //editTemplate: (data: string, item: CustomJurnalDetail): HTMLSelectElement => {
-                    //    let txt = CreateDropdownList(AllAccounts, "AccountNameA", "AccountNameA", "AccountCode", true) as HTMLSelectElement;
-                    //    txt.onchange = (e) => {
-                    //        SetAccountFromDrobDownInGrid($(e.target).val(), "u_CodeCurrency");
-                    //    }
-                    //    txt.id = "u_AccountCode";
-                    //    txt.value = data;
-                    //    return txt
-                    //},
-                    //insertTemplate: (data: string, item: CustomJurnalDetail): HTMLSelectElement => {
-                    //    let txt = CreateDropdownList(AllAccounts, "AccountNameA", "AccountNameA", "AccountCode", true) as HTMLSelectElement;
-                    //    txt.onchange = (e) => {
-                    //        SetAccountFromDrobDownInGrid($(e.target).val(), "i_CodeCurrency");
-                    //    }
-                    //    txt.id = "i_AccountCode";
-                    //    return txt
-                    //},
-                },
-                {
-                    title: Resource.Code2 + " " + Resource.AssistantAccount, type: "text", data: "SubAccountCode", id: "hd_SubAccountCode", render: function (data, type, row) {
-                        return isNaN(data) ? "" : data;
-                    }
-                    //insertTemplate: function (data, row) {
-                    //    let txt = CreateElement("text", null, null, null, "i_SubAccountCode", null);
-                    //    txt.id = "i_SubAccountCode";
-                    //    txt.disabled = true;
-                    //    return txt
-                    //}
-                },
-                {
-                    title: Resource.Name_Arabic, type: "text", css: "ColumPadding", data: "AccountNameA", id: "hd_AccountNameA", render: function (data, type, row) {
-                        return IsNullOrEmpty(data) ? "" : data;
-                    }
-                    //insertTemplate: function (data, row) {
-                    //    let txt = CreateElement("text", null, null, null, "hd_AccountNameA", null);
-                    //    txt.id = "hd_AccountNameA";
-                    //    txt.disabled = true;
-                    //    return txt
-                    //}
-                },
-                {
-                    title: Resource.App_Creditor + " " + "(" + Resource.Currency2 + ")", type: "number", css: "ColumPadding", data: "CurrencyCreditor",
-                    id: "hd_CurrencyCreditor", render: function (data, type, row) {
-                        return IsNullOrEmpty(data) ? "" : data;
-                    }
-                    //Typefun: "change", fun: function (e) {
-                    //    calculat(e);
-                    //},
-                    //insertTemplate: function (data, row) {
-                    //    let txt = CreateElement("number", null, null, null, "i_CurrencyCreditor", null);
-                    //    txt.id = "i_CurrencyCreditor";
-                    //    txt.onchange = (e) => {
-                    //        calculat(e);
-                    //    }
-                    //    return txt
-                    //},
-                    //editTemplate: (data: string, item: CustomJurnalDetail): HTMLInputElement => {
-                    //    let txt = CreateElement("number", null, null, null, "u_CurrencyCreditor", null);
-                    //    txt.id = "u_CurrencyCreditor";
-                    //    txt.value = data;
-                    //    txt.onchange = (e) => {
-                    //        calculat(e);
-                    //    }
-                    //    return txt
-                    //},
-                    //editControl: $(CreateElement("number", null, null, null, "u_CurrencyCreditor", null))
-                },
-                {
-                    title: Resource.App_Debtor + " " + "(" + Resource.Currency2 + ")", type: "number", css: "ColumPadding", data: "CurrencyDebtor",
-                    id: "hd_CurrencyDebtor", render: function (data, type, row) {
-                         return isNaN(data) ? "" : data;
-                    }
-                    //Typefun: "change", fun: function (e) {
-                    //    calculat(e);
-                    //},
-                    //insertTemplate: function (data, row) {
-                    //    let txt = CreateElement("number", null, null, null, "i_CurrencyDebtor", null);
-                    //    txt.id = "i_CurrencyDebtor";
-                    //    txt.onchange = (e) => {
-                    //        calculat(e);
-                    //    }
-                    //    return txt
-                    //},
-                    //editTemplate: (data: string, item: CustomJurnalDetail): HTMLInputElement => {
-                    //    let txt = CreateElement("number", null, null, null, "u_CurrencyDebtor", null);
-                    //    txt.id = "u_CurrencyDebtor";
-                    //    txt.value = data;
-                    //    txt.onchange = (e) => {
-                    //        calculat(e);
-                    //    }
-                    //    return txt
-                    //},
-                    //editControl: $(CreateElement("number", null, null, null, "u_CurrencyDebtor", null))
-                },
-                {
-                    title: Resource.Code2 + " " + Resource.Currency, css: "ColumPadding", type: "select", data: "CodeCurrency",
-                    items: Currencies, valueField: "CurrencyCode", textField: (language ? "CurrencyDescA" : "CurrencyDescE"), id: "hd_CodeCurrency"
-                    ,render: function (data, type, row) {
-                         return isNaN(data) ? "" : data;
-                    }
-                    //Typefun: "change", fun: function (e) {
-                    //    SetCurrency(Number($(e.target).val()), this);
-                    //    calculat(e);
-                    //}
-                    //, editTemplate: function (data, row) {
-                    //    let txt = CreateDropdownList(Currencies, "CurrencyDescA", "CurrencyDescE", "CurrencyCode", true);
-                    //    txt.onchange = (e) => {
-                    //        SetCurrency(Number($(e.target).val()), txt);
-                    //        calculat(e);
-                    //    }
-                    //    txt.id = "u_CodeCurrency";
-                    //    txt.value = data;
-                    //    return txt
-                    //}
-                    //, insertTemplate: function (data, row) {
-                    //    let txt = CreateDropdownList(Currencies, "CurrencyDescA", "CurrencyDescE", "CurrencyCode", true);
-                    //    txt.onchange = (e) => {
-                    //        SetCurrency(Number($(e.target).val()), txt);
-                    //        calculat(e);
-                    //    }
-                    //    txt.id = "i_CodeCurrency";
-                    //    return txt
-                    //}
-                },
-                {
-                    title: Resource.Name + " " + Resource.Currency, css: "ColumPadding", type: "text", data: "NameCurrency", id: "hd_NameCurrency",
-                    render: function (data, type, row) {
-                         return isNaN(data) ? "" : data;
-                    }
-                    //insertTemplate: function (data, row) {
-                    //    let txt = CreateElement("text", null, null, null, "hd_NameCurrency", null);
-                    //    txt.id = "hd_NameCurrency";
-                    //    txt.disabled = true;
-                    //    return txt
-                    //}
-                },
-                {
-                    title: Resource.ConversionFactor, css: "ColumPadding", type: "text", data: "Rate", id: "hd_Rate", disabled: true,
-                    render: function (data, type, row) {
-                         return isNaN(data) ? "" : data;
-                    }
-                    //insertTemplate: function (data, row) {
-                    //    let txt = CreateElement("text", null, null, null, "hd_Rate", null);
-                    //    txt.id = "hd_Rate";
-                    //    txt.disabled = true;
-                    //    return txt
-                    //}
-                },
-                {
-                    title: Resource.App_Creditor, css: "ColumPadding", data: "Creditor", type: "text", id: "hd_Creditor", disabled: true,
-                    render: function (data, type, row) {
-                         return isNaN(data) ? "" : data;
-                    }
-                    //insertTemplate: function (data, row) {
-                    //    let txt = CreateElement("number", null, null, null, "hd_Creditor", null);
-                    //    txt.id = "hd_Creditor";
-                    //    txt.disabled = true;
-                    //    return txt
-                    //}
-                },
-                {
-                    title: Resource.App_Debtor, css: "ColumPadding", type: "text", data: "Debtor", id: "hd_Debtor", disabled: true,
-                    render: function (data, type, row) {
-                         return isNaN(data) ? "" : data;
-                    }
-                    //insertTemplate: function (data, row) {
-                    //    let txt = CreateElement("number", null, null, null, "hd_Debtor", null);
-                    //    txt.id = "hd_Debtor";
-                    //    txt.disabled = true;
-                    //    return txt
-                    //}
-                },
-                {
-                    title: Resource.description, css: "ColumPadding", type: "text", data: "Descriptions", id: "hd_Descriptions", render: function (data, type, row) {
-                         return isNaN(data) ? "" : data;
-                    }
-                },
-                {
-                    title: Resource.Notes, css: "ColumPadding", data: "Remarks", type: "text", id: "hd_Remarks", render: function (data, type, row) {
-                         return isNaN(data) ? "" : data;
-                    }
-                },
-                {
-                    title: Resource.Code2 + Resource.Costcenter_name, css: "ColumPadding", type: "text", data: "CostCenterCode", id: "CostCenterCode",
-                    render: function (data, type, row) {
-                         return isNaN(data) ? "" : data;
-                    }
-                    //, editTemplate: function (data, row) {
-                    //    let txt = CreateDropdownList(CostCenters, "CostCenterNameA", "CostCenterNameE", "CostCenterCode", true);
-                    //    txt.onchange = (e) => {
-                    //        SetCostCentersFromDrobDownInGrid($(e.target).val());
-                    //    }
-                    //    txt.id = "u_CostCenterCode";
-                    //    txt.value = data;
-                    //    return txt
-                    //}
-                    //, insertTemplate: function (data, row) {
-                    //    let txt = CreateDropdownList(CostCenters, "CostCenterNameA", "CostCenterNameE", "CostCenterCode", true);
-                    //    txt.onchange = (e) => {
-                    //        SetCostCentersFromDrobDownInGrid($(e.target).val());
-                    //    }
-                    //    txt.id = "i_CostCenterCode";
-                    //    return txt
-                    //}
-                },
-                {
-                    title: Resource.Costcenter_name + 1, css: "ColumPadding", type: "text", data: "CostCenterNameA", id: "hd_CostCenterNameA", disabled: true,
-                    render: function (data, type, row) {
-                         return isNaN(data) ? "" : data;
-                    }
-                    //,insertTemplate: function (data, row) {
-                    //    let txt = CreateElement("text", null, null, null, "hd_CostCenterNameA", null);
-                    //    txt.id = "hd_CostCenterNameA";
-                    //    txt.disabled = true;
-                    //    return txt
-                    //}
-                },
-                {
-                    title: "Flag", css: "ColumPadding hide", data: "Flag", width: "1%", id: "hd_Flag", render: function (data, type, row) {
-                         return isNaN(data) ? "" : data;
-                    }
-                },
-                {
-                    title: "CostCenterId1", css: "ColumPadding hide", type: "text", data: "CostCenterId1", width: "1%", id: "hd_CostCenterId1", disabled: true
-                    , render: function (data, type, row) {
-                         return isNaN(data) ? "" : data;
-                    }
-                },
-                {
-                    title: "AccountId", css: "ColumPadding hide", type: "text", data: "AccountId", width: "1%", id: "hd_AccountId", disabled: true
-                    , render: function (data, type, row) {
-                         return isNaN(data) ? "" : data;
-                    }
-                },
-                {
-                    title: "CurrencyId", css: "ColumPadding hide", data: "CurrencyId", width: "1%", id: "hd_CurrencyId", disabled: true
-                    , render: function (data, type, row) {
-                         return isNaN(data) ? "" : data;
-                    }
-                },
-                {
-                    title: "JurnalId", css: "ColumPadding disable hidden", data: "JurnalId", width: "1%", id: "hd_JurnalId", disabled: true
-                    , render: function (data, type, row) {
-                         return isNaN(data) ? "" : data;
-                    }
-                },
-                {
-                    title: "JurnalDetailId", css: "ColumPadding disable hidden", data: "JurnalDetailId", width: "1%", id: "hd_JurnalDetailId", disabled: true
-                    , render: function (data, type, row) {
-                         return isNaN(data) ? "" : data;
-                    }
-                },
-                ////////////////////////////////////////// ///////////////////
-                {
-                    title: "BusinessPartnerAccId", css: "ColumPadding disable hidden", data: "BusinessPartnerAccId", width: "1%", id: "hd_BusinessPartnerAccId", disabled: true
-                    , render: function (data, type, row) {
-                         return isNaN(data) ? "" : data;
-                    }
-                },
-                {
-                    title: "AssetAccountId", css: "ColumPadding disable hidden", data: "AssetAccountId", width: "1%", id: "hd_AssetAccountId", disabled: true
-                    , render: function (data, type, row) {
-                         return isNaN(data) ? "" : data;
-                    }
-                },
-                {
-                    title: "EmpAccountId", css: "ColumPadding disable hidden", data: "EmpAccountId", width: "1%", id: "hd_EmpAccountId", disabled: true
-                    , render: function (data, type, row) {
-                         return isNaN(data) ? "" : data;
-                    }
-                },
-                {
-                    title: "VendAccountId", css: "ColumPadding disable hidden", data: "VendAccountId", width: "1%", id: "hd_VendAccountId", disabled: true
-                    , render: function (data, type, row) {
-                         return isNaN(data) ? "" : data;
-                    }
-                },
-                {
-                    title: "CustAccountId", css: "ColumPadding disable hidden", data: "CustAccountId", width: "1%", id: "hd_CustAccountId", disabled: true
-                    , render: function (data, type, row) {
-                         return isNaN(data) ? "" : data;
-                    }
-                },
-            ]
-        });
     }
 
     function InitalizeControls() {
@@ -433,7 +129,6 @@ namespace CalJurnalEntry {
                     DeatilsAndModel = result.Response as CustomJurnalDetailAndmodel;
                     GetJurnalDetail = DeatilsAndModel.JurnalDetails;
                     let data = ConvertNumberToDesimal(GetJurnalDetail);
-
                     divJurnalDetailGrid.DataSource = data;
                     divJurnalDetailGrid.Bind();
                     //console.log(divJurnalDetailGrid.DataSource);
@@ -484,6 +179,9 @@ namespace CalJurnalEntry {
         }
         ObjectId = Model.JurnalId;
         GetAll();
+        if (ObjectId != 0)
+            GetByID(ObjectId);
+
         return true;
     }
 
@@ -611,7 +309,7 @@ namespace CalJurnalEntry {
         //    return false
         //}
         if (!flagTotal) {
-            MessageBox.Show("لحفظ المستند لابد اجمالى المدين  = اجمالى الدائن", Resource.Error);
+            MessageBox.Toastr("لحفظ المستند لابد اجمالى المدين  = اجمالى الدائن", Resource.Error, ToastrTypes.error);
             flag = flagTotal;
         }
         return flag;
@@ -650,76 +348,76 @@ namespace CalJurnalEntry {
     function AddJurnalDetailInGrid() {
         flag = true;
         GetNewJurnalDetail = new CustomJurnalDetail();
-        let hd_SubAccountCode = $('#hd_SubAccountCode'),
-            hd_AccountId = $('#hd_AccountId'),
-            hd_BusinessPartnerAccId = $('#hd_BusinessPartnerAccId'),
-            hd_AssetAccountId = $('#hd_AssetAccountId'),
-            hd_EmpAccountId = $('#hd_EmpAccountId'),
-            hd_VendAccountId = $('#hd_VendAccountId'),
-            hd_CustAccountId = $('#hd_CustAccountId'),
-            hd_AccountCode = $('#hd_AccountCode'),
-            hd_AccountNameA = $('#hd_AccountNameA'),
-            hd_CurrencyCreditor = $('#hd_CurrencyCreditor'),
-            hd_CurrencyDebtor = $('#hd_CurrencyDebtor'),
-            hd_CurrencyId = $('#hd_CurrencyId'),
-            hd_CodeCurrency = $('#hd_CodeCurrency'),
-            hd_NameCurrency = $('#hd_NameCurrency'),
-            hd_Rate = $('#hd_Rate'),
-            hd_Creditor = $('#hd_Creditor'),
-            hd_Debtor = $('#hd_Debtor'),
-            hd_Descriptions = $('#hd_Descriptions'),
-            hd_Remarks = $('#hd_Remarks'),
-            hd_CostCenterId1 = $('#hd_CostCenterId1'),
-            hd_CostCenterCode = $('#hd_CostCenterCode'),
-            hd_CostCenterNameA = $('#hd_CostCenterNameA'),
-            hd_JurnalDetailId = $('#hd_JurnalDetailId'),
-            hd_JurnalId = $('#hd_JurnalId');
+        let SubAccountCode = $('#SubAccountCode'),
+            AccountId = $('#AccountId'),
+            BusinessPartnerAccId = $('#BusinessPartnerAccId'),
+            AssetAccountId = $('#AssetAccountId'),
+            EmpAccountId = $('#EmpAccountId'),
+            VendAccountId = $('#VendAccountId'),
+            CustAccountId = $('#CustAccountId'),
+            AccountCode = $('#AccountCode'),
+            AccountNameA = $('#AccountNameA'),
+            CurrencyCreditor = $('#CurrencyCreditor'),
+            CurrencyDebtor = $('#CurrencyDebtor'),
+            CurrencyId = $('#CurrencyId'),
+            CodeCurrency = $('#CodeCurrency'),
+            NameCurrency = $('#NameCurrency'),
+            Rate = $('#Rate'),
+            Creditor = $('#Creditor'),
+            Debtor = $('#Debtor'),
+            Descriptions = $('#Descriptions'),
+            Remarks = $('#Remarks'),
+            CostCenterId1 = $('#CostCenterId1'),
+            CostCenterCode = $('#CostCenterCode'),
+            CostCenterNameA = $('#CostCenterNameA'),
+            JurnalDetailId = $('#JurnalDetailId'),
+            JurnalId = $('#JurnalId');
 
-        if (hd_CurrencyCreditor.val().trim() == '' && hd_CurrencyDebtor.val().trim() == '') { MessageBox.Show("من فضلك ادخل قيمة الدائن او المدين", Resource.Error); flag = false; return }
+        if (CurrencyCreditor.val().trim() == '' && CurrencyDebtor.val().trim() == '') { MessageBox.Show("من فضلك ادخل قيمة الدائن او المدين", Resource.Error); flag = false; return }
 
-        if (hd_AccountCode.val().trim() == 'null') { MessageBox.Show(Resource.PleaseEnterCode, Resource.Error); flag = false; return }
+        if (AccountCode.val().trim() == 'null') { MessageBox.Show(Resource.PleaseEnterCode, Resource.Error); flag = false; return }
         else {
-            GetNewJurnalDetail.AccountId = hd_AccountId.val().trim();
-            let val = hd_AccountCode.val().trim().split('-') as Array<string>;
+            GetNewJurnalDetail.AccountId = AccountId.val().trim();
+            let val = AccountCode.val().trim().split('-') as Array<string>;
             if (val.length > 1)
                 GetNewJurnalDetail.AccountCode = val[1];
             else
                 GetNewJurnalDetail.AccountCode = val[0];
         }
-        if (hd_CodeCurrency.val().trim() == "null") { MessageBox.Show("من فضلك اختر العملة", Resource.Error); flag = false; return }
+        if (CodeCurrency.val().trim() == "null") { MessageBox.Show("من فضلك اختر العملة", Resource.Error); flag = false; return }
         if (flag) {
-            GetNewJurnalDetail.JurnalId = hd_JurnalId.val().trim();
-            GetNewJurnalDetail.SubAccountCode = hd_SubAccountCode.val().trim();
-            GetNewJurnalDetail.AccountNameA = hd_AccountNameA.val().trim();
-            GetNewJurnalDetail.CurrencyCreditor = hd_CurrencyCreditor.val().trim();
-            GetNewJurnalDetail.CurrencyDebtor = hd_CurrencyDebtor.val().trim();
-            GetNewJurnalDetail.CurrencyId = hd_CurrencyId.val().trim();
-            GetNewJurnalDetail.CodeCurrency = hd_CodeCurrency.val().trim();
-            GetNewJurnalDetail.NameCurrency = hd_NameCurrency.val().trim();
-            GetNewJurnalDetail.Rate = hd_Rate.val().trim();
-            GetNewJurnalDetail.Creditor = hd_Creditor.val().trim();
-            GetNewJurnalDetail.Debtor = hd_Debtor.val().trim();
-            GetNewJurnalDetail.Descriptions = hd_Descriptions.val().trim();
-            GetNewJurnalDetail.Remarks = hd_Remarks.val().trim();
+            GetNewJurnalDetail.JurnalId = JurnalId.val().trim();
+            GetNewJurnalDetail.SubAccountCode = SubAccountCode.val().trim();
+            GetNewJurnalDetail.AccountNameA = AccountNameA.val().trim();
+            GetNewJurnalDetail.CurrencyCreditor = CurrencyCreditor.val().trim();
+            GetNewJurnalDetail.CurrencyDebtor = CurrencyDebtor.val().trim();
+            GetNewJurnalDetail.CurrencyId = CurrencyId.val().trim();
+            GetNewJurnalDetail.CodeCurrency = CodeCurrency.val().trim();
+            GetNewJurnalDetail.NameCurrency = NameCurrency.val().trim();
+            GetNewJurnalDetail.Rate = Rate.val().trim();
+            GetNewJurnalDetail.Creditor = Creditor.val().trim();
+            GetNewJurnalDetail.Debtor = Debtor.val().trim();
+            GetNewJurnalDetail.Descriptions = Descriptions.val().trim();
+            GetNewJurnalDetail.Remarks = Remarks.val().trim();
 
-            if (hd_CostCenterCode.val().trim() != 'null') {
-                GetNewJurnalDetail.CostCenterCode = hd_CostCenterCode.val().trim();
-                GetNewJurnalDetail.CostCenterNameA = hd_CostCenterNameA.val().trim();
-                GetNewJurnalDetail.CostCenterId1 = hd_CostCenterId1.val().trim();
+            if (CostCenterCode.val().trim() != 'null') {
+                GetNewJurnalDetail.CostCenterCode = CostCenterCode.val().trim();
+                GetNewJurnalDetail.CostCenterNameA = CostCenterNameA.val().trim();
+                GetNewJurnalDetail.CostCenterId1 = CostCenterId1.val().trim();
             }
 
-            GetNewJurnalDetail.BusinessPartnerAccId = hd_BusinessPartnerAccId.val().trim();
-            GetNewJurnalDetail.AssetAccountId = hd_AssetAccountId.val().trim();
-            GetNewJurnalDetail.EmpAccountId = hd_EmpAccountId.val().trim();
-            GetNewJurnalDetail.VendAccountId = hd_VendAccountId.val().trim();
-            GetNewJurnalDetail.CustAccountId = hd_CustAccountId.val().trim();
+            GetNewJurnalDetail.BusinessPartnerAccId = BusinessPartnerAccId.val().trim();
+            GetNewJurnalDetail.AssetAccountId = AssetAccountId.val().trim();
+            GetNewJurnalDetail.EmpAccountId = EmpAccountId.val().trim();
+            GetNewJurnalDetail.VendAccountId = VendAccountId.val().trim();
+            GetNewJurnalDetail.CustAccountId = CustAccountId.val().trim();
 
-            if ($('#hd_Flag').val().trim() == "u")
+            if ($('#Flag').val().trim() == "u")
                 GetNewJurnalDetail.StatusFlag = "u";
             else GetNewJurnalDetail.StatusFlag = "i";
 
-            if (hd_JurnalDetailId.val().trim() == "") GetNewJurnalDetail.JurnalDetailId = 0;
-            else GetNewJurnalDetail.JurnalDetailId = hd_JurnalDetailId.val().trim();
+            if (JurnalDetailId.val().trim() == "") GetNewJurnalDetail.JurnalDetailId = 0;
+            else GetNewJurnalDetail.JurnalDetailId = JurnalDetailId.val().trim();
 
             GetJurnalDetail.unshift(GetNewJurnalDetail);
             divJurnalDetailGrid.DataSource = GetJurnalDetail;
@@ -742,235 +440,903 @@ namespace CalJurnalEntry {
         divJurnalDetailGrid.OnItemEditing = ChangeSelectToSearchable;
         divJurnalDetailGrid.OnItemUpdating = UpdateGrid
         divJurnalDetailGrid.OnItemInserting = InsertGrid;
-        divJurnalDetailGrid.OnItemDeleting = () => { };
+        divJurnalDetailGrid.OnItemDeleting = DeleteGrid;
         divJurnalDetailGrid.OnRowSelected = () => { };
         divJurnalDetailGrid.OnRefreshed = () => { };
         divJurnalDetailGrid.Columns = [
             {
-                title: "#", name: "btnAddItem", visible: true, width: "45px" , type: "control"
+                title: "#", name: "btnAddItem", visible: true, type: "control", modeSwitchButton: true, editButton: true
+                //_createEditButton: function (item) {
+                //    return this._createGridButton(this.editButtonClass, this.editButtonTooltip, function (grid, e) {
+                //        ChangeBtnStyle(e);
+                //        grid.updateItem();
+                //        e.stopPropagation();
+                //    });
+                //},
+                //updateItem: function (item, editedItem) {
+                //    debugger
+                //    UpdateGrid(this);
+                //}
+                //_createUpdateButton: function () {
+                //    debugger
+                //    return this._createGridButton(this.updateButtonClass, this.updateButtonTooltip, function (grid, e) {
+                //        UpdateGrid(grid.item);
+                //        e.stopPropagation();
+                //    });
+                //},
+                
+                //itemTemplate: function (data, row) {
+                //    //let editBtn = CreateElementString("button", "jsgrid-button jsgrid-edit-button", null, null, "edit_Jsgrid", null).replace('>', ' onclick="ChangeBtnStyle()" >'),
+                //    let editBtn = CreateElementString("button", "jsgrid-button jsgrid-edit-button", null, null, "edit_Jsgrid", null),
+                //        deleteBtn = CreateElementString("button", "jsgrid-button jsgrid-delete-button", null, null, "delete_Jsgrid", null),
+                //        btns = editBtn + " " + deleteBtn;
+                //    return btns
+                //}
             },
             {
                 title: Resource.Code, type: "text", css: "ColumPadding", name: "AccountCode", id: "AccountCode",
+                itemTemplate: function (data, row) {
+                    let account = AllAccounts.filter(x => x.AccountCode == data)[0];
+                    return account?.AccountNameA
+                },
                 editTemplate: (data: string, item: CustomJurnalDetail): HTMLSelectElement => {
                     let txt = CreateDropdownList(AllAccounts, "AccountNameA", "AccountNameA", "AccountCode", true) as HTMLSelectElement;
                     txt.onchange = (e) => {
-                        SetAccountFromDrobDownInGrid($(e.target).val(), "u_CodeCurrency");
+                        let trId = '#' + $(e.currentTarget).parent().parent()[0].id;
+                        SetAccountFromDrobDownInGrid(trId, $(e.target).val(), "CodeCurrency");
                     }
-                    txt.id = "u_AccountCode";
+                    txt.id = "AccountCode";
                     txt.value = data;
                     return txt
                 },
                 insertTemplate: (data: string, item: CustomJurnalDetail): HTMLSelectElement => {
                     let txt = CreateDropdownList(AllAccounts, "AccountNameA", "AccountNameA", "AccountCode", true) as HTMLSelectElement;
                     txt.onchange = (e) => {
-                        SetAccountFromDrobDownInGrid($(e.target).val(), "i_CodeCurrency");
+                        let trId = '#' + $(e.currentTarget).parent().parent()[0].id;
+                        SetAccountFromDrobDownInGrid(trId, $(e.target).val(), "CodeCurrency");
                     }
-                    txt.id = "i_AccountCode";
+                    txt.id = "AccountCode";
+                    txt.value = data;
                     return txt
                 },
             },
             {
-                title: Resource.Code2 + " " + Resource.AssistantAccount, type: "text", name: "SubAccountCode", id: "hd_SubAccountCode",
+                title: Resource.Code2 + " " + Resource.AssistantAccount, type: "text", name: "SubAccountCode", id: "SubAccountCode",
+                editTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "SubAccountCode", null);
+                    txt.id = "SubAccountCode";
+                    txt.disabled = true;
+                    return txt
+                },
                 insertTemplate: function (data, row) {
-                    let txt = CreateElement("text", null, null, null, "i_SubAccountCode", null);
-                    txt.id = "i_SubAccountCode";
+                    let txt = CreateElement("text", null, data, null, "SubAccountCode", null);
+                    txt.id = "SubAccountCode";
                     txt.disabled = true;
                     return txt
                 }
             },
             {
-                title: Resource.Name_Arabic, type: "text", css: "ColumPadding", name: "AccountNameA", id: "hd_AccountNameA",
+                title: Resource.Name_Arabic, type: "text", css: "ColumPadding", name: "AccountNameA", id: "AccountNameA",
+                editTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "AccountNameA", null, true);
+                    return txt
+                },
                 insertTemplate: function (data, row) {
-                    let txt = CreateElement("text", null, null, null, "hd_AccountNameA", null);
-                    txt.id = "hd_AccountNameA";
-                    txt.disabled = true;
+                    let txt = CreateElement("text", null, data, null, "AccountNameA", null, true);
                     return txt
                 }
             },
             {
                 title: Resource.App_Creditor + " " + "(" + Resource.Currency2 + ")", type: "number", css: "ColumPadding", name: "CurrencyCreditor",
-                id: "hd_CurrencyCreditor", Typefun: "change", fun: function (e) {
-                    calculat(e);
+                id: "CurrencyCreditor",
+                editTemplate: function (data, row) {
+                    let txt = CreateElement("number", null, data, null, "CurrencyCreditor", null);
+                    txt.onchange = (e) => {
+                        let trId = '#' + $(e.currentTarget).parent().parent()[0].id;
+                        calculat(trId, e);
+                    }
+                    return txt
                 },
                 insertTemplate: function (data, row) {
-                    let txt = CreateElement("number", null, null, null, "i_CurrencyCreditor", null);
-                    txt.id = "i_CurrencyCreditor";
+                    let txt = CreateElement("number", null, data, null, "CurrencyCreditor", null);
                     txt.onchange = (e) => {
-                        calculat(e);
+                        let trId = '#' + $(e.currentTarget).parent().parent()[0].id;
+                        calculat(trId, e);
                     }
                     return txt
                 },
-                editTemplate: (data: string, item: CustomJurnalDetail): HTMLInputElement => {
-                    let txt = CreateElement("number", null, null, null, "u_CurrencyCreditor", null);
-                    txt.id = "u_CurrencyCreditor";
-                    txt.value = data;
-                    txt.onchange = (e) => {
-                        calculat(e);
-                    }
-                    return txt
-                },
-                editControl: $(CreateElement("number", null, null, null, "u_CurrencyCreditor", null))
             },
             {
                 title: Resource.App_Debtor + " " + "(" + Resource.Currency2 + ")", type: "number", css: "ColumPadding", name: "CurrencyDebtor",
-                id: "hd_CurrencyDebtor", Typefun: "change", fun: function (e) {
-                    calculat(e);
+                id: "CurrencyDebtor",
+                editTemplate: function (data, row) {
+                    let txt = CreateElement("number", null, data, null, "CurrencyDebtor", null);
+                    txt.id = "CurrencyDebtor";
+                    txt.onchange = (e) => {
+                        let trId = '#' + $(e.currentTarget).parent().parent()[0].id;
+                        calculat(trId, e);
+                    }
+                    return txt
                 },
                 insertTemplate: function (data, row) {
-                    let txt = CreateElement("number", null, null, null, "i_CurrencyDebtor", null);
-                    txt.id = "i_CurrencyDebtor";
+                    let txt = CreateElement("number", null, data, null, "CurrencyDebtor", null);
+                    txt.id = "CurrencyDebtor";
                     txt.onchange = (e) => {
-                        calculat(e);
+                        let trId = '#' + $(e.currentTarget).parent().parent()[0].id;
+                        calculat(trId, e);
                     }
                     return txt
                 },
-                editTemplate: (data: string, item: CustomJurnalDetail): HTMLInputElement => {
-                    let txt = CreateElement("number", null, null, null, "u_CurrencyDebtor", null);
-                    txt.id = "u_CurrencyDebtor";
-                    txt.value = data;
-                    txt.onchange = (e) => {
-                        calculat(e);
-                    }
-                    return txt
-                },
-                editControl: $(CreateElement("number", null, null, null, "u_CurrencyDebtor", null))
             },
             {
-                title: Resource.Code2 + " " + Resource.Currency, css: "ColumPadding", type: "select", name: "CodeCurrency",
-                items: Currencies, valueField: "CurrencyCode", textField: (language ? "CurrencyDescA" : "CurrencyDescE"), id:"hd_CodeCurrency"
-                , Typefun: "change", fun: function (e) {
-                    SetCurrency(Number($(e.target).val()), this);
-                    calculat(e);
-                }
-                ,editTemplate: function (data, row) {
+                title: Resource.Code2 + " " + Resource.Currency, css: "ColumPadding", type: "select", name: "CodeCurrency", items: Currencies,
+                valueField: "CurrencyCode", textField: (language ? "CurrencyDescA" : "CurrencyDescE"), id: "CodeCurrency", Typefun: "change", fun: function (e) {
+                    let trId = '#' + $(e.currentTarget).parent().parent()[0].id;
+                    SetCurrency(trId, Number($(e.target).val()), this);
+                    calculat(trId, e);
+                },
+                editTemplate: function (data, row) {
                     let txt = CreateDropdownList(Currencies, "CurrencyDescA", "CurrencyDescE", "CurrencyCode", true);
                     txt.onchange = (e) => {
-                        SetCurrency(Number($(e.target).val()), txt);
-                        calculat(e);
+                        let trId = '#' + $(e.currentTarget).parent().parent()[0].id;
+                        SetCurrency(trId, Number($(e.target).val()), txt);
+                        calculat(trId, e);
                     }
-                    txt.id = "u_CodeCurrency";
+                    txt.id = "CodeCurrency";
                     txt.value = data;
                     return txt
-                }
-                ,insertTemplate: function (data, row) {
+                },
+                insertTemplate: function (data, row) {
                     let txt = CreateDropdownList(Currencies, "CurrencyDescA", "CurrencyDescE", "CurrencyCode", true);
                     txt.onchange = (e) => {
-                        SetCurrency(Number($(e.target).val()), txt);
-                        calculat(e);
+                        let trId = '#' + $(e.currentTarget).parent().parent()[0].id;
+                        SetCurrency(trId, Number($(e.target).val()), txt);
+                        calculat(trId, e);
                     }
-                    txt.id = "i_CodeCurrency";
-                    return txt
-                }
-            },
-            {
-                title: Resource.Name + " " + Resource.Currency, css: "ColumPadding", type: "text", name: "NameCurrency", id: "hd_NameCurrency",
-                insertTemplate: function (data, row) {
-                    let txt = CreateElement("text", null, null, null, "hd_NameCurrency", null);
-                    txt.id = "hd_NameCurrency";
-                    txt.disabled = true;
-                    return txt
-                }
-            },
-            {
-                title: Resource.ConversionFactor, css: "ColumPadding", type: "text", name: "Rate", id: "hd_Rate", disabled: true,
-                insertTemplate: function (data, row) {
-                    let txt = CreateElement("text", null, null, null,"hd_Rate", null);
-                    txt.id = "hd_Rate";
-                    txt.disabled = true;
-                    return txt
-                }
-            },
-            {
-                title: Resource.App_Creditor, css: "ColumPadding", name: "Creditor", type: "text", id: "hd_Creditor", disabled: true,
-                insertTemplate: function (data, row) {
-                    let txt = CreateElement("number", null, null, null, "hd_Creditor", null);
-                    txt.id = "hd_Creditor";
-                    txt.disabled = true;
-                    return txt
-                }
-            },
-            {
-                title: Resource.App_Debtor, css: "ColumPadding", type: "text", name: "Debtor", id: "hd_Debtor", disabled: true,
-                insertTemplate: function (data, row) {
-                    let txt = CreateElement("number", null, null, null, "hd_Debtor", null);
-                    txt.id = "hd_Debtor";
-                    txt.disabled = true;
-                    return txt
-                }
-            },
-            {
-                title: Resource.description, css: "ColumPadding", type: "text", name: "Descriptions", id: "hd_Descriptions",
-            },
-            {
-                title: Resource.Notes, css: "ColumPadding", name: "Remarks", type: "text", id: "hd_Remarks",
-            },
-            {
-                title: Resource.Code2 + Resource.Costcenter_name, css: "ColumPadding", type: "text", name: "CostCenterCode", id:"CostCenterCode"
-                ,editTemplate: function (data, row) {
-                    let txt = CreateDropdownList(CostCenters, "CostCenterNameA", "CostCenterNameE", "CostCenterCode", true);
-                    txt.onchange = (e) => {
-                        SetCostCentersFromDrobDownInGrid($(e.target).val());
-                    }
-                    txt.id = "u_CostCenterCode";
+                    txt.id = "CodeCurrency";
                     txt.value = data;
                     return txt
                 }
-                ,insertTemplate: function (data, row) {
-                    let txt = CreateDropdownList(CostCenters, "CostCenterNameA", "CostCenterNameE", "CostCenterCode", true);
-                    txt.onchange = (e) => {
-                        SetCostCentersFromDrobDownInGrid($(e.target).val());
-                    }
-                    txt.id = "i_CostCenterCode";
+            },
+            {
+                title: Resource.Name + " " + Resource.Currency, css: "ColumPadding", type: "text", name: "NameCurrency", id: "NameCurrency",
+                editTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "NameCurrency", null);
+                    txt.id = "NameCurrency";
+                    txt.disabled = true;
+                    return txt
+                },
+                insertTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "NameCurrency", null);
+                    txt.id = "NameCurrency";
+                    txt.disabled = true;
                     return txt
                 }
             },
             {
-                title: Resource.Costcenter_name + 1, css: "ColumPadding", type: "text", name: "CostCenterNameA", id: "hd_CostCenterNameA", disabled: true
-                //,insertTemplate: function (data, row) {
-                //    let txt = CreateElement("text", null, null, null, "hd_CostCenterNameA", null);
-                //    txt.id = "hd_CostCenterNameA";
-                //    txt.disabled = true;
-                //    return txt
-                //}
+                title: Resource.ConversionFactor, css: "ColumPadding", type: "text", name: "Rate", id: "Rate", disabled: true,
+                editTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null,"Rate", null);
+                    txt.id = "Rate";
+                    txt.disabled = true;
+                    return txt
+                },
+                insertTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "Rate", null);
+                    txt.id = "Rate";
+                    txt.disabled = true;
+                    return txt
+                }
             },
             {
-                title: "Flag", css: "ColumPadding hide", name: "Flag", width: "1%", id: "hd_Flag"
+                title: Resource.App_Creditor, css: "ColumPadding", name: "Creditor", type: "text", id: "Creditor", disabled: true,
+                editTemplate: function (data, row) {
+                    let txt = CreateElement("number", null, data, null, "Creditor", null);
+                    txt.id = "Creditor";
+                    txt.disabled = true;
+                    return txt
+                },
+                insertTemplate: function (data, row) {
+                    let txt = CreateElement("number", null, data, null, "Creditor", null);
+                    txt.id = "Creditor";
+                    txt.disabled = true;
+                    return txt
+                }
             },
             {
-                title: "CostCenterId1", css: "ColumPadding hide", type: "text", name: "CostCenterId1", width: "1%", id: "hd_CostCenterId1", disabled: true
+                title: Resource.App_Debtor, css: "ColumPadding", type: "text", name: "Debtor", id: "Debtor", disabled: true,
+                editTemplate: function (data, row) {
+                    let txt = CreateElement("number", null, data, null, "Debtor", null);
+                    txt.id = "Debtor";
+                    txt.disabled = true;
+                    return txt
+                },
+                insertTemplate: function (data, row) {
+                    let txt = CreateElement("number", null, data, null, "Debtor", null);
+                    txt.id = "Debtor";
+                    txt.disabled = true;
+                    return txt
+                }
             },
             {
-                title: "AccountId", css: "ColumPadding hide", type: "text", name: "AccountId", width: "1%", id: "hd_AccountId", disabled: true
+                title: Resource.description, css: "ColumPadding", type: "text", name: "Descriptions", id: "Descriptions",
+                editTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "Descriptions", null);
+                    txt.id = "Descriptions";
+                    return txt
+                },
+                insertTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "Descriptions", null);
+                    txt.id = "Descriptions";
+                    return txt
+                }
             },
             {
-                title: "CurrencyId", css: "ColumPadding hide", name: "CurrencyId", width: "1%", id: "hd_CurrencyId", disabled: true
+                title: Resource.Notes, css: "ColumPadding", name: "Remarks", type: "text", id: "Remarks",
+                editTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "Descriptions", null);
+                    txt.id = "Descriptions";
+                    return txt
+                },
+                insertTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "Descriptions", null);
+                    txt.id = "Descriptions";
+                    return txt
+                }
             },
             {
-                title: "JurnalId", css: "ColumPadding disable hidden", name: "JurnalId", width: "1%", id: "hd_JurnalId", disabled: true
+                title: Resource.Code2 + Resource.Costcenter_name, css: "ColumPadding", type: "text", name: "CostCenterCode", id:"CostCenterCode",
+                editTemplate: function (data, row) {
+                    let txt = CreateDropdownList(CostCenters, "CostCenterNameA", "CostCenterNameE", "CostCenterCode", true);
+                    txt.onchange = (e) => {
+                        let trId = '#' + $(e.currentTarget).parent().parent()[0].id;
+                        SetCostCentersFromDrobDownInGrid(trId, $(e.target).val());
+                    }
+                    txt.id = "CostCenterCode";
+                    txt.value = data;
+                    return txt
+                },
+                insertTemplate: function (data, row) {
+                    let txt = CreateDropdownList(CostCenters, "CostCenterNameA", "CostCenterNameE", "CostCenterCode", true);
+                    txt.onchange = (e) => {
+                        let trId = '#' + $(e.currentTarget).parent().parent()[0].id;
+                        SetCostCentersFromDrobDownInGrid(trId, $(e.target).val());
+                    }
+                    txt.id = "CostCenterCode";
+                    txt.value = data;
+                    return txt
+                }
             },
             {
-                title: "JurnalDetailId", css: "ColumPadding disable hidden", name: "JurnalDetailId", width: "1%", id: "hd_JurnalDetailId", disabled: true
+                title: Resource.Costcenter_name + 1, css: "ColumPadding", type: "text", name: "CostCenterNameA", id: "CostCenterNameA", disabled: true,
+                editTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "CostCenterNameA", null);
+                    txt.id = "CostCenterNameA";
+                    txt.disabled = true;
+                    return txt
+                },
+                insertTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "CostCenterNameA", null);
+                    txt.id = "CostCenterNameA";
+                    txt.disabled = true;
+                    return txt
+                }
+            },
+            {
+                title: "Flag", css: "ColumPadding hide", name: "Flag", id: "Flag",
+                editTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "Flag", null);
+                    txt.id = "Flag";
+                    txt.disabled = true;
+                    return txt
+                },
+                insertTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "Flag", null);
+                    txt.id = "Flag";
+                    txt.disabled = true;
+                    return txt
+                }
+            },
+            {
+                title: "CostCenterId1", css: "ColumPadding hide", type: "text", name: "CostCenterId1", id: "CostCenterId1", disabled: true,
+                editTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "CostCenterId1", null);
+                    txt.id = "CostCenterId1";
+                    txt.disabled = true;
+                    return txt
+                },
+                insertTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "CostCenterId1", null);
+                    txt.id = "CostCenterId1";
+                    txt.disabled = true;
+                    return txt
+                }
+            },
+            {
+                title: "AccountId", css: "ColumPadding hide", type: "text", name: "AccountId", id: "AccountId",
+                editTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "AccountId", null);
+                    txt.id = "AccountId";
+                    txt.disabled = true;
+                    return txt
+                },
+                insertTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "AccountId", null);
+                    txt.id = "AccountId";
+                    txt.disabled = true;
+                    return txt
+                }
+            },
+            {
+                title: "CurrencyId", css: "ColumPadding hide", name: "CurrencyId", id: "CurrencyId", disabled: true,
+                editTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "CurrencyId", null);
+                    txt.id = "CurrencyId";
+                    txt.disabled = true;
+                    return txt
+                },
+                insertTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "CurrencyId", null);
+                    txt.id = "CurrencyId";
+                    txt.disabled = true;
+                    return txt
+                }
+            },
+            {
+                title: "JurnalId", css: "ColumPadding disable hidden", name: "JurnalId", id: "JurnalId", disabled: true,
+                editTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "JurnalId", null);
+                    txt.id = "JurnalId";
+                    txt.disabled = true;
+                    return txt
+                },
+                insertTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "JurnalId", null);
+                    txt.id = "JurnalId";
+                    txt.disabled = true;
+                    return txt
+                }
+            },
+            {
+                title: "JurnalDetailId", css: "ColumPadding disable hidden", name: "JurnalDetailId", id: "JurnalDetailId", disabled: true,
+                editTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "JurnalDetailId", null, true);
+                    return txt
+                },
+                insertTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "JurnalDetailId", null, true);
+                    return txt
+                }
             },
             ////////////////////////////////////////// ///////////////////
             {
-                title: "BusinessPartnerAccId", css: "ColumPadding disable hidden", name: "BusinessPartnerAccId", width: "1%", id: "hd_BusinessPartnerAccId", disabled: true
+                title: "BusinessPartnerAccId", css: "ColumPadding disable hidden", name: "BusinessPartnerAccId", id: "BusinessPartnerAccId", disabled: true,
+                editTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "BusinessPartnerAccId", null, true);
+                    return txt
+                },
+                insertTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "BusinessPartnerAccId", null, true);
+                    return txt
+                }
             },
             {
-                title: "AssetAccountId", css: "ColumPadding disable hidden", name: "AssetAccountId", width: "1%", id: "hd_AssetAccountId", disabled: true
+                title: "AssetAccountId", css: "ColumPadding disable hidden", name: "AssetAccountId", id: "AssetAccountId", disabled: true,
+                editTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "AssetAccountId", null, true);
+                    txt.disabled = true;
+                    return txt
+                },
+                insertTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "AssetAccountId", null, true);
+                    txt.id = "AssetAccountId";
+                    txt.disabled = true;
+                    return txt
+                }
             },
             {
-                title: "EmpAccountId", css: "ColumPadding disable hidden", name: "EmpAccountId", width: "1%", id: "hd_EmpAccountId", disabled: true
+                title: "EmpAccountId", css: "ColumPadding disable hidden", name: "EmpAccountId", id: "EmpAccountId", disabled: true,
+                insertTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "EmpAccountId", null, true);
+                    return txt
+                },
+                editTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "EmpAccountId", null, true);
+                    return txt
+                }
             },
             {
-                title: "VendAccountId", css: "ColumPadding disable hidden", name: "VendAccountId", width: "1%", id: "hd_VendAccountId", disabled: true
+                title: "VendAccountId", css: "ColumPadding disable hidden", name: "VendAccountId", id: "VendAccountId", disabled: true,
+                editTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "VendAccountId", null, true);
+                    return txt
+                },
+                insertTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "VendAccountId", null, true);
+                    return txt
+                }
             },
             {
-                title: "CustAccountId", css: "ColumPadding disable hidden", name: "CustAccountId", width: "1%", id: "hd_CustAccountId", disabled: true
+                title: "CustAccountId", css: "ColumPadding disable hidden", name: "CustAccountId", id: "CustAccountId", disabled: true,
+                editTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "CustAccountId", null, true);
+                    return txt
+                },
+                insertTemplate: function (data, row) {
+                    let txt = CreateElement("text", null, data, null, "CustAccountId", null, true);
+                    return txt
+                }
             },
-
         ];
         divJurnalDetailGrid.Bind();
     }
+    
+    //function InitializeJurnalDetailGrid() {
+    //    var countries = [
+    //        { Name: "", Id: 0 },
+    //        { Name: "United States", Id: 1 },
+    //        { Name: "Canada", Id: 2 },
+    //        { Name: "United Kingdom", Id: 3 },
+    //        { Name: "France", Id: 4 },
+    //        { Name: "Brazil", Id: 5 },
+    //        { Name: "China", Id: 6 },
+    //        { Name: "Russia", Id: 7 }
+    //    ];
+
+    //    $("#divJurnalDetailGrid").jsGrid({
+    //        height: "50%",
+    //        width: "100%",
+
+    //        filtering: true,
+    //        inserting: true,
+    //        editing: true,
+    //        sorting: true,
+    //        paging: true,
+    //        autoload: true,
+
+    //        pageSize: 10,
+    //        pageButtonCount: 5,
+
+    //        deleteConfirm: "Do you really want to delete client?",
+
+    //        controller: {
+    //            loadData: function () {
+    //                return GetJurnalDetail;
+    //            },
+
+    //            insertItem: function (item) {
+    //                return $.ajax({
+    //                    type: "POST",
+    //                    url: "/api/data",
+    //                    data: item,
+    //                    dataType: "json"
+    //                });
+    //            },
+
+    //            updateItem: function (item) {
+    //                return $.ajax({
+    //                    type: "PUT",
+    //                    url: "/api/data/" + item.ID,
+    //                    data: item,
+    //                    dataType: "json"
+    //                });
+    //            },
+
+    //            deleteItem: function (item) {
+    //                return $.ajax({
+    //                    type: "DELETE",
+    //                    url: "/api/data/" + item.ID,
+    //                    dataType: "json"
+    //                });
+    //            }
+    //        },
+
+    //        fields: [
+    //            { type: "control", modeSwitchButton: false, editButton: false },
+    //            {
+    //                title: Resource.Code, type: "text", css: "ColumPadding", name: "AccountCode", id: "AccountCode",
+    //                itemTemplate: function (data, row) {
+    //                    let account = AllAccounts.filter(x => x.AccountCode == data)[0];
+    //                    return account?.AccountNameA
+    //                },
+    //                editTemplate: (data: string, item: CustomJurnalDetail): HTMLSelectElement => {
+    //                    let txt = CreateDropdownList(AllAccounts, "AccountNameA", "AccountNameA", "AccountCode", true) as HTMLSelectElement;
+    //                    txt.onchange = (e) => {
+    //                        let trId = '#' + $(e.currentTarget).parent().parent()[0].id;
+    //                        SetAccountFromDrobDownInGrid(trId, $(e.target).val(), "CodeCurrency");
+    //                    }
+    //                    txt.id = "AccountCode";
+    //                    txt.value = data;
+    //                    return txt
+    //                },
+    //                insertTemplate: (data: string, item: CustomJurnalDetail): HTMLSelectElement => {
+    //                    let txt = CreateDropdownList(AllAccounts, "AccountNameA", "AccountNameA", "AccountCode", true) as HTMLSelectElement;
+    //                    txt.onchange = (e) => {
+    //                        let trId = '#' + $(e.currentTarget).parent().parent()[0].id;
+    //                        SetAccountFromDrobDownInGrid(trId, $(e.target).val(), "CodeCurrency");
+    //                    }
+    //                    txt.id = "AccountCode";
+    //                    txt.value = data;
+    //                    return txt
+    //                },
+    //            },
+    //            {
+    //                title: Resource.Code2 + " " + Resource.AssistantAccount, type: "text", name: "SubAccountCode", id: "SubAccountCode",
+    //                editTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "SubAccountCode", null);
+    //                    txt.id = "SubAccountCode";
+    //                    txt.disabled = true;
+    //                    return txt
+    //                },
+    //                insertTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "SubAccountCode", null);
+    //                    txt.id = "SubAccountCode";
+    //                    txt.disabled = true;
+    //                    return txt
+    //                }
+    //            },
+    //            {
+    //                title: Resource.Name_Arabic, type: "text", css: "ColumPadding", name: "AccountNameA", id: "AccountNameA",
+    //                editTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "AccountNameA", null, true);
+    //                    return txt
+    //                },
+    //                insertTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "AccountNameA", null, true);
+    //                    return txt
+    //                }
+    //            },
+    //            {
+    //                title: Resource.App_Creditor + " " + "(" + Resource.Currency2 + ")", type: "number", css: "ColumPadding", name: "CurrencyCreditor",
+    //                id: "CurrencyCreditor",
+    //                editTemplate: function (data, row) {
+    //                    let txt = CreateElement("number", null, data, null, "CurrencyCreditor", null);
+    //                    txt.onchange = (e) => {
+    //                        let trId = '#' + $(e.currentTarget).parent().parent()[0].id;
+    //                        calculat(trId, e);
+    //                    }
+    //                    return txt
+    //                },
+    //                insertTemplate: function (data, row) {
+    //                    let txt = CreateElement("number", null, data, null, "CurrencyCreditor", null);
+    //                    txt.onchange = (e) => {
+    //                        let trId = '#' + $(e.currentTarget).parent().parent()[0].id;
+    //                        calculat(trId, e);
+    //                    }
+    //                    return txt
+    //                },
+    //            },
+    //            {
+    //                title: Resource.App_Debtor + " " + "(" + Resource.Currency2 + ")", type: "number", css: "ColumPadding", name: "CurrencyDebtor",
+    //                id: "CurrencyDebtor",
+    //                editTemplate: function (data, row) {
+    //                    let txt = CreateElement("number", null, data, null, "CurrencyDebtor", null);
+    //                    txt.id = "CurrencyDebtor";
+    //                    txt.onchange = (e) => {
+    //                        let trId = '#' + $(e.currentTarget).parent().parent()[0].id;
+    //                        calculat(trId, e);
+    //                    }
+    //                    return txt
+    //                },
+    //                insertTemplate: function (data, row) {
+    //                    let txt = CreateElement("number", null, data, null, "CurrencyDebtor", null);
+    //                    txt.id = "CurrencyDebtor";
+    //                    txt.onchange = (e) => {
+    //                        let trId = '#' + $(e.currentTarget).parent().parent()[0].id;
+    //                        calculat(trId, e);
+    //                    }
+    //                    return txt
+    //                },
+    //            },
+    //            {
+    //                title: Resource.Code2 + " " + Resource.Currency, css: "ColumPadding", type: "select", name: "CodeCurrency", items: Currencies,
+    //                valueField: "CurrencyCode", textField: (language ? "CurrencyDescA" : "CurrencyDescE"), id: "CodeCurrency", Typefun: "change", fun: function (e) {
+    //                    let trId = '#' + $(e.currentTarget).parent().parent()[0].id;
+    //                    SetCurrency(trId, Number($(e.target).val()), this);
+    //                    calculat(trId, e);
+    //                },
+    //                editTemplate: function (data, row) {
+    //                    let txt = CreateDropdownList(Currencies, "CurrencyDescA", "CurrencyDescE", "CurrencyCode", true);
+    //                    txt.onchange = (e) => {
+    //                        let trId = '#' + $(e.currentTarget).parent().parent()[0].id;
+    //                        SetCurrency(trId, Number($(e.target).val()), txt);
+    //                        calculat(trId, e);
+    //                    }
+    //                    txt.id = "CodeCurrency";
+    //                    txt.value = data;
+    //                    return txt
+    //                },
+    //                insertTemplate: function (data, row) {
+    //                    let txt = CreateDropdownList(Currencies, "CurrencyDescA", "CurrencyDescE", "CurrencyCode", true);
+    //                    txt.onchange = (e) => {
+    //                        let trId = '#' + $(e.currentTarget).parent().parent()[0].id;
+    //                        SetCurrency(trId, Number($(e.target).val()), txt);
+    //                        calculat(trId, e);
+    //                    }
+    //                    txt.id = "CodeCurrency";
+    //                    txt.value = data;
+    //                    return txt
+    //                }
+    //            },
+    //            {
+    //                title: Resource.Name + " " + Resource.Currency, css: "ColumPadding", type: "text", name: "NameCurrency", id: "NameCurrency",
+    //                editTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "NameCurrency", null);
+    //                    txt.id = "NameCurrency";
+    //                    txt.disabled = true;
+    //                    return txt
+    //                },
+    //                insertTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "NameCurrency", null);
+    //                    txt.id = "NameCurrency";
+    //                    txt.disabled = true;
+    //                    return txt
+    //                }
+    //            },
+    //            {
+    //                title: Resource.ConversionFactor, css: "ColumPadding", type: "text", name: "Rate", id: "Rate", disabled: true,
+    //                editTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "Rate", null);
+    //                    txt.id = "Rate";
+    //                    txt.disabled = true;
+    //                    return txt
+    //                },
+    //                insertTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "Rate", null);
+    //                    txt.id = "Rate";
+    //                    txt.disabled = true;
+    //                    return txt
+    //                }
+    //            },
+    //            {
+    //                title: Resource.App_Creditor, css: "ColumPadding", name: "Creditor", type: "text", id: "Creditor", disabled: true,
+    //                editTemplate: function (data, row) {
+    //                    let txt = CreateElement("number", null, data, null, "Creditor", null);
+    //                    txt.id = "Creditor";
+    //                    txt.disabled = true;
+    //                    return txt
+    //                },
+    //                insertTemplate: function (data, row) {
+    //                    let txt = CreateElement("number", null, data, null, "Creditor", null);
+    //                    txt.id = "Creditor";
+    //                    txt.disabled = true;
+    //                    return txt
+    //                }
+    //            },
+    //            {
+    //                title: Resource.App_Debtor, css: "ColumPadding", type: "text", name: "Debtor", id: "Debtor", disabled: true,
+    //                editTemplate: function (data, row) {
+    //                    let txt = CreateElement("number", null, data, null, "Debtor", null);
+    //                    txt.id = "Debtor";
+    //                    txt.disabled = true;
+    //                    return txt
+    //                },
+    //                insertTemplate: function (data, row) {
+    //                    let txt = CreateElement("number", null, data, null, "Debtor", null);
+    //                    txt.id = "Debtor";
+    //                    txt.disabled = true;
+    //                    return txt
+    //                }
+    //            },
+    //            {
+    //                title: Resource.description, css: "ColumPadding", type: "text", name: "Descriptions", id: "Descriptions",
+    //                editTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "Descriptions", null);
+    //                    txt.id = "Descriptions";
+    //                    return txt
+    //                },
+    //                insertTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "Descriptions", null);
+    //                    txt.id = "Descriptions";
+    //                    return txt
+    //                }
+    //            },
+    //            {
+    //                title: Resource.Notes, css: "ColumPadding", name: "Remarks", type: "text", id: "Remarks",
+    //                editTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "Descriptions", null);
+    //                    txt.id = "Descriptions";
+    //                    return txt
+    //                },
+    //                insertTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "Descriptions", null);
+    //                    txt.id = "Descriptions";
+    //                    return txt
+    //                }
+    //            },
+    //            {
+    //                title: Resource.Code2 + Resource.Costcenter_name, css: "ColumPadding", type: "text", name: "CostCenterCode", id: "CostCenterCode",
+    //                editTemplate: function (data, row) {
+    //                    let txt = CreateDropdownList(CostCenters, "CostCenterNameA", "CostCenterNameE", "CostCenterCode", true);
+    //                    txt.onchange = (e) => {
+    //                        let trId = '#' + $(e.currentTarget).parent().parent()[0].id;
+    //                        SetCostCentersFromDrobDownInGrid(trId, $(e.target).val());
+    //                    }
+    //                    txt.id = "CostCenterCode";
+    //                    txt.value = data;
+    //                    return txt
+    //                },
+    //                insertTemplate: function (data, row) {
+    //                    let txt = CreateDropdownList(CostCenters, "CostCenterNameA", "CostCenterNameE", "CostCenterCode", true);
+    //                    txt.onchange = (e) => {
+    //                        let trId = '#' + $(e.currentTarget).parent().parent()[0].id;
+    //                        SetCostCentersFromDrobDownInGrid(trId, $(e.target).val());
+    //                    }
+    //                    txt.id = "CostCenterCode";
+    //                    txt.value = data;
+    //                    return txt
+    //                }
+    //            },
+    //            {
+    //                title: Resource.Costcenter_name + 1, css: "ColumPadding", type: "text", name: "CostCenterNameA", id: "CostCenterNameA", disabled: true,
+    //                editTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "CostCenterNameA", null);
+    //                    txt.id = "CostCenterNameA";
+    //                    txt.disabled = true;
+    //                    return txt
+    //                },
+    //                insertTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "CostCenterNameA", null);
+    //                    txt.id = "CostCenterNameA";
+    //                    txt.disabled = true;
+    //                    return txt
+    //                }
+    //            },
+    //            {
+    //                title: "Flag", css: "ColumPadding hide", name: "Flag", id: "Flag",
+    //                editTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "Flag", null);
+    //                    txt.id = "Flag";
+    //                    txt.disabled = true;
+    //                    return txt
+    //                },
+    //                insertTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "Flag", null);
+    //                    txt.id = "Flag";
+    //                    txt.disabled = true;
+    //                    return txt
+    //                }
+    //            },
+    //            {
+    //                title: "CostCenterId1", css: "ColumPadding hide", type: "text", name: "CostCenterId1", id: "CostCenterId1", disabled: true,
+    //                editTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "CostCenterId1", null);
+    //                    txt.id = "CostCenterId1";
+    //                    txt.disabled = true;
+    //                    return txt
+    //                },
+    //                insertTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "CostCenterId1", null);
+    //                    txt.id = "CostCenterId1";
+    //                    txt.disabled = true;
+    //                    return txt
+    //                }
+    //            },
+    //            {
+    //                title: "AccountId", css: "ColumPadding hide", type: "text", name: "AccountId", id: "AccountId",
+    //                editTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "AccountId", null);
+    //                    txt.id = "AccountId";
+    //                    txt.disabled = true;
+    //                    return txt
+    //                },
+    //                insertTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "AccountId", null);
+    //                    txt.id = "AccountId";
+    //                    txt.disabled = true;
+    //                    return txt
+    //                }
+    //            },
+    //            {
+    //                title: "CurrencyId", css: "ColumPadding hide", name: "CurrencyId", id: "CurrencyId", disabled: true,
+    //                editTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "CurrencyId", null);
+    //                    txt.id = "CurrencyId";
+    //                    txt.disabled = true;
+    //                    return txt
+    //                },
+    //                insertTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "CurrencyId", null);
+    //                    txt.id = "CurrencyId";
+    //                    txt.disabled = true;
+    //                    return txt
+    //                }
+    //            },
+    //            {
+    //                title: "JurnalId", css: "ColumPadding disable hidden", name: "JurnalId", id: "JurnalId", disabled: true,
+    //                editTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "JurnalId", null);
+    //                    txt.id = "JurnalId";
+    //                    txt.disabled = true;
+    //                    return txt
+    //                },
+    //                insertTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "JurnalId", null);
+    //                    txt.id = "JurnalId";
+    //                    txt.disabled = true;
+    //                    return txt
+    //                }
+    //            },
+    //            {
+    //                title: "JurnalDetailId", css: "ColumPadding disable hidden", name: "JurnalDetailId", id: "JurnalDetailId", disabled: true,
+    //                editTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "JurnalDetailId", null, true);
+    //                    return txt
+    //                },
+    //                insertTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "JurnalDetailId", null, true);
+    //                    return txt
+    //                }
+    //            },
+    //            ////////////////////////////////////////// ///////////////////
+    //            {
+    //                title: "BusinessPartnerAccId", css: "ColumPadding disable hidden", name: "BusinessPartnerAccId", id: "BusinessPartnerAccId", disabled: true,
+    //                editTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "BusinessPartnerAccId", null, true);
+    //                    return txt
+    //                },
+    //                insertTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "BusinessPartnerAccId", null, true);
+    //                    return txt
+    //                }
+    //            },
+    //            {
+    //                title: "AssetAccountId", css: "ColumPadding disable hidden", name: "AssetAccountId", id: "AssetAccountId", disabled: true,
+    //                editTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "AssetAccountId", null, true);
+    //                    txt.disabled = true;
+    //                    return txt
+    //                },
+    //                insertTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "AssetAccountId", null, true);
+    //                    txt.id = "AssetAccountId";
+    //                    txt.disabled = true;
+    //                    return txt
+    //                }
+    //            },
+    //            {
+    //                title: "EmpAccountId", css: "ColumPadding disable hidden", name: "EmpAccountId", id: "EmpAccountId", disabled: true,
+    //                insertTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "EmpAccountId", null, true);
+    //                    return txt
+    //                },
+    //                editTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "EmpAccountId", null, true);
+    //                    return txt
+    //                }
+    //            },
+    //            {
+    //                title: "VendAccountId", css: "ColumPadding disable hidden", name: "VendAccountId", id: "VendAccountId", disabled: true,
+    //                editTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "VendAccountId", null, true);
+    //                    return txt
+    //                },
+    //                insertTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "VendAccountId", null, true);
+    //                    return txt
+    //                }
+    //            },
+    //            {
+    //                title: "CustAccountId", css: "ColumPadding disable hidden", name: "CustAccountId", id: "CustAccountId", disabled: true,
+    //                editTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "CustAccountId", null, true);
+    //                    return txt
+    //                },
+    //                insertTemplate: function (data, row) {
+    //                    let txt = CreateElement("text", null, data, null, "CustAccountId", null, true);
+    //                    return txt
+    //                }
+    //            },
+    //        ]
+    //    });
+
+    //    $(".config-panel input[type=checkbox]").on("click", function () {
+    //        debugger
+    //        var $cb = $(this);
+    //        $("#divJurnalDetailGrid").jsGrid("option", $cb.attr("id"), $cb.is(":checked"));
+    //    });
+    //}
+
     //////////////////////// End Jurnal Detail In Grid /////////////////////////
 
     function Undo() {
@@ -1050,33 +1416,38 @@ namespace CalJurnalEntry {
         });
     }
 
-    function SetAccountFromDrobDownInGrid(code: string, CurrencyId: string) {
+    function SetAccountFromDrobDownInGrid(trId: string, code: string, CurrencyId: string) {
         let account = AllAccounts.filter(x => x.AccountCode == code)[0],
-            elm = document.getElementById(CurrencyId),
-            rowId = GetRowId(elm);
+            elm = document.querySelector(trId + " #" + CurrencyId) as HTMLElement;
 
         if (account != null) {
-            SetAccountData(account.AccDesc2, code);
+            SetAccountData(trId, account.AccDesc2, code);
+            rowId = '';
             if (code.split('-').length > 1) {
-                $(rowId +' #hd_SubAccountCode').val(code.split('-')[0]);
+                $(trId +' #SubAccountCode').val(code.split('-')[0]);
             } else {
-                $(rowId +' #hd_SubAccountCode').val('');
+                $(trId +' #SubAccountCode').val('');
             }
-            $(rowId +' #hd_AccountNameA').val(account.AccountNameA);
-            SetCurrencyById(account.CurrencyId, elm);
+
+            $(trId +' #AccountNameA').val(account.AccountNameA);
+            SetCurrencyById(trId, account.CurrencyId, elm);
             $('#' + CurrencyId).select2().trigger('change');
         }
     }
 
-    function SetCostCentersFromDrobDownInGrid(val: number) {
+    function SetCostCentersFromDrobDownInGrid(trId: string, val: number) {
         let cost = CostCenters.filter(x => x.CostCenterCode == val)[0];
         if (cost != null) {
-            $('#hd_CostCenterId1').val(cost.CostCenterId);
-            $('#hd_CostCenterNameA').val(cost.CostCenterNameA);
+            $(trId + ' #CostCenterId1').val(cost.CostCenterId);
+            $(trId + ' #CostCenterNameA').val(cost.CostCenterNameA);
+        } else {
+            $(trId + ' #CostCenterId1').val('');
+            $(trId + ' #CostCenterNameA').val('');
         }
     }
 
-    function SetAccountData(AccDesc2: string, code: string) {
+    function SetAccountData(trId: string, AccDesc2: string, code: string) {
+        rowId = trId;
         switch (AccDesc2) {
             case 'GL Account': {
                 AccountByCode(code);
@@ -1115,7 +1486,7 @@ namespace CalJurnalEntry {
                 if (result.IsSuccess) {
                     let res = result.Response as Cal_AccountChart
                     AccountId = res.AccountId;
-                    $('#hd_AccountId').val(AccountId);
+                    $(rowId + ' #AccountId').val(AccountId);
                 }
             }
         });
@@ -1131,8 +1502,8 @@ namespace CalJurnalEntry {
                 if (result.IsSuccess) {
                     let res = result.Response as Cal_CustAccounts
                     AccountId = res.AccountId;
-                    $('#hd_AccountId').val(AccountId);
-                    $('#hd_CustAccountId').val(res.CustAccountId);
+                    $(rowId + ' #AccountId').val(AccountId);
+                    $(rowId + ' #CustAccountId').val(res.CustAccountId);
                 }
             }
         });
@@ -1148,8 +1519,8 @@ namespace CalJurnalEntry {
                 if (result.IsSuccess) {
                     let res = result.Response as Cal_VendAccounts
                     AccountId = res.AccountId;
-                    $('#hd_AccountId').val(AccountId);
-                    $('#hd_VendAccountId').val(res.VendAccountId);
+                    $(rowId + ' #AccountId').val(AccountId);
+                    $(rowId + ' #VendAccountId').val(res.VendAccountId);
                 }
             }
         });
@@ -1165,8 +1536,8 @@ namespace CalJurnalEntry {
                 if (result.IsSuccess) {
                     let res = result.Response as Cal_EmpAccounts
                     AccountId = res.AccountId;
-                    $('#hd_AccountId').val(AccountId);
-                    $('#hd_VendAccountId').val(res.EmpAccountId);
+                    $(rowId + ' #AccountId').val(AccountId);
+                    $(rowId + ' #VendAccountId').val(res.EmpAccountId);
                 }
             }
         });
@@ -1182,8 +1553,8 @@ namespace CalJurnalEntry {
                 if (result.IsSuccess) {
                     let res = result.Response as Cal_AssetAccounts
                     AccountId = res.AccountId;
-                    $('#hd_AccountId').val(AccountId);
-                    $('#hd_VendAccountId').val(res.AssetAccountId);
+                    $(rowId + ' #AccountId').val(AccountId);
+                    $(rowId + ' #VendAccountId').val(res.AssetAccountId);
                 }
             }
         });
@@ -1199,37 +1570,34 @@ namespace CalJurnalEntry {
                 if (result.IsSuccess) {
                     let res = result.Response as Cal_BusinessPartnerAccounts
                     AccountId = res.AccountId;
-                    $('#hd_AccountId').val(AccountId);
-                    $('#hd_VendAccountId').val(res.BusinessPartnerAccId);
+                    $(rowId + ' #AccountId').val(AccountId);
+                    $(rowId + ' #VendAccountId').val(res.BusinessPartnerAccId);
                 }
             }
         });
     }
 
-    function SetCurrency(code: number, element: HTMLElement) {
-        let rowId = GetRowId(element);
-
-        if (!isNaN(code) && code != 0 && !IsNullOrEmpty(rowId)) {
+    function SetCurrency(trId: string, code: number, element: HTMLElement) {
+        
+        if (!isNaN(code) && code != 0 && !IsNullOrEmpty(trId)) {
             let Currency = Currencies.filter(x => x.CurrencyCode == code)[0];
-            $(rowId + '#hd_CurrencyId').val(Currency.CurrencyId);
-            $(rowId + '#' + element.id).val(Currency.CurrencyCode);
+            $(trId + ' #CurrencyId').val(Currency.CurrencyId);
+            $(trId + ' #' + element.id).val(Currency.CurrencyCode);
 
-            $(rowId + '#hd_Rate').val(Currency.Rate.toFixed(2));
-            $(rowId + '#hd_NameCurrency').val(Currency.CurrencyDescA);
+            $(trId + ' #Rate').val(Currency.Rate.toFixed(2));
+            $(trId + ' #NameCurrency').val(Currency.CurrencyDescA);
         }
     }
 
-    function SetCurrencyById(id: number, element: HTMLElement) {
-        let rowId = GetRowId(element);
-
+    function SetCurrencyById(trId, id: number, element: HTMLElement) {
         let Currency = Currencies.filter(x => x.CurrencyId == id)[0];
-        $(rowId + '#hd_CurrencyId').val(Currency.CurrencyId);
-        $(rowId + '#' + element.id).val(Currency.CurrencyCode);
+        $(trId + ' #CurrencyId').val(Currency.CurrencyId);
+        $(trId + ' #' + element.id).val(Currency.CurrencyCode);
 
-        $(rowId + '#hd_Rate').val(Currency.Rate.toFixed(2));
-        $(rowId + '#hd_NameCurrency').val(Currency.CurrencyDescA);
+        $(trId + ' #Rate').val(Currency.Rate.toFixed(2));
+        $(trId + ' #NameCurrency').val(Currency.CurrencyDescA);
 
-        $(rowId + '#hd_CodeCurrency').select2().trigger('change');
+        $(trId + ' #CodeCurrency').select2().trigger('change');
     }
 
     function ClearGrids() {
@@ -1245,27 +1613,24 @@ namespace CalJurnalEntry {
         $('div#def span').text(0);
     }
 
-    function calculat(e) {
-        let elm = document.getElementById(e.target.id),
-            rowId = GetRowId(elm),
-            pref = e.target.id.split('_')[0];
+    function calculat(trId: string, e) {
+        let CurrencyCreditor = $(trId + ' #CurrencyCreditor'),
+            CurrencyDebtor = $(trId + ' #CurrencyDebtor'),
+            Rate = Number($(trId + ' #Rate').val()),
+            Creditor = $(trId +' #Creditor'),
+            Debtor = $(trId +' #Debtor');
 
-        let CurrencyCreditor = $(rowId + ' #' + pref+'_CurrencyCreditor'),
-            CurrencyDebtor = $(rowId + ' #' + pref +'_CurrencyDebtor'),
-            Rate = Number($(rowId + ' #hd_Rate').val()),
-            Creditor = $(rowId +' #hd_Creditor'),
-            Debtor = $(rowId +' #hd_Debtor');
-
-        if (e.target.id == pref+"_CurrencyCreditor") {
+        if (e.target.id == "CurrencyCreditor") {
             Creditor.val(Number(CurrencyCreditor.val()) * Rate);
             Debtor.val('');
             CurrencyDebtor.val('');
         }
-        else if (e.target.id == pref +"_CurrencyDebtor") {
+        else if (e.target.id == "CurrencyDebtor") {
             Debtor.val(Number(CurrencyDebtor.val()) * Rate);
             Creditor.val('');
             CurrencyCreditor.val('');
-        } else if (e.target.id == "hd_CodeCurrency") {
+        }
+        else if (e.target.id == "CodeCurrency") {
             if (Number(CurrencyCreditor.val()) > 0)
                 Creditor.val(Number(CurrencyCreditor.val()) * Rate);
             if (Number(CurrencyDebtor.val()) > 0)
@@ -1277,7 +1642,7 @@ namespace CalJurnalEntry {
         let TotalDebit = 0,
             TotalCredit = 0,
             def = 0;
-
+        GetJurnalDetail = GetJurnalDetail.filter(x => x.StatusFlag != 'd');
         for (var i = 0; i < GetJurnalDetail.length; i++) {
             TotalDebit += isNaN(GetJurnalDetail[i].CurrencyDebtor) ? 0 : Number(GetJurnalDetail[i].CurrencyDebtor);
             TotalCredit += isNaN(GetJurnalDetail[i].CurrencyCreditor) ? 0 : Number(GetJurnalDetail[i].CurrencyCreditor);
@@ -1287,6 +1652,7 @@ namespace CalJurnalEntry {
         $('div#TotalDebit span').text(TotalDebit.toFixed(3));
         $('div#TotalCredit span').text(TotalCredit.toFixed(3));
         $('div#def span').text(def);
+
         if (def == 0)
             flagTotal = true
         else {
@@ -1295,30 +1661,9 @@ namespace CalJurnalEntry {
     }
 
     function MapDetails() {
-        debugger
         PostJurnalDetail.JurnalDetails = new Array<Cal_JurnalDetail>();
         for (var i = 0; i < GetJurnalDetail.length; i++) {
-            let NewJurnalDetail = new Cal_JurnalDetail();
-            NewJurnalDetail.JurnalDetailId = GetJurnalDetail[i].JurnalDetailId;
-            NewJurnalDetail.AccountId = GetJurnalDetail[i].AccountId;
-            NewJurnalDetail.JurnalId = GetJurnalDetail[i].JurnalId;;
-            NewJurnalDetail.CustAccountId = GetJurnalDetail[i].CustAccountId;
-            NewJurnalDetail.VendAccountId = GetJurnalDetail[i].VendAccountId;
-            NewJurnalDetail.EmpAccountId = GetJurnalDetail[i].EmpAccountId;
-            NewJurnalDetail.AssetAccountId = GetJurnalDetail[i].AssetAccountId;
-            NewJurnalDetail.BusinessPartnerAccId = GetJurnalDetail[i].BusinessPartnerAccId;
-            NewJurnalDetail.CostCenterId1 = GetJurnalDetail[i].CostCenterId1;
-            NewJurnalDetail.Rate = GetJurnalDetail[i].Rate;
-            NewJurnalDetail.DebitCurrency = GetJurnalDetail[i].CurrencyDebtor;
-            NewJurnalDetail.CreditCurrency = GetJurnalDetail[i].CurrencyCreditor;
-            NewJurnalDetail.DebitLocal = GetJurnalDetail[i].Debtor;
-            NewJurnalDetail.CreditLocal = GetJurnalDetail[i].Creditor;
-            NewJurnalDetail.JurDesc = GetJurnalDetail[i].Descriptions;
-            NewJurnalDetail.CurrencyId = GetJurnalDetail[i].CurrencyId;
-            NewJurnalDetail.Remarks = GetJurnalDetail[i].Remarks;
-
-            NewJurnalDetail.StatusFlag = GetJurnalDetail[i].StatusFlag;
-            PostJurnalDetail.JurnalDetails.push(NewJurnalDetail);
+            PostJurnalDetail.JurnalDetails.push(MapSingleRow(GetJurnalDetail[i]));
         };
     }
 
@@ -1355,39 +1700,38 @@ namespace CalJurnalEntry {
 
     function UpdateGrid(e: JsGridUpdateEventArgs) {
         debugger
-        //OldJurnalDetail = GetJurnalDetail;
-        //GetJurnalDetail = new Array<CustomJurnalDetail>();
-
         let item = e.Item as CustomJurnalDetail;
-
-        //var index: number = e.ItemIndex;
-        let index = Number($('#_idEdit').nextAll('tr:first')[0].id.split('_id')[1]);
-
+        item = DocumentActions.AssignToModelFormGridInEditMode<CustomJurnalDetail>(item);
         item.StatusFlag = 'u';
-        item.AccountCode = $('#u_AccountCode').val()?.trim();
-        item.CodeCurrency = $('#u_CodeCurrency').val()?.trim();
-        item.CostCenterCode = $('#u_CostCenterCode').val()?.trim();
-
+        var index: number = e.ItemIndex;
+       
         GetJurnalDetail.splice(index, 1, item);
-        //GetJurnalDetail.unshift(item);
-        //OldJurnalDetail.filter(x => x.JurnalDetailId != item.JurnalDetailId).forEach(element => GetJurnalDetail.push(element));
-
-        //divJurnalDetailGrid.DataSource = new Array<CustomJurnalDetail>();
-        //divJurnalDetailGrid.Bind();
+       
+        //OldJurnalDetail.splice(index, 1);
+        //OldJurnalDetail.unshift(item);
 
         divJurnalDetailGrid.DataSource = GetJurnalDetail;
         CalculatTotal();
-        divJurnalDetailGrid.Bind();
+        //divJurnalDetailGrid.Bind();
+
+        //UpdateRow(item);
     }
 
     function InsertGrid(e: JsGridInsertEventArgs) {
-        debugger
         let item = e.Item as CustomJurnalDetail;
         item.StatusFlag = 'i';
         GetJurnalDetail.push(item);
         divJurnalDetailGrid.DataSource = GetJurnalDetail;
         divJurnalDetailGrid.Bind();
         CalculatTotal();
+    }
+    
+    function DeleteGrid(e: JsGridDeleteEventArgs) {
+        debugger
+        let item = e.Item as CustomJurnalDetail;
+        item.StatusFlag = 'd';
+        CalculatTotal();
+        GetJurnalDetail.push(item);
     }
 
     function ChangeSelectToSearchable(id) {
@@ -1405,12 +1749,47 @@ namespace CalJurnalEntry {
         return arr;
     }
 
-    function ResetDatatable(data: Array<CustomJurnalDetail>) {
-        debugger
-        if (datatable == null) return;
+    function ChangeBtnStyle(e) {
+        if ($(e.target).hasClass("jsgrid-edit-button"))
+            $(e.target).removeClass("jsgrid-edit-button").addClass("jsgrid-update-button");
+        else if ($(e.target).hasClass("jsgrid-update-button"))
+            $(e.target).removeClass("jsgrid-update-button").addClass("jsgrid-edit-button");
+    }
 
-        datatable.destroy();
-        $('#datatable').html('');
-        Initalizegrid(data);
+    function MapSingleRow(data: CustomJurnalDetail) {
+        let NewJurnalDetail = new Cal_JurnalDetail();
+        NewJurnalDetail.JurnalDetailId = data.JurnalDetailId;
+        NewJurnalDetail.AccountId = data.AccountId;
+        NewJurnalDetail.JurnalId = data.JurnalId;;
+        NewJurnalDetail.CustAccountId = data.CustAccountId;
+        NewJurnalDetail.VendAccountId = data.VendAccountId;
+        NewJurnalDetail.EmpAccountId = data.EmpAccountId;
+        NewJurnalDetail.AssetAccountId = data.AssetAccountId;
+        NewJurnalDetail.BusinessPartnerAccId = data.BusinessPartnerAccId;
+        NewJurnalDetail.CostCenterId1 = data.CostCenterId1;
+        NewJurnalDetail.Rate = data.Rate;
+        NewJurnalDetail.DebitCurrency = data.CurrencyDebtor;
+        NewJurnalDetail.CreditCurrency = data.CurrencyCreditor;
+        NewJurnalDetail.DebitLocal = data.Debtor;
+        NewJurnalDetail.CreditLocal = data.Creditor;
+        NewJurnalDetail.JurDesc = data.Descriptions;
+        NewJurnalDetail.CurrencyId = data.CurrencyId;
+        NewJurnalDetail.Remarks = data.Remarks;
+        NewJurnalDetail.StatusFlag = data.StatusFlag;
+        return NewJurnalDetail;
+    }
+
+    function UpdateRow(data: CustomJurnalDetail) {
+        Ajax.Callsync({
+            type: "Get",
+            url: sys.apiUrl("Cal_JurnalEntry", "GetAllFroTree"),
+            data: MapSingleRow(data),
+            success: (d) => {
+                let result = d as BaseResponse;
+                if (!result.IsSuccess) {
+                    MessageBox.Toastr(Resource.ErrorOnSave, Resource.Error, ToastrTypes.error);
+                }
+            }
+        });
     }
 }

@@ -1212,7 +1212,6 @@
         },
 
         editItem: function (item) {
-             
             var $row = this.rowByItem(item);
             if($row.length) {
                 this._editRow($row);
@@ -1274,7 +1273,7 @@
             return $result;
         },
 
-        updateItem: function(item, editedItem) {
+        updateItem: function (item, editedItem) {
             if(arguments.length === 1) {
                 editedItem = item;
             }
@@ -2031,10 +2030,12 @@
                 : undefined;
         },
 
-        editValue: function() {
-            return this.editControl.val()
-                ? parseInt(this.editControl.val() || 0, 10)
-                : undefined;
+        editValue: function () {
+            try {
+                return this.editControl.val() ? parseInt(this.editControl.val() || 0, 10) : undefined;
+            } catch (e) {
+                return
+            }
         },
 
         _createTextBox: function () {
@@ -2515,7 +2516,7 @@
         },
 
         _createUpdateButton: function () {
-          //  alert("edit pin")
+            //alert("edit pin")
             return this._createGridButton(this.updateButtonClass, this.updateButtonTooltip, function(grid, e) {
                 grid.updateItem();
                 e.stopPropagation();
@@ -2546,7 +2547,6 @@
         editValue: function () {
             return "";
         }
-
     });
 
     jsGrid.fields.control = jsGrid.ControlField = ControlField;

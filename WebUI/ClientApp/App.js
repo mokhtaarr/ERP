@@ -632,6 +632,32 @@ var DocumentActions = {
         }
         return model;
     },
+    AssignToModelFormGridInEditMode: function (model) {
+        if (model != null) {
+            var properties = Object.getOwnPropertyNames(model);
+            for (var _i = 0, properties_3 = properties; _i < properties_3.length; _i++) {
+                var property = properties_3[_i];
+                var element = document.querySelector('#_idEdit #' + property);
+                if (element != null) {
+                    if (element.type == "checkbox")
+                        model[property] = element.checked;
+                    else if (element.type == "radio") {
+                        var newElement = document.getElementsByName(property);
+                        for (var v = 0, length = newElement.length; v < length; v++) {
+                            if ($(newElement[v]).is(":checked")) {
+                                model[property] = element.checked;
+                                // only one radio can be logically checked, don't check the rest
+                                break;
+                            }
+                        }
+                    }
+                    else
+                        model[property] = element.value;
+                }
+            }
+        }
+        return model;
+    },
     FillInputText: function (_TextID, _Data) {
         $("#" + _TextID).text(_Data);
         $("#" + _TextID).val(_Data);
@@ -1145,17 +1171,29 @@ var Resources = /** @class */ (function () {
     }
     return Resources;
 }());
-function CreateElement(typeElement, className, defaultValue, minValue, id, step) {
+function CreateElement(typeElement, className, defaultValue, minValue, id, step, disabled) {
+    if (disabled === void 0) { disabled = false; }
     typeElement = typeElement.toLocaleLowerCase();
     var element = DocumentActions.CreateElement("input");
     element.className = className;
     element.id = id;
-    //element.id = "h_" + id;
     element.type = typeElement;
     element.value = defaultValue;
     element.min = minValue;
     element.step = step;
+    element.disabled = disabled;
     return element;
+}
+function CreateElementString(typeElement, className, defaultValue, minValue, id, step) {
+    typeElement = typeElement.toLocaleLowerCase();
+    var element = DocumentActions.CreateElement("input");
+    element.className = className;
+    element.id = id;
+    element.type = typeElement;
+    element.value = defaultValue;
+    element.min = minValue;
+    element.step = step;
+    return element.outerHTML;
 }
 //eslam 25 oct 2020
 function CreateLabelElement(defaultValue, id) {
