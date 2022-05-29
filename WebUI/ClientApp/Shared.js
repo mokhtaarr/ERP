@@ -53,7 +53,8 @@ var SharedWork = /** @class */ (function () {
             }
             return 0;
         },
-        set: function (value) { },
+        set: function (value) {
+        },
         enumerable: true,
         configurable: true
     });
@@ -61,7 +62,7 @@ var SharedWork = /** @class */ (function () {
         get: function () {
             if (localStorage.getItem("TableName") != null) {
                 var _Table = localStorage.getItem("TableName");
-                var _Cond = localStorage.getItem("ModelCount");
+                var _Cond = localStorage.getItem("Condition");
                 var result = 0;
                 var sys = new SystemTools();
                 $.ajax({
@@ -82,8 +83,11 @@ var SharedWork = /** @class */ (function () {
         configurable: true
     });
     SharedWork.Render = function () {
-        $("#txtNavigator").text(this.PageIndex.toString() + ":" + this.ModelCount.toString());
-        //$("#txtNavigator").val(this.PageIndex.toString() + ":" + this.ModelCount.toString());
+        if (!this.withCondition)
+            $("#txtNavigator").text(this.PageIndex.toString() + ":" + this.ModelCount.toString());
+        else
+            $("#txtNavigator").text(this.PageIndex.toString() + ":" + this.ModelCount2.toString());
+        this.Count = SharedWork.withCondition ? this.ModelCount2 : this.ModelCount;
     };
     SharedWork.disabledTableOrNot = function (sta) {
         var mainTable = $(document.querySelector('[data-main].jsgrid')), subTable = $(document.querySelectorAll('table:not([data-main]).jsgrid')), allModeDisable = $(document.querySelector('[data-allModeDisable].jsgrid'));
@@ -206,6 +210,7 @@ var SharedWork = /** @class */ (function () {
             SharedWork.OnSwitchModes();
         SharedWork.Render();
     };
+    SharedWork.withCondition = false;
     SharedWork.UserFavorits = new Array();
     SharedWork.OnNavigate = null;
     SharedWork.OnSwitchModes = null;

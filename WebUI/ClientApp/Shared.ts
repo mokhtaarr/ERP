@@ -5,6 +5,7 @@
     $(document.querySelectorAll('table:not([data-main])')).addClass('disableTable');
 });
 
+
 class APiSession {
     public static Session: APISessionRecord = new APISessionRecord();
 }
@@ -18,6 +19,9 @@ class JsDataTablePages {
 }
 
 class SharedWork {
+    public static withCondition: boolean = false;
+    public static Count : number;
+
     public static CurrentMode: ScreenModes; 
     public static SharedNavText: HTMLInputElement;
     public static UserFavorits: Array<FavModules> = new Array<FavModules>();
@@ -31,7 +35,9 @@ class SharedWork {
         return value2;
     }
 
-    public static set ModelCount(value: number) { }
+
+    public static set ModelCount(value: number) {
+    }
 
     public static get ModelCount(): number {
         if (localStorage.getItem("TableName") != null) {
@@ -60,7 +66,7 @@ class SharedWork {
         if (localStorage.getItem("TableName") != null) {
 
             let _Table: string = localStorage.getItem("TableName");
-            let _Cond: string = localStorage.getItem("ModelCount");
+            let _Cond: string = localStorage.getItem("Condition");
 
             var result: number = 0;
             var sys: SystemTools = new SystemTools();
@@ -85,8 +91,12 @@ class SharedWork {
     public static SwitchLanguage: () => void;
 
     public static Render() {
-        $("#txtNavigator").text(this.PageIndex.toString() + ":" + this.ModelCount.toString());
-        //$("#txtNavigator").val(this.PageIndex.toString() + ":" + this.ModelCount.toString());
+        if (!this.withCondition) 
+            $("#txtNavigator").text(this.PageIndex.toString() + ":" + this.ModelCount.toString());
+        else 
+            $("#txtNavigator").text(this.PageIndex.toString() + ":" + this.ModelCount2.toString());
+
+        this.Count = SharedWork.withCondition ? this.ModelCount2 : this.ModelCount;
     }
 
     public static disabledTableOrNot(sta: boolean) {
@@ -222,6 +232,7 @@ class SharedWork {
         SharedWork.CurrentMode = mode;
         if (SharedWork.OnSwitchModes != null)
             SharedWork.OnSwitchModes();
+
         SharedWork.Render();
     }
 }

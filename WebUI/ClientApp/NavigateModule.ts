@@ -11,8 +11,10 @@
         btnFirst = document.getElementById("btnFirst") as HTMLInputElement;
         btnLast = document.getElementById("btnLast") as HTMLInputElement;
         txtNavigator = DocumentActions.GetElementById<HTMLInputElement>("txtNavigator");
+
         SharedWork.PageIndex = 0;
         SharedWork.Render();
+
         btnFirst.onclick = First;
         btnLast.onclick = Last;
         btnNext.onclick = Next;
@@ -32,8 +34,9 @@
         }
     }
 
+
     function Next() {
-        if (SharedWork.PageIndex < SharedWork.ModelCount) {
+        if (SharedWork.PageIndex < SharedWork.Count) {
             SharedWork.PageIndex += 1;
             SharedWork.OnNavigate();
             SharedWork.Render();
@@ -57,8 +60,9 @@
 
         SharedWork.SwitchModes(ScreenModes.Query);
     }
+
     function Last() {
-        SharedWork.PageIndex = SharedWork.ModelCount;
+        SharedWork.PageIndex = SharedWork.Count;
         SharedWork.OnNavigate();
         SharedWork.Render();
         SharedWork.SwitchModes(ScreenModes.Query);

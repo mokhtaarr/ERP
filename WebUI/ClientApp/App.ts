@@ -1559,9 +1559,7 @@ function DisplayMassage_Processes(msg_Ar: string, msg_En: string, msg_type: stri
 }
 
 function Errorinput(input: any) {
-
     if (input.selector != null) {
-
         $('' + input.selector + '').addClass('text_Mandatory');
         $('' + input.selector + '').focus();
         setTimeout(function () { $('' + input.selector + '').removeClass('text_Mandatory'); }, 5000); 

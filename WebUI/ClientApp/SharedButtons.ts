@@ -21,6 +21,7 @@
     }
 
     export var compcode: number;
+    export var BranchCode: number;
     export var btnSearch: HTMLButtonElement;
     export var btnRefrash: HTMLButtonElement;
     export var btnRefrash2: HTMLButtonElement;

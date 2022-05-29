@@ -450,6 +450,7 @@ namespace HomeComponent {
     }
 
     function InitializePages() {
+
         $("#btnHome").click(() => { OpenPage(Modules.Home); })
         $("#btnClientaccstat").click(() => { OpenPage(Modules.Clientaccstat); })//
         $("#btnUSERS").click(() => { OpenPage(Modules.USERS); })//

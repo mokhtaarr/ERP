@@ -135,7 +135,7 @@ namespace Inv.API.Controllers
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
@@ -455,12 +455,9 @@ namespace Inv.API.Controllers
         [HttpGet]
         public object GetModelCount2(string TableName, string Condition)
         {
-
             var SqlStatment = "Select count(*)  From " + TableName + (string.IsNullOrEmpty(Condition) ? "" : " where " + Condition);
             var result = this.ExecuteScalar(SqlStatment);
             return result;
-
-
         }
 
         [HttpGet]

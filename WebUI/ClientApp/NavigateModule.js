@@ -26,7 +26,7 @@ var NavigateModule;
     }
     NavigateModule.InitalizeComponent = InitalizeComponent;
     function Next() {
-        if (SharedWork.PageIndex < SharedWork.ModelCount) {
+        if (SharedWork.PageIndex < SharedWork.Count) {
             SharedWork.PageIndex += 1;
             SharedWork.OnNavigate();
             SharedWork.Render();
@@ -48,7 +48,7 @@ var NavigateModule;
         SharedWork.SwitchModes(ScreenModes.Query);
     }
     function Last() {
-        SharedWork.PageIndex = SharedWork.ModelCount;
+        SharedWork.PageIndex = SharedWork.Count;
         SharedWork.OnNavigate();
         SharedWork.Render();
         SharedWork.SwitchModes(ScreenModes.Query);
