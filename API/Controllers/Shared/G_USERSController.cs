@@ -262,13 +262,42 @@ namespace Inv.API.Controllers
         {
             if (ModelState.IsValid && CheckUser(Token, UserCode))
             {
-
                 G_USERSService.Delete(shfID);
-
                 return Ok(new BaseResponse());
             }
             return BadRequest(ModelState);
+        }
 
+        [HttpGet, AllowAnonymous]
+        public IHttpActionResult DeleteUser(string Token, string UserCode, string LoginUserCode, string CompCode)
+        {
+            if (ModelState.IsValid && CheckUser(Token, LoginUserCode))
+            {
+                using (var dbTransaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        string user = "delete from G_USERS where USER_CODE = '" + UserCode + "'";
+                        string userCompany = "delete from G_USER_COMPANY where USER_CODE = '" + UserCode + "' and COMP_CODE = '" + CompCode + "'";
+                        string userBranchs = "delete from G_USER_BRANCH where USER_CODE = '" + UserCode + "' and COMP_CODE = '" + CompCode + "'";
+                        string userRoles = "delete from G_RoleUsers where USER_CODE = '" + UserCode + "'";
+
+                        var resUser = db.Database.SqlQuery<object>(user).ToList();
+                        var userCompanyRes = db.Database.SqlQuery<object>(userCompany).ToList();
+                        var userBranchsRes = db.Database.SqlQuery<object>(userBranchs).ToList();
+                        var userRolesRes = db.Database.SqlQuery<object>(userRoles).ToList();
+
+                        dbTransaction.Commit();
+                        return Ok(new BaseResponse(true));
+                    }
+                    catch (Exception ex)
+                    {
+                        dbTransaction.Rollback();
+                        return Ok(new BaseResponse(HttpStatusCode.ExpectationFailed, ex.Message));
+                    }
+                }
+            }
+            return BadRequest(ModelState);
         }
 
         [HttpGet, AllowAnonymous]
@@ -318,15 +347,11 @@ namespace Inv.API.Controllers
                         if (USER.G_USERS.Flag_Mastr == "i")
                         {
                             var usr = G_USERSService.Insert(USER.G_USERS);
-
-                              
-
                             var SecCreateUser = db.Database.ExecuteSqlCommand("execute GProc_SecCreateUser '" + USER.G_USERS.USER_CODE + "', " + USER.G_USERS.CompCode + "");
-                          }
+                        }
                         else
                         {
                             var res = G_USERSService.Update(USER.G_USERS);
- 
                         }
 
                         var insertedOperationItems = USER.G_RoleUsers.Where(x => x.StatusFlag == 'i').ToList();
@@ -342,7 +367,6 @@ namespace Inv.API.Controllers
                         //loop Update  
                         foreach (var items in updatedOperationItems)
                         {
-
                             var updatedRec = G_USERSService.UpdateRoleUser(items);
                         }
 
@@ -353,28 +377,21 @@ namespace Inv.API.Controllers
                             string UserCodeE = item.USER_CODE;
                             G_USERSService.DeleteRoleUsers(deletedId, UserCodeE);
                         }
-
                          
                         var updatedBRANCH = USER.BRANCHDetailsModel.Where(x => x.StatusFlag == 'u').ToList(); 
-
                        
                         //loop Update  
                         foreach (var items in updatedBRANCH)
                         {
-
                             var updatedRec = G_USER_BRANCHService.Update(items);
                         }
   
                         dbTransaction.Commit();
-                         
-
                         return Ok(new BaseResponse(ModelState));
-
                     }
                     catch (Exception ex)
                     {
                         dbTransaction.Rollback();
-
                         return Ok(new BaseResponse(HttpStatusCode.ExpectationFailed, ex.Message));
                     }
                 }
@@ -420,8 +437,5 @@ namespace Inv.API.Controllers
             }
             return BadRequest(ModelState);
         }
-
-
     }
 }
-

@@ -17,13 +17,15 @@ namespace USERS {
 
     var MSG_ID: number;
     var CountGrid = 0;
-    var btnSearch: HTMLButtonElement;
+    //var btnSearch: HTMLButtonElement;
     //var btnsave: HTMLButtonElement;
     //var btnEdit: HTMLButtonElement;
     //var btnback: HTMLButtonElement;
     //var btnAdd: HTMLButtonElement;
+    //var btnsearch: HTMLButtonElement;
+    //var drpuserType: HTMLSelectElement;
+    //var drpStatus: HTMLSelectElement;
 
-    var btnsearch: HTMLButtonElement;
     var btnLoadRoles: HTMLButtonElement;
     var btnAddDetails: HTMLButtonElement;
     var btnGive_assignments: HTMLButtonElement;
@@ -31,12 +33,10 @@ namespace USERS {
     var searchbutmemreport: HTMLInputElement;
 
     var ddlStore: HTMLSelectElement;
-    var drpuserType: HTMLSelectElement;
     var ddlSalesman: HTMLSelectElement;
     //var ddlCashBox: HTMLSelectElement;
     var drpRoles: HTMLSelectElement;
     var drpuserType_2: HTMLSelectElement;
-    var drpStatus: HTMLSelectElement;
     var txtUSER_CODE: HTMLInputElement;
     var txtUSER_PASSWORD: HTMLInputElement;
     var txtUSER_NAME: HTMLInputElement;
@@ -87,14 +87,16 @@ namespace USERS {
     var CountGridBarnch = 0;
 
     var skipOnec: boolean;
-    var UserCode: string;
+    var USER_CODE: string;
 
     export function InitalizeComponent() {
         SharedButtons.compcode = Number(SysSession.CurrentEnvironment.CompCode);
         SharedButtons.BranchCode = Number(SysSession.CurrentEnvironment.BranchCode);
 
         SharedWork.withCondition = true;
+
         localStorage.setItem("TableName", "GQ_GetUsers");
+
         localStorage.setItem("Condition", "CompCode = '" + SharedButtons.compcode + "'");
 
         NavigateModule.InitalizeComponent();
@@ -102,7 +104,7 @@ namespace USERS {
 
         SharedButtons.AddAction(() => { btnAdd_onClick(); fillRoles();});
 
-        //SharedButtons.DeleteAction(() => { btnDelete_onclick(); });
+        SharedButtons.DeleteAction(() => { btnDelete_onclick(); });
 
         SharedButtons.EditAction(() => { btnEdit_onclick(); skipOnec = true; fillRoles();});
 
@@ -121,11 +123,15 @@ namespace USERS {
         InitalizeControls();
         InitalizeEvents();
         FillddluserType();
-        Fillddlstatus();
-       // fillddlSalesman();
-       // FillddlCashBox();
+        //Fillddlstatus();
+
+        //fillddlSalesman();
+        //FillddlCashBox();
+
         GetAllBarnch_from_G_USERS();
+
         //FillddlStore();
+
         InitializeGrid();
         btnShow_onclick();
     }
@@ -135,8 +141,9 @@ namespace USERS {
         //btnsave = document.getElementById("btnsave") as HTMLButtonElement;
         //btnback = document.getElementById("btnback") as HTMLButtonElement;
         //btnAdd = document.getElementById("btnAdd") as HTMLButtonElement;
+        //btnsearch = document.getElementById("btnsearch") as HTMLButtonElement;
+        //drpStatus = document.getElementById("drpStatus") as HTMLSelectElement;
 
-        btnsearch = document.getElementById("btnsearch") as HTMLButtonElement;
         btnAddDetails = document.getElementById("btnAddDetails") as HTMLButtonElement;
         btnLoadRoles = document.getElementById("btnLoadRoles") as HTMLButtonElement;
         btnGive_assignments = document.getElementById("btnGive_assignments") as HTMLButtonElement;
@@ -144,7 +151,6 @@ namespace USERS {
         ddlStore = document.getElementById("ddlStore") as HTMLSelectElement;;
         ddlSalesman = document.getElementById("ddlSalesman") as HTMLSelectElement;
         //ddlCashBox = document.getElementById("ddlCashBox") as HTMLSelectElement;
-        drpStatus = document.getElementById("drpStatus") as HTMLSelectElement;
         txtUSER_CODE = document.getElementById("txtUSER_CODE") as HTMLInputElement;
         txtUSER_PASSWORD = document.getElementById("txtUSER_PASSWORD") as HTMLInputElement;
         txtUSER_NAME = document.getElementById("txtUSER_NAME") as HTMLInputElement;
@@ -163,15 +169,15 @@ namespace USERS {
         chk_IsActive = document.getElementById("chk_IsActive") as HTMLInputElement;
         searchbutmemreport = document.getElementById("searchbutmemreport") as HTMLInputElement;
 
-        drpuserType = document.getElementById("drpuserType") as HTMLSelectElement;
         drpuserType_2 = document.getElementById("drpuserType_2") as HTMLSelectElement;
 
+        //drpuserType = document.getElementById("drpuserType") as HTMLSelectElement;
         drpRoles = document.getElementById("drpRoles") as HTMLSelectElement;
-        btnSearch = document.getElementById("btnEmpSearch") as HTMLButtonElement;
-
-
         btnAddDetails.disabled = !SysSession.CurrentPrivileges.AddNew;
+
+        //btnSearch = document.getElementById("btnEmpSearch") as HTMLButtonElement;
         //btnEdit.disabled = !SysSession.CurrentPrivileges.EDIT;
+        SharedButtons.btnSearch = document.getElementById("btnUsersSearch") as HTMLButtonElement;
     }
 
     function InitalizeEvents() {
@@ -179,8 +185,9 @@ namespace USERS {
         //btnback.onclick = btnback_onclick;
         //btnEdit.onclick = btnEdit_onclick;
         //btnAdd.onclick = btnAdd_onClick;
+        //btnsearch.onclick = btnShow_onclick;
+        //btnSearch.onclick = btnSearch_onclick;
 
-        btnsearch.onclick = btnShow_onclick;
         btnLoadRoles.onclick = btnLoadRoles_onClick;
         drpRoles.onchange = drpRoles_change;
         drpuserType_2.onchange = drpuserType_change;
@@ -188,14 +195,14 @@ namespace USERS {
         btnGive_assignments.onclick = Give_assignments_onClick;
         btnBlock_permissions.onclick = Block_permissions_onClick;
         searchbutmemreport.onkeyup = _SearchBox_Change;
-        btnSearch.onclick = btnSearch_onclick;
+        SharedButtons.btnSearch.onclick = btnSearch_onclick;
     }
 
     export function Navigate() {
         let _model = List_Userdetails[SharedWork.PageIndex - 1];
-        UserCode = _model.USER_CODE;
-        if (!IsNullOrEmpty(UserCode))
-            GridDoubleClick(UserCode);
+        USER_CODE = _model.USER_CODE;
+        if (!IsNullOrEmpty(USER_CODE))
+            GridDoubleClick(USER_CODE);
     }
 
     function drpuserType_change() {
@@ -230,7 +237,6 @@ namespace USERS {
         $('#ddlCashBox').prop('selectedIndex', 0)
         $('#ddlSalesman').prop('selectedIndex', 0)
         $('#ddlStore').prop('selectedIndex', 0)
-
     }
 
     function RemoveDisabled(clear: boolean) {
@@ -277,16 +283,16 @@ namespace USERS {
         
     }
 
-    function Fillddlstatus() {
-        if (lang == "ar") {
-            List_status = [{ id: 1, value: 'فعال' }, { id: 0, value: 'غير فعال' }, { id: 2, value: 'الجميع' }];
-            DocumentActions.FillComboFirstvalue(List_status, drpStatus, "id", "value", " - اختر -", null);
-        }
-        else {
-            List_status = [{ id: 1, value: 'Active' }, { id: 0, value: 'Not Active' }, { id: 2, value: 'All' }];
-            DocumentActions.FillComboFirstvalue(List_status, drpStatus, "id", "value", "Select", null);
-        }
-    }
+    //function Fillddlstatus() {
+    //    if (lang == "ar") {
+    //        List_status = [{ id: 1, value: 'فعال' }, { id: 0, value: 'غير فعال' }, { id: 2, value: 'الجميع' }];
+    //        DocumentActions.FillComboFirstvalue(List_status, drpStatus, "id", "value", " - اختر -", null);
+    //    }
+    //    else {
+    //        List_status = [{ id: 1, value: 'Active' }, { id: 0, value: 'Not Active' }, { id: 2, value: 'All' }];
+    //        DocumentActions.FillComboFirstvalue(List_status, drpStatus, "id", "value", "Select", null);
+    //    }
+    //}
 
     function FillddluserType() {
         Ajax.Callsync({
@@ -298,7 +304,7 @@ namespace USERS {
                 if (result.IsSuccess) {
                     List_UserType = result.Response as Array<G_Codes>;
 
-                    DocumentActions.FillComboFirstvalue(List_UserType, drpuserType, "CodeValue", "" + (lang == "ar" ? "DescA" : "DescE") + "", "" + (lang == "ar" ? " - اختر -" : " - Choose -") + "", null);
+                    //DocumentActions.FillComboFirstvalue(List_UserType, drpuserType, "CodeValue", "" + (lang == "ar" ? "DescA" : "DescE") + "", "" + (lang == "ar" ? " - اختر -" : " - Choose -") + "", null);
                     DocumentActions.FillComboFirstvalue(List_UserType, drpuserType_2, "CodeValue", "" + (lang == "ar" ? "DescA" : "DescE") + "", "" + (lang == "ar" ? " - اختر -" : " - Choose -") + "", null);
                 }
             }
@@ -324,6 +330,7 @@ namespace USERS {
     }
 
     function fillddlSalesman() {
+        debugger
         Ajax.Callsync({
             type: "Get",
             url: sys.apiUrl("AccDefSalesMen", "GetAllSalesPeople"),
@@ -333,6 +340,7 @@ namespace USERS {
             success: (d) => {
                 let result = d as BaseResponse;
                 if (result.IsSuccess) {
+
                     SalesmanDetails = result.Response as Array<I_Sls_D_Salesman>;
                     SalesmanDetails = SalesmanDetails.filter(s => s.Isactive == true);
                     if (lang == "en") {
@@ -341,6 +349,7 @@ namespace USERS {
                     else {
                         DocumentActions.FillCombowithdefult(SalesmanDetails, ddlSalesman, "SalesmanId", "NameA", "اختر المندوب");
                     }
+
                     SysSession.CurrentEnvironment.UserType == 1 ? ($('#ddlSalesman option[value="null"]').remove()) : $('#ddlSalesman').prop('selectedIndex', 0);
                 }
             }
@@ -426,7 +435,7 @@ namespace USERS {
     }
 
     function GridDoubleClick(userCode: string) {
-        UserCode = userCode;
+        USER_CODE = userCode;
         //$("#btnedite").removeAttr("disabled");
         //$("#btnAdd").removeAttr("disabled");
         //$("#btnAdd").removeClass("display_none");
@@ -440,7 +449,7 @@ namespace USERS {
         $("#div_BasicData").removeClass("display_none");
 
         $("#div_Data").addClass("disabledDiv");
-        var Selecte = List_Userdetails.filter(x => x.USER_CODE == userCode);
+        var Selecte = List_Userdetails.filter(x => x.USER_CODE == USER_CODE);
         Selecteditem = Selecte[0];
         DisplayData_Header();
         Display_RoleUsers();
@@ -454,6 +463,9 @@ namespace USERS {
     }
 
     function DisplayData_Header() {
+        $("#txtCustomerCode").val(Selecteditem.USER_CODE);
+        $("#txtCustomer").val(Selecteditem.USER_NAME);
+
         $("#cashbox").addClass("display_none");
         $("#selsman").addClass("display_none");
         drpuserType_2.value = "null";
@@ -517,7 +529,7 @@ namespace USERS {
     }
 
     function Display_RoleUsers() {
-        var USER_CODE = txtUSER_CODE.value;
+        //var USER_CODE = txtUSER_CODE.value;
         Ajax.Callsync({
             type: "Get",
             url: sys.apiUrl("G_RoleUsers", "search"),
@@ -541,18 +553,12 @@ namespace USERS {
     }
 
     function Disbly_BuildControlsBarnch() {
-
-
-
         $("#div_Data_BRANCH").html('');
-
         var ListBarAcc = new Array<GQ_GetUserBarnchAccess>();
-
-        ListBarAcc = ListBarAccdetails.filter(x => x.USER_CODE == txtUSER_CODE.value);
+        ListBarAcc = ListBarAccdetails.filter(x => x.USER_CODE.toLowerCase() == USER_CODE.toLowerCase());
 
         CountGridBarnch = 0;
         for (var i = 0; i < ListBarAcc.length; i++) {
-
             BuildControlsBarnch(i);
 
             $("#BRA_CODE" + i).val(ListBarAcc[i].BRA_CODE);
@@ -588,24 +594,21 @@ namespace USERS {
      
     function BuildControlsBarnch(cnt: number) {
         var html;
-        html = '<div id="row_font_header' + cnt + '" class=" font_header col-lg-12" style="bottom: 5px;font-weight:bold">' +
+        html = '<div id="row_font_header' + cnt + '" class="No_Row font_header col-12"> <div class="row">' +
             '<span id="btn_minus3' + cnt + '" class="fa fa-minus-circle fontitm4user lebelminus"></span>' +
-            '<div class="col-lg-1" style=""><input disabled id="BRA_CODE' + cnt + '" type="text" class="form-control"></div>' +
-            '<div class="col-lg-2" style=""><input type="text" disabled id="BRA_DESC' + cnt + '" class="form-control"></div>' +
+            '<div class="col-lg-2" style=""><input disabled id="BRA_CODE' + cnt + '" type="text" class="form-control"></div>' +
+            '<div class="col-lg-5" style=""><input type="text" disabled id="BRA_DESC' + cnt + '" class="form-control"></div>' +
             '<div class="col-lg-1 style_pading"> <input disabled id="EXECUTE' + cnt + '"  type= "checkbox"  class="form-control "   /></div>' +
             '<div class="col-lg-1 style_pading"> <input disabled id="CREATE' + cnt + '"  type= "checkbox"  class="form-control "   /></div>' +
             '<div class="col-lg-1 style_pading"> <input disabled id="EDIT' + cnt + '"  type= "checkbox"  class="form-control "   /></div>' +
             '<div class="col-lg-1 style_pading"> <input disabled id="DELETE' + cnt + '"  type= "checkbox"  class="form-control "   /></div>' +
             '<div class="col-lg-1 style_pading"> <input disabled id="PRINT' + cnt + '"  type= "checkbox"  class="form-control "   /></div>' +
-            '<div class="col-lg-1" style=""><input id="txt_StatusFlag2' + cnt + '" name = " " type = "hidden" class="form-control"/><input id="DepositID' + cnt + '" name = " " type = "hidden" class="form-control" /></div></div>';
+            '<div class="col-lg-1" style=""><input id="txt_StatusFlag2' + cnt + '" name = " " type = "hidden" class="form-control"/><input id="DepositID'
+            + cnt + '" name = " " type = "hidden" class="form-control" /></div></div></div>';
 
         $("#div_Data_BRANCH").append(html);
 
-
-
-
         if (SysSession.CurrentPrivileges.Remove) {
-
             $("#btn_minus3" + cnt).addClass("display_none");
             $("#btn_minus3" + cnt).attr("disabled", "disabled");
         }
@@ -614,12 +617,10 @@ namespace USERS {
             $("#btn_minus3" + cnt).attr("disabled", "disabled");
         }
 
-
         $("#EXECUTE" + cnt).on('change', function () {
             if ($("#txt_StatusFlag2" + cnt).val() != "i")
                 $("#txt_StatusFlag2" + cnt).val("u");
         });
-
 
         $("#CREATE" + cnt).on('change', function () {
             if ($("#txt_StatusFlag2" + cnt).val() != "i")
@@ -640,7 +641,6 @@ namespace USERS {
             if ($("#txt_StatusFlag2" + cnt).val() != "i")
                 $("#txt_StatusFlag2" + cnt).val("u");
         });
-
     } 
 
     function GetAllBarnch_from_G_USERS() {
@@ -654,7 +654,6 @@ namespace USERS {
                 let result = d as BaseResponse;
                 if (result.IsSuccess) {
                     ListBarAccdetails = result.Response as Array<GQ_GetUserBarnchAccess>;
-
                 }
             }
         });
@@ -727,7 +726,7 @@ namespace USERS {
             }
         });
         if (SysSession.CurrentPrivileges.Remove) {
-            $("#btn_minus" + cnt).removeAttr("disabled")
+            $("#btn_minus" + cnt).prop("disabled", false);
         }
         else {
             $("#btn_minus" + cnt).attr("disabled", "disabled")
@@ -763,8 +762,10 @@ namespace USERS {
             url: sys.apiUrl("G_USERS", "GetUSER"),
             data: {
                 CompCode: SharedButtons.compcode,
-                UserCode: UserCode, Token: "HGFD-" + Token,
-                Status: drpStatus.value, UserType: drpuserType.value
+                UserCode: UserCode,
+                Token: "HGFD-" + Token,
+                Status: ""/*drpStatus.value*/,
+                UserType: "" /*drpuserType.value*/
             },
             success: (d) => {
                 let result = d as BaseResponse;
@@ -773,7 +774,6 @@ namespace USERS {
                     for (var i = 0; i < List_Userdetails.length; i++) {
                         List_Userdetails[i].IsActiveDesc = List_Userdetails[i].USER_ACTIVE == true ? "فعال" : "غير فعال";
                     }
-
                     UserGrid.DataSource = List_Userdetails;
                     UserGrid.Bind();
                 }
@@ -807,14 +807,14 @@ namespace USERS {
         }
     }
 
-    function BulidAndFile(Roles: Array<G_Role>, ) {
+    function BulidAndFile(Roles: Array<G_Role>) {
         BuildControls(CountGrid);
         $("#txtRoleId" + CountGrid).val(Roles[0].RoleId.toString());
         $("#txtDescA" + CountGrid).val((lang == "ar" ? Roles[0].DescA : Roles[0].DescE));
         $("#txtRemarks" + CountGrid).val(Roles[0].Remarks);
         $("#txt_StatusFlag" + CountGrid).val("i");
         $("#CheckISActive" + CountGrid).attr("checked") ? 1 : 0;
-        $('#btn_minus' + CountGrid).removeClass("display_none");
+        $('#btn_minus' + CountGrid).prop("disabled", false);
         $('#txtRemarks' + CountGrid).removeAttr("disabled");
         $('#CheckISActive' + CountGrid).removeAttr("disabled");
         $('#CheckISActive' + CountGrid).attr('checked', 'checked');
@@ -860,7 +860,7 @@ namespace USERS {
             DisplayUserRole(List_Roles);
             //btnEdit_onclick();
             for (var i = 0; i < List_Roles.length; i++) {
-                $("#btn_minus" + i).removeClass("display_none");
+                $("#btn_minus" + i).prop("disabled", false);
                 $("#CheckISActive" + i).removeAttr("disabled");
             }
             $("#div_grid").addClass("disabledDiv");
@@ -874,9 +874,9 @@ namespace USERS {
                 }
 
                 BuildControls(i);
-                $("#btn_minus" + i).removeClass("display_none");
+                $("#btn_minus" + i).prop("disabled", false);
                 $("#txtRoleId" + i).val(List_RoleDetails[Q].RoleId);
-                $("#txtDescA" + i).val((lang == "ar" ? List_RoleDetails[i].DescA : List_RoleDetails[i].DescE));
+                $("#txtDescA" + i).val((lang == "ar" ? List_RoleDetails[Q].DescA : List_RoleDetails[Q].DescE));
                 $("#txtRemarks" + i).val(List_RoleDetails[Q].Remarks);
                 $("#CheckISActive" + i).removeAttr("disabled");
                 $('#CheckISActive' + i).prop('checked', 'checked');
@@ -1025,8 +1025,6 @@ namespace USERS {
                 return false
             }
         }
-
-
         return true;
     }
 
@@ -1050,13 +1048,13 @@ namespace USERS {
 
     function USER_CODEFoundBefore() {
         var res: boolean = true;
-        var USER_CODE = txtUSER_CODE.value.toLowerCase();
+        //var USER_CODE = txtUSER_CODE.value.toLowerCase();
 
         Ajax.Callsync({
             type: "Get",
             url: sys.apiUrl("G_USERS", "CodeFounBefore"),
             data: {
-                USER_CODE: USER_CODE, compCode: SharedButtons.compcode, UserCode: UserCode, Token: "HGFD-" + Token
+                USER_CODE: txtUSER_CODE.value, compCode: SharedButtons.compcode, UserCode: UserCode, Token: "HGFD-" + Token
             },
             success: (d) => {
                 //debugger
@@ -1075,9 +1073,7 @@ namespace USERS {
     function Update() {
         Model = <G_USERS>Selecteditem;
         Assign();
-
         Assign_BRANCH();
-
         Master.Token = "HGFD-" + Token;
         Master.UserCode = UserCode;
         Master.G_USERS.CompCode = Number(SysSession.CurrentEnvironment.CompCode);
@@ -1085,6 +1081,7 @@ namespace USERS {
         Master.G_USERS.USER_NAME = txtUSER_NAME.value;
         Master.G_USERS.USER_PASSWORD = txtUSER_PASSWORD.value;
         Master.G_USERS.Flag_Mastr = Flag_Mastr;
+
         if (Flag_Mastr == 'i') {
             Master.G_USERS.CreatedBy = UserCode;
             Master.G_USERS.CreatedAt = DateTimeFormat(Date().toString());
@@ -1098,8 +1095,6 @@ namespace USERS {
         //Master.G_USERS.CashBoxID = ddlCashBox.value == "null" ? null : Number(ddlCashBox.value);
         Master.G_USERS.USER_TYPE = drpuserType_2.value == "null" ? null : Number(drpuserType_2.value);
 
-
-
         Ajax.Callsync({
             type: "POST",
             url: sys.apiUrl("G_USERS", "Update"),
@@ -1110,7 +1105,9 @@ namespace USERS {
                     DisplayMassage("تم الحفظ", "saved success", MessageType.Succeed);
                     if (Flag_Mastr == 'i') {  
                         let code = txtUSER_CODE.value
+                        USER_CODE = code;
                         btnback_onclick(); 
+
                         Flag_Mastr = '';
                         $('#div_Data').html("");
                         Mode = 0; 
@@ -1145,19 +1142,14 @@ namespace USERS {
                         btnShow_onclick();
                         btnback_onclick(); 
                         Flag_Mastr = '';
-                          
                     }
-
-               
-
+                    SharedWork.SwitchModes(ScreenModes.Query);
                 }
                 else {
                     DisplayMassage("الرجاء تحديث الصفحة واعادت تكرارالمحاولة مره اخري ", "Please refresh the page and try again", MessageType.Error);
                 }
             }
         });
-
-
     }
 
     function Assign() {
@@ -1197,8 +1189,6 @@ namespace USERS {
     }
 
     function Assign_BRANCH() {
-
-        debugger;
         Master.BRANCHDetailsModel = new Array<G_USER_BRANCH>();
         var StatusFlag: string;
         for (var i = 0; i < CountGridBarnch; i++) {
@@ -1244,18 +1234,49 @@ namespace USERS {
                 BRANCHsingleModel.PRINT = $("#PRINT" + i).prop('checked');
                 BRANCHsingleModel.VIEW = true;
                 Master.BRANCHDetailsModel.push(BRANCHsingleModel);
-
             }
         }
     }
      
     function btnShow_onclick() {
         BindUserGrid();
-        $("#btnedite").removeClass("display_none");
-        $("#btnAdd").removeClass("display_none");
-        $("#divdataa :input").prop("disabled", true);
-        $("#btnedite").removeAttr("disabled");
+        //$("#btnedite").removeClass("display_none");
+        //$("#btnAdd").removeClass("display_none");
+        //$("#divdataa :input").prop("disabled", true);
+        //$("#btnedite").removeAttr("disabled");
         $("#id_UsersGrid").removeClass("display_none");
+    }
+
+    function btnDelete_onclick() {
+        Ajax.Callsync({
+            type: "Get",
+            url: sys.apiUrl("G_USERS", "DeleteUser"),
+            data: {
+                CompCode: SharedButtons.compcode,
+                UserCode: txtUSER_CODE.value,
+                LoginUserCode: UserCode,
+                Token: "HGFD-" + Token
+            },
+            success: (d) => {
+                let result = d as BaseResponse;
+                if (result.IsSuccess) {
+                    MessageBox.Toastr((lang == "ar" ? "تم الحذف" : "Deleted Success"), "", ToastrTypes.success);
+                    SharedWork.SwitchModes(ScreenModes.NoData);
+                    DocumentActions.allElements(true, true, Model);
+                    BindUserGrid();
+                    $("#txtCustomerCode").val('');
+                    $("#txtCustomer").val('');
+                    $("#txtUSER_NAME").val('');
+                    $("#txtCreatedAt").val('');
+                    $("#txtUpdatedBy").val('');
+                    $("#txtUpdatedAt").val('');
+                    $("#drpuserType_2").val(null).trigger('change');
+                }
+                else {
+                    MessageBox.Toastr((lang == "ar" ? "لم يتم الحذف" : "Deleted Field"), "", ToastrTypes.success);
+                }
+            }
+        });
     }
 
     function btnsave_onClick() {
@@ -1280,10 +1301,10 @@ namespace USERS {
             MessageBox.Toastr(lang == "ar" ? "يجب اختيار صلاحية للمستخدم": "You must choose a Role for the user", res.Erorr, ToastrTypes.error);
             Errorinput(drpRoles);
         }
+
         if (CanAdd) {
             Update();
         }
-
     }
 
     function btnAdd_onClick() {
@@ -1303,7 +1324,7 @@ namespace USERS {
         $("#drpRoles").removeClass("display_none");
         $("#txtRoleRemarks").removeClass("display_none");
         $("#Ch_RoleActive").removeClass("display_none");
-        $("#btnsearch").attr("disabled", "disabled");
+        //$("#btnsearch").attr("disabled", "disabled");
         $("#drpuserType_2").prop("value", "null");
 
         Get_All_BRANCH_From_GBranch();
@@ -1325,7 +1346,7 @@ namespace USERS {
         $("#divdataa :input").prop("disabled", false);
         DisableNoEditControls();
         for (var i = 0; i < List_Roles.length; i++) {
-            $("#btn_minus" + i).removeClass("display_none");
+            $("#btn_minus" + i).prop("disabled", false);
             $("#CheckISActive" + i).removeAttr("disabled");
         }
         $("#btnedite").addClass("display_none");
@@ -1341,7 +1362,7 @@ namespace USERS {
         $('#btnAddDetails').removeClass("display_none");
         $("#div_plassAddDetails").removeClass("display_none");
 
-        $("#btnsearch").attr("disabled", "disabled");
+        //$("#btnsearch").attr("disabled", "disabled");
 
         for (var i = 0; i < CountGridBarnch; i++) {
             $("#EXECUTE" + i).removeAttr("disabled");
@@ -1355,6 +1376,9 @@ namespace USERS {
     }
 
     function btnback_onclick() {
+        if (IsNullOrEmpty(USER_CODE))
+            SharedWork.SwitchModes(ScreenModes.NoData);
+
         if (Flag_Mastr == 'i') {
             $("#div_Data").html("");
             $("#divdataa :input").val("");
@@ -1364,7 +1388,7 @@ namespace USERS {
             $("#div_grid").removeClass("disabledDiv"); 
             $("#btnAdd").removeClass("display_none");
             $("#btnAdd").removeAttr("disabled"); 
-            $("#btnsearch").removeAttr("disabled");
+            //$("#btnsearch").removeAttr("disabled");
             $('#btnAddDetails').addClass("display_none");
             $("#divdataa :input").prop("disabled", true);  
             $("#drpRoles").addClass("display_none");
@@ -1391,7 +1415,7 @@ namespace USERS {
             $("#div_Data").addClass("disabledDiv"); 
             $("#btnBlock_permissions").attr("disabled", "disabled");
             $("#btnGive_assignments").attr("disabled", "disabled"); 
-            $("#btnsearch").removeAttr("disabled");
+            //$("#btnsearch").removeAttr("disabled");
             $("#div_plassAddDetails").addClass("display_none"); 
             $("#drpRoles").addClass("display_none");
             $("#txtRoleRemarks").addClass("display_none");
@@ -1399,7 +1423,7 @@ namespace USERS {
 
             Roleetailsf = new Array<G_Role>();
             DisableControls();
-            GridDoubleClick(UserCode);
+            GridDoubleClick(USER_CODE);
         }
     }
 
@@ -1413,37 +1437,12 @@ namespace USERS {
     }
 
     function btnSearch_onclick() {
-
         let sys: SystemTools = new SystemTools();
-        sys.FindKey(Modules.USERS, "btnUSERS", "", () => {
+        sys.FindKey(Modules.USERS, SharedButtons.btnSearch.id, "CompCode = '" + SharedButtons.compcode + "'", () => {
             let id = SearchGrid.SearchDataGrid.SelectedKey;
- 
-            alert(id)
             if (!IsNullOrEmpty(id)) {
-                Ajax.Callsync({
-                    type: "Get",
-
-                    url: sys.apiUrl("A_REC_CUSTOMER", "GetBycode"),
-                    data: { CST_CODE: id, comp: SharedButtons.compcode, UserCode: UserCode, Token: "HGFD-" + Token },
-                    success: (d) => {
-
-                        let result = d as BaseResponse;
-                        if (result.IsSuccess) {
-
-                            let Cust = result.Response as G_USERS;
-                            if (lang == "en") {
-                                $("#txtCustomer").val(Cust.USER_CODE);
-                            }
-                            else {
-                                $("#txtCustomer").val(Cust.USER_CODE);
-                            }
-                        }
-                    }
-                });
+                GridDoubleClick(id);
             }
-
-
         });
-
     }
 } 

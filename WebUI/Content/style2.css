@@ -1032,3 +1032,7 @@ td input, td select {
 .No_Row {
     border-bottom: 1px solid #e1e1e1;
 }
+
+.LEPEL_padingrightuser2, .style_pading {
+    text-align: center
+}

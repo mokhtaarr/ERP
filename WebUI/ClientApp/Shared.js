@@ -111,8 +111,6 @@ var SharedWork = /** @class */ (function () {
                 SharedButtons.btnAdd.disabled = true;
                 SharedButtons.btnEdit.disabled = true;
                 SharedButtons.btnDelete.disabled = true;
-                SharedButtons.btnsave.disabled = false;
-                SharedButtons.btnUndo.disabled = false;
                 SharedButtons.btnPreview.disabled = true;
                 SharedButtons.btnPrint.disabled = true;
                 SharedButtons.btnRefrash2.disabled = true;
@@ -120,6 +118,8 @@ var SharedWork = /** @class */ (function () {
                 NavigateModule.btnPrev.disabled = true;
                 NavigateModule.btnLast.disabled = true;
                 NavigateModule.btnFirst.disabled = true;
+                SharedButtons.btnsave.disabled = false;
+                SharedButtons.btnUndo.disabled = false;
                 this.disabledTableOrNot(true);
                 $(".xaddable").attr("disabled", "disabled");
                 $(".addable").removeAttr("disabled");
@@ -130,8 +130,6 @@ var SharedWork = /** @class */ (function () {
                 SharedButtons.btnAdd.disabled = true;
                 SharedButtons.btnEdit.disabled = true;
                 SharedButtons.btnDelete.disabled = true;
-                SharedButtons.btnsave.disabled = false;
-                SharedButtons.btnUndo.disabled = false;
                 SharedButtons.btnPreview.disabled = true;
                 SharedButtons.btnPrint.disabled = true;
                 SharedButtons.btnRefrash2.disabled = true;
@@ -139,6 +137,8 @@ var SharedWork = /** @class */ (function () {
                 NavigateModule.btnPrev.disabled = true;
                 NavigateModule.btnLast.disabled = true;
                 NavigateModule.btnFirst.disabled = true;
+                SharedButtons.btnsave.disabled = false;
+                SharedButtons.btnUndo.disabled = false;
                 this.disabledTableOrNot(true);
                 $(".xeditable").attr("disabled", "disabled");
                 $(".editable").removeAttr("disabled");
@@ -147,11 +147,11 @@ var SharedWork = /** @class */ (function () {
                 $("[name=btnSearch]").prop('disabled', true);
                 break;
             case ScreenModes.Query:
+                SharedButtons.btnsave.disabled = true;
+                SharedButtons.btnUndo.disabled = true;
                 SharedButtons.btnAdd.disabled = false;
                 SharedButtons.btnEdit.disabled = false;
                 SharedButtons.btnDelete.disabled = false;
-                SharedButtons.btnsave.disabled = true;
-                SharedButtons.btnUndo.disabled = true;
                 SharedButtons.btnPreview.disabled = false;
                 SharedButtons.btnPrint.disabled = false;
                 SharedButtons.btnRefrash2.disabled = false;
@@ -169,7 +169,6 @@ var SharedWork = /** @class */ (function () {
                 $("[name=btnSearch]").prop('disabled', false);
                 break;
             case ScreenModes.NoData:
-                SharedButtons.btnAdd.disabled = false;
                 SharedButtons.btnEdit.disabled = true;
                 SharedButtons.btnDelete.disabled = true;
                 SharedButtons.btnsave.disabled = true;
@@ -177,6 +176,7 @@ var SharedWork = /** @class */ (function () {
                 SharedButtons.btnPreview.disabled = true;
                 SharedButtons.btnPrint.disabled = true;
                 SharedButtons.btnRefrash2.disabled = true;
+                SharedButtons.btnAdd.disabled = false;
                 this.disabledTableOrNot(false);
                 $(".xaddable").attr("disabled", "disabled");
                 $(".xeditable").attr("disabled", "disabled");
@@ -187,7 +187,6 @@ var SharedWork = /** @class */ (function () {
                 $("[name=btnSearch]").prop('disabled', false);
                 break;
             case ScreenModes.Start:
-                SharedButtons.btnAdd.disabled = false;
                 SharedButtons.btnEdit.disabled = true;
                 SharedButtons.btnDelete.disabled = true;
                 SharedButtons.btnsave.disabled = true;
@@ -195,6 +194,7 @@ var SharedWork = /** @class */ (function () {
                 SharedButtons.btnPreview.disabled = true;
                 SharedButtons.btnPrint.disabled = true;
                 SharedButtons.btnRefrash2.disabled = true;
+                SharedButtons.btnAdd.disabled = false;
                 this.disabledTableOrNot(false);
                 $(".xaddable").removeAttr("disabled");
                 $(".xeditable").removeAttr("disabled");

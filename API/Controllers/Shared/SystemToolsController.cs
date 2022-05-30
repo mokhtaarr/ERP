@@ -923,7 +923,10 @@ namespace Inv.API.Controllers
             {
                 foreach (var item in nameAndValueInSearch)
                 {
-                    if(!string.IsNullOrEmpty(item.Value))
+                    if (!string.IsNullOrEmpty(Condition))
+                        Condition = Condition + " and ";
+
+                    if (!string.IsNullOrEmpty(item.Value))
                         Condition += item.Name + " like '%" + item.Value + "%' and ";
                 }
                 if (!string.IsNullOrEmpty(Condition))

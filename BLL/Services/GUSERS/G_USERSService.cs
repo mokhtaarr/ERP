@@ -62,6 +62,7 @@ namespace Inv.BLL.Services.GUSERS
             unitOfWork.Repository<G_USERS>().Delete(id);
             unitOfWork.Save();
         }
+        
 
         public Boolean CheckUser(string Guid, string uCode)
 
