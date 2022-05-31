@@ -3349,4 +3349,10 @@
   <data name="SuppliersTypes" xml:space="preserve">
     <value>انواع الموردين</value>
   </data>
+  <data name="Search_fields" xml:space="preserve">
+    <value>حقول البحث</value>
+  </data>
+  <data name="Search_screen_settings" xml:space="preserve">
+    <value>اعدادات شاشة البحث</value>
+  </data>
 </root>

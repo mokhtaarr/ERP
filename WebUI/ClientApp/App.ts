@@ -1,5 +1,5 @@
 ﻿enum ScreenModes {
-    Query, Add, Edit,NoData,Start
+    Query, Add, Edit, NoData, Start
 }
 
 enum ToastrTypes {
@@ -24,9 +24,9 @@ var Modules = {
     DefBranches: "DefBranches",
     Clientaccstat: "Clientaccstat",
     USERS: "USERS",
-    CurrencyCategory:"CurrencyCategory",
-    Hr_Departments:"Hr_Departments",
-    MSGA_City:"MSGA_City",
+    CurrencyCategory: "CurrencyCategory",
+    Hr_Departments: "Hr_Departments",
+    MSGA_City: "MSGA_City",
     Sys_Books: "Sys_Books",
     Sr_VehicleTypes: "Sr_VehicleTypes",
     Sr_VehicleShapes: "Sr_VehicleShapes",
@@ -43,10 +43,10 @@ var Modules = {
     Ms_Terms: "Ms_Terms",
     MS_BoxBank: "MS_BoxBank",
     MS_Taxes: "MS_Taxes",
-    MS_Expenses:"MS_Expenses",
+    MS_Expenses: "MS_Expenses",
     Sys_FinancialYears: "Sys_FinancialYears",
     Ms_ReceiptNote: "Ms_ReceiptNote",
-    MS_PaymentNote:"MS_PaymentNote",    
+    MS_PaymentNote: "MS_PaymentNote",
 
     ///////// Setting ///////////
     Search: "Search",
@@ -79,7 +79,7 @@ var MessageType = {
     Succeed: '1',
     Worning: '3',
 }
- 
+
 var Keys = {
     Enter: "Enter"
 };
@@ -215,7 +215,7 @@ interface IJsGridColumn {
     valueField?: string;
     textField?: string;
     value?: string;
-    
+
     _createEditButton?: any;
     //updateItem?: any;
     itemTemplate?: any;
@@ -460,13 +460,13 @@ function NavigateToSearchResult(Navigate: () => void) {
 //        data: { actionName: actionName, controllerName: controllerName }
 //    }).responseJSON).result as string
 //};
- var Url = {
+var Url = {
     Action: (actionName: string, controllerName: string) => (
         location.origin + "/" + controllerName + "/" + actionName
     )
 };
 
-var Ajax = {   
+var Ajax = {
     Call: <T>(settings: JQueryAjaxSettings): T => {
         try {
             ////debugger
@@ -484,7 +484,7 @@ var Ajax = {
         }
     },
     CallAsync: <T>(settings: JQueryAjaxSettings) => {
-       // CheckTime();
+        // CheckTime();
         //run_waitMe();
         $.ajax({
             type: settings.type,
@@ -506,7 +506,7 @@ var Ajax = {
         })
     },
     Callsync: <T>(settings: JQueryAjaxSettings) => {
-       // CheckTime();
+        // CheckTime();
         //run_waitMe();
         $.ajax({
             type: settings.type,
@@ -601,7 +601,14 @@ var DocumentActions = {
             RequiredElements.push(element);
         }
     },
-
+    BuildAwesomeCheckBox(name: string, checked: boolean, labelText: string) {
+        let checkBox = '<div class="d-flex align-items-center justify-content-around row">' +
+            (!IsNullOrEmpty(labelText) ? ('<label for="' + name + '">' + labelText + '</label>') : '') +
+            '<div class="switch-button switch-button-yesno">' +
+            '<input ' + (checked ? "checked" : "") + ' type="checkbox" name="' + name + '" id="' + name + '"><span>' +
+            '<label for= "' + name + '" > </label> </span ></div> </div>';
+        return checkBox;
+    },
     SetExchangeElements: (ArElement: HTMLInputElement, EnElement: HTMLInputElement) => {
         exchangeElements = new Array<HTMLInputElement>();
         exchangeElements.push(ArElement);
@@ -807,7 +814,7 @@ var DocumentActions = {
     },
 
     ///////////////////////// Abdurahman ////////////////////////////
-    allElements: <T>(isVisible: boolean, clear: boolean, model: T): T => {
+    allElements: <T>(disabled: boolean, clear: boolean, model: T): T => {
         if (model != null) {
             let properties = Object.getOwnPropertyNames(model);
             for (var i = 0; i < properties.length; i++) {
@@ -819,11 +826,11 @@ var DocumentActions = {
                     else if (element.name == SharedButtons.btnSearch.name)
                         continue;
                     else {
-                        element.disabled = isVisible;
+                        element.disabled = disabled;
                         if (element.type == "radio") {
                             let newElement = document.getElementsByName(properties[i]);
                             for (var v = 0; v < newElement.length; v++) {
-                                $(newElement[v]).prop('disabled', isVisible);
+                                $(newElement[v]).prop('disabled', disabled);
                                 $(newElement[v]).val(clear ? '' : $(newElement[v]).val());
                             }
                         }
@@ -850,16 +857,16 @@ var DocumentActions = {
                     else
                         element.value = clear ? '' : model[properties[i]];
 
-                    element.disabled = isVisible;
+                    element.disabled = disabled;
                     if (element.type == "radio") {
                         let newElement = document.getElementsByName(properties[i]);
                         for (var v = 0; v < newElement.length; v++) {
-                            $(newElement[v]).prop('disabled', isVisible);
+                            $(newElement[v]).prop('disabled', disabled);
                             $(newElement[v]).val(clear ? '' : $(newElement[v]).val());
                         }
                     } else if (element.type == "checkbox")
-                        $('#' + element.id).prop('disabled', isVisible);
-                        //$('#' + element.id).prop('checked', isVisible);
+                        $('#' + element.id).prop('disabled', disabled);
+                    //$('#' + element.id).prop('checked', isVisible);
 
                     if (element.type == "select-one") {
                         $('#' + element.id).val('null');
@@ -874,6 +881,15 @@ var DocumentActions = {
     GetElementByName: (name: string) => {
         let element = document.getElementsByName(name)[0] as HTMLInputElement;
         return element;
+    },
+
+    ConvertToSelect2: (id: string, ) => {
+        $('#' + id).select2();
+            //.trigger('change');
+    },
+
+    ConvertAll_InGridToSelect2: (gridId: string, ) => {
+        $('#' + gridId + ' select').select2();
     },
 
     ///////////////////////// Abdurahman ////////////////////////////
@@ -961,7 +977,7 @@ var DocumentActions = {
             }
             combo.add(new Option(NameDefult, null));
             for (let i: number = 0; i < dataSource.length; i++) {
-                let name = (codeField != " " ? dataSource[i][codeField] + " - " : "") + " " +  dataSource[i][textField];
+                let name = (codeField != " " ? dataSource[i][codeField] + " - " : "") + " " + dataSource[i][textField];
                 let id = dataSource[i][idtField];
                 combo.add(new Option(name, id));
             }
@@ -1001,7 +1017,7 @@ var DocumentActions = {
     },
 
     FillComboWithDefultArrayOneValue: (dataSource: Array<any>, combo: HTMLSelectElement, key: any, value: any, NameDefult: any, Custtom?: any) => {
-        if(combo != null) {
+        if (combo != null) {
             for (let i: number = combo.length; i >= 0; i--) {
                 combo.remove(i);
             }
@@ -1100,7 +1116,7 @@ function DateFormat(dateForm: string): string {
 }
 
 function DateFormatRep(dateForm: string): string {
-  
+
     try {
         var date: Date = new Date();
         let myDate: string = "";
@@ -1124,7 +1140,7 @@ function DateFormatRep(dateForm: string): string {
         //The specified value "'2018-01-15'" does not conform to the required format, "dd/MM/yyyy".
         var startDate = day + "/" + month + "/" + year;
 
-        
+
 
         return startDate;
     } catch (e) {
@@ -1132,7 +1148,7 @@ function DateFormatRep(dateForm: string): string {
     }
 }
 
-function GetTime(){
+function GetTime() {
     var date: Date = new Date();
     var hours = date.getHours();
     var minutes = date.getMinutes();
@@ -1149,35 +1165,32 @@ function GetTime(){
 function GetVat(Nature: number, Prc: number, VatType: number) {
 
     var Tax_Type_Model: Tax_Type = new Tax_Type();
-    
-    if (VatType == 1 || VatType == 7 || VatType == 4)
-    {
+
+    if (VatType == 1 || VatType == 7 || VatType == 4) {
         Tax_Type_Model.Nature = Nature;
         Tax_Type_Model.Prc = Prc;
         Tax_Type_Model.VatType = VatType;
-        
+
         return Tax_Type_Model;
     }
-    if (VatType == 5 || VatType == 2)
-    { 
+    if (VatType == 5 || VatType == 2) {
         Tax_Type_Model.Nature = 2;
         Tax_Type_Model.Prc = 0;
         Tax_Type_Model.VatType = VatType;
 
         return Tax_Type_Model;
     }
-    if (VatType == 3 || VatType == 6)
-    { 
+    if (VatType == 3 || VatType == 6) {
         Tax_Type_Model.Nature = 4;
         Tax_Type_Model.Prc = 0;
         Tax_Type_Model.VatType = VatType;
 
         return Tax_Type_Model;
     }
-    
+
 
 }
- 
+
 function DateTimeFormat(dateForm: string): string {
     try {
 
@@ -1221,7 +1234,7 @@ function ConvertToDateDash(date: string): Date {
 
         let x = date.split(" ");
         let dt = x[0].split("-");
-        
+
 
 
         let year = dt[0];
@@ -1229,7 +1242,7 @@ function ConvertToDateDash(date: string): Date {
         let day = dt[2];
 
 
-        var startDate = year + "-" + month + "-" + day + "T00:00:00" ;
+        var startDate = year + "-" + month + "-" + day + "T00:00:00";
         let form_date = new Date(startDate);
         return form_date;
     } catch (e) {
@@ -1478,22 +1491,22 @@ function DisplayMassage(msg_Ar: string, msg_En: string, msg_type: string, OnOk?:
         $('#Text_Massage').html(msg_Ar);
 
     if (msg_type == '1') {
-        
+
         //$('#DivMassage').attr('class', 'col-lg-12  margingred  borderred');
         //$('#DivMassage').attr('style', ' border-style: solid;border: solid;border-color: #5cb702; background-color : #4612128f !important	');
         //$('#Text_Massage').attr('style', 'text-align: center;font-weight: bold;color: #5cb702;margin-top: 14px;  margin-left: 10%; margin-right: 6%;');
 
         //setTimeout(function () { $('#DivMassage').attr('style', ' border-style: solid;border: solid;border-color: #5cb702; display: none; '); }, 6000);
-         
+
         $('#DivMassage').attr('class', 'col-lg-12  margingred  borderred');
         $('#DivMassage').attr('style', ' border-style: solid;border: solid;border-color: #5cb702; background-color : #009605 !important	');
         $('#Text_Massage').attr('style', 'text-align: center;font-weight: bold;color: #ffffff;margin-top: 14px;  margin-left: 10%; margin-right: 6%;');
 
         setTimeout(function () { $('#DivMassage').attr('style', ' border-style: solid;border: solid;border-color: #5cb702; display: none; '); }, 6000);
-        
+
     }
     else if (msg_type == '2') {
-       
+
         //$('#DivMassage').attr('class', 'col-lg-12  margingred  borderred');
         //$('#DivMassage').attr('style', ' border-style: solid;border: solid;border-color: #e41b1b; background-color : #4612128f !important	');
         //$('#Text_Massage').attr('style', 'text-align: center;font-weight: bold;color: #e41b1b;margin-top: 14px;  margin-left: 10%;  margin-right: 6%;');
@@ -1507,7 +1520,7 @@ function DisplayMassage(msg_Ar: string, msg_En: string, msg_type: string, OnOk?:
         setTimeout(function () { $('#DivMassage').attr('style', ' border-style: solid;border: solid;border-color: #e41b1b; display: none; '); }, 6000);
     }
     else if (msg_type == '3') {
-      
+
         //$('#DivMassage').attr('class', 'col-lg-12  margingred  borderred');
         //$('#DivMassage').attr('style', ' border-style: solid;border: solid;border-color: #f0ad4e; background-color : #123a468f !important	');
         //$('#Text_Massage').attr('style', 'text-align: center;font-weight: bold;color: #f0ad4e;margin-top: 14px;  margin-left: 10%;  margin-right: 6%;');
@@ -1551,7 +1564,7 @@ function DisplayMassage_Processes(msg_Ar: string, msg_En: string, msg_type: stri
     else if (msg_type == '3') {
         $('#DivMassage').attr('class', 'col-lg-12  margingred  borderred');
         $('#DivMassage').attr('style', ' border-style: solid;border: solid;border-color: #f0ad4e; background-color : #000000 !important	');
-        $('#Text_Massage').attr('style', 'text-align: center;font-weight: bold;color: #f0ad4e;margin-top: 14px;  margin-left: 10%;  margin-right: 6%;'); 
+        $('#Text_Massage').attr('style', 'text-align: center;font-weight: bold;color: #f0ad4e;margin-top: 14px;  margin-left: 10%;  margin-right: 6%;');
 
         setTimeout(function () { $('#DivMassage').attr('style', ' border-style: solid;border: solid;border-color: #e41b1b; display: none; '); }, 7000);
 
@@ -1562,7 +1575,7 @@ function Errorinput(input: any) {
     if (input.selector != null) {
         $('' + input.selector + '').addClass('text_Mandatory');
         $('' + input.selector + '').focus();
-        setTimeout(function () { $('' + input.selector + '').removeClass('text_Mandatory'); }, 5000); 
+        setTimeout(function () { $('' + input.selector + '').removeClass('text_Mandatory'); }, 5000);
     }
     else {
         input.classList.add('text_Mandatory');
@@ -1723,7 +1736,7 @@ function CreateDropdownList<T>(arr: Array<T>, Name_Ar: string, Name_En: string, 
     let element = document.createElement("select") as HTMLSelectElement;
     element.className = "form-control input-sm";
     if (IsSelectNull == true)
-        element.options.add(new Option((Env.Language == "ar"? "لا يوجد":"Nothing"), "null"));
+        element.options.add(new Option((Env.Language == "ar" ? "لا يوجد" : "Nothing"), "null"));
     switch (Env.Language) {
         case "ar":
             for (var item of arr) {
@@ -1760,10 +1773,13 @@ function CreateDropdownListWithCode<T>(arr: Array<T>, Name_Ar: string, Name_En: 
     return element;
 }
 
-function CreateDropdownListOneValue(arr: Array<string>, IsSelectNull: Boolean = false): HTMLSelectElement {
+function CreateDropdownListOneValue(arr: Array<string>, IsSelectNull: Boolean = false, id: string = ""): HTMLSelectElement {
     var Env = GetSystemEnvironment();
     let element = document.createElement("select") as HTMLSelectElement;
+    element.id = id;
+    //$('#' + element.id).select2();
     element.className = "form-control input-sm";
+
     if (IsSelectNull == true)
         element.options.add(new Option(" ", "null"));
     switch (Env.Language) {
@@ -1779,6 +1795,7 @@ function CreateDropdownListOneValue(arr: Array<string>, IsSelectNull: Boolean = 
             break;
     }
     $(element.firstElementChild).prop("disabled", true);
+    //$('#'+element.id).trigger('change');
     return element;
 }
 
@@ -1858,8 +1875,7 @@ function OpenPopUp(moduleCode: string, PopupBody: string, PopupDialog: string) {
 
 }
 //to be validated  in insert / update all trnasacations 
-function CheckDate(TrDate: string, StDt: string, EdDt: string): boolean
-{
+function CheckDate(TrDate: string, StDt: string, EdDt: string): boolean {
 
 
     ////debugger
@@ -1870,12 +1886,12 @@ function CheckDate(TrDate: string, StDt: string, EdDt: string): boolean
     if ((check <= to && check >= from))
         return (true);
     else
-        return false; 
+        return false;
 
-  
+
 
 }
- 
+
 function ThousandsSeparator(num: number): string {
     let numAsString = num.toString();
 
@@ -1930,14 +1946,14 @@ function convertToG(date: string) {
 function CheckTime() {
     var SysSession: SystemSession = GetSystemSession();
 
-     var timelogin;
+    var timelogin;
     var dt = new Date();
-    var timenow =    dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
-    var LastAccess = localStorage.getItem("LastAccess");  
-    var SysTimeOut = localStorage.getItem("startTimeOut");      
+    var timenow = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+    var LastAccess = localStorage.getItem("LastAccess");
+    var SysTimeOut = localStorage.getItem("startTimeOut");
     timelogin = LastAccess
     var timeout = CompareTime(timenow, timelogin);
-    localStorage.setItem("LastAccess", timenow) 
+    localStorage.setItem("LastAccess", timenow)
     var newSysTimeOut;
 
     try {
@@ -1949,19 +1965,19 @@ function CheckTime() {
         }
 
     } catch (e) {
-        newSysTimeOut = 10; 
+        newSysTimeOut = 10;
     }
-   
-    if (timeout > newSysTimeOut || timeout < 0)    
+
+    if (timeout > newSysTimeOut || timeout < 0)
         MessageBox.Show("لقد استنفذت وقت الجلسة، يجب معاودة الدخول مرة اخري ", "System Time out , Please relogin ", function () {
-            document.cookie = "Inv1_systemProperties=" + null + ";expires=Fri, 31 Dec 2030 23:59:59 GMT;path=/"; 
+            document.cookie = "Inv1_systemProperties=" + null + ";expires=Fri, 31 Dec 2030 23:59:59 GMT;path=/";
             document.cookie = "Inv1_Privilage=" + null + ";expires=Fri, 31 Dec 2030 23:59:59 GMT;path=/";
             document.cookie = "Privilage=" + null + ";expires=Fri, 31 Dec 2030 23:59:59 GMT;path=/";
 
             window.location.href = "/Login/LoginIndex";
         }), 1000;
 
-    } 
+}
 
 function Get_PriceWithVAT(item_unitprice: number, VatPRc: number, flag_PriceWithVAT: boolean) {
     //debugger
@@ -1993,14 +2009,10 @@ function Get_PriceWithVAT(item_unitprice: number, VatPRc: number, flag_PriceWith
 function CompareTime(t1: string, t2: string): number {
     // add days 
     ////debugger;
-
     var h1: number = Number(t1.slice(0, 2));
     var m1: number = Number(t1.slice(3, 5));
-
     var h2: number = Number(t2.slice(0, 2));
     var m2: number = Number(t2.slice(3, 5));
     var h3: number = (h1 - h2) * 60 + (m1 - m2);
-    
     return h3;
-     
 } 

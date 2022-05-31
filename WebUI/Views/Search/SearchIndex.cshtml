@@ -2,144 +2,132 @@
 
 @{
     Layout = "~/Views/Shared/Layout.cshtml";
+    ViewBag.Title = SystemResource.SearchWindow;
 }
 
-<style>
-    .customChackboxs {
-        border: 1px solid #0f9eba;
-        border-radius: 3px;
-    }
+<div class="row">
+    <div class="col-12 bg-white pt-3 pb-2 rounded">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-searchWindow-tab" data-toggle="tab" href="#searchWindow" role="tab" aria-controls="nav-searchWindow" aria-selected="true"> <i class="fa fa-book"></i> @SystemResource.BasicData</a>
+                <a class="nav-item nav-link" id="nav-setting-tab" data-toggle="tab" href="#setting" role="tab" aria-controls="nav-setting" aria-selected="false"> <i class="fa fa-book"></i> @SystemResource.Search_screen_settings</a>
+                <a class="nav-item nav-link" id="nav-searchColumn-tab" data-toggle="tab" href="#searchColumn" role="tab" aria-controls="nav-searchColumn" aria-selected="false"> <i class="fa fa-book"></i> @SystemResource.Search_fields</a>
+            </div>
+        </nav>
 
-    .chackboxs {
-        font-size: 14px;
-    }
-
-        .chackboxs label {
-            margin-top: 3px;
-        }
-
-        .chackboxs input {
-            width: 35px;
-        }
-
-    input[type="date"] {
-        border: unset;
-        margin-top: -2px;
-    }
-</style>
-
-<div id="content_report" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-    <div class="container col-xs-12">
-        <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#searchWindow">شاشة البحث</a></li>
-            <li><a data-toggle="tab" href="#setting">اعدادات شاشة البحث</a></li>
-            <li><a data-toggle="tab" href="#searchColumn">حقول البحث</a></li>
-        </ul>
-        <div class="tab-content text-center">
-            <div id="searchWindow" class="tab-pane fade active in" @*style="display: flex; align-items: center;"*@>
+        <div class="tab-content text-center row" id="nav-tabContent">
+            <div id="searchWindow" class="tab-pane fade show active col-12">
                 <div class="col-md-12 row">
                     <div class="col-md-3 d-flex">
                         <label class="">@SystemResource.App_SystemPage</label>
-                        <select  class="form-control" name="ModuleCode" id="ModuleCode">
+                        <select class="form-control" name="ModuleCode" id="ModuleCode">
                             <option value="">@SystemResource.App_SystemPage</option>
                         </select>
-                        @*<input class="form-control" type="text" name="ModuleCode" id="ModuleCode" value="" placeholder="@SystemResource.App_SystemPage">*@
                     </div>
+                    
                     <div class="col-md-1">
                         <button type="button" class="src-btn btn btn-warning" id="btnSearchWindow" name="btnSearch">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
-                    @*<div class="col-md-2">
-                        <input class="form-control" type="text" name="SearchFormCode" id="SearchFormCode" value="" placeholder="كود الربط">
-                    </div>*@
+                    
                     <div class="col-md-2 d-flex">
                         <label class="">@SystemResource.App_SystemCode</label>
                         <select class="form-control" name="SystemCode" id="SystemCode">
                             <option value="">@SystemResource.App_SystemCode</option>
                         </select>
-                        @*<input class="form-control" type="text" name="SystemCode" id="SystemCode" value="" placeholder="@SystemResource.App_SystemCode">*@
                     </div>
+                    
                     <div class="col-md-3 d-flex">
                         <label class="">@SystemResource.App_SubSystemCode</label>
                         <select class="form-control" name="SubSystemCode" id="SubSystemCode">
                             <option value="">@SystemResource.App_SubSystemCode</option>
                         </select>
-                        @*<input class="form-control" type="text" name="SubSystemCode" id="SubSystemCode" value="" placeholder="@SystemResource.App_SubSystemCode">*@
                     </div>
+
                     <div class="col-md-3 d-flex">
                         <label class="">@SystemResource.App_SystemControl</label>
                         <input class="form-control" type="text" name="ControlCode" id="ControlCode" value="" placeholder="@SystemResource.App_SystemControl">
                     </div>
                 </div>
-
-                @*<div class="col-md-4">
-                    <img src="~/images/searchBk.png" style="height: 170px; transform: rotateY( 180deg);" />
-                </div>*@
             </div>
 
-            <div id="setting" class="tab-pane fade">
-                <div class="col-md-3 d-flex">
-                    <label class="">@SystemResource.DataSourceName</label>
-                    <select class="form-control" name="DataSourceName" id="DataSourceName">
-                        <option selected value="">@SystemResource.DataSourceName</option>
-                    </select>
-                    @*<input class="form-control" type="text" name="DataSourceName" id="DataSourceName" value="" placeholder="@SystemResource.DataSourceName">*@
-                </div>
-                <div class="col-md-3 d-flex">
-                    <label class="">@SystemResource.ReturnDataPropertyName</label>
-                    <select class="form-control" name="ReturnDataPropertyName" id="ReturnDataPropertyName">
-                        <option value="">@SystemResource.ReturnDataPropertyName</option>
-                    </select>
-                    @*<input class="form-control" type="text" name="ReturnDataPropertyName" id="ReturnDataPropertyName" value="" placeholder="@SystemResource.ReturnDataPropertyName">*@
-                </div>
-                <div class="col-md-3 d-flex">
-                    <label class="">@SystemResource.description</label>
-                    <input class="form-control" type="text" name="Description" id="Description" value="" placeholder="@SystemResource.description">
-                </div>
-                <div class="col-md-3 d-flex">
-                    <label class="">@SystemResource.FormTitleA</label>
-                    <input class="form-control" type="text" name="SerachFormTitleA" id="SerachFormTitleA" value="" placeholder="@SystemResource.FormTitleA">
-                </div>
-                <div class="col-md-3 d-flex">
-                    <label class="">@SystemResource.FormTitleE</label>
-                    <input class="form-control" type="text" name="SerachFormTitle" id="SerachFormTitle" value="" placeholder="@SystemResource.FormTitleE">
-                </div>
-                <div class="col-md-3 d-flex">
-                    <label class="">@SystemResource.Left</label>
-                    <input class="form-control" type="number" name="Left" id="Left" value="" placeholder="@SystemResource.Left">
-                </div>
-                <div class="col-md-3 d-flex">
-                    <label class="">@SystemResource.Top</label>
-                    <input class="form-control" type="number" name="Top" id="Top" value="" placeholder="@SystemResource.Top">
-                </div>
-                <div class="col-md-3 d-flex">
-                    <label class="">@SystemResource.Height</label>
-                    <input class="form-control" type="number" name="Height" id="Height" value="" placeholder="@SystemResource.Height">
-                </div>
-                <div class="col-md-3 d-flex" style="clear: both;">
-                    <label class="">@SystemResource.Width</label>
-                    <input class="form-control" type="number" name="Width" id="Width" value="" placeholder="@SystemResource.Width">
-                </div>
-                <div class="col-md-3 d-flex">
-                    <label class="">@SystemResource.PageSize</label>
-                    <input class="form-control" type="number" name="PageSize" id="PageSize" value="" placeholder="@SystemResource.PageSize">
-                </div>
-                <div class="col-md-3 row">
-                    <label class="form-label col-xs-4" for="IsFullScreen">@SystemResource.FullScreen</label>
-                    <input class="form-control  col-xs-1" type="checkbox" name="IsFullScreen" id="IsFullScreen" value="">
+            <div id="setting" class="tab-pane fade col-12">
+                <div class="row">
+                    <div class="col-md-3 d-flex">
+                        <label class="">@SystemResource.DataSourceName</label>
+                        <select class="form-control" name="DataSourceName" id="DataSourceName">
+                            <option selected value="">@SystemResource.DataSourceName</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3 d-flex">
+                        <label class="">@SystemResource.ReturnDataPropertyName</label>
+                        <select class="form-control" name="ReturnDataPropertyName" id="ReturnDataPropertyName">
+                            <option value="">@SystemResource.ReturnDataPropertyName</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3 d-flex">
+                        <label class="">@SystemResource.description</label>
+                        <input class="form-control" type="text" name="Description" id="Description" value="" placeholder="@SystemResource.description">
+                    </div>
+
+                    <div class="col-md-3 d-flex">
+                        <label class="">@SystemResource.FormTitleA</label>
+                        <input class="form-control" type="text" name="SerachFormTitleA" id="SerachFormTitleA" value="" placeholder="@SystemResource.FormTitleA">
+                    </div>
+
+                    <div class="col-md-3 d-flex">
+                        <label class="">@SystemResource.FormTitleE</label>
+                        <input class="form-control" type="text" name="SerachFormTitle" id="SerachFormTitle" value="" placeholder="@SystemResource.FormTitleE">
+                    </div>
+
+                    <div class="col-md-3 d-flex">
+                        <label class="">@SystemResource.Left</label>
+                        <input class="form-control" type="number" name="Left" id="Left" value="" placeholder="@SystemResource.Left">
+                    </div>
+
+                    <div class="col-md-3 d-flex">
+                        <label class="">@SystemResource.Top</label>
+                        <input class="form-control" type="number" name="Top" id="Top" value="" placeholder="@SystemResource.Top">
+                    </div>
+
+                    <div class="col-md-3 d-flex">
+                        <label class="">@SystemResource.Height</label>
+                        <input class="form-control" type="number" name="Height" id="Height" value="" placeholder="@SystemResource.Height">
+                    </div>
+
+                    <div class="col-md-3 d-flex" style="clear: both;">
+                        <label class="">@SystemResource.Width</label>
+                        <input class="form-control" type="number" name="Width" id="Width" value="" placeholder="@SystemResource.Width">
+                    </div>
+
+                    <div class="col-md-3 d-flex">
+                        <label class="">@SystemResource.PageSize</label>
+                        <input class="form-control" type="number" name="PageSize" id="PageSize" value="" placeholder="@SystemResource.PageSize">
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-around col-2">
+                        <label for="IsFullScreen" class="col-md-2">@SystemResource.FullScreen</label>
+                        <div class="switch-button switch-button-yesno">
+                            <input type="checkbox" name="IsFullScreen" id="IsFullScreen"><span>
+                                <label for="IsFullScreen"></label>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div id="searchColumn" class="tab-pane fade">
-                <div class="col-xs-12">
+            <div id="searchColumn" class="tab-pane fade col-12">
+                <div class="col-12">
                     <table id="divColumnSettingGrid"></table>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="col-xs-12">
+    <div class="col-12 bg-white mt-3 pt-3 pb-2 rounded">
         <table data-main="mainTable" id="divSearchGrid"></table>
     </div>
 </div>

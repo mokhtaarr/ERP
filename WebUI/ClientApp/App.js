@@ -470,6 +470,14 @@ var DocumentActions = {
             RequiredElements.push(element);
         }
     },
+    BuildAwesomeCheckBox: function (name, checked, labelText) {
+        var checkBox = '<div class="d-flex align-items-center justify-content-around row">' +
+            (!IsNullOrEmpty(labelText) ? ('<label for="' + name + '">' + labelText + '</label>') : '') +
+            '<div class="switch-button switch-button-yesno">' +
+            '<input ' + (checked ? "checked" : "") + ' type="checkbox" name="' + name + '" id="' + name + '"><span>' +
+            '<label for= "' + name + '" > </label> </span ></div> </div>';
+        return checkBox;
+    },
     SetExchangeElements: function (ArElement, EnElement) {
         exchangeElements = new Array();
         exchangeElements.push(ArElement);
@@ -672,7 +680,7 @@ var DocumentActions = {
         $('#' + _TextID).select2().trigger('change');
     },
     ///////////////////////// Abdurahman ////////////////////////////
-    allElements: function (isVisible, clear, model) {
+    allElements: function (disabled, clear, model) {
         if (model != null) {
             var properties = Object.getOwnPropertyNames(model);
             for (var i = 0; i < properties.length; i++) {
@@ -685,11 +693,11 @@ var DocumentActions = {
                     else if (element.name == SharedButtons.btnSearch.name)
                         continue;
                     else {
-                        element.disabled = isVisible;
+                        element.disabled = disabled;
                         if (element.type == "radio") {
                             var newElement = document.getElementsByName(properties[i]);
                             for (var v = 0; v < newElement.length; v++) {
-                                $(newElement[v]).prop('disabled', isVisible);
+                                $(newElement[v]).prop('disabled', disabled);
                                 $(newElement[v]).val(clear ? '' : $(newElement[v]).val());
                             }
                         }
@@ -715,16 +723,16 @@ var DocumentActions = {
                         element.value = clear ? '' : '';
                     else
                         element.value = clear ? '' : model[properties[i]];
-                    element.disabled = isVisible;
+                    element.disabled = disabled;
                     if (element.type == "radio") {
                         var newElement = document.getElementsByName(properties[i]);
                         for (var v = 0; v < newElement.length; v++) {
-                            $(newElement[v]).prop('disabled', isVisible);
+                            $(newElement[v]).prop('disabled', disabled);
                             $(newElement[v]).val(clear ? '' : $(newElement[v]).val());
                         }
                     }
                     else if (element.type == "checkbox")
-                        $('#' + element.id).prop('disabled', isVisible);
+                        $('#' + element.id).prop('disabled', disabled);
                     //$('#' + element.id).prop('checked', isVisible);
                     if (element.type == "select-one") {
                         $('#' + element.id).val('null');
@@ -738,6 +746,13 @@ var DocumentActions = {
     GetElementByName: function (name) {
         var element = document.getElementsByName(name)[0];
         return element;
+    },
+    ConvertToSelect2: function (id) {
+        $('#' + id).select2();
+        //.trigger('change');
+    },
+    ConvertAll_InGridToSelect2: function (gridId) {
+        $('#' + gridId + ' select').select2();
     },
     ///////////////////////// Abdurahman ////////////////////////////
     CheckCode: function (entity, code, property) {
@@ -1491,10 +1506,13 @@ function CreateDropdownListWithCode(arr, Name_Ar, Name_En, code, Key, IsSelectNu
     }
     return element;
 }
-function CreateDropdownListOneValue(arr, IsSelectNull) {
+function CreateDropdownListOneValue(arr, IsSelectNull, id) {
     if (IsSelectNull === void 0) { IsSelectNull = false; }
+    if (id === void 0) { id = ""; }
     var Env = GetSystemEnvironment();
     var element = document.createElement("select");
+    element.id = id;
+    //$('#' + element.id).select2();
     element.className = "form-control input-sm";
     if (IsSelectNull == true)
         element.options.add(new Option(" ", "null"));
@@ -1513,6 +1531,7 @@ function CreateDropdownListOneValue(arr, IsSelectNull) {
             break;
     }
     $(element.firstElementChild).prop("disabled", true);
+    //$('#'+element.id).trigger('change');
     return element;
 }
 //eslam elassal 20 oct 2020 => CreateDropdownListWithDefaultValue(K_D_ExpensesDataSource, "DescA", "DescE", "ExpenseID", "اختر",true);s

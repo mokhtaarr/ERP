@@ -287,7 +287,6 @@ var USERS;
         });
     }
     function fillddlSalesman() {
-        debugger;
         Ajax.Callsync({
             type: "Get",
             url: sys.apiUrl("AccDefSalesMen", "GetAllSalesPeople"),
@@ -401,6 +400,7 @@ var USERS;
         DisplayData_Header();
         Display_RoleUsers();
         Disbly_BuildControlsBarnch();
+        DisableControls();
         //let Userdetails = Selecte.filter(x => x.USER_CODE.toLowerCase() == UserCode);
         //if (Userdetails.length > 0) {
         //    $("#btnedite").addClass("display_none");
@@ -562,7 +562,9 @@ var USERS;
             type: "Get",
             url: sys.apiUrl("G_USERS", "GetBarnch"),
             data: {
-                CompCode: SharedButtons.compcode, UserCode: UserCode, Token: "HGFD-" + Token
+                CompCode: SharedButtons.compcode,
+                UserCode: UserCode,
+                Token: "HGFD-" + Token
             },
             success: function (d) {
                 var result = d;
@@ -577,7 +579,9 @@ var USERS;
             type: "Get",
             url: sys.apiUrl("GBranch", "GetAll"),
             data: {
-                CompCode: SharedButtons.compcode, UserCode: UserCode, Token: "HGFD-" + Token
+                CompCode: SharedButtons.compcode,
+                UserCode: UserCode,
+                Token: "HGFD-" + Token
             },
             success: function (d) {
                 var result = d;
@@ -918,16 +922,13 @@ var USERS;
                 USER_CODE: txtUSER_CODE.value, compCode: SharedButtons.compcode, UserCode: UserCode, Token: "HGFD-" + Token
             },
             success: function (d) {
-                //debugger
                 var result = d;
-                if (result.Response == 0) {
+                if (result.Response == 0)
                     res = true;
-                }
                 else
                     res = false;
             }
         });
-        //alert(res);
         return res;
     }
     function Update() {
@@ -1042,6 +1043,7 @@ var USERS;
             Master.G_USERS.USER_ACTIVE = false;
     }
     function Assign_BRANCH() {
+        debugger;
         Master.BRANCHDetailsModel = new Array();
         var StatusFlag;
         for (var i = 0; i < CountGridBarnch; i++) {

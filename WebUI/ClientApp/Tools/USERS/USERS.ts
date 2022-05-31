@@ -330,7 +330,6 @@ namespace USERS {
     }
 
     function fillddlSalesman() {
-        debugger
         Ajax.Callsync({
             type: "Get",
             url: sys.apiUrl("AccDefSalesMen", "GetAllSalesPeople"),
@@ -447,16 +446,16 @@ namespace USERS {
         Flag_Mastr = '';
         $('#div_Data').html("");
         $("#div_BasicData").removeClass("display_none");
-
         $("#div_Data").addClass("disabledDiv");
+
         var Selecte = List_Userdetails.filter(x => x.USER_CODE == USER_CODE);
         Selecteditem = Selecte[0];
         DisplayData_Header();
         Display_RoleUsers();
         Disbly_BuildControlsBarnch();
+        DisableControls(); 
 
         //let Userdetails = Selecte.filter(x => x.USER_CODE.toLowerCase() == UserCode);
-
         //if (Userdetails.length > 0) {
         //    $("#btnedite").addClass("display_none");
         //}
@@ -480,6 +479,7 @@ namespace USERS {
             chk_IsActive.checked = true;
         else
             chk_IsActive.checked = false;
+
         if (Selecteditem.USER_TYPE != null) {
             drpuserType_2.value = Selecteditem.USER_TYPE.toString();
 
@@ -488,7 +488,6 @@ namespace USERS {
                 $("#cashbox").addClass("display_none");
                 ddlSalesman.value = Selecteditem.SalesManID.toString();
                 ddlStore.value = Selecteditem.StoreID == null ? 'null' : Selecteditem.StoreID.toString();
-
             }
             else if (Selecteditem.USER_TYPE == 2) {
                 $("#cashbox").removeClass("display_none");
@@ -501,13 +500,11 @@ namespace USERS {
                 //ddlCashBox.value = Selecteditem.CashBoxID.toString();
                 ddlSalesman.value = Selecteditem.SalesManID.toString();
                 ddlStore.value = Selecteditem.StoreID == null ? 'null' : Selecteditem.StoreID.toString();
-
             }
             else {
                 $("#cashbox").addClass("display_none");
                 $("#selsman").addClass("display_none");
             }
-
         }
 
         if (!IsNullOrEmpty(Selecteditem.JobTitle)) {
@@ -583,13 +580,8 @@ namespace USERS {
             $("#txt_StatusFlag2" + i).val("");
             $("#btn_minus3" + i).addClass("display_none");
 
-
             CountGridBarnch += 1;
-
         }
-
-
-
     }
      
     function BuildControlsBarnch(cnt: number) {
@@ -648,7 +640,9 @@ namespace USERS {
             type: "Get",
             url: sys.apiUrl("G_USERS", "GetBarnch"),
             data: {
-                CompCode: SharedButtons.compcode, UserCode: UserCode, Token: "HGFD-" + Token
+                CompCode: SharedButtons.compcode,
+                UserCode: UserCode,
+                Token: "HGFD-" + Token
             },
             success: (d) => {
                 let result = d as BaseResponse;
@@ -660,40 +654,33 @@ namespace USERS {
     } 
 
     function Get_All_BRANCH_From_GBranch() {
-
         Ajax.Callsync({
             type: "Get",
             url: sys.apiUrl("GBranch", "GetAll"),
             data: {
-                CompCode: SharedButtons.compcode, UserCode: UserCode, Token: "HGFD-" + Token
+                CompCode: SharedButtons.compcode,
+                UserCode: UserCode,
+                Token: "HGFD-" + Token
             },
             success: (d) => {
                 let result = d as BaseResponse;
                 if (result.IsSuccess) {
                     ListG_BRANCH = result.Response as Array<G_BRANCH>;
-
                     $("#div_Data_BRANCH").html('');
                     CountGridBarnch = 0;
                     for (var i = 0; i < ListG_BRANCH.length; i++) {
-
                         BuildControlsBarnch(i);
-
                         $("#BRA_CODE" + i).val(ListG_BRANCH[i].BRA_CODE);
                         $("#BRA_DESC" + i).val(ListG_BRANCH[i].BRA_DESC);
-
                         $('#EXECUTE' + i).attr('checked', 'checked');
                         $('#CREATE' + i).attr('checked', 'checked');
                         $('#EDIT' + i).attr('checked', 'checked');
                         $('#DELETE' + i).attr('checked', 'checked');
                         $('#PRINT' + i).attr('checked', 'checked');
-
                         $("#txt_StatusFlag2" + i).val("i");
                         $("#btn_minus3" + i).addClass("display_none");
-
                         CountGridBarnch += 1;
-
                     }
-
                 }
             }
         });
@@ -1049,7 +1036,6 @@ namespace USERS {
     function USER_CODEFoundBefore() {
         var res: boolean = true;
         //var USER_CODE = txtUSER_CODE.value.toLowerCase();
-
         Ajax.Callsync({
             type: "Get",
             url: sys.apiUrl("G_USERS", "CodeFounBefore"),
@@ -1057,16 +1043,13 @@ namespace USERS {
                 USER_CODE: txtUSER_CODE.value, compCode: SharedButtons.compcode, UserCode: UserCode, Token: "HGFD-" + Token
             },
             success: (d) => {
-                //debugger
                 let result = d as BaseResponse;
-                if (result.Response == 0) {
+                if (result.Response == 0) 
                     res = true;
-                }
                 else
                     res = false;
             }
         });
-        //alert(res);
         return res;
     }
     
@@ -1143,6 +1126,7 @@ namespace USERS {
                         btnback_onclick(); 
                         Flag_Mastr = '';
                     }
+
                     SharedWork.SwitchModes(ScreenModes.Query);
                 }
                 else {
@@ -1189,6 +1173,7 @@ namespace USERS {
     }
 
     function Assign_BRANCH() {
+        debugger
         Master.BRANCHDetailsModel = new Array<G_USER_BRANCH>();
         var StatusFlag: string;
         for (var i = 0; i < CountGridBarnch; i++) {
@@ -1339,12 +1324,12 @@ namespace USERS {
     }
 
     function btnEdit_onclick() {
-
         $("#div_grid").addClass("disabledDiv");
         Mode = 2
         $("#div_Data").removeClass("disabledDiv");
         $("#divdataa :input").prop("disabled", false);
         DisableNoEditControls();
+
         for (var i = 0; i < List_Roles.length; i++) {
             $("#btn_minus" + i).prop("disabled", false);
             $("#CheckISActive" + i).removeAttr("disabled");

@@ -7864,11 +7864,29 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search fields.
+        /// </summary>
+        public static string Search_fields {
+            get {
+                return ResourceManager.GetString("Search_fields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search: by invoice,customer name,or salesman.
         /// </summary>
         public static string search_ins {
             get {
                 return ResourceManager.GetString("search_ins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search screen settings.
+        /// </summary>
+        public static string Search_screen_settings {
+            get {
+                return ResourceManager.GetString("Search_screen_settings", resourceCulture);
             }
         }
         

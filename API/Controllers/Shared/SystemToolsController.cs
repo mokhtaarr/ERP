@@ -918,16 +918,19 @@ namespace Inv.API.Controllers
                 return Ok();
 
             string cols = string.Empty;
+            int numb = 1;
             List<NameAndValueInSearch> nameAndValueInSearch = JsonConvert.DeserializeObject<List<NameAndValueInSearch>>(valueInSearches);
             if(nameAndValueInSearch.Count> 0)
             {
                 foreach (var item in nameAndValueInSearch)
                 {
-                    if (!string.IsNullOrEmpty(Condition))
+                    if (!string.IsNullOrEmpty(Condition) && numb == 1)
                         Condition = Condition + " and ";
 
                     if (!string.IsNullOrEmpty(item.Value))
                         Condition += item.Name + " like '%" + item.Value + "%' and ";
+
+                    numb++;
                 }
                 if (!string.IsNullOrEmpty(Condition))
                     Condition = Condition.Substring(0, Condition.LastIndexOf("and") < 0 ? 0 : Condition.LastIndexOf("and"));

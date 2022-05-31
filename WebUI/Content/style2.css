@@ -1036,3 +1036,7 @@ td input, td select {
 .LEPEL_padingrightuser2, .style_pading {
     text-align: center
 }
+
+.jsgrid-table tr td, .jsgrid-table tr th {
+    overflow:hidden
+}

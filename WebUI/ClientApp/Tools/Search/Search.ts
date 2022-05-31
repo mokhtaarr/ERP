@@ -4,9 +4,10 @@
 })
 
 namespace Search {
+    let Resource: any = GetResourceList("");
     $('#headertop1').addClass('display_none');
     $('#headertop2').removeClass('display_none');
-    let Resource: any = GetResourceList("");
+    $('#headerTitle').text(Resource.SearchWindow);
 
     var sys: SystemTools = new SystemTools();
     var SysSession: SystemSession = GetSystemSession();
@@ -98,7 +99,7 @@ namespace Search {
     }
 
     function GetAll() {
-        FillDrobDownList();
+        FillDrobDownList_InSearchWindowTap();
         Disabled(false);
         Ajax.Callsync({
             type: "Get",
@@ -120,16 +121,25 @@ namespace Search {
         DocumentActions.RenderFromModel(Model);
         if (Model != null)
         ObjectId = Model.ModuleCode;
-        SetDataSourceFroDetails(ObjectId)
+        SetDataSourceFroDetails(ObjectId);
+        DocumentActions.ConvertAll_InGridToSelect2("divColumnSettingGrid");
     }
 
     function SetDataSourceFroDetails(code: string) {
         if (!IsNullOrEmpty(code)) {
             Setting = MasterDetails.settings.filter(x => x.SearchFormCode == code)[0];
-            DocumentActions.RenderFromModel(Setting);
-            ReturnDataPropertyValue = Setting.ReturnDataPropertyName;
-            ReturnDataPropertyValue = Setting.ReturnDataPropertyName;
+            if (Setting != null) {
+                DocumentActions.RenderFromModel(Setting);
+                ReturnDataPropertyValue = Setting.ReturnDataPropertyName;
+                ReturnDataPropertyValue = Setting.ReturnDataPropertyName;
+            } else {
+                Setting = new G_SearchForm();
+                DocumentActions.allElements(true, true, Setting);
+                DocumentActions.ConvertAll_InGridToSelect2("setting");
+            }
+
             GetReturnDataPropertyName();
+
             ColumnSetting = MasterDetails.ColumnSetting.filter(x => x.SearchFormCode == code);
             divColumnSettingGrid.DataSource = ColumnSetting;
             divColumnSettingGrid.Bind();
@@ -181,7 +191,7 @@ namespace Search {
                 title: Resource.App_SystemControl, css: "ColumPadding", name: "ControlCode"
             },
             {
-                title: "ModuleCode", css: "ColumPadding disable hidden", name: "ModuleCode", width: "1%", headerTemplate: (): HTMLElement => {
+                title: "ModuleCode", css: "ColumPadding disable hidden", name: "ModuleCode", headerTemplate: (): HTMLElement => {
                     let txt = CreateElement("text", GridInputClassName, " ", " ", "ModuleCode", " ");
                     txt.disabled = true;
                     txt.id = "hd_ModuleCode";
@@ -238,6 +248,7 @@ namespace Search {
         }
         return;
     }
+
     function InitializeSettingGrid() {
         divColumnSettingGrid.ElementName = "divColumnSettingGrid";
         divColumnSettingGrid.PrimaryKey = "SearchFormSettingID";
@@ -252,13 +263,11 @@ namespace Search {
         divColumnSettingGrid.OnItemDeleting = () => { };
         divColumnSettingGrid.Columns = [
             {
-                title: "#", name: "btnAddItem", visible: true, width: "9%",
+                title: "#", name: "btnAddItem", visible: true, width: "55px",
                 headerTemplate: (): HTMLElement => {
                     let btn: HTMLButtonElement = DocumentActions.CreateElement<HTMLButtonElement>("button");
                     btn.className = TransparentButton + " editable";
                     btn.type = "button";
-                    
-                    
                     btn.innerHTML = "<span class='fa fa-plus'></span>";
                     btn.id = "btnAddItemGrid";
                     btn.onclick = (e) => {
@@ -274,20 +283,16 @@ namespace Search {
                     let btn: HTMLButtonElement = DocumentActions.CreateElement<HTMLButtonElement>("button");
                     btn.innerHTML = "<i class='fas fa-times'></i>";
                     btn.className = TransparentButton + "  red_Delete_Cotnrol editable";
-                    
                     btn.type = "button";
-                    
                     btn.name = ColumnSetting.indexOf(item).toString();
                     btn.id = "btnRemoveItemGrid";
                     btn.onclick = (e) => {
                         let index = Number((e.currentTarget as HTMLButtonElement).name);
                         //IndexOfElemntInJsGrid = index;
-
                         ColumnSetting[index].StatusFlag = "d";
                         ColumnSetting.push(ColumnSetting[index]);
                         ColumnSetting.splice(index, 1);
                         divColumnSettingGrid.Bind();
-
                         //debugger
                         //$(e.srcElement).parent().parent().parent().children().each(function (index, element) {
                         //    debugger
@@ -299,10 +304,10 @@ namespace Search {
                     };
                     return btn;
                 }
-            }
-            ,
+            },
             {
-                css: JsGridHeaderCenter, itemTemplate: (s: string, item: G_SearchFormSetting): HTMLButtonElement => {
+                css: JsGridHeaderCenter, width: "55px",
+                itemTemplate: (s: string, item: G_SearchFormSetting): HTMLButtonElement => {
                     let btn: HTMLButtonElement = DocumentActions.CreateElement<HTMLButtonElement>("button");
                     btn.innerHTML = "<i class='fa fa-edit'></i>";
                     btn.className = TransparentButton + " " + "emptrainingedit " + "green_edit_control editable";
@@ -324,8 +329,10 @@ namespace Search {
                         if (item.Datatype != null) DocumentActions.FillInputText("hd_Datatype", item.Datatype.toString());
                         if (item.FieldSequence != null) DocumentActions.FillInputText("hd_FieldSequence", item.FieldSequence.toString());
                         if (item.FieldWidth != null) DocumentActions.FillInputText("hd_FieldWidth", item.FieldWidth.toString());
+
                         if (item.IsReadOnly != null) DocumentActions.FillInputText("hd_IsReadOnly", item.IsReadOnly.toString());
                         if (item.IsSearchable != null) DocumentActions.FillInputText("hd_IsSearchable", item.IsSearchable.toString());
+
                         if (item.SearchFormCode != null) DocumentActions.FillInputText("hd_SearchFormCode", item.SearchFormCode.toString());
                         if (item.SearchFormSettingID != null) DocumentActions.FillInputText("hd_SearchFormSettingID", item.SearchFormSettingID.toString());
                         DocumentActions.FillInputText("hd_Flag", "u");
@@ -334,14 +341,14 @@ namespace Search {
                 }
             },
             {
-                title: Resource.FieldTitleA, css: "ColumPadding", name: "FieldTitleA", headerTemplate: (): HTMLElement => {
+                title: Resource.FieldTitleA, css: "ColumPadding", name: "FieldTitleA", width: "155px", headerTemplate: (): HTMLElement => {
                     let txt = CreateElement("text", GridInputClassName, " ", " ", "FieldTitleA", " ");
                     txt.id = "hd_FieldTitleA";
                     return HeaderTemplate(Resource.FieldTitleA, txt);
                 }
             },
             {
-                title: Resource.FieldTitleE, css: "ColumPadding", name: "FieldTitle", headerTemplate: (): HTMLElement => {
+                title: Resource.FieldTitleE, css: "ColumPadding", name: "FieldTitle", width: "155px", headerTemplate: (): HTMLElement => {
                     let txt = CreateElement("text", GridInputClassName, " ", " ", "FieldTitle", " ");
                     txt.id = "hd_FieldTitle";
                     return HeaderTemplate(Resource.FieldTitleE, txt);
@@ -351,16 +358,14 @@ namespace Search {
             //    title: Resource.AlternateDataMember, css: "ColumPadding", name: "AlternateDataMember", headerTemplate: (): HTMLTableElement => {
             //        let txt = CreateDropdownListOneValue(ReturnDataPropertyvalueArr, true);
             //        txt.id = "hd_AlternateDataMember";
-                    
             //        return HeaderTemplate(Resource.AlternateDataMember, txt);
             //    }
             //},
             {
-                title: Resource.DataMember, css: "ColumPadding", name: "DataMember", headerTemplate: (): HTMLTableElement => {
-                    let txt = CreateDropdownListOneValue(ReturnDataPropertyvalueArr, true);
-                    txt.id = "hd_DataMember";
+                title: Resource.DataMember, css: "ColumPadding", name: "DataMember", width:"170px", headerTemplate: (): HTMLTableElement => {
+                    let txt = CreateDropdownListOneValue(ReturnDataPropertyvalueArr, true, "hd_DataMember");
+                    DocumentActions.ConvertToSelect2("hd_DataMember");
                     return HeaderTemplate(Resource.ReturnDataPropertyName, txt);
-                    //return HeaderTemplate(Resource.DataMember, txt);
                 }
             },
             {
@@ -385,21 +390,25 @@ namespace Search {
                 }
             },
             {
-                title: Resource.IsReadOnly, css: "ColumPadding", name: "IsReadOnly", headerTemplate: (): HTMLElement => {
-                    let txt = CreateElement("checkbox", GridInputClassName, " ", " ", "IsReadOnly", " ");
-                    txt.id = "hd_IsReadOnly";
-                    return HeaderTemplate(Resource.IsReadOnly, txt);
-                }
+                title: Resource.IsReadOnly, css: "ColumPadding", name: "IsReadOnly", width:"145px",
+                headerTemplate: (): string => {
+                    return DocumentActions.BuildAwesomeCheckBox("hd_IsReadOnly", null, Resource.IsReadOnly);
+                },
+                itemTemplate: (e): string => {
+                    return DocumentActions.BuildAwesomeCheckBox("hd_IsReadOnly", e, "");
+                },
             },
             {
-                title: Resource.IsSearchable, css: "ColumPadding", name: "IsSearchable", headerTemplate: (): HTMLElement => {
-                    let txt = CreateElement("checkbox", GridInputClassName, " ", " ", "IsSearchable", " ");
-                    txt.id = "hd_IsSearchable";
-                    return HeaderTemplate(Resource.IsSearchable, txt);
-                }
+                title: Resource.IsSearchable, css: "ColumPadding", name: "IsSearchable", width: "145px",
+                headerTemplate: (): string => {
+                    return DocumentActions.BuildAwesomeCheckBox("hd_IsSearchable", null, Resource.IsSearchable);
+                },
+                itemTemplate: (e): string => {
+                    return DocumentActions.BuildAwesomeCheckBox("hd_IsSearchable", e, "");
+                },
             },
             {
-                title: "Flag", css: "ColumPadding hide", name: "Flag", width: "1%",
+                title: "Flag", css: "ColumPadding hide", name: "Flag",
                 headerTemplate: (): HTMLElement => {
                     let txt = CreateElement("text", GridInputClassName, " ", " ", "Flag", " ");
                     txt.disabled = false;
@@ -408,7 +417,7 @@ namespace Search {
                 }
             },
             {
-                title: "SearchFormCode", css: "ColumPadding hide", name: "SearchFormCode", width: "1%",
+                title: "SearchFormCode", css: "ColumPadding hide", name: "SearchFormCode",
                 headerTemplate: (): HTMLElement => {
                     let txt = CreateElement("text", GridInputClassName, " ", " ", "SearchFormCode", " ");
                     txt.disabled = false;
@@ -417,7 +426,7 @@ namespace Search {
                 }
             },
             {
-                title: "SearchFormSettingID", css: "ColumPadding hide", name: "SearchFormSettingID", width: "1%",
+                title: "SearchFormSettingID", css: "ColumPadding hide", name: "SearchFormSettingID",
                 headerTemplate: (): HTMLElement => {
                     let txt = CreateElement("text", GridInputClassName, " ", " ", "SearchFormSettingID", " ");
                     txt.disabled = false;
@@ -556,9 +565,10 @@ namespace Search {
                     Model = result.Response as G_SearchFormModule;
                     ObjectId = Model.ModuleCode;
                     Success = true;
+                    MessageBox.Toastr(Resource.SavedSucc, "", ToastrTypes.success);
                 }
                 else {
-                    MessageBox.Toastr(Resource.Error, Resource.Error, ToastrTypes.error);
+                    MessageBox.Toastr(Resource.ErrorSave, Resource.Error, ToastrTypes.error);
                     Success = false;
                 }
             }
@@ -577,9 +587,10 @@ namespace Search {
                     Model = result.Response as G_SearchFormModule
                     ObjectId = Model.ModuleCode;
                     Success = true;
+                    MessageBox.Toastr(Resource.SavedSucc, "", ToastrTypes.success);
                 }
                 else {
-                    MessageBox.Toastr(Resource.Error, Resource.Error, ToastrTypes.error);
+                    MessageBox.Toastr(Resource.ErrorSave, Resource.Error, ToastrTypes.error);
                     Success = false;
                 }
             }
@@ -612,9 +623,11 @@ namespace Search {
                     Success = true;
                     GetAll();
                     Disabled(result);
+
+                    MessageBox.Toastr(Resource.DeletedSucc, "", ToastrTypes.success);
                 }
                 else {
-                    MessageBox.Toastr(Resource.Error, Resource.Error, ToastrTypes.error);
+                    MessageBox.Toastr(Resource.DeletedErr, Resource.Error, ToastrTypes.error);
                     Success = false;
                 }
             }
@@ -653,7 +666,7 @@ namespace Search {
         divColumnSettingGrid.Bind();
     }
 
-    function FillDrobDownList() {
+    function FillDrobDownList_InSearchWindowTap() {
         Ajax.Callsync({
             type: "Get",
             url: sys.apiUrl("SystemTools", "GetModulesCode"),
@@ -711,6 +724,8 @@ namespace Search {
                     MessageBox.Toastr(Resource.Error, Resource.Error, ToastrTypes.error);
             }
         });
+
+        $('#searchWindow select option:first-child').attr("disabled", "disabled");
     }
 
     $('#ModuleCode').on("change", function () {

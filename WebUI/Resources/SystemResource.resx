@@ -3351,4 +3351,10 @@
   <data name="SuppliersTypes" xml:space="preserve">
     <value>Suppliers Types</value>
   </data>
+  <data name="Search_fields" xml:space="preserve">
+    <value>Search fields</value>
+  </data>
+  <data name="Search_screen_settings" xml:space="preserve">
+    <value>Search screen settings</value>
+  </data>
 </root>

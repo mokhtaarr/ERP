@@ -4,9 +4,10 @@ $(document).ready(function () {
 });
 var Search;
 (function (Search) {
+    var Resource = GetResourceList("");
     $('#headertop1').addClass('display_none');
     $('#headertop2').removeClass('display_none');
-    var Resource = GetResourceList("");
+    $('#headerTitle').text(Resource.SearchWindow);
     var sys = new SystemTools();
     var SysSession = GetSystemSession();
     var lang = sys.SysSession.CurrentEnvironment.ScreenLanguage;
@@ -82,7 +83,7 @@ var Search;
         DataSourceName.onchange = GetReturnDataPropertyName;
     }
     function GetAll() {
-        FillDrobDownList();
+        FillDrobDownList_InSearchWindowTap();
         Disabled(false);
         Ajax.Callsync({
             type: "Get",
@@ -103,13 +104,21 @@ var Search;
         if (Model != null)
             ObjectId = Model.ModuleCode;
         SetDataSourceFroDetails(ObjectId);
+        DocumentActions.ConvertAll_InGridToSelect2("divColumnSettingGrid");
     }
     function SetDataSourceFroDetails(code) {
         if (!IsNullOrEmpty(code)) {
             Setting = MasterDetails.settings.filter(function (x) { return x.SearchFormCode == code; })[0];
-            DocumentActions.RenderFromModel(Setting);
-            ReturnDataPropertyValue = Setting.ReturnDataPropertyName;
-            ReturnDataPropertyValue = Setting.ReturnDataPropertyName;
+            if (Setting != null) {
+                DocumentActions.RenderFromModel(Setting);
+                ReturnDataPropertyValue = Setting.ReturnDataPropertyName;
+                ReturnDataPropertyValue = Setting.ReturnDataPropertyName;
+            }
+            else {
+                Setting = new G_SearchForm();
+                DocumentActions.allElements(true, true, Setting);
+                DocumentActions.ConvertAll_InGridToSelect2("setting");
+            }
             GetReturnDataPropertyName();
             ColumnSetting = MasterDetails.ColumnSetting.filter(function (x) { return x.SearchFormCode == code; });
             divColumnSettingGrid.DataSource = ColumnSetting;
@@ -161,7 +170,7 @@ var Search;
                 title: Resource.App_SystemControl, css: "ColumPadding", name: "ControlCode"
             },
             {
-                title: "ModuleCode", css: "ColumPadding disable hidden", name: "ModuleCode", width: "1%", headerTemplate: function () {
+                title: "ModuleCode", css: "ColumPadding disable hidden", name: "ModuleCode", headerTemplate: function () {
                     var txt = CreateElement("text", GridInputClassName, " ", " ", "ModuleCode", " ");
                     txt.disabled = true;
                     txt.id = "hd_ModuleCode";
@@ -232,7 +241,7 @@ var Search;
         divColumnSettingGrid.OnItemDeleting = function () { };
         divColumnSettingGrid.Columns = [
             {
-                title: "#", name: "btnAddItem", visible: true, width: "9%",
+                title: "#", name: "btnAddItem", visible: true, width: "55px",
                 headerTemplate: function () {
                     var btn = DocumentActions.CreateElement("button");
                     btn.className = TransparentButton + " editable";
@@ -275,7 +284,8 @@ var Search;
                 }
             },
             {
-                css: JsGridHeaderCenter, itemTemplate: function (s, item) {
+                css: JsGridHeaderCenter, width: "55px",
+                itemTemplate: function (s, item) {
                     var btn = DocumentActions.CreateElement("button");
                     btn.innerHTML = "<i class='fa fa-edit'></i>";
                     btn.className = TransparentButton + " " + "emptrainingedit " + "green_edit_control editable";
@@ -314,14 +324,14 @@ var Search;
                 }
             },
             {
-                title: Resource.FieldTitleA, css: "ColumPadding", name: "FieldTitleA", headerTemplate: function () {
+                title: Resource.FieldTitleA, css: "ColumPadding", name: "FieldTitleA", width: "155px", headerTemplate: function () {
                     var txt = CreateElement("text", GridInputClassName, " ", " ", "FieldTitleA", " ");
                     txt.id = "hd_FieldTitleA";
                     return HeaderTemplate(Resource.FieldTitleA, txt);
                 }
             },
             {
-                title: Resource.FieldTitleE, css: "ColumPadding", name: "FieldTitle", headerTemplate: function () {
+                title: Resource.FieldTitleE, css: "ColumPadding", name: "FieldTitle", width: "155px", headerTemplate: function () {
                     var txt = CreateElement("text", GridInputClassName, " ", " ", "FieldTitle", " ");
                     txt.id = "hd_FieldTitle";
                     return HeaderTemplate(Resource.FieldTitleE, txt);
@@ -335,11 +345,10 @@ var Search;
             //    }
             //},
             {
-                title: Resource.DataMember, css: "ColumPadding", name: "DataMember", headerTemplate: function () {
-                    var txt = CreateDropdownListOneValue(ReturnDataPropertyvalueArr, true);
-                    txt.id = "hd_DataMember";
+                title: Resource.DataMember, css: "ColumPadding", name: "DataMember", width: "170px", headerTemplate: function () {
+                    var txt = CreateDropdownListOneValue(ReturnDataPropertyvalueArr, true, "hd_DataMember");
+                    DocumentActions.ConvertToSelect2("hd_DataMember");
                     return HeaderTemplate(Resource.ReturnDataPropertyName, txt);
-                    //return HeaderTemplate(Resource.DataMember, txt);
                 }
             },
             {
@@ -364,21 +373,25 @@ var Search;
                 }
             },
             {
-                title: Resource.IsReadOnly, css: "ColumPadding", name: "IsReadOnly", headerTemplate: function () {
-                    var txt = CreateElement("checkbox", GridInputClassName, " ", " ", "IsReadOnly", " ");
-                    txt.id = "hd_IsReadOnly";
-                    return HeaderTemplate(Resource.IsReadOnly, txt);
-                }
+                title: Resource.IsReadOnly, css: "ColumPadding", name: "IsReadOnly", width: "145px",
+                headerTemplate: function () {
+                    return DocumentActions.BuildAwesomeCheckBox("hd_IsReadOnly", null, Resource.IsReadOnly);
+                },
+                itemTemplate: function (e) {
+                    return DocumentActions.BuildAwesomeCheckBox("hd_IsReadOnly", e, "");
+                },
             },
             {
-                title: Resource.IsSearchable, css: "ColumPadding", name: "IsSearchable", headerTemplate: function () {
-                    var txt = CreateElement("checkbox", GridInputClassName, " ", " ", "IsSearchable", " ");
-                    txt.id = "hd_IsSearchable";
-                    return HeaderTemplate(Resource.IsSearchable, txt);
-                }
+                title: Resource.IsSearchable, css: "ColumPadding", name: "IsSearchable", width: "145px",
+                headerTemplate: function () {
+                    return DocumentActions.BuildAwesomeCheckBox("hd_IsSearchable", null, Resource.IsSearchable);
+                },
+                itemTemplate: function (e) {
+                    return DocumentActions.BuildAwesomeCheckBox("hd_IsSearchable", e, "");
+                },
             },
             {
-                title: "Flag", css: "ColumPadding hide", name: "Flag", width: "1%",
+                title: "Flag", css: "ColumPadding hide", name: "Flag",
                 headerTemplate: function () {
                     var txt = CreateElement("text", GridInputClassName, " ", " ", "Flag", " ");
                     txt.disabled = false;
@@ -387,7 +400,7 @@ var Search;
                 }
             },
             {
-                title: "SearchFormCode", css: "ColumPadding hide", name: "SearchFormCode", width: "1%",
+                title: "SearchFormCode", css: "ColumPadding hide", name: "SearchFormCode",
                 headerTemplate: function () {
                     var txt = CreateElement("text", GridInputClassName, " ", " ", "SearchFormCode", " ");
                     txt.disabled = false;
@@ -396,7 +409,7 @@ var Search;
                 }
             },
             {
-                title: "SearchFormSettingID", css: "ColumPadding hide", name: "SearchFormSettingID", width: "1%",
+                title: "SearchFormSettingID", css: "ColumPadding hide", name: "SearchFormSettingID",
                 headerTemplate: function () {
                     var txt = CreateElement("text", GridInputClassName, " ", " ", "SearchFormSettingID", " ");
                     txt.disabled = false;
@@ -521,9 +534,10 @@ var Search;
                     Model = result.Response;
                     ObjectId = Model.ModuleCode;
                     Success = true;
+                    MessageBox.Toastr(Resource.SavedSucc, "", ToastrTypes.success);
                 }
                 else {
-                    MessageBox.Toastr(Resource.Error, Resource.Error, ToastrTypes.error);
+                    MessageBox.Toastr(Resource.ErrorSave, Resource.Error, ToastrTypes.error);
                     Success = false;
                 }
             }
@@ -541,9 +555,10 @@ var Search;
                     Model = result.Response;
                     ObjectId = Model.ModuleCode;
                     Success = true;
+                    MessageBox.Toastr(Resource.SavedSucc, "", ToastrTypes.success);
                 }
                 else {
-                    MessageBox.Toastr(Resource.Error, Resource.Error, ToastrTypes.error);
+                    MessageBox.Toastr(Resource.ErrorSave, Resource.Error, ToastrTypes.error);
                     Success = false;
                 }
             }
@@ -574,9 +589,10 @@ var Search;
                     Success = true;
                     GetAll();
                     Disabled(result);
+                    MessageBox.Toastr(Resource.DeletedSucc, "", ToastrTypes.success);
                 }
                 else {
-                    MessageBox.Toastr(Resource.Error, Resource.Error, ToastrTypes.error);
+                    MessageBox.Toastr(Resource.DeletedErr, Resource.Error, ToastrTypes.error);
                     Success = false;
                 }
             }
@@ -609,7 +625,7 @@ var Search;
         divColumnSettingGrid.DataSource = ClrColumnSetting;
         divColumnSettingGrid.Bind();
     }
-    function FillDrobDownList() {
+    function FillDrobDownList_InSearchWindowTap() {
         Ajax.Callsync({
             type: "Get",
             url: sys.apiUrl("SystemTools", "GetModulesCode"),
@@ -664,6 +680,7 @@ var Search;
                     MessageBox.Toastr(Resource.Error, Resource.Error, ToastrTypes.error);
             }
         });
+        $('#searchWindow select option:first-child').attr("disabled", "disabled");
     }
     $('#ModuleCode').on("change", function () {
         $('#ControlCode').val("btn" + $(this).val() + "Search");

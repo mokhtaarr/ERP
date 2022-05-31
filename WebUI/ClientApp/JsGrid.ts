@@ -20,13 +20,12 @@ var JSGRID_ROW_DATA_KEY = "JSGridItem",
 class JsGrid {
     public SysSession = GetSystemSession();
     public ElementName: string;
-
     public Inserting: boolean;
     public Editing: boolean;
     public Paging: boolean;
     public Sorting: boolean;
     public Filtering: boolean;
-    autosearch = true;
+    public autosearch = true;
     public ConfirmDeleteing: boolean = false;
     public PageSize: number = 50;
     public SwitchingLanguageEnabled: boolean = true;
@@ -63,7 +62,6 @@ class JsGrid {
 
     public SwitchInsertingRow() {
         let value: boolean = <boolean>$('#' + this.ElementName).jsGrid('option', 'inserting');
-
         $('#' + this.ElementName).jsGrid('option', 'inserting', !value);
     }
 
@@ -74,7 +72,6 @@ class JsGrid {
 
     public GenerateColumns(objType: any) {
         //let row = this.DataSource[0];
-
         this.Columns = new Array<IJsGridColumn>();
         let fields = Object.getOwnPropertyNames(objType);
         for (var field of fields) {
