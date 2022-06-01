@@ -1,7 +1,5 @@
 $(document).ready(function () {
     Clientaccstat.InitalizeComponent();
-    $('#headertop1').addClass('display_none');
-    $('#headertop2').removeClass('display_none');
 });
 var Clientaccstat;
 (function (Clientaccstat) {
@@ -9,10 +7,17 @@ var Clientaccstat;
     var AccountType = 1;
     var sys = new SystemTools();
     var SysSession = GetSystemSession();
+    var lang = SysSession.CurrentEnvironment.ScreenLanguage;
+    var Resource = GetResourceList("");
+    $('#headertop1').addClass('display_none');
+    $('#headertop2').addClass('display_none');
+    $('#headerTitle').text(Resource.Clientstatment);
     //------------------------------------------------------------
     var Details_Type_D_Category = new Array();
     var Customer = new A_Rec_D_Customer();
     //------------------------------------------------------------
+    var txtfromCategory;
+    var txttoCategory;
     var txt_ID_APP_Category;
     var txt_ID_APP_Type;
     var ddlCustomer;
@@ -28,14 +33,7 @@ var Clientaccstat;
     var btnPrintTrview;
     var btnPrintTrPDF;
     var btnPrintTrEXEL;
-    var lang = (SysSession.CurrentEnvironment.ScreenLanguage);
     function InitalizeComponent() {
-        if (SysSession.CurrentEnvironment.ScreenLanguage == "ar") {
-            document.getElementById('Screen_name').innerHTML = "كشف حساب العملاء";
-        }
-        else {
-            document.getElementById('Screen_name').innerHTML == "Client Account Statment";
-        }
         InitalizeControls();
         InitalizeEvents();
         compcode = Number(SysSession.CurrentEnvironment.CompCode);
@@ -43,6 +41,8 @@ var Clientaccstat;
     }
     Clientaccstat.InitalizeComponent = InitalizeComponent;
     function InitalizeControls() {
+        txtfromCategory = document.getElementById("txtfromCategory");
+        txttoCategory = document.getElementById("txttoCategory");
         txt_ID_APP_Category = document.getElementById("txt_ID_APP_Category");
         txt_ID_APP_Type = document.getElementById("txt_ID_APP_Type");
         ddlCustomer = document.getElementById("ddlCustomer");
@@ -65,12 +65,10 @@ var Clientaccstat;
     }
     //----------------------------------------------------( Get cus_Cat )
     function Display_CustomerCat() {
-        //var StkDefCategory: Array<I_D_Category> = new Array<I_D_Category>();
         Ajax.Callsync({
             type: "Get",
             url: sys.apiUrl("MS_CustomerCategory", "GetAll"),
             success: function (d) {
-                //
                 var result = d;
                 if (result.IsSuccess) {
                     Details_Type_D_Category = result.Response;
@@ -80,10 +78,8 @@ var Clientaccstat;
         });
     }
     function DisplayStGenDefCustomerCat() {
-        for (var i = 0; i < Details_Type_D_Category.length; i++) {
-            $('#txtfromCategory').append('<option value="' + Details_Type_D_Category[i].CustomerCatId + '">' + (lang == "ar" ? Details_Type_D_Category[i].CatDescA : Details_Type_D_Category[i].CatDescE) + '</option>');
-            $('#txttoCategory').append('<option value="' + Details_Type_D_Category[i].CustomerCatId + '">' + (lang == "ar" ? Details_Type_D_Category[i].CatDescA : Details_Type_D_Category[i].CatDescE) + '</option>');
-        }
+        DocumentActions.FillCombowithdefult(Details_Type_D_Category, txtfromCategory, "CustomerCatId", (lang == "ar" ? "CatDescA" : ".CatDescE"), Resource.Nothing);
+        DocumentActions.FillCombowithdefult(Details_Type_D_Category, txttoCategory, "CustomerCatId", (lang == "ar" ? "CatDescA" : ".CatDescE"), Resource.Nothing);
     }
     function PrintReport(OutType) {
         var rp = new ReportParameters();
@@ -93,8 +89,7 @@ var Clientaccstat;
         rp.CompNameE = SysSession.CurrentEnvironment.CompanyName;
         rp.UserCode = SysSession.CurrentEnvironment.UserCode;
         rp.Tokenid = SysSession.CurrentEnvironment.Token;
-        var BranchNameA = SysSession.CurrentEnvironment.BranchName;
-        var BranchNameE = SysSession.CurrentEnvironment.BranchNameEn;
+        var BranchNameA = SysSession.CurrentEnvironment.BranchName, BranchNameE = SysSession.CurrentEnvironment.BranchNameEn;
         rp.ScreenLanguage = SysSession.CurrentEnvironment.ScreenLanguage;
         rp.SystemCode = SysSession.CurrentEnvironment.SystemCode;
         rp.SubSystemCode = SysSession.CurrentEnvironment.SubSystemCode;

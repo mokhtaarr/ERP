@@ -1,154 +1,31 @@
 ﻿@using Inv.WebUI.Resources
+
 @{
     Layout = "~/Views/Shared/Layout.cshtml";
+    ViewBag.Title = SystemResource.Clientstatment;
 }
-<style>
-    .st_border {
-        border: solid 1px #3c8dbc;
-        border-radius: 20px;
-    }
-    .display_none {
-        display: none;
-    }
-    .padeing_0px {
-        padding: 9px 16px 0px 0px !important;
-    }
-    .padeing_0px2 {
-        padding: 5px 30px 0px 0px !important;
-    }
-    .padeing_0px3 {
-        padding: 5px 15px 0px 0px !important;
-    }
-    .padeing_0px4 {
-        padding: 5px 16px 0px 0px !important;
-    }
-    .padeing_0px5 {
-        padding: 5px 0px 0px 0px !important;
-    }
-    .padeing_0pxredeo {
-        padding: 9px 0px 0px 0px !important;
-    }
-    .padeing_0pxredeo2 {
-        padding: 9px 36px 0px 0px !important;
-    }
-    .padeing_0pxredeo3 {
-        padding: 9px 17px 0px 0px !important;
-    }
-    .colorBakc {
-        border: solid 1px #aeaeae;
-        border-radius: 23px;
-        background-color: rgb(227, 240, 246) !important;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
 
-    .colorBakc1 {
-        border: solid 1px #aeaeae;
-        border-radius: 23px;
-        background-color: rgba(60, 141, 188, 0.45) !important;
-    }
-    .font {
-        font-size: larger;
-    }
-    .font2 {
-        font-size: 25px;
-    }
-    .datatable-dashv1-list {
-        padding-right: 0px;
-    }
-    #divMeals {
-        padding-left: 0px;
-        padding-right: 0px;
-    }
-    #btnMeals:hover i {
-        color: #3c8dbc !important;
-        font-size: 25px;
-    }
-    #btnOtherservices:hover i {
-        color: #3c8dbc !important;
-        font-size: 25px;
-    }
-    #btnSubjects:hover i {
-        color: #3c8dbc !important;
-        font-size: 25px;
-    }
-    .text-center {
-        text-align: center !important;
-    }
-</style>
-<script>
-    $(document).ready(function () {
-        // Initialize select2
-        // $("#ddlStateType").select2();
-        //$("#txt_ID_APP_Category").select2();
-        $("#txt_ID_APP_Group").select2();
-        $("#ddlSalesman").select2();
-        $("#ddlCustomer").select2();
-        // Read selected option
-        $('#but_read').click(function () {
-            var userid = $('#txt_ID_APP_Category').val(); var username = $('#txt_ID_APP_Category option:selected').text();
-            var userid = $('#txt_ID_APP_Group').val(); var username = $('#txt_ID_APP_Group option:selected').text();
-            var userid = $('#ddlSalesman').val(); var username = $('#ddlSalesman option:selected').text();
-            var userid = $('#ddlCustomer').val(); var username = $('#ddlCustomer option:selected').text();
-            $('#result').html("id : " + userid + ", name : " + username);
-        });
-    });
-</script>
+<div class="row bg-white rounded p-4">
+    <div class="col-md-4 d-flex">
+        <label for="txtFromDate"> @SystemResource.App_CustomerCODE </label>
+        <input type="text" class="form-control" name="txtFromDate" id="txtCustomerCODE" placeholder="@SystemResource.App_CustomerCODE">
+    </div>
 
-<div id="content_report" class="col-lg-12 col-md-12 col-sm-12 col-xl-12 col-xs-12 margingred  borderred ">
-    <div id="informtionReserved" class="col-lg-12 col-md-12 col-sm-12 col-xl-12 col-xs-12 margingred">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 col-xs-12">
-            <label for="txtFromDate" class="col-lg-1 col-md-1 col-sm-1 col-xl-1 col-xs-1 pading_2"> @SystemResource.App_CustomerCODE </label>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xl-3 col-xs-3">
-                <input type="text" class="input-sm form-control  text-center" name="txtFromDate" id="txtCustomerCODE">
-            </div>
-            
-        </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 col-xs-12">
-            <label class="col-lg-1 col-md-1 col-sm-1 col-xl-1 col-xs-1 pading_lep  pading_2  "> من @SystemResource.APP_Category  </label>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xl-3 col-xs-3">
-                <select id="txtfromCategory" name="" class="form-control col-lg-12 col-md-12 col-sm-12 col-xl-12 col-xs-12  input-sm text_Display">
-                    <option value="Null"> @SystemResource.choose_Cat </option>
-                </select>
-            </div>
-            <label class="col-lg-1 col-md-1 col-sm-1 col-xl-1 col-xs-1 pading_lep  pading_2  "> الي @SystemResource.APP_Category  </label>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xl-3 col-xs-3">
-                <select id="txttoCategory" name="" class="form-control col-lg-12 col-md-12 col-sm-12 col-xl-12 col-xs-12  input-sm text_Display">
-                    <option value="Null"> @SystemResource.choose_Cat </option>
-                </select>
-            </div>
-        </div>
-        
+    <div class="col-md-4 d-flex">
+        <label> من @SystemResource.APP_Category  </label>
+        <select id="txtfromCategory" name="" class="form-control"> </select>
+    </div>
+    
+    <div class="col-md-4 d-flex">
+        <label> الي @SystemResource.APP_Category  </label>
+        <select id="txttoCategory" name="" class="form-control"> </select>
+    </div>
+
+    <div class="col-12 text-center mt-3 report-btn">
+        <button id="btnPrintTrview" type="button" class="btn btn-outline-dark"> @SystemResource.Print_Report <i class="fa fa-eye"></i></button>
+        <button id="btnPrintTrPDF" type="button" class="btn btn-outline-dark"> @SystemResource.Download_PDF <i class="fa fa-file-pdf text-danger"></i></button>
+        <button id="btnPrintTrEXEL" type="button" class="btn btn-outline-dark"> @SystemResource.Download_EXCEL <i class="fa fa-file-excel text-success"></i></button>
     </div>
 </div>
 
-<div id=" " class=" col-md-12 col-sm-12 col-xl-12 col-xs-12 margingred">
-    <div class=" col-md-12 col-sm-12 col-xl-12 col-xs-12">
-        <div class="col-lg-1 hidden-md hidden-sm hidden-xs ">  </div>
-        <div class="col-lg-10 col-md-10 col-sm-10 col-xl-10 col-xs-10 borderred" style="right: 3%;">
-            <div class="col-lg-3 hidden-md hidden-sm hidden-xs "></div>
- 
-            <div class="col-lg-1 hidden-md hidden-sm hidden-xs "></div>
-            <button id="btnPrintTrview" type="button" class="marginbtn btn btn-custon-four btndefolt primary-btn-cl"><span class="adminpro-icon adminpro-airplay"></span>@SystemResource.Print_Report</button>
-            <button id="btnPrintTrPDF" type="button" class="marginbtn btn btn-custon-four btndefolt primary-btn-cl"><span class="adminpro-icon adminpro-download-arrow"></span>@SystemResource.Download_PDF</button>
-            <button id="btnPrintTrEXEL" type="button" class="marginbtn btn btn-custon-four btndefolt primary-btn-cl"><span class="adminpro-icon adminpro-download-arrow"></span>@SystemResource.Download_EXCEL</button>
-           
-        </div>
-    </div>
-</div>
 <script src="~/ClientApp/CollectionReports/Clientaccstat.js"></script>
-@*<script src="~/ClientApp/CollectionReports/CustomerReports.js"></script>*@
-<script>
-    function myclaer() {
-        $("#ShiftName option:selected").prop("selected", false);
-        $("#ShiftName option:first").prop("selected", "selected");
-
-        $("#PeriodName option:selected").prop("selected", false);
-        $("#PeriodName option:first").prop("selected", "selected");
-
-        $("#SrvTypeName").value = "";
-        $("#SrvTypeCode").value = "";
-        $("#ShiftCode").value = "";
-        $("#PeriodCode").value = "";
-    }
-</script>

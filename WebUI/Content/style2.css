@@ -1040,3 +1040,13 @@ td input, td select {
 .jsgrid-table tr td, .jsgrid-table tr th {
     overflow:hidden
 }
+
+.report-btn button {
+    display: inline-flex;
+    align-items: center;
+}
+
+.report-btn i {
+    font-size: 30px;
+    margin: auto 12px;
+}

@@ -10,8 +10,9 @@ namespace CalJurnalEntry {
     $('#headerTitle').text(Resource.DailyVoucherDocuments);
     
     var sys: SystemTools = new SystemTools();
-    var language = sys.SysSession.CurrentEnvironment.ScreenLanguage;
     var SysSession: SystemSession = GetSystemSession();
+    var language = SysSession.CurrentEnvironment.ScreenLanguage;
+
     let compCode = SysSession.CurrentEnvironment.CompCode;
     let UserCode = SysSession.CurrentEnvironment.UserCode;
     let Token = "HGFD-" + SysSession.CurrentEnvironment.Token;
