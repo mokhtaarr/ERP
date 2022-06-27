@@ -6,7 +6,7 @@ var DataTable = /** @class */ (function () {
         this.EnableSorting = false;
         this.EnableFiltring = false;
         this.EnablePaging = false;
-        this.PageSize = 50;
+        this.PageSize = 10;
         this.Initalized = false;
         this.Env = GetSystemEnvironment();
     }

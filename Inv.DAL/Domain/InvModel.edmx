@@ -734,6 +734,8 @@
           <Property Name="DeletedBy" Type="nvarchar" MaxLength="20" />
           <Property Name="DeletedAt" Type="smalldatetime" />
           <Property Name="CostCenterOption" Type="tinyint" />
+          <Property Name="IsServerEntity" Type="bit" />
+          <Property Name="MainServerId" Type="int" />
         </EntityType>
         <EntityType Name="Cal_AccountClaasiJoin">
           <Key>
@@ -832,6 +834,7 @@
           <Property Name="UpdateAt" Type="smalldatetime" />
           <Property Name="DeletedBy" Type="nvarchar" MaxLength="20" />
           <Property Name="DeletedAt" Type="smalldatetime" />
+          <Property Name="ShiftId" Type="int" />
         </EntityType>
         <EntityType Name="Cal_BudgetDetails">
           <Key>
@@ -887,6 +890,8 @@
           <Property Name="UpdatedAt" Type="smalldatetime" />
           <Property Name="DeletedBy" Type="nvarchar" MaxLength="20" />
           <Property Name="DeletedAt" Type="smalldatetime" />
+          <Property Name="TaxRefNo" Type="nvarchar" MaxLength="100" />
+          <Property Name="EtaxCustType" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Cal_Clauses">
           <Key>
@@ -1003,6 +1008,8 @@
           <Property Name="UpdatedAt" Type="smalldatetime" />
           <Property Name="DeletedBy" Type="nvarchar" MaxLength="20" />
           <Property Name="DeletedAt" Type="smalldatetime" />
+          <Property Name="IsServerEntity" Type="bit" />
+          <Property Name="MainServerId" Type="int" />
         </EntityType>
         <EntityType Name="Cal_EmpAccounts">
           <Key>
@@ -1042,6 +1049,8 @@
           <Property Name="UpdatedAt" Type="smalldatetime" />
           <Property Name="DeletedBy" Type="nvarchar" MaxLength="20" />
           <Property Name="DeletedAt" Type="smalldatetime" />
+          <Property Name="IsServerEntity" Type="bit" />
+          <Property Name="MainServerId" Type="int" />
         </EntityType>
         <EntityType Name="Cal_JurnalDetail">
           <Key>
@@ -1049,13 +1058,9 @@
           </Key>
           <Property Name="JurnalDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="JurnalId" Type="int" />
-          <Property Name="AId" Type="int" />
           <Property Name="AccountId" Type="int" />
           <Property Name="CustAccountId" Type="int" />
           <Property Name="VendAccountId" Type="int" />
-          <Property Name="EmpAccountId" Type="int" />
-          <Property Name="AssetAccountId" Type="int" />
-          <Property Name="BusinessPartnerAccId" Type="int" />
           <Property Name="CostCenterId" Type="int" />
           <Property Name="CostCenterId1" Type="int" />
           <Property Name="CostCenterId2" Type="int" />
@@ -1069,6 +1074,10 @@
           <Property Name="DebitLocal" Type="numeric" Precision="38" Scale="10" />
           <Property Name="CreditLocal" Type="numeric" Precision="38" Scale="10" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmpAccountId" Type="int" />
+          <Property Name="AssetAccountId" Type="int" />
+          <Property Name="AId" Type="int" />
+          <Property Name="BusinessPartnerAccId" Type="int" />
         </EntityType>
         <EntityType Name="Cal_JurnalEntry">
           <Key>
@@ -1096,8 +1105,36 @@
           <Property Name="PettycashId" Type="int" />
           <Property Name="PurOrderId" Type="int" />
           <Property Name="SalesOfferId" Type="int" />
+          <Property Name="Aid" Type="int" />
+          <Property Name="FinancialIntervalsId" Type="int" />
+          <Property Name="TrNo" Type="int" />
+          <Property Name="ManualTrNo" Type="nvarchar" MaxLength="40" />
+          <Property Name="TrDate" Type="smalldatetime" />
+          <Property Name="JurnalDesc" Type="nvarchar" MaxLength="200" />
+          <Property Name="TotalDebit" Type="numeric" Precision="38" Scale="10" />
+          <Property Name="TotalCredit" Type="numeric" Precision="38" Scale="10" />
+          <Property Name="IsOpenning" Type="bit" />
+          <Property Name="IsManual" Type="bit" />
+          <Property Name="IsPosted" Type="bit" />
+          <Property Name="Postedby" Type="nvarchar" MaxLength="20" />
+          <Property Name="PostedDate" Type="smalldatetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="20" />
+          <Property Name="CreatedAt" Type="smalldatetime" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="20" />
+          <Property Name="UpdateAt" Type="smalldatetime" />
+          <Property Name="DeletedBy" Type="nvarchar" MaxLength="20" />
+          <Property Name="DeletedAt" Type="smalldatetime" />
           <Property Name="SalesOrderId" Type="int" />
+          <Property Name="TotalInvoices" Type="numeric" Precision="38" Scale="10" />
+          <Property Name="NotPaidInvoices" Type="numeric" Precision="38" Scale="10" />
+          <Property Name="DifferenceInvoices" Type="numeric" Precision="38" Scale="10" />
+          <Property Name="ResourceBalance" Type="numeric" Precision="38" Scale="10" />
+          <Property Name="IsPaid" Type="bit" />
+          <Property Name="PaidDocId" Type="int" />
+          <Property Name="NotPaid" Type="numeric" Precision="38" Scale="10" />
           <Property Name="ReservId" Type="int" />
+          <Property Name="TermCostCenterId" Type="int" />
+          <Property Name="TermCostCenterValue" Type="numeric" Precision="38" Scale="10" />
           <Property Name="SalaryIssuDocId" Type="int" />
           <Property Name="DeprDocId" Type="int" />
           <Property Name="AssetTerminatId" Type="int" />
@@ -1113,34 +1150,8 @@
           <Property Name="LetOfGrnteeTranId" Type="int" />
           <Property Name="VJOrderId" Type="int" />
           <Property Name="TranReqId" Type="int" />
-          <Property Name="Aid" Type="int" />
-          <Property Name="FinancialIntervalsId" Type="int" />
-          <Property Name="TrNo" Type="int" />
-          <Property Name="ManualTrNo" Type="nvarchar" MaxLength="40" />
-          <Property Name="TrDate" Type="smalldatetime" />
-          <Property Name="JurnalDesc" Type="nvarchar" MaxLength="200" />
-          <Property Name="TotalDebit" Type="numeric" Precision="38" Scale="10" />
-          <Property Name="TotalCredit" Type="numeric" Precision="38" Scale="10" />
-          <Property Name="IsOpenning" Type="bit" />
-          <Property Name="IsManual" Type="bit" />
-          <Property Name="IsPosted" Type="bit" />
-          <Property Name="Postedby" Type="nvarchar" MaxLength="20" />
-          <Property Name="PostedDate" Type="smalldatetime" />
-          <Property Name="TotalInvoices" Type="numeric" Precision="38" Scale="10" />
-          <Property Name="NotPaidInvoices" Type="numeric" Precision="38" Scale="10" />
-          <Property Name="DifferenceInvoices" Type="numeric" Precision="38" Scale="10" />
-          <Property Name="ResourceBalance" Type="numeric" Precision="38" Scale="10" />
-          <Property Name="IsPaid" Type="bit" />
-          <Property Name="PaidDocId" Type="int" />
-          <Property Name="NotPaid" Type="numeric" Precision="38" Scale="10" />
-          <Property Name="TermCostCenterId" Type="int" />
-          <Property Name="TermCostCenterValue" Type="numeric" Precision="38" Scale="10" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="20" />
-          <Property Name="CreatedAt" Type="smalldatetime" />
-          <Property Name="UpdateBy" Type="nvarchar" MaxLength="20" />
-          <Property Name="UpdateAt" Type="smalldatetime" />
-          <Property Name="DeletedBy" Type="nvarchar" MaxLength="20" />
-          <Property Name="DeletedAt" Type="smalldatetime" />
+          <Property Name="VehiclMovId" Type="int" />
+          <Property Name="ShiftId" Type="int" />
         </EntityType>
         <EntityType Name="Cal_PostOrder">
           <Key>
@@ -6104,6 +6115,7 @@ warning 6002: The table/view 'ERP.dbo.HIJRA_CONVERT' does not have a primary key
           <Property Name="Tax3PlusOrMinus" Type="bit" />
           <Property Name="ItemType" Type="tinyint" />
           <Property Name="ItemCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="TaxItemCode" Type="nvarchar" MaxLength="100" />
           <Property Name="ItemDescA" Type="nvarchar" MaxLength="100" />
           <Property Name="ItemDescE" Type="nvarchar" MaxLength="100" />
           <Property Name="QtyPartiation" Type="numeric" Precision="38" Scale="10" />
@@ -6137,6 +6149,9 @@ warning 6002: The table/view 'ERP.dbo.HIJRA_CONVERT' does not have a primary key
           <Property Name="QtyInBox" Type="numeric" Precision="38" Scale="10" />
           <Property Name="PurchasePrice" Type="numeric" Precision="18" Scale="2" />
           <Property Name="Wheight" Type="numeric" Precision="38" Scale="10" />
+          <Property Name="ServicePrice" Type="numeric" Precision="38" Scale="10" />
+          <Property Name="ProfitPrice" Type="numeric" Precision="38" Scale="10" />
+          <Property Name="Kirat" Type="numeric" Precision="38" Scale="10" />
           <Property Name="strCustm5" Type="nvarchar" MaxLength="20" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="255" />
           <Property Name="AddField1" Type="nvarchar" MaxLength="100" />
@@ -6193,6 +6208,11 @@ warning 6002: The table/view 'ERP.dbo.HIJRA_CONVERT' does not have a primary key
           <Property Name="CommisionEndDate" Type="smalldatetime" />
           <Property Name="IsOuterItem" Type="bit" />
           <Property Name="UseSomeSubItems" Type="bit" />
+          <Property Name="Unit2IsMandatory" Type="bit" />
+          <Property Name="UseUnit2" Type="bit" />
+          <Property Name="IsSalesStopped" Type="bit" />
+          <Property Name="IsServerEntity" Type="bit" />
+          <Property Name="MainServerId" Type="int" />
         </EntityType>
         <EntityType Name="Ms_ItemCardOffers">
           <Key>
@@ -6300,6 +6320,7 @@ warning 6002: The table/view 'ERP.dbo.HIJRA_CONVERT' does not have a primary key
           <Property Name="Image" Type="image" />
           <Property Name="ImgDesc1" Type="nvarchar" MaxLength="250" />
           <Property Name="ImgDesc2" Type="nvarchar" MaxLength="250" />
+          <Property Name="ImageStr" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Ms_ItemPartition">
           <Key>
@@ -6332,6 +6353,9 @@ warning 6002: The table/view 'ERP.dbo.HIJRA_CONVERT' does not have a primary key
           <Property Name="ItemMax" Type="numeric" Precision="38" Scale="10" />
           <Property Name="TVersion" Type="bigint" />
           <Property Name="TType" Type="char" MaxLength="1" />
+          <Property Name="QtyIUnit2Notebook" Type="numeric" Precision="38" Scale="10" />
+          <Property Name="QtyIUnit2Partiation" Type="numeric" Precision="38" Scale="10" />
+          <Property Name="UpdatedAt" Type="smalldatetime" />
         </EntityType>
         <EntityType Name="MS_ItemSerials">
           <Key>
@@ -7940,6 +7964,13 @@ warning 6002: The table/view 'ERP.dbo.HIJRA_CONVERT' does not have a primary key
           <Property Name="UpdateAt" Type="smalldatetime" />
           <Property Name="DeletedBy" Type="nvarchar" MaxLength="20" />
           <Property Name="DeletedAt" Type="smalldatetime" />
+          <Property Name="ShiftId" Type="int" />
+          <Property Name="UpdatedAt" Type="smalldatetime" />
+          <Property Name="LastUpdateTime" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="IsRemoteEntity" Type="bit" />
+          <Property Name="RemotId" Type="int" />
+          <Property Name="MainCustServerId" Type="int" />
+          <Property Name="PayId" Type="int" />
         </EntityType>
         <EntityType Name="Ms_ReceiptNoteCurrencies">
           <Key>
@@ -8521,17 +8552,29 @@ warning 6002: The table/view 'ERP.dbo.HIJRA_CONVERT' does not have a primary key
           <Property Name="IsPaid" Type="bit" />
           <Property Name="PaidDocId" Type="int" />
           <Property Name="NotPaid" Type="numeric" Precision="38" Scale="10" />
+          <Property Name="TotalQtyPump" Type="numeric" Precision="38" Scale="10" />
+          <Property Name="TotalQtyCar" Type="numeric" Precision="38" Scale="10" />
+          <Property Name="TotalQtyNoVehicl" Type="numeric" Precision="38" Scale="10" />
           <Property Name="IsPos" Type="bit" />
-          <Property Name="ShiftId" Type="int" />
           <Property Name="IsHold" Type="bit" />
           <Property Name="IsShippingInv" Type="bit" />
           <Property Name="MultiResourceDeliver" Type="bit" />
+          <Property Name="EtaxSent" Type="bit" />
+          <Property Name="EtaxSentTime" Type="smalldatetime" />
+          <Property Name="EtaxRemarks" Type="nvarchar" MaxLength="100" />
+          <Property Name="EtaxReference" Type="nvarchar" MaxLength="200" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="20" />
           <Property Name="CreatedAt" Type="smalldatetime" />
           <Property Name="UpdateBy" Type="nvarchar" MaxLength="20" />
           <Property Name="UpdateAt" Type="smalldatetime" />
           <Property Name="DeletedBy" Type="nvarchar" MaxLength="20" />
           <Property Name="DeletedAt" Type="smalldatetime" />
+          <Property Name="IsReturned" Type="bit" />
+          <Property Name="ShiftId" Type="int" />
+          <Property Name="LastUpdateTime" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="IsRemoteEntity" Type="bit" />
+          <Property Name="RemotId" Type="int" />
+          <Property Name="MainCustServerId" Type="int" />
         </EntityType>
         <EntityType Name="Ms_SalesInvoiceCurrencies">
           <Key>
@@ -9808,6 +9851,20 @@ warning 6002: The table/view 'ERP.dbo.HIJRA_CONVERT' does not have a primary key
           <Property Name="DeletedAt" Type="smalldatetime" />
           <Property Name="CityID" Type="int" />
           <Property Name="BranchLogo" Type="image" />
+          <Property Name="PrintHeaderFont" Type="nvarchar" MaxLength="50" />
+          <Property Name="PrintFooterFont" Type="nvarchar" MaxLength="50" />
+          <Property Name="PrintHeaderFontColor" Type="nvarchar" MaxLength="50" />
+          <Property Name="PrintFooterFontColor" Type="nvarchar" MaxLength="50" />
+          <Property Name="PrintHeaderFontSize" Type="tinyint" />
+          <Property Name="PrintFooterFontSize" Type="tinyint" />
+          <Property Name="PrintHeaderFontStyle" Type="tinyint" />
+          <Property Name="PrintFooterFontStyle" Type="tinyint" />
+          <Property Name="PrintHeader" Type="nvarchar" MaxLength="500" />
+          <Property Name="PrintFooter" Type="nvarchar" MaxLength="500" />
+          <Property Name="EtaxCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="TaxReg" Type="nvarchar" MaxLength="50" />
+          <Property Name="CommercialName" Type="nvarchar" MaxLength="500" />
+          <Property Name="UpdatedAt" Type="smalldatetime" />
         </EntityType>
         <EntityType Name="MS_Taxes">
           <Key>
@@ -9830,6 +9887,7 @@ warning 6002: The table/view 'ERP.dbo.HIJRA_CONVERT' does not have a primary key
           <Property Name="DeletedBy" Type="nvarchar" MaxLength="20" />
           <Property Name="DeletedAt" Type="smalldatetime" />
           <Property Name="EtaxCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdatedAt" Type="smalldatetime" />
         </EntityType>
         <EntityType Name="Ms_Terms">
           <Key>
@@ -10047,7 +10105,8 @@ warning 6002: The table/view 'ERP.dbo.HIJRA_CONVERT' does not have a primary key
           <Property Name="IsCreditEnabled" Type="bit" />
           <Property Name="IsPricIncludTax" Type="bit" />
           <Property Name="TaxExemptionNo" Type="nvarchar" MaxLength="50" />
-          <Property Name="TaxRefNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="TaxRefNo" Type="nvarchar" MaxLength="100" />
+          <Property Name="EtaxCustType" Type="nvarchar" MaxLength="50" />
           <Property Name="PrePaidPercent" Type="decimal" Precision="18" Scale="5" />
           <Property Name="PostalCode" Type="nvarchar" MaxLength="20" />
           <Property Name="HomePage" Type="nvarchar" MaxLength="300" />
@@ -10057,7 +10116,9 @@ warning 6002: The table/view 'ERP.dbo.HIJRA_CONVERT' does not have a primary key
           <Property Name="Company" Type="nvarchar" MaxLength="100" />
           <Property Name="VendJob" Type="nvarchar" MaxLength="100" />
           <Property Name="VendID" Type="nvarchar" MaxLength="100" />
-          <Property Name="EtaxCustType" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdateTime" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="IsServerEntity" Type="bit" />
+          <Property Name="MainServerId" Type="int" />
         </EntityType>
         <EntityType Name="Ms_VendorBranches">
           <Key>
@@ -10532,6 +10593,8 @@ warning 6002: The table/view 'ERP.dbo.HIJRA_CONVERT' does not have a primary key
           <Property Name="ParentUnit" Type="int" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
           <Property Name="AutoDesc" Type="nvarchar" MaxLength="500" />
+          <Property Name="EtaxUnitCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsKarat" Type="bit" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="20" />
           <Property Name="CreatedAt" Type="smalldatetime" />
           <Property Name="UpdateBy" Type="nvarchar" MaxLength="20" />
@@ -15010,10 +15073,6 @@ warning 6002: The table/view 'ERP.dbo.HIJRA_CONVERT' does not have a primary key
           <Property Name="EndingDate" Type="smalldatetime" />
           <Property Name="EndToHijri" Type="nvarchar" MaxLength="20" />
           <Property Name="IsClosed" Type="bit" />
-          <Property Name="IsActive" Type="bit" />
-          <Property Name="IsInUse" Type="bit" />
-          <Property Name="StopReason" Type="nvarchar" MaxLength="500" />
-          <Property Name="StoppedByUserId" Type="int" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="20" />
           <Property Name="CreatedAt" Type="smalldatetime" />
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="20" />
@@ -15021,6 +15080,10 @@ warning 6002: The table/view 'ERP.dbo.HIJRA_CONVERT' does not have a primary key
           <Property Name="DeletedBy" Type="nvarchar" MaxLength="20" />
           <Property Name="DeletedAt" Type="smalldatetime" />
           <Property Name="FinancialYearId" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsInUse" Type="bit" />
+          <Property Name="StopReason" Type="nvarchar" MaxLength="500" />
+          <Property Name="StoppedByUserId" Type="int" />
         </EntityType>
         <EntityType Name="Sys_FinancialYears">
           <Key>
@@ -15039,17 +15102,17 @@ warning 6002: The table/view 'ERP.dbo.HIJRA_CONVERT' does not have a primary key
           <Property Name="YearState" Type="nvarchar" MaxLength="500" />
           <Property Name="NoOfIntervals" Type="int" />
           <Property Name="YearType" Type="bit" />
-          <Property Name="SubPeriodsType" Type="tinyint" />
-          <Property Name="IsClosed" Type="bit" />
-          <Property Name="IsActive" Type="bit" />
-          <Property Name="StopReason" Type="nvarchar" MaxLength="500" />
-          <Property Name="StoppedByUserId" Type="int" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="20" />
           <Property Name="CreatedAt" Type="smalldatetime" />
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="20" />
           <Property Name="UpdatedAt" Type="smalldatetime" />
           <Property Name="DeletedBy" Type="nvarchar" MaxLength="20" />
           <Property Name="DeletedAt" Type="smalldatetime" />
+          <Property Name="SubPeriodsType" Type="tinyint" />
+          <Property Name="IsClosed" Type="bit" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="StopReason" Type="nvarchar" MaxLength="500" />
+          <Property Name="StoppedByUserId" Type="int" />
         </EntityType>
         <EntityType Name="Sys_FinancialYearsClosing">
           <Key>
@@ -16253,6 +16316,8 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <Property Name="DeletedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="DeletedAt" Type="DateTime" Precision="0" />
           <Property Name="CostCenterOption" Type="Byte" />
+          <Property Name="IsServerEntity" Type="Boolean" />
+          <Property Name="MainServerId" Type="Int32" />
         </EntityType>
         <EntityType Name="G_AlertControl">
           <Key>
@@ -17077,6 +17142,15 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <Property Name="CommisionEndDate" Type="DateTime" Precision="0" />
           <Property Name="IsOuterItem" Type="Boolean" />
           <Property Name="UseSomeSubItems" Type="Boolean" />
+          <Property Name="TaxItemCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ServicePrice" Type="Decimal" Precision="38" Scale="10" />
+          <Property Name="ProfitPrice" Type="Decimal" Precision="38" Scale="10" />
+          <Property Name="Kirat" Type="Decimal" Precision="38" Scale="10" />
+          <Property Name="Unit2IsMandatory" Type="Boolean" />
+          <Property Name="UseUnit2" Type="Boolean" />
+          <Property Name="IsSalesStopped" Type="Boolean" />
+          <Property Name="IsServerEntity" Type="Boolean" />
+          <Property Name="MainServerId" Type="Int32" />
         </EntityType>
         <EntityType Name="Ms_ItemCardOffers">
           <Key>
@@ -17167,16 +17241,6 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <Property Name="DocQty" Type="Decimal" Precision="38" Scale="10" />
           <Property Name="DocCost" Type="Decimal" Precision="38" Scale="10" />
         </EntityType>
-        <EntityType Name="MS_ItemImages">
-          <Key>
-            <PropertyRef Name="ImgId" />
-          </Key>
-          <Property Name="ImgId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ItemCardId" Type="Int32" />
-          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="ImgDesc1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="ImgDesc2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Ms_ItemPartition">
           <Key>
             <PropertyRef Name="ItemPartId" />
@@ -17208,6 +17272,9 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <Property Name="ItemMax" Type="Decimal" Precision="38" Scale="10" />
           <Property Name="TVersion" Type="Int64" />
           <Property Name="TType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="QtyIUnit2Notebook" Type="Decimal" Precision="38" Scale="10" />
+          <Property Name="QtyIUnit2Partiation" Type="Decimal" Precision="38" Scale="10" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="MS_Partition">
           <Key>
@@ -17285,6 +17352,20 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <Property Name="DeletedAt" Type="DateTime" Precision="0" />
           <Property Name="CityID" Type="Int32" />
           <Property Name="BranchLogo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PrintHeaderFont" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PrintFooterFont" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PrintHeaderFontColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PrintFooterFontColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PrintHeaderFontSize" Type="Byte" />
+          <Property Name="PrintFooterFontSize" Type="Byte" />
+          <Property Name="PrintHeaderFontStyle" Type="Byte" />
+          <Property Name="PrintFooterFontStyle" Type="Byte" />
+          <Property Name="PrintHeader" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PrintFooter" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="EtaxCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TaxReg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CommercialName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="HIJRA_CONVERT">
           <Key>
@@ -17338,7 +17419,6 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <EntitySet Name="MS_ItemCategory" EntityType="Self.MS_ItemCategory" />
           <EntitySet Name="Ms_ItemCollection" EntityType="Self.Ms_ItemCollection" />
           <EntitySet Name="MS_ItemCostHistory" EntityType="Self.MS_ItemCostHistory" />
-          <EntitySet Name="MS_ItemImages" EntityType="Self.MS_ItemImages" />
           <EntitySet Name="Ms_ItemPartition" EntityType="Self.Ms_ItemPartition" />
           <EntitySet Name="MS_Partition" EntityType="Self.MS_Partition" />
           <EntitySet Name="MS_Stores" EntityType="Self.MS_Stores" />
@@ -17937,6 +18017,7 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <EntitySet Name="VW_SearchAllAccounts" EntityType="InvEntities.VW_SearchAllAccounts" />
           <EntitySet Name="G_USERS" EntityType="InvEntities.G_USERS" />
           <EntitySet Name="MS_Taxes" EntityType="InvEntities.MS_Taxes" />
+          <EntitySet Name="MS_ItemImages" EntityType="InvEntities.MS_ItemImages" />
         </EntityContainer>
         <EntityType Name="I_VW_GetCompStatus">
           <Key>
@@ -19289,6 +19370,7 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <Property Name="UpdateAt" Type="DateTime" Precision="0" />
           <Property Name="DeletedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="DeletedAt" Type="DateTime" Precision="0" />
+          <Property Name="ShiftId" Type="Int32" />
         </EntityType>
         <EntityType Name="Cal_BudgetDetails">
           <Key>
@@ -19344,6 +19426,8 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <Property Name="UpdatedAt" Type="DateTime" Precision="0" />
           <Property Name="DeletedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="DeletedAt" Type="DateTime" Precision="0" />
+          <Property Name="TaxRefNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EtaxCustType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Cal_CostCenterAccount">
           <Key>
@@ -19440,6 +19524,8 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <Property Name="UpdatedAt" Type="DateTime" Precision="0" />
           <Property Name="DeletedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="DeletedAt" Type="DateTime" Precision="0" />
+          <Property Name="IsServerEntity" Type="Boolean" />
+          <Property Name="MainServerId" Type="Int32" />
         </EntityType>
         <EntityType Name="Cal_EmpAccounts">
           <Key>
@@ -19479,6 +19565,8 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <Property Name="UpdatedAt" Type="DateTime" Precision="0" />
           <Property Name="DeletedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="DeletedAt" Type="DateTime" Precision="0" />
+          <Property Name="IsServerEntity" Type="Boolean" />
+          <Property Name="MainServerId" Type="Int32" />
         </EntityType>
         <EntityType Name="Cal_JurnalDetail">
           <Key>
@@ -19578,6 +19666,8 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <Property Name="UpdateAt" Type="DateTime" Precision="0" />
           <Property Name="DeletedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="DeletedAt" Type="DateTime" Precision="0" />
+          <Property Name="VehiclMovId" Type="Int32" />
+          <Property Name="ShiftId" Type="Int32" />
         </EntityType>
         <EntityType Name="Cal_PostOrder">
           <Key>
@@ -24881,6 +24971,13 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <Property Name="UpdateAt" Type="DateTime" Precision="0" />
           <Property Name="DeletedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="DeletedAt" Type="DateTime" Precision="0" />
+          <Property Name="ShiftId" Type="Int32" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="0" />
+          <Property Name="LastUpdateTime" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="IsRemoteEntity" Type="Boolean" />
+          <Property Name="RemotId" Type="Int32" />
+          <Property Name="MainCustServerId" Type="Int32" />
+          <Property Name="PayId" Type="Int32" />
         </EntityType>
         <EntityType Name="Ms_ReceiptNoteCurrencies">
           <Key>
@@ -25473,6 +25570,18 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <Property Name="UpdateAt" Type="DateTime" Precision="0" />
           <Property Name="DeletedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="DeletedAt" Type="DateTime" Precision="0" />
+          <Property Name="TotalQtyPump" Type="Decimal" Precision="38" Scale="10" />
+          <Property Name="TotalQtyCar" Type="Decimal" Precision="38" Scale="10" />
+          <Property Name="TotalQtyNoVehicl" Type="Decimal" Precision="38" Scale="10" />
+          <Property Name="EtaxSent" Type="Boolean" />
+          <Property Name="EtaxSentTime" Type="DateTime" Precision="0" />
+          <Property Name="EtaxRemarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EtaxReference" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsReturned" Type="Boolean" />
+          <Property Name="LastUpdateTime" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="IsRemoteEntity" Type="Boolean" />
+          <Property Name="RemotId" Type="Int32" />
+          <Property Name="MainCustServerId" Type="Int32" />
         </EntityType>
         <EntityType Name="Ms_SalesInvoiceCurrencies">
           <Key>
@@ -27322,6 +27431,8 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <Property Name="UpdateAt" Type="DateTime" Precision="0" />
           <Property Name="DeletedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="DeletedAt" Type="DateTime" Precision="0" />
+          <Property Name="EtaxUnitCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsKarat" Type="Boolean" />
         </EntityType>
         <EntityType Name="Prod_BillOfMaterial">
           <Key>
@@ -32171,7 +32282,7 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <Property Name="IsCreditEnabled" Type="Boolean" />
           <Property Name="IsPricIncludTax" Type="Boolean" />
           <Property Name="TaxExemptionNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TaxRefNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TaxRefNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="PrePaidPercent" Type="Decimal" Precision="18" Scale="5" />
           <Property Name="PostalCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="HomePage" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
@@ -32182,6 +32293,9 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <Property Name="VendJob" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="VendID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="EtaxCustType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateTime" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="IsServerEntity" Type="Boolean" />
+          <Property Name="MainServerId" Type="Int32" />
         </EntityType>
         <EntityType Name="Hr_Employees">
           <Key>
@@ -32394,6 +32508,18 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <Property Name="DeletedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="DeletedAt" Type="DateTime" Precision="0" />
           <Property Name="EtaxCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="MS_ItemImages">
+          <Key>
+            <PropertyRef Name="ImgId" />
+          </Key>
+          <Property Name="ImgId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemCardId" Type="Int32" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ImgDesc1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ImgDesc2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ImageStr" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -32404,6 +32530,8 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <EntitySetMapping Name="Cal_AccountChart">
             <EntityTypeMapping TypeName="InvEntities.Cal_AccountChart">
               <MappingFragment StoreEntitySet="Cal_AccountChart">
+                <ScalarProperty Name="MainServerId" ColumnName="MainServerId" />
+                <ScalarProperty Name="IsServerEntity" ColumnName="IsServerEntity" />
                 <ScalarProperty Name="AccountId" ColumnName="AccountId" />
                 <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
                 <ScalarProperty Name="AccountNameA" ColumnName="AccountNameA" />
@@ -33159,6 +33287,15 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <EntitySetMapping Name="MS_ItemCard">
             <EntityTypeMapping TypeName="InvEntities.MS_ItemCard">
               <MappingFragment StoreEntitySet="MS_ItemCard">
+                <ScalarProperty Name="MainServerId" ColumnName="MainServerId" />
+                <ScalarProperty Name="IsServerEntity" ColumnName="IsServerEntity" />
+                <ScalarProperty Name="IsSalesStopped" ColumnName="IsSalesStopped" />
+                <ScalarProperty Name="UseUnit2" ColumnName="UseUnit2" />
+                <ScalarProperty Name="Unit2IsMandatory" ColumnName="Unit2IsMandatory" />
+                <ScalarProperty Name="Kirat" ColumnName="Kirat" />
+                <ScalarProperty Name="ProfitPrice" ColumnName="ProfitPrice" />
+                <ScalarProperty Name="ServicePrice" ColumnName="ServicePrice" />
+                <ScalarProperty Name="TaxItemCode" ColumnName="TaxItemCode" />
                 <ScalarProperty Name="ItemCardId" ColumnName="ItemCardId" />
                 <ScalarProperty Name="ItemCategoryId" ColumnName="ItemCategoryId" />
                 <ScalarProperty Name="StoreId" ColumnName="StoreId" />
@@ -33372,20 +33509,12 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MS_ItemImages">
-            <EntityTypeMapping TypeName="InvEntities.MS_ItemImages">
-              <MappingFragment StoreEntitySet="MS_ItemImages">
-                <ScalarProperty Name="ImgId" ColumnName="ImgId" />
-                <ScalarProperty Name="ItemCardId" ColumnName="ItemCardId" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="ImgDesc1" ColumnName="ImgDesc1" />
-                <ScalarProperty Name="ImgDesc2" ColumnName="ImgDesc2" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Ms_ItemPartition">
             <EntityTypeMapping TypeName="InvEntities.Ms_ItemPartition">
               <MappingFragment StoreEntitySet="Ms_ItemPartition">
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="QtyIUnit2Partiation" ColumnName="QtyIUnit2Partiation" />
+                <ScalarProperty Name="QtyIUnit2Notebook" ColumnName="QtyIUnit2Notebook" />
                 <ScalarProperty Name="ItemPartId" ColumnName="ItemPartId" />
                 <ScalarProperty Name="ItemCardId" ColumnName="ItemCardId" />
                 <ScalarProperty Name="StoreId" ColumnName="StoreId" />
@@ -33451,6 +33580,20 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <EntitySetMapping Name="MS_Stores">
             <EntityTypeMapping TypeName="InvEntities.MS_Stores">
               <MappingFragment StoreEntitySet="MS_Stores">
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CommercialName" ColumnName="CommercialName" />
+                <ScalarProperty Name="TaxReg" ColumnName="TaxReg" />
+                <ScalarProperty Name="EtaxCode" ColumnName="EtaxCode" />
+                <ScalarProperty Name="PrintFooter" ColumnName="PrintFooter" />
+                <ScalarProperty Name="PrintHeader" ColumnName="PrintHeader" />
+                <ScalarProperty Name="PrintFooterFontStyle" ColumnName="PrintFooterFontStyle" />
+                <ScalarProperty Name="PrintHeaderFontStyle" ColumnName="PrintHeaderFontStyle" />
+                <ScalarProperty Name="PrintFooterFontSize" ColumnName="PrintFooterFontSize" />
+                <ScalarProperty Name="PrintHeaderFontSize" ColumnName="PrintHeaderFontSize" />
+                <ScalarProperty Name="PrintFooterFontColor" ColumnName="PrintFooterFontColor" />
+                <ScalarProperty Name="PrintHeaderFontColor" ColumnName="PrintHeaderFontColor" />
+                <ScalarProperty Name="PrintFooterFont" ColumnName="PrintFooterFont" />
+                <ScalarProperty Name="PrintHeaderFont" ColumnName="PrintHeaderFont" />
                 <ScalarProperty Name="StoreId" ColumnName="StoreId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="UserGroupId" ColumnName="UserGroupId" />
@@ -34877,6 +35020,7 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <EntitySetMapping Name="Cal_Budget">
             <EntityTypeMapping TypeName="InvEntities.Cal_Budget">
               <MappingFragment StoreEntitySet="Cal_Budget">
+                <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
                 <ScalarProperty Name="DeletedAt" ColumnName="DeletedAt" />
                 <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
                 <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
@@ -34920,6 +35064,8 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <EntitySetMapping Name="Cal_BusinessPartnerAccounts">
             <EntityTypeMapping TypeName="InvEntities.Cal_BusinessPartnerAccounts">
               <MappingFragment StoreEntitySet="Cal_BusinessPartnerAccounts">
+                <ScalarProperty Name="EtaxCustType" ColumnName="EtaxCustType" />
+                <ScalarProperty Name="TaxRefNo" ColumnName="TaxRefNo" />
                 <ScalarProperty Name="DeletedAt" ColumnName="DeletedAt" />
                 <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
                 <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
@@ -35021,6 +35167,8 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <EntitySetMapping Name="Cal_CustAccounts">
             <EntityTypeMapping TypeName="InvEntities.Cal_CustAccounts">
               <MappingFragment StoreEntitySet="Cal_CustAccounts">
+                <ScalarProperty Name="MainServerId" ColumnName="MainServerId" />
+                <ScalarProperty Name="IsServerEntity" ColumnName="IsServerEntity" />
                 <ScalarProperty Name="DeletedAt" ColumnName="DeletedAt" />
                 <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
                 <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
@@ -35061,6 +35209,8 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <EntitySetMapping Name="Cal_EmpAccounts">
             <EntityTypeMapping TypeName="InvEntities.Cal_EmpAccounts">
               <MappingFragment StoreEntitySet="Cal_EmpAccounts">
+                <ScalarProperty Name="MainServerId" ColumnName="MainServerId" />
+                <ScalarProperty Name="IsServerEntity" ColumnName="IsServerEntity" />
                 <ScalarProperty Name="DeletedAt" ColumnName="DeletedAt" />
                 <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
                 <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
@@ -35129,6 +35279,8 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <EntitySetMapping Name="Cal_JurnalEntry">
             <EntityTypeMapping TypeName="InvEntities.Cal_JurnalEntry">
               <MappingFragment StoreEntitySet="Cal_JurnalEntry">
+                <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
+                <ScalarProperty Name="VehiclMovId" ColumnName="VehiclMovId" />
                 <ScalarProperty Name="DeletedAt" ColumnName="DeletedAt" />
                 <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
                 <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
@@ -40590,6 +40742,13 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <EntitySetMapping Name="Ms_ReceiptNote">
             <EntityTypeMapping TypeName="InvEntities.Ms_ReceiptNote">
               <MappingFragment StoreEntitySet="Ms_ReceiptNote">
+                <ScalarProperty Name="PayId" ColumnName="PayId" />
+                <ScalarProperty Name="MainCustServerId" ColumnName="MainCustServerId" />
+                <ScalarProperty Name="RemotId" ColumnName="RemotId" />
+                <ScalarProperty Name="IsRemoteEntity" ColumnName="IsRemoteEntity" />
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
                 <ScalarProperty Name="DeletedAt" ColumnName="DeletedAt" />
                 <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
                 <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
@@ -41201,6 +41360,18 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <EntitySetMapping Name="Ms_SalesInvoice">
             <EntityTypeMapping TypeName="InvEntities.Ms_SalesInvoice">
               <MappingFragment StoreEntitySet="Ms_SalesInvoice">
+                <ScalarProperty Name="MainCustServerId" ColumnName="MainCustServerId" />
+                <ScalarProperty Name="RemotId" ColumnName="RemotId" />
+                <ScalarProperty Name="IsRemoteEntity" ColumnName="IsRemoteEntity" />
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="IsReturned" ColumnName="IsReturned" />
+                <ScalarProperty Name="EtaxReference" ColumnName="EtaxReference" />
+                <ScalarProperty Name="EtaxRemarks" ColumnName="EtaxRemarks" />
+                <ScalarProperty Name="EtaxSentTime" ColumnName="EtaxSentTime" />
+                <ScalarProperty Name="EtaxSent" ColumnName="EtaxSent" />
+                <ScalarProperty Name="TotalQtyNoVehicl" ColumnName="TotalQtyNoVehicl" />
+                <ScalarProperty Name="TotalQtyCar" ColumnName="TotalQtyCar" />
+                <ScalarProperty Name="TotalQtyPump" ColumnName="TotalQtyPump" />
                 <ScalarProperty Name="DeletedAt" ColumnName="DeletedAt" />
                 <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
                 <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
@@ -43184,6 +43355,8 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <EntitySetMapping Name="Prod_BasicUnits">
             <EntityTypeMapping TypeName="InvEntities.Prod_BasicUnits">
               <MappingFragment StoreEntitySet="Prod_BasicUnits">
+                <ScalarProperty Name="IsKarat" ColumnName="IsKarat" />
+                <ScalarProperty Name="EtaxUnitCode" ColumnName="EtaxUnitCode" />
                 <ScalarProperty Name="DeletedAt" ColumnName="DeletedAt" />
                 <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
                 <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
@@ -48208,6 +48381,9 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <EntitySetMapping Name="MS_Vendor">
             <EntityTypeMapping TypeName="InvEntities.MS_Vendor">
               <MappingFragment StoreEntitySet="MS_Vendor">
+                <ScalarProperty Name="MainServerId" ColumnName="MainServerId" />
+                <ScalarProperty Name="IsServerEntity" ColumnName="IsServerEntity" />
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
                 <ScalarProperty Name="EtaxCustType" ColumnName="EtaxCustType" />
                 <ScalarProperty Name="VendID" ColumnName="VendID" />
                 <ScalarProperty Name="VendJob" ColumnName="VendJob" />
@@ -48474,6 +48650,7 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
           <EntitySetMapping Name="MS_Taxes">
             <EntityTypeMapping TypeName="InvEntities.MS_Taxes">
               <MappingFragment StoreEntitySet="MS_Taxes">
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
                 <ScalarProperty Name="EtaxCode" ColumnName="EtaxCode" />
                 <ScalarProperty Name="DeletedAt" ColumnName="DeletedAt" />
                 <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
@@ -48491,6 +48668,18 @@ warning 6002: The table/view 'ERP.dbo.VW_SearchAllAccounts' does not have a prim
                 <ScalarProperty Name="TaxNameA" ColumnName="TaxNameA" />
                 <ScalarProperty Name="TaxCode" ColumnName="TaxCode" />
                 <ScalarProperty Name="TaxesId" ColumnName="TaxesId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MS_ItemImages">
+            <EntityTypeMapping TypeName="InvEntities.MS_ItemImages">
+              <MappingFragment StoreEntitySet="MS_ItemImages">
+                <ScalarProperty Name="ImageStr" ColumnName="ImageStr" />
+                <ScalarProperty Name="ImgDesc2" ColumnName="ImgDesc2" />
+                <ScalarProperty Name="ImgDesc1" ColumnName="ImgDesc1" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ItemCardId" ColumnName="ItemCardId" />
+                <ScalarProperty Name="ImgId" ColumnName="ImgId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

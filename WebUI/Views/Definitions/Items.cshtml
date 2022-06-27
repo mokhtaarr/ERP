@@ -1,0 +1,412 @@
+﻿@using Inv.WebUI.Resources
+@{
+    ViewBag.Title = SystemResource.Men_StkDefItems;
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 bg-white p-3">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-BasicData-tab" data-toggle="tab" href="#BasicData" role="tab" aria-controls="nav-BasicData" aria-selected="true"><i class="fas fa-book"></i> @SystemResource.BasicData</a>
+                <a class="nav-item nav-link" id="nav-AdditionalData-tab" data-toggle="tab" href="#AdditionalData" role="tab" aria-controls="nav-AdditionalData" aria-selected="false"><i class="fas fa-book-open"></i> @SystemResource.AdditionalData</a>
+                <a class="nav-item nav-link" id="nav-PricingPolicies-tab" data-toggle="tab" href="#PricingPolicies" role="tab" aria-controls="nav-PricingPolicies" aria-selected="false"><i class="fas fa-money-bill-wave"></i> @SystemResource.PricingPolicies</a>
+                <a class="nav-item nav-link" id="nav-UnitsAndPrices-tab" data-toggle="tab" href="#UnitsAndPrices" role="tab" aria-controls="nav-UnitsAndPrices" aria-selected="false"><i class="fas fa-money-bill-alt"></i> @SystemResource.UnitsAndPrices</a>
+                <a class="nav-item nav-link" id="nav-photos-tab" data-toggle="tab" href="#photos" role="tab" aria-controls="nav-photos" aria-selected="false"><i class="fas fa-images"></i> @SystemResource.photos</a>
+                <a class="nav-item nav-link" id="nav-ItemAlternatives-tab" data-toggle="tab" href="#ItemAlternatives" role="tab" aria-controls="nav-ItemAlternatives" aria-selected="false"><i class="fas fa-ItemAlternatives"></i> @SystemResource.ItemAlternatives</a>
+                <a class="nav-item nav-link" id="nav-GroupClass-tab" data-toggle="tab" href="#GroupClass" role="tab" aria-controls="nav-GroupClass" aria-selected="false"><i class="fas fa-sitemap"></i> @SystemResource.GroupClass</a>
+                <a class="nav-item nav-link" id="nav-Attributes-tab" data-toggle="tab" href="#Attributes" role="tab" aria-controls="nav-Attributes" aria-selected="false"><i class="fab fa-battle-net"></i> @SystemResource.Properties @SystemResource.App_Item</a>
+                <a class="nav-item nav-link" id="nav-Offers-tab" data-toggle="tab" href="#Offers" role="tab" aria-controls="nav-Offers" aria-selected="false"><i class="fab fa-buffer"></i> @SystemResource.Offers</a>
+                <a class="nav-item nav-link" id="nav-ManufacturingExpenses-tab" data-toggle="tab" href="#ManufacturingExpenses" role="tab" aria-controls="nav-ManufacturingExpenses" aria-selected="false"><i class="fas fa-file-invoice-dollar"></i> @SystemResource.ManufacturingExpenses</a>
+                <a class="nav-item nav-link" id="nav-Suppliers-tab" data-toggle="tab" href="#Suppliers" role="tab" aria-controls="nav-Suppliers" aria-selected="false"><i class="fas fa-people-arrows"></i> @SystemResource.Suppliers</a>
+            </div>
+        </nav>
+
+        <div class="tab-content text-center row" id="nav-tabContent">
+            <input  id="ItemCardId" name="ItemCardId" type="hidden">
+            <div id="BasicData" class="tab-pane fade show active col-12">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-2 d-flex">
+                            <label>@SystemResource.Code</label>
+                            <input  id="ItemCode" name="ItemCode" type="text" class="form-control" placeholder="@SystemResource.Code">
+                        </div>
+
+                        <div class="col-lg-3 d-flex">
+                            <label>@SystemResource.TaxCode</label>
+                            <input id="TaxItemCode" name="TaxItemCode" type="text" class="form-control" placeholder="@SystemResource.TaxCode">
+                        </div>
+
+                        <div class="col-lg-1 text-center">
+                            <button type="button" class="src-btn btn btn-warning radius" id="btnMS_ItemCardSearch" name="btnSearch">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+
+                        <div class="col-lg-3 d-flex">
+                            <label>@SystemResource.Name_Arabic </label>
+                            <input id="ItemDescA" name="ItemDescA" type="text" class="form-control" placeholder="@SystemResource.Name_Arabic">
+                        </div>
+
+                        <div class="col-lg-3 d-flex">
+                            <label>@SystemResource.Name_English </label>
+                            <input id="ItemDescE" name="ItemDescE" type="text" class="form-control" placeholder="@SystemResource.Name_English">
+                        </div>
+
+                        <div class="col-md-4 d-flex">
+                            <label>@SystemResource.ItemCategories</label>
+                            <select id="ItemCategoryId" name="ItemCategoryId" class="form-control">
+                                <option value="null"></option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-4 d-flex">
+                            <label>@SystemResource.Store2</label>
+                            <select id="StoreId" name="StoreId" class="form-control">
+                                <option value="null"></option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-4 d-flex">
+                            <label>@SystemResource.NatureVariety</label>
+                            <select required id="ItemType" name="ItemType" class="form-control">
+                                <option value="null"></option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.Itm_Uom </label>
+                            <input id="QtyInBox" name="QtyInBox" type="number" class="form-control" placeholder="@SystemResource.Itm_Uom">
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.Cost </label>
+                            <input id="PurchasePrice" name="PurchasePrice" type="number" class="form-control" placeholder="@SystemResource.Cost">
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.NotebookQuantity </label>
+                            <input id="QtyInNotebook" name="QtyInNotebook" type="number" class="form-control" placeholder="@SystemResource.NotebookQuantity">
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.Itm_ActualQuntity </label>
+                            <input id="QtyPartiation" name="QtyPartiation" type="number" class="form-control" placeholder="@SystemResource.Itm_ActualQuntity">
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.Cost / @SystemResource.Branch</label>
+                            <input id="CoastAverage" name="CoastAverage" type="number" class="form-control" placeholder="@SystemResource.Cost / @SystemResource.Branch">
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.ReservedSale </label>
+                            <input id="" name="" type="number" class="form-control" placeholder="@SystemResource.ReservedSale">
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.PenultimateCost </label>
+                            <input id="BeforLastCost" name="BeforLastCost" type="number" class="form-control" placeholder="@SystemResource.PenultimateCost">
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.LastPurchasePrice </label>
+                            <input id="LastCost" name="LastCost" type="number" class="form-control" placeholder="@SystemResource.LastPurchasePrice">
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-around col-md-2">
+                            <label for="IsCollection" class="col-md-2">@SystemResource.CollectionClass</label>
+                            <div class="switch-button switch-button-yesno">
+                                <input type="checkbox" name="IsCollection" id="IsCollection"><span>
+                                    <label for="IsCollection"></label>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-around col-md-2">
+                            <label for="IsAttributeItem" class="col-md-2">@SystemResource.DimensionalCategory</label>
+                            <div class="switch-button switch-button-yesno">
+                                <input type="checkbox" name="IsAttributeItem" id="IsAttributeItem"><span>
+                                    <label for="IsAttributeItem"></label>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-around col-md-2">
+                            <label for="IsDimension" class="col-md-2">@SystemResource.ClassWithProperties</label>
+                            <div class="switch-button switch-button-yesno">
+                                <input type="checkbox" name="IsDimension" id="IsDimension"><span>
+                                    <label for="IsDimension"></label>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-around col-md-2">
+                            <label for="IsSerialItem" class="col-md-2">@SystemResource.SerialNumbers</label>
+                            <div class="switch-button switch-button-yesno">
+                                <input type="checkbox" name="IsSerialItem" id="IsSerialItem"><span>
+                                    <label for="IsSerialItem"></label>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 d-flex">
+                            <label>PreFix</label>
+                            <input id="SerialNoPrefix" name="SerialNoPrefix" type="text" class="form-control" placeholder="PreFix">
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.WarrantyPeriod</label>
+                            <input id="WarantyPeriod" name="WarantyPeriod" type="text" class="form-control" placeholder="@SystemResource.WarrantyPeriod">
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <select id="WarantyPeriodType" name="WarantyPeriodType" class="form-control">
+                                <option value="null"></option>
+                            </select>
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-around col-md-2">
+                            <label for="IsExpir" class="col-md-2">@SystemResource.ExpiryDates</label>
+                            <div class="switch-button switch-button-yesno">
+                                <input type="checkbox" name="IsExpir" id="IsExpir"><span>
+                                    <label for="IsExpir"></label>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 d-flex">
+                            <input id="ExpirPeriod" name="ExpirPeriod" type="text" class="form-control" placeholder="">
+                        </div>
+
+                        <div class="col-md-2 d-flex">
+                            <select id="PeriodType" name="PeriodType" class="form-control">
+                                <option value="null"></option>
+                            </select>
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-around col-md-3">
+                            <label for="" class="col-md-2">@SystemResource.UseEquivalentUnit</label>
+                            <div class="switch-button switch-button-yesno">
+                                <input type="checkbox" name="" id=""><span>
+                                    <label for=""></label>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-around col-md-3">
+                            <label for="" class="col-md-2">@SystemResource.EquivalencyUnitMandatory</label>
+                            <div class="switch-button switch-button-yesno">
+                                <input type="checkbox" name="" id=""><span>
+                                    <label for=""></label>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-around col-md-3">
+                            <label for="" class="col-md-2">@SystemResource.StopSellingItem</label>
+                            <div class="switch-button switch-button-yesno">
+                                <input type="checkbox" name="" id=""><span>
+                                    <label for=""></label>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.DemandLimit </label>
+                            <input id="ItemLimit" name="ItemLimit" type="number" class="form-control" placeholder="@SystemResource.DemandLimit">
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.LastPurchaseDate </label>
+                            <input id="LastPurchDate" name="LastPurchDate" type="date" class="form-control" placeholder="@SystemResource.LastPurchaseDate">
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.LastSalePrice </label>
+                            <input id="LastSalePrice" name="LastSalePrice" type="number" class="form-control" placeholder="@SystemResource.LastSalePrice">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="AdditionalData" class="tab-pane fade  col-12">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-6 d-flex">
+                            <label>@SystemResource.InfoWhenUsedInDocuments</label>
+                            <input id="AddField1" name="AddField1" type="text" class="form-control" placeholder="">
+                        </div>
+
+                        <div class="col-lg-6 d-flex">
+                            <label>@SystemResource.Notes</label>
+                            <textarea id="Remarks" name="Remarks" class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="PricingPolicies" class="tab-pane fade col-12">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.FirstQuantity</label>
+                            <input id="FirstQty" name="FirstQty" type="number" class="form-control" placeholder="@SystemResource.FirstQuantity">
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.SecondQuantity</label>
+                            <input id="SecandQty" name="SecandQty" type="number" class="form-control" placeholder="@SystemResource.SecondQuantity">
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.ThirdQuantity</label>
+                            <input id="ThridQty" name="ThridQty" type="number" class="form-control" placeholder="@SystemResource.ThirdQuantity">
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.FourthQuantity</label>
+                            <input id="LargeQty" name="LargeQty" type="number" class="form-control" placeholder="@SystemResource.FourthQuantity">
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.Price2 1</label>
+                            <input id="FirstPrice" name="FirstPrice" type="number" class="form-control" placeholder="@SystemResource.Price2 1">
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.Price2 2</label>
+                            <input id="SecandPrice" name="SecandPrice" type="number" class="form-control" placeholder="@SystemResource.Price2 2">
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.Price2 3</label>
+                            <input id="ThirdPrice" name="ThirdPrice" type="number" class="form-control" placeholder="@SystemResource.Price2 3">
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.Price2 4</label>
+                            <input id="LargePrice" name="LargePrice" type="number" class="form-control" placeholder="@SystemResource.Price2 4">
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.Price2 5</label>
+                            <input id="Price5" name="Price5" type="number" class="form-control" placeholder="@SystemResource.Price2 5">
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.Price2 6</label>
+                            <input id="Price6" name="Price6" type="number" class="form-control" placeholder="@SystemResource.Price2 6">
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.Price2 7</label>
+                            <input id="Price7" name="Price7" type="number" class="form-control" placeholder="@SystemResource.Price2 7">
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.Price2 8</label>
+                            <input id="Price8" name="Price8" type="number" class="form-control" placeholder="@SystemResource.Price2 8">
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.Price2 9</label>
+                            <input id="Price9" name="Price9" type="number" class="form-control" placeholder="@SystemResource.Price2 9">
+                        </div>
+
+                        <div class="col-md-3 d-flex">
+                            <label>@SystemResource.SellingPriceMeter</label>
+                            <input id="Price10" name="Price10" type="number" class="form-control" placeholder="@SystemResource.SellingPriceMeter">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="UnitsAndPrices" class="tab-pane fade col-12">
+                <div class="container-fluid">
+                    <div class="row" style="overflow: auto;">
+                        <div class="col-md-4">
+                            <select id="BasUnitId" name="BasUnitId" class="form-control"> </select>
+                        </div>
+                        <table data-sub class="col-12" id="UnitsPricesGrid"></table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="photos" class="tab-pane fade col-12">
+                <div class="container-fluid">
+                    <div class="row"> 
+                        @*<div class="col-lg-6 d-flex">
+                            <label>@SystemResource.Notes 1</label>
+                            <textarea id="ImgDesc1" name="ImgDesc1" class="form-control"></textarea>
+                        </div>
+                        <div class="col-lg-6 d-flex">
+                            <label>@SystemResource.Notes 2</label>
+                            <textarea id="ImgDesc1" name="ImgDesc1" class="form-control"></textarea>
+                        </div>*@
+                        <input class="col-12" type="file" id="ItemImages" name="ItemImages" value="" multiple />
+                        <div class="col-12">
+                            <div id="imagesPre" class="row"> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="ItemAlternatives" class="tab-pane fade col-12">
+                <div class="container-fluid">
+                    <div class="row" style="overflow: auto;">
+                        <table data-sub class="col-12" id="ItemAlternativesGrid"></table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="GroupClass" class="tab-pane fade col-12">
+                <div class="container-fluid">
+                    <div class="row">
+                        <table data-sub class="col-12" id="ItemCollectionGrid"></table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Attributes" class="tab-pane fade col-12">
+                <div class="container-fluid">
+                    <div class="row" style="overflow: auto;">
+                        <table data-sub class="col-12" id="AttributesGrid"></table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Offers" class="tab-pane fade col-12">
+                <div class="container-fluid">
+                    <div class="row" style="overflow: auto;">
+                        <table data-sub class="col-12" id="OffersGrid"></table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ManufacturingExpenses" class="tab-pane fade col-12">
+                <div class="container-fluid">
+                    <div class="row">
+                        <table data-sub class="col-12" id="ItemCardExpensesGrid"></table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Suppliers" class="tab-pane fade col-12">
+                <div class="container-fluid">
+                    <div class="row" style="overflow: auto;">
+                        <table data-sub class="col-12" id="SuppliersGrid"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 bg-white mt-4 pt-4 pb-2">
+        <h4 class="col-12 font-weight-bold text-primary text-center"><i class="glyphicon glyphicon-hand-up"></i> @SystemResource.App_DoubleDisplay <i class="glyphicon glyphicon-hand-up"></i></h4>
+        <table data-main class="col-12" id="itemGrid"></table>
+    </div>
+</div>
+
+<script src="~/ClientApp/Pages/Definitions/Items.js"></script>

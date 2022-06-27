@@ -12,6 +12,7 @@ const TransparentButton: string = "TransparentButton";
 var Modules = {
     //////////////////// Defination //////////////////////
     Home: "Home",
+    Items: "Items",
     Ms_CustomerTypes: "Ms_CustomerTypes",
     Ms_VendorTypes: "Ms_VendorTypes",
     MS_ItemCategory: "MS_ItemCategory",
@@ -216,8 +217,8 @@ interface IJsGridColumn {
     textField?: string;
     value?: string;
 
-    _createEditButton?: any;
     //updateItem?: any;
+    _createEditButton?: any;
     itemTemplate?: any;
     editTemplate?: any;
     editControl?: any;
@@ -490,6 +491,8 @@ var Ajax = {
             type: settings.type,
             url: settings.url,
             data: settings.data,
+            processData: true,
+            contentType: true,
             cache: false,
             headers: {
                 'Accept': 'application/json; charset=utf-8',
@@ -499,7 +502,7 @@ var Ajax = {
                 settings.success(d, "", null);
                 $(".waitMe").removeAttr("style").fadeOut(200);
             },
-            error: () => {
+            error: (err, errStatus, errThrowen) => {
                 location.href = "/Login/LoginIndex";
                 $(".waitMe").removeAttr("style").fadeOut(200);
             }
@@ -516,14 +519,16 @@ var Ajax = {
                 'Accept': 'application/json; charset=utf-8',
                 'Content-Type': 'application/json'
             },
+            processData: true,
+            contentType: true,
             cache: false,
             async: false,
             success: (d) => {
                 settings.success(d, "", null);
                 $(".waitMe").removeAttr("style").fadeOut(2500);
             },
-            error: () => {
-                location.href = "/Login/LoginIndex";
+            error: (err, errStatus, errThrowen) => {
+                //location.href = "/Login/LoginIndex";
                 $(".waitMe").removeAttr("style").fadeOut(2500);
             }
         })
@@ -593,7 +598,26 @@ var RequiredElements: Array<HTMLElement> = new Array<HTMLElement>();
 
 var exchangeElements: Array<HTMLInputElement> = new Array<HTMLInputElement>();
 
+function insertAfter(referenceNode, newNode) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}
+
+
+function CreateSpanValdition(defaultValue: string, forId: string, className: string = ""): HTMLElement {
+    let element = DocumentActions.CreateElement<HTMLElement>("span");
+    element.setAttribute('for', forId);
+    element.style.color = "#e91a1a";
+    element.innerText = defaultValue;
+    return element;
+}
+
 var DocumentActions = {
+    ChangeSelectToSearchable(parantID: string, id: string = "") {
+        if (!IsNullOrEmpty(id))
+            setTimeout(function () { $('#' + id).select2().trigger('change'); }, 5);
+        else
+            setTimeout(function () { $('#' + parantID + ' select').select2().trigger('change'); }, 5);
+    },
     SetRequiredElements: (...elements: Array<HTMLElement>): void => {
         RequiredElements = new Array<HTMLElement>();
         for (var element of elements) {
@@ -679,6 +703,31 @@ var DocumentActions = {
         else
             return true;
     },
+
+    //ValidateFields: (id: string): boolean => {
+    //    let result: boolean = true;
+    //    let childrenInput = document.getElementById("nav-tabContent").getElementsByTagName("input");
+    //    let childrenSelect = document.getElementById("nav-tabContent").getElementsByTagName("select");
+
+    //    for (var i = 0; i < childrenInput.length; i++) {
+    //        let child = childrenInput[i];
+    //        if ($(child).prop('required')) {
+    //            child.insertBefore(CreateLabelElement("", child.id), CreateSpanValdition(ReferenceError));
+    //            result = false;
+    //        }
+    //    }
+
+    //    for (var i = 0; i < childrenSelect.length; i++) {
+    //        let child = childrenSelect[i];
+    //        if ($(child).prop('required')) {
+    //            CreateElement
+    //            child.parentNode.in(CreateLabelElement("", child.id), null);
+    //            result = false;
+    //        }
+    //    }
+
+    //    return result;
+    //},
 
     RenderFromModel: (dataSource: any): void => {
         try {
@@ -1428,11 +1477,39 @@ function CreateElement(typeElement: string, className: string, defaultValue: str
     let element = DocumentActions.CreateElement<HTMLInputElement>("input");
     element.className = className;
     element.id = id;
+    element.name = id;
     element.type = typeElement;
     element.value = defaultValue;
     element.min = minValue;
     element.step = step;
     element.disabled = disabled;
+    return element;
+}
+
+
+function CreateImage(src: string, className: string, id: string): HTMLImageElement {
+    let element = DocumentActions.CreateElement<HTMLImageElement>("img");
+    element.className = className;
+    element.id = id;
+    element.name = id;
+    element.src = src;
+    return element;
+}
+
+
+function CreateDiv(className: string, id: string): HTMLDivElement {
+    let element = DocumentActions.CreateElement<HTMLDivElement>("div");
+    element.className = className;
+    element.id = id;
+    return element;
+}
+
+function CreateButton(className: string, id: string, onclick?: (this) => void): HTMLButtonElement {
+    let element = DocumentActions.CreateElement<HTMLButtonElement>("button");
+    element.className = className;
+    element.id = id;
+    element.onclick = onclick;
+
     return element;
 }
 
@@ -1447,7 +1524,6 @@ function CreateElementString(typeElement: string, className: string, defaultValu
     element.step = step;
     return element.outerHTML;
 }
-
 
 //eslam 25 oct 2020
 function CreateLabelElement(defaultValue: string, id: string): HTMLElement {
@@ -1731,10 +1807,14 @@ function GetDate() {
     return ReturnedDate;
 }
 
-function CreateDropdownList<T>(arr: Array<T>, Name_Ar: string, Name_En: string, Key: string, IsSelectNull: Boolean = false): HTMLSelectElement {
+function CreateDropdownList<T>(arr: Array<T>, Name_Ar: string, Name_En: string, Key: string, IsSelectNull: boolean = false, id: string = null, disabled: boolean = false): HTMLSelectElement {
     var Env = GetSystemEnvironment();
     let element = document.createElement("select") as HTMLSelectElement;
-    element.className = "form-control input-sm";
+    if (!IsNullOrEmpty(id))
+        element.id = id;
+
+    element.disabled = disabled;
+    element.className = "form-control";
     if (IsSelectNull == true)
         element.options.add(new Option((Env.Language == "ar" ? "لا يوجد" : "Nothing"), "null"));
     switch (Env.Language) {

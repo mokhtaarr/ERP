@@ -16,8 +16,8 @@ class DataTable {
     public EnableSorting: boolean = false;
     public EnableFiltring: boolean = false;
     public EnablePaging: boolean = false;
-    public PageSize: number = 50;
-    public language_app:any;
+    public PageSize: number = 10;
+    public language_app: any;
 
     public PrimaryKey: string;
     public OnFiltering: (evt, ui) => void;
@@ -25,7 +25,7 @@ class DataTable {
     private Initalized: boolean = false;
     public Env = GetSystemEnvironment();
     private InitalizeEvents(e: JQueryEventObject) {
-         
+
         let row = $("#SearchDataTable tbody tr td").DataTable();
 
         let currentIndex: number = row.index;
@@ -43,7 +43,6 @@ class DataTable {
     }
 
     private Initalize() {
-
     }
 
     public Dispose() {
@@ -75,33 +74,35 @@ class DataTable {
             };
             this.column_defs.push(newColumn);
         }
+
         this.dataScr = this.dataScr.filter(row => row.hidden != true);
-        var tableHeaders ="";
+        var tableHeaders = "";
         this.column_defs.forEach(col => {
             var _width: string = "style = 'width: " + col.width + ";max-width: " + col.width + ";min-width: " + col.width + ";'";
             tableHeaders += "<th " + _width + ">" + col.title + "</th>";
         });
 
         if (this.Env.ScreenLanguage == "ar") {
-            this.language_app = 
-                {
-                    "sProcessing": "جارٍ التحميل...",
-                    "sLengthMenu": "أظهر _MENU_ مدخلات",
-                    "sZeroRecords": "لم يعثر على أية سجلات",
-                    "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
-                    "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
-                    "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
-                    "sInfoPostFix": "",
-                    "sSearch": "ابحث:",
-                    "sUrl": "",
-                    "oPaginate": {
-                        "sFirst": "الأول",
-                        "sPrevious": "السابق",
-                        "sNext": "التالي",
-                        "sLast": "الأخير"
-                    }
+            this.language_app =
+            {
+                "sProcessing": "جارٍ التحميل...",
+                "sLengthMenu": "أظهر _MENU_ مدخلات",
+                "sZeroRecords": "لم يعثر على أية سجلات",
+                "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                "sInfoPostFix": "",
+                "sSearch": "ابحث:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "الأول",
+                    "sPrevious": "السابق",
+                    "sNext": "التالي",
+                    "sLast": "الأخير"
                 }
-        } else {
+            }
+        }
+        else {
             this.language_app = {
                 "sProcessing": "Processing",
                 "sLengthMenu": "Show _MENU_ Enties",
@@ -148,5 +149,3 @@ class DataTable {
         });
     }
 }
-
-

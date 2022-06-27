@@ -19,5 +19,6 @@ namespace Inv.DAL.Domain
         public byte[] Image { get; set; }
         public string ImgDesc1 { get; set; }
         public string ImgDesc2 { get; set; }
+        public string ImageStr { get; set; }
     }
 }

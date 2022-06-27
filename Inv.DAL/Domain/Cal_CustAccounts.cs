@@ -48,5 +48,7 @@ namespace Inv.DAL.Domain
         public Nullable<System.DateTime> UpdatedAt { get; set; }
         public string DeletedBy { get; set; }
         public Nullable<System.DateTime> DeletedAt { get; set; }
+        public Nullable<bool> IsServerEntity { get; set; }
+        public Nullable<int> MainServerId { get; set; }
     }
 }

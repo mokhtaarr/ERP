@@ -1,15 +1,10 @@
 ﻿using Inv.DAL.Domain;
 using Inv.DAL.Repository;
 using Inv.Static.Enums;
-using Inv.Static.VM;
 using Newtonsoft.Json;
 using StackExchange.Redis;
-using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Inv.DAL.RedisCache
 {
@@ -30,8 +25,8 @@ namespace Inv.DAL.RedisCache
                 redis = new RedisCache();
                 redis.SetConnection();
                 redis.SetContext();
-
             }
+
             return redis;
         }
         public void SetConnection()
@@ -173,21 +168,21 @@ namespace Inv.DAL.RedisCache
         public void AddOrUpdateLocalCurrency(MS_Currency model)
         {
             var db = redis.conn.GetDatabase();
-            MS_Currency settings;
+            MS_Currency currency;
             if (db.KeyExists("LocalCurrency"))
             {
-                settings = JsonConvert.DeserializeObject<MS_Currency>(db.StringGet("LocalCurrency"), new JsonSerializerSettings()
+                currency = JsonConvert.DeserializeObject<MS_Currency>(db.StringGet("LocalCurrency"), new JsonSerializerSettings()
                 {
                     MaxDepth = null
                 });
 
-                settings = model;
+                currency = model;
             }
             else
             {
-                settings = model;
+                currency = model;
             }
-            db.StringSet("LocalCurrency", JsonConvert.SerializeObject(settings, new JsonSerializerSettings()
+            db.StringSet("LocalCurrency", JsonConvert.SerializeObject(currency, new JsonSerializerSettings()
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
                 PreserveReferencesHandling = PreserveReferencesHandling.Objects,
@@ -224,6 +219,104 @@ namespace Inv.DAL.RedisCache
                     Formatting = Formatting.None
                 }));
             }
+        }
+        #endregion
+
+        #region User Authentications
+        public List<MS_UserAuthentications> GetOrSetUserAuthentications(int? userId)
+        {
+            var db = conn.GetDatabase();
+            List<MS_UserAuthentications> userAuthentications;
+            if (db.KeyExists("UserAuthentications"))
+            {
+                userAuthentications = JsonConvert.DeserializeObject<List<MS_UserAuthentications>>(db.StringGet("UserAuthentications"), new JsonSerializerSettings()
+                {
+                    MaxDepth = null
+                });
+
+                return userAuthentications;
+            }
+            else
+            {
+                userAuthentications = unitOfWork.Repository<MS_UserAuthentications>().GetQueryable(x=>x.UserId == userId).ToList();
+                db.StringSet("UserAuthentications", JsonConvert.SerializeObject(userAuthentications, new JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                    PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+                    Formatting = Formatting.None
+                }));
+
+                return userAuthentications;
+            }
+        }
+
+        public void AddOrUpdateUserAuthentications(MS_UserAuthentications model)
+        {
+            var db = redis.conn.GetDatabase();
+            List<MS_UserAuthentications> userAuthenticationss;
+            if (db.KeyExists("UserAuthentications"))
+            {
+                userAuthenticationss = JsonConvert.DeserializeObject<List<MS_UserAuthentications>>(db.StringGet("UserAuthentications"), new JsonSerializerSettings()
+                {
+                    MaxDepth = null
+                });
+
+                userAuthenticationss.Add(model);
+            }
+            else
+            {
+                userAuthenticationss = new List<MS_UserAuthentications>();
+                userAuthenticationss.Add(model);
+            }
+            db.StringSet("UserAuthentications", JsonConvert.SerializeObject(userAuthenticationss, new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+                Formatting = Formatting.None
+            }));
+        }
+
+        public void UserAuthenticationsOperation(DBOperationType dbOperationType, MS_UserAuthentications model)
+        {
+            if (dbOperationType == DBOperationType.Add || dbOperationType == DBOperationType.Update)
+            {
+                AddOrUpdateUserAuthentications(model);
+            }
+            else
+            {
+                DeleteUserAuthentication(model.AuthId);
+            }
+        }
+
+        public void DeleteUserAuthentication(int id)
+        {
+            var db = redis.conn.GetDatabase();
+            if (db.KeyExists("UserAuthentications"))
+            {
+                List<MS_Currency> currency = JsonConvert.DeserializeObject<List<MS_Currency>>(db.StringGet("UserAuthentications"), new JsonSerializerSettings()
+                {
+                    MaxDepth = null
+                });
+                currency.RemoveAll(x => x.CurrencyId == id);
+                db.StringSet("UserAuthentications", JsonConvert.SerializeObject(currency, new JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                    PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+                    Formatting = Formatting.None
+                }));
+            }
+        }
+
+        public void ResetUserAuthentications(int userId)
+        {
+            var db = redis.conn.GetDatabase();
+            if (db.KeyExists("UserAuthentications"))
+            {
+                if (db.KeyDelete("UserAuthentications"))
+                    GetOrSetUserAuthentications(userId);
+            }
+            else
+                GetOrSetUserAuthentications(userId);
         }
         #endregion
     }

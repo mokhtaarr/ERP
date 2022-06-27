@@ -13916,3 +13916,780 @@ class MS_Settings {
     public VendSeparator: any;
 }
 
+class MS_ItemCard {
+    constructor() {
+        this.ItemCardId = 0;
+        this.ItemCategoryId = 0;
+        this.StoreId = 0;
+        this.StorePartId = 0;
+        this.BasUnitId = 0;
+        this.TaxesId1 = 0;
+        this.Tax1ForSale = false;
+        this.Tax1ForPurch = false;
+        this.Tax1Style = 0;
+        this.Tax1Rate = 0;
+        this.Tax1IsAccomulative = false;
+        this.Tax1PlusOrMinus = false;
+        this.TaxesId2 = 0;
+        this.Tax2ForSale = false;
+        this.Tax2ForPurch = false;
+        this.Tax2Style = 0;
+        this.Tax2Rate = 0;
+        this.Tax2IsAccomulative = false;
+        this.Tax2PlusOrMinus = false;
+        this.TaxesId3 = 0;
+        this.Tax3ForSale = false;
+        this.Tax3ForPurch = false;
+        this.Tax3Style = 0;
+        this.Tax3Rate = 0;
+        this.Tax3IsAccomulative = false;
+        this.Tax3PlusOrMinus = false;
+        this.ItemType = 0;
+        this.ItemCode = "";
+        this.TaxItemCode = "";
+        this.ItemDescA = "";
+        this.ItemDescE = "";
+        this.QtyPartiation = 0;
+        this.QtyInNotebook = 0;
+        this.TotalCost = 0;
+        this.PurchaseNumber = 0;
+        this.LastSalePrice = 0;
+        this.BeforLastCost = 0;
+        this.LastCostManual = 0;
+        this.ManualPurchasePrice = 0;
+        this.LastCost = 0;
+        this.CoastAverage = 0;
+        this.LastPurchDate = "";
+        this.FirstQty = 0;
+        this.FirstPrice = 0;
+        this.SecandQty = 0;
+        this.SecandPrice = 0;
+        this.ThridQty = 0;
+        this.ThirdPrice = 0;
+        this.LargeQty = 0;
+        this.LargePrice = 0;
+        this.Price5 = 0;
+        this.Quantity5 = 0;
+        this.Price6 = 0;
+        this.Price7 = 0;
+        this.Price8 = 0;
+        this.Price9 = 0;
+        this.Price10 = 0;
+        this.LeastSalesPrice = 0;
+        this.LeastProfitMargin = 0;
+        this.QtyInBox = 0;
+        this.PurchasePrice = 0;
+        this.Wheight = 0;
+        this.ServicePrice = 0;
+        this.ProfitPrice = 0;
+        this.Kirat = 0;
+        this.strCustm5 = "";
+        this.Remarks = "";
+        this.AddField1 = "";
+        this.AddField2 = "";
+        this.AddField3 = "";
+        this.AddField4 = "";
+        this.AddField5 = "";
+        this.AddField6 = "";
+        this.AddField7 = "";
+        this.AddField8 = "";
+        this.AddField9 = "";
+        this.AddField10 = "";
+        this.ExpirPeriod = 0;
+        this.PeriodType = 0;
+        this.OfferDesc = "";
+        this.InOffer = false;
+        this.OfferFromDate = "";
+        this.OfferToDate = "";
+        this.IsOfferDiscount = false;
+        this.IsDiscountPercent = false;
+        this.Discount = 0;
+        this.IsExpir = false;
+        this.IsAttributeItem = false;
+        this.IsCollection = false;
+        this.IsDimension = false;
+        this.IsSerialItem = false;
+        this.AllPatchesSamePrice = false;
+        this.UseSameItemAsMaterial = false;
+        this.AutoSuggestBatches = false;
+        this.CostWithDimension = false;
+        this.DimensionSalesPrice = 0;
+        this.LastUpdateTime
+        this.ItemLimit = 0;
+        this.ItemMax = 0;
+        this.Length = "";
+        this.Width = "";
+        this.Height = "";
+        this.ItemSize = "";
+        this.ItemColor = "";
+        this.SerialNoPrefix = "";
+        this.WarantyPeriod = 0;
+        this.WarantyPeriodType = 0;
+        this.CreatedBy = "";
+        this.CreatedAt = "";
+        this.UpdateBy = "";
+        this.UpdateAt = "";
+        this.DeletedBy = "";
+        this.DeletedAt = "";
+        this.IsTempItem = false;
+        this.ProductionItemUnit = 0;
+        this.SpecialItemExeclud = false;
+        this.IsCommisionPercent = false;
+        this.Commision = 0;
+        this.CommisionEndDate = "";
+        this.IsOuterItem = false;
+        this.UseSomeSubItems = false;
+        this.Unit2IsMandatory = false;
+        this.UseUnit2 = false;
+        this.IsSalesStopped = false;
+        this.IsServerEntity = false;
+        this.MainServerId = 0;
+    }
+    public ItemCardId: number;
+    public ItemCategoryId: number;
+    public StoreId: number;
+    public StorePartId: number;
+    public BasUnitId: number;
+    public TaxesId1: number;
+    public Tax1ForSale: boolean;
+    public Tax1ForPurch: boolean;
+    public Tax1Style: number;
+    public Tax1Rate: number;
+    public Tax1IsAccomulative: boolean;
+    public Tax1PlusOrMinus: boolean;
+    public TaxesId2: number;
+    public Tax2ForSale: boolean;
+    public Tax2ForPurch: boolean;
+    public Tax2Style: number;
+    public Tax2Rate: number;
+    public Tax2IsAccomulative: boolean;
+    public Tax2PlusOrMinus: boolean;
+    public TaxesId3: number;
+    public Tax3ForSale: boolean;
+    public Tax3ForPurch: boolean;
+    public Tax3Style: number;
+    public Tax3Rate: number;
+    public Tax3IsAccomulative: boolean;
+    public Tax3PlusOrMinus: boolean;
+    public ItemType: number;
+    public ItemCode: string;
+    public TaxItemCode: string;
+    public ItemDescA: string;
+    public ItemDescE: string;
+    public QtyPartiation: number;
+    public QtyInNotebook: number;
+    public TotalCost: number;
+    public PurchaseNumber: number;
+    public LastSalePrice: number;
+    public BeforLastCost: number;
+    public LastCostManual: number;
+    public ManualPurchasePrice: number;
+    public LastCost: number;
+    public CoastAverage: number;
+    public LastPurchDate: string;
+    public FirstQty: number;
+    public FirstPrice: number;
+    public SecandQty: number;
+    public SecandPrice: number;
+    public ThridQty: number;
+    public ThirdPrice: number;
+    public LargeQty: number;
+    public LargePrice: number;
+    public Price5: number;
+    public Quantity5: number;
+    public Price6: number;
+    public Price7: number;
+    public Price8: number;
+    public Price9: number;
+    public Price10: number;
+    public LeastSalesPrice: number;
+    public LeastProfitMargin: number;
+    public QtyInBox: number;
+    public PurchasePrice: number;
+    public Wheight: number;
+    public ServicePrice: number;
+    public ProfitPrice: number;
+    public Kirat: number;
+    public strCustm5: string;
+    public Remarks: string;
+    public AddField1: string;
+    public AddField2: string;
+    public AddField3: string;
+    public AddField4: string;
+    public AddField5: string;
+    public AddField6: string;
+    public AddField7: string;
+    public AddField8: string;
+    public AddField9: string;
+    public AddField10: string;
+    public ExpirPeriod: number;
+    public PeriodType: number;
+    public OfferDesc: string;
+    public InOffer: boolean;
+    public OfferFromDate: string;
+    public OfferToDate: string;
+    public IsOfferDiscount: boolean;
+    public IsDiscountPercent: boolean;
+    public Discount: number;
+    public IsExpir: boolean;
+    public IsAttributeItem: boolean;
+    public IsCollection: boolean;
+    public IsDimension: boolean;
+    public IsSerialItem: boolean;
+    public AllPatchesSamePrice: boolean;
+    public UseSameItemAsMaterial: boolean;
+    public AutoSuggestBatches: boolean;
+    public CostWithDimension: boolean;
+    public DimensionSalesPrice: number;
+    public LastUpdateTime: any;
+    public ItemLimit: number;
+    public ItemMax: number;
+    public Length: string;
+    public Width: string;
+    public Height: string;
+    public ItemSize: string;
+    public ItemColor: string;
+    public SerialNoPrefix: string;
+    public WarantyPeriod: number;
+    public WarantyPeriodType: number;
+    public CreatedBy: string;
+    public CreatedAt: string;
+    public UpdateBy: string;
+    public UpdateAt: string;
+    public DeletedBy: string;
+    public DeletedAt: string;
+    public IsTempItem: boolean;
+    public ProductionItemUnit: number;
+    public SpecialItemExeclud: boolean;
+    public IsCommisionPercent: boolean;
+    public Commision: number;
+    public CommisionEndDate: string;
+    public IsOuterItem: boolean;
+    public UseSomeSubItems: boolean;
+    public Unit2IsMandatory: boolean;
+    public UseUnit2: boolean;
+    public IsSalesStopped: boolean;
+    public IsServerEntity: boolean;
+    public MainServerId: number;
+}
+
+class MS_ItemVendors {
+    constructor() {
+        this.StatusFlag = "";
+        this.VendorDescA = "";
+        this.VendorDescE = "";
+        this.VendorCode = "";
+        this.ItemVendorId = 0;
+        this.ItemCardId = 0;
+        this.VendorId = 0;
+        this.IsBasicVendor = false;
+        this.UnitId = 0;
+        this.UnitRate = 0;
+        this.Quantity1
+        this.Price1
+        this.Quantity2
+        this.Price2
+        this.Quantity3
+        this.Price3
+        this.Quantity4
+        this.Price4
+        this.Quantity5
+        this.Price5
+        this.Quantity6
+        this.Price6
+        this.Quantity7
+        this.Price7
+        this.Quantity8
+        this.Price8
+        this.Quantity9
+        this.Price9
+        this.Quantity10
+        this.Price10
+    }
+    public StatusFlag: string;
+    public VendorDescA: string;
+    public VendorDescE: string;
+    public VendorCode: string;
+    public ItemVendorId: number;
+    public ItemCardId: number;
+    public VendorId: number;
+    public IsBasicVendor: boolean;
+    public UnitId: number;
+    public UnitRate: number;
+    public Quantity1: any;
+    public Price1: any;
+    public Quantity2: any;
+    public Price2: any;
+    public Quantity3: any;
+    public Price3: any;
+    public Quantity4: any;
+    public Price4: any;
+    public Quantity5: any;
+    public Price5: any;
+    public Quantity6: any;
+    public Price6: any;
+    public Quantity7: any;
+    public Price7: any;
+    public Quantity8: any;
+    public Price8: any;
+    public Quantity9: any;
+    public Price9: any;
+    public Quantity10: any;
+    public Price10: any;
+}
+
+class Prod_ItemAttributes {
+    constructor() {
+        this.AttributId = 0;
+        this.AttributCode = "";
+        this.AttributName1 = "";
+        this.AttributName2 = "";
+        this.IsActive = false;
+        this.IsMandatory = false;
+        this.Dimension = 0;
+        this.IsFixedMenuValues = false;
+        this.IsOptionalWithAlarm = false;
+        this.BasUnitId = 0;
+        this.DataType = 0;
+        this.MinValu = 0;
+        this.MaxValu = 0;
+        this.IncrementalValu = 0;
+        this.Remarks = "";
+        this.CreatedBy = "";
+        this.CreatedAt = "";
+        this.UpdateBy = "";
+        this.UpdateAt = "";
+        this.DeletedBy = "";
+        this.DeletedAt = "";
+        this.UnitNam = "";
+        this.UnitNameE = "";
+    }
+    public AttributId: number;
+    public AttributCode: string;
+    public AttributName1: string;
+    public AttributName2: string;
+    public IsActive: boolean;
+    public IsMandatory: boolean;
+    public Dimension: number;
+    public IsFixedMenuValues: boolean;
+    public IsOptionalWithAlarm: boolean;
+    public BasUnitId: number;
+    public DataType: number;
+    public MinValu: number;
+    public MaxValu: number;
+    public IncrementalValu: number;
+    public Remarks: string;
+    public CreatedBy: string;
+    public CreatedAt: string;
+    public UpdateBy: string;
+    public UpdateAt: string;
+    public DeletedBy: string;
+    public DeletedAt: string;
+    public UnitNam: string;
+    public UnitNameE: string;
+}
+
+class Prod_ItemAttributsJoin {
+    constructor() {
+        this.StatusFlag = "";
+        this.ProdItemAtrribId = 0;
+        this.ItemCardId = 0;
+        this.AttributId = 0;
+        this.IsActive = false;
+        this.IsMandatory = false;
+        this.CreatedBy = "";
+        this.CreatedAt = "";
+        this.UpdateBy = "";
+        this.UpdateAt = "";
+        this.DeletedBy = "";
+        this.DeletedAt = "";
+        this.AttributName1 = "";
+        this.AttributName2 = "";
+        this.Dimension = "";
+        this.AttributCode = "";
+        this.BasUnitId = 0;
+        this.UnitName = "";
+    }
+    public StatusFlag: string;
+    public ProdItemAtrribId: number;
+    public ItemCardId: number;
+    public AttributId: number;
+    public IsActive: boolean;
+    public IsMandatory: boolean;
+    public CreatedBy: string;
+    public CreatedAt: string;
+    public UpdateBy: string;
+    public UpdateAt: string;
+    public DeletedBy: string;
+    public DeletedAt: string;
+    public AttributName1: string;
+    public AttributName2: string;
+    public Dimension: string;
+    public AttributCode: string;
+    public BasUnitId: number;
+    public UnitName: string;
+}
+
+class Ms_ItemPartition {
+    constructor() {
+        this.ItemPartId = 0;
+        this.ItemCardId = 0;
+        this.StoreId = 0;
+        this.StorePartId = 0;
+        this.LotNumberExpiryId = 0;
+        this.QtyPartiation = 0;
+        this.QtyInNotebook = 0;
+        this.TotalCost = 0;
+        this.PurchaseNumber = 0;
+        this.FIFOCost = 0;
+        this.LIFOCost = 0;
+        this.CoastAverage = 0;
+        this.BatchNumberFifoOrLifo = "";
+        this.VarianceQty = 0;
+        this.ReservedQty = 0;
+        this.RequestedQty = 0;
+        this.SaleNotDelivered = 0;
+        this.PurNotReceived = 0;
+        this.QtyOutWithoutBalance = 0;
+        this.QtyInWithoutCost = 0;
+        this.SalesOrder = 0;
+        this.PurchaseOrder = 0;
+        this.WithoutCost = 0;
+        this.ItemLimit = 0;
+        this.ItemMax = 0;
+        this.TVersion
+        this.TType
+        this.QtyIUnit2Notebook = 0;
+        this.QtyIUnit2Partiation = 0;
+        this.UpdatedAt = "";
+    }
+    public ItemPartId: number;
+    public ItemCardId: number;
+    public StoreId: number;
+    public StorePartId: number;
+    public LotNumberExpiryId: number;
+    public QtyPartiation: number;
+    public QtyInNotebook: number;
+    public TotalCost: number;
+    public PurchaseNumber: number;
+    public FIFOCost: number;
+    public LIFOCost: number;
+    public CoastAverage: number;
+    public BatchNumberFifoOrLifo: string;
+    public VarianceQty: number;
+    public ReservedQty: number;
+    public RequestedQty: number;
+    public SaleNotDelivered: number;
+    public PurNotReceived: number;
+    public QtyOutWithoutBalance: number;
+    public QtyInWithoutCost: number;
+    public SalesOrder: number;
+    public PurchaseOrder: number;
+    public WithoutCost: number;
+    public ItemLimit: number;
+    public ItemMax: number;
+    public TVersion: any;
+    public TType: any;
+    public QtyIUnit2Notebook: number;
+    public QtyIUnit2Partiation: number;
+    public UpdatedAt: string;
+}
+
+
+class Ms_ItemCardOffers {
+    constructor() {
+        this.OfferItemId = 0;
+        this.ItemCardId = 0;
+        this.UnitId = 0;
+        this.BasicQuantity = 0;
+        this.GiftItemCardId = 0;
+        this.GiftUnitId = 0;
+        this.GiftQuantity = 0;
+        this.IsGiftDiscount = false;
+        this.IsDiscountPercent = false;
+        this.GiftDiscount = 0;
+        this.PriceAfterDisc = 0;
+        this.IsReplace = false;
+        this.FromDate = "";
+        this.ToDate = "";
+        this.StatusFlag = "";
+    }
+    public OfferItemId: number;
+    public ItemCardId: number;
+    public UnitId: number;
+    public BasicQuantity: number;
+    public GiftItemCardId: number;
+    public GiftUnitId: number;
+    public GiftQuantity: number;
+    public IsGiftDiscount: boolean;
+    public IsDiscountPercent: boolean;
+    public GiftDiscount: number;
+    public PriceAfterDisc: number;
+    public IsReplace: boolean;
+    public FromDate: string;
+    public ToDate: string;
+    public StatusFlag: string;
+}
+
+class MS_ItemImages {
+    constructor() {
+        this.ImgId = 0;
+        this.ItemCardId = 0;
+        this.Image
+        this.ImgDesc1 = "";
+        this.ImgDesc2 = "";
+        this.ImageStr = "";
+    }
+    public ImgId: number;
+    public ItemCardId: number;
+    public Image: any;
+    public ImgDesc1: string;
+    public ImgDesc2: string;
+    public ImageStr: string;
+}
+
+class Prod_BasicUnits {
+    constructor() {
+        this.BasUnitId = 0;
+        this.UnitCode = "";
+        this.UnitNam = "";
+        this.UnitNameE = "";
+        this.UnittRate = 0;
+        this.Symbol = "";
+        this.ParentUnit = 0;
+        this.Remarks = "";
+        this.AutoDesc = "";
+        this.EtaxUnitCode = "";
+        this.IsKarat = false;
+        this.CreatedBy = "";
+        this.CreatedAt = "";
+        this.UpdateBy = "";
+        this.UpdateAt = "";
+        this.DeletedBy = "";
+        this.DeletedAt = "";
+    }
+    public BasUnitId: number;
+    public UnitCode: string;
+    public UnitNam: string;
+    public UnitNameE: string;
+    public UnittRate: number;
+    public Symbol: string;
+    public ParentUnit: number;
+    public Remarks: string;
+    public AutoDesc: string;
+    public EtaxUnitCode: string;
+    public IsKarat: boolean;
+    public CreatedBy: string;
+    public CreatedAt: string;
+    public UpdateBy: string;
+    public UpdateAt: string;
+    public DeletedBy: string;
+    public DeletedAt: string;
+}
+
+class Ms_ItemUnit {
+    constructor() {
+        this.UnitId = 0;
+        this.ItemCardId = 0;
+        this.BasUnitId = 0;
+        this.UnittRate = 0;
+        this.UnitCode = "";
+        this.UnitNam = "";
+        this.UnitNameE = "";
+        this.Symbol = "";
+        this.BarCode1 = "";
+        this.BarCode2 = "";
+        this.BarCode3 = "";
+        this.BarCode4 = "";
+        this.BarCode5 = "";
+        this.BarCode6 = "";
+        this.BarCode7 = "";
+        this.BarCode8 = "";
+        this.BarCode9 = "";
+        this.BarCode10 = "";
+        this.BarCode11 = "";
+        this.BarCode12 = "";
+        this.BarCode13 = "";
+        this.BarCode14 = "";
+        this.BarCode15 = "";
+        this.StatusFlag = "";
+        this.DefaultBarCode = 0;
+        this.ManualPurchasePrice = 0;
+        this.LastCost = 0;
+        this.BeforLastCost = 0;
+        this.LastSalePrice = 0;
+        this.LastCostManual = 0;
+        this.IsDefaultSale = false;
+        this.IsDefaultPurchas = false;
+        this.IsBasicUnit = false;
+        this.IsNotRegular = false;
+        this.Price1 = 0;
+        this.Quantity1 = 0;
+        this.Price2 = 0;
+        this.Quantity2 = 0;
+        this.Price3 = 0;
+        this.Quantity3 = 0;
+        this.Price4 = 0;
+        this.Quantity4 = 0;
+        this.Price5 = 0;
+        this.Quantity5 = 0;
+        this.Price6 = 0;
+        this.Price7 = 0;
+        this.Price8 = 0;
+        this.Price9 = 0;
+        this.Price10 = 0;
+        this.LeastSalesPrice = 0;
+        this.LeastProfitMargin = 0;
+        this.Wheight = 0;
+        this.X = 0;
+        this.Y = 0;
+        this.Z = 0;
+    }
+    public UnitId: number;
+    public ItemCardId: number;
+    public BasUnitId: number;
+    public UnittRate: number;
+    public UnitCode: string;
+    public UnitNam: string;
+    public UnitNameE: string;
+    public Symbol: string;
+    public BarCode1: string;
+    public BarCode2: string;
+    public BarCode3: string;
+    public BarCode4: string;
+    public BarCode5: string;
+    public BarCode6: string;
+    public BarCode7: string;
+    public BarCode8: string;
+    public BarCode9: string;
+    public BarCode10: string;
+    public BarCode11: string;
+    public BarCode12: string;
+    public BarCode13: string;
+    public BarCode14: string;
+    public BarCode15: string;
+    public StatusFlag: string;
+    public DefaultBarCode: number;
+    public ManualPurchasePrice: number;
+    public LastCost: number;
+    public BeforLastCost: number;
+    public LastSalePrice: number;
+    public LastCostManual: number;
+    public IsDefaultSale: boolean;
+    public IsDefaultPurchas: boolean;
+    public IsBasicUnit: boolean;
+    public IsNotRegular: boolean;
+    public Price1: number;
+    public Quantity1: number;
+    public Price2: number;
+    public Quantity2: number;
+    public Price3: number;
+    public Quantity3: number;
+    public Price4: number;
+    public Quantity4: number;
+    public Price5: number;
+    public Quantity5: number;
+    public Price6: number;
+    public Price7: number;
+    public Price8: number;
+    public Price9: number;
+    public Price10: number;
+    public LeastSalesPrice: number;
+    public LeastProfitMargin: number;
+    public Wheight: number;
+    public X: number;
+    public Y: number;
+    public Z: number;
+}
+
+class MS_ItemAlternatives {
+    constructor() {
+        this.AlterId = 0;
+        this.ItemCardId = 0;
+        this.AlterItemCardId = 0;
+        this.UnitId = 0;
+        this.UnitRate = 0;
+        this.ItemType = 0;
+        this.Quantity = 0;
+        this.QtyBeforRate = 0;
+        this.Remarks = "";
+        this.StatusFlag = "";
+        this.ItemDescA = "";
+        this.ItemDescE = "";
+        this.UnitNam = "";
+        this.ItemTypeName = "";
+    }
+    public AlterId: number;
+    public ItemCardId: number;
+    public AlterItemCardId: number;
+    public UnitId: number;
+    public UnitRate: number;
+    public ItemType: number;
+    public Quantity: number;
+    public QtyBeforRate: number;
+    public Remarks: string;
+    public StatusFlag: string;
+    public ItemDescA: string;
+    public ItemDescE: string;
+    public UnitNam: string;
+    public ItemTypeName: string;
+}
+
+class Ms_ItemCollection {
+    constructor() {
+        this.ItemCollectId = 0;
+        this.ItemCardId = 0;
+        this.ItemCode = "";
+        this.SubItemId = 0;
+        this.UnitId = 0;
+        this.UnitRate = 0;
+        this.ItemType = 0;
+        this.Quantity = 0;
+        this.QtyBeforRate = 0;
+        this.Remarks = "";
+        this.IsNotBasic = false;
+        this.StatusFlag = "";
+        this.UnitNam = "";
+        this.ItemDescA = "";
+        this.ItemDescE = "";
+        this.ItemTypeName = "";
+    }
+    public ItemCollectId: number;
+    public ItemCardId: number;
+    public SubItemId: number;
+    public UnitId: number;
+    public UnitRate: number;
+    public ItemType: number;
+    public Quantity: number;
+    public QtyBeforRate: number;
+    public Remarks: string;
+    public IsNotBasic: boolean;
+    public StatusFlag: string;
+    public ItemCode: string;
+    public UnitNam: string;
+    public ItemDescA: string;
+    public ItemDescE: string;
+    public ItemTypeName: string;
+}
+
+class Prod_ItemcardExpenses {
+    constructor() {
+        this.ProdExpensId = 0;
+        this.ItemCardId = 0;
+        this.AccountId = 0;
+        this.IsPercent = false;
+        this.PercentOf = 0;
+        this.ExpenseValu = 0;
+        this.StatusFlag = "";
+        this.AccountCode = "";
+    }
+    public ProdExpensId: number;
+    public ItemCardId: number;
+    public AccountId: number;
+    public IsPercent: boolean;
+    public PercentOf: number;
+    public ExpenseValu: number;
+    public StatusFlag: string;
+    public AccountCode: string;
+}
+

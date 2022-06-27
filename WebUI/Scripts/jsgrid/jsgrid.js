@@ -1118,7 +1118,7 @@
             return this.search();
         },
 
-        insertItem: function(item) {
+        insertItem: function (item) {
             var insertingItem = item || this._getValidatedInsertItem();
 
             if(!insertingItem)
@@ -1927,6 +1927,80 @@
 
 }(jsGrid, jQuery));
 
+///////////////////////////// Start Add datepicker to JsGrid By Abdulrahman /////////////////////////
+(function (jsGrid, $, undefined) {
+    //var Field = jsGrid.Field;
+    var Field = jsGrid.Field;
+    function DateField (config) {
+        Field.call(this, config);
+    };
+    var format = "YYYY/MM/DD";
+
+    DateField.prototype = new Field({
+        name: "",
+        title: null,
+        css: "",
+        align: "",
+        width: 100,
+        id:"",
+        visible: true,
+        filtering: true,
+        inserting: true,
+        editing: true,
+        sorting: true,
+        sorter: "string", // name of SortStrategy or function to compare elements
+
+        sorter: function (date1, date2) {
+            return new Date(date1) - new Date(date2);
+        },
+
+        itemTemplate: function (value) {
+            return new Date(value).toDateString();
+        },
+
+        insertTemplate: function (value) {
+            //return this._insertPicker = $("<input type='date'>");
+            return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
+        },
+
+        editTemplate: function (value) {
+            //return this._editPicker = $("<input type='date'>").val(new Date(moment(value).format(format)));
+            return this._editPicker = $("<input>").datepicker().datepicker("setDate", new Date(value));
+        },
+
+        insertValue: function () {
+            return this._insertPicker.datepicker("getDate").toISOString();
+        },
+
+        editValue: function () {
+            return this._editPicker.datepicker("getDate").toISOString();
+        },
+
+        //filterValue: function () {
+        //    return this.filterControl.val();
+        //},
+
+        filterValue: function () {
+            return this.filterControl.val();
+        },
+
+        //insertValue: function () {
+        //    return this.insertControl.val();
+        //},
+
+        //editValue: function () {
+        //    try {
+        //        return this.editControl.val();
+        //    } catch (e) {
+        //        return $("#u_" + this.id).val();
+        //    }
+        //},
+    });
+
+    jsGrid.fields.date = DateField;
+}(jsGrid, jQuery));
+///////////////////////////// End Add datepicker to JsGrid By Abdulrahman /////////////////////////
+
 (function(jsGrid, $, undefined) {
 
     var Field = jsGrid.Field;
@@ -1974,6 +2048,7 @@
             var $result = this.editControl = this._createTextBox();
             $result.val(value);
             $result.attr("id", this.id);
+            $result.attr("class", this.css);
             $result.prop("disabled", this.disabled);
             $result[0].addEventListener(this.Typefun, this.fun);
             return $result;
@@ -2188,7 +2263,7 @@
             }
         },
 
-        _createSelect: function() {
+        _createSelect: function () {
             var $result = $("<select>"),
                 valueField = this.valueField,
                 textField = this.textField,
@@ -2211,7 +2286,10 @@
             });
 
             $result.prop("disabled", !!this.readOnly);
-            $result[0].addEventListener(Typefun, fun);
+            if (Typefun != null || Typefun != "" || Typefun != " ")
+                $result.on(Typefun, fun);
+
+            //$result[0].addEventListener(Typefun, fun);
             return $result;
         }
     });

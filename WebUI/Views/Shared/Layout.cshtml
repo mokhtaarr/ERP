@@ -30,6 +30,8 @@
     <script src="~/Style_design/js/vendor/jquery-3.4.1.js"></script>
     <script src="~/Style_design/js/vendor/jquery-1.11.3.min.js"></script>
     <script src="~/Content/assets-New Version 02-01-2022/my_js.js"></script>
+    <link href="~/Content/datepicker/jquery-ui.css" rel="stylesheet" />
+
     @*<script src="~/Style_design/js/bootstrap.min.js"></script>*@
     <script src="~/Content/assets-New Version 02-01-2022/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="~/Style_design/js/jquery.meanmenu.js"></script>
@@ -79,6 +81,7 @@
     <link href="~/Content/assets-New Version 02-01-2022/Site.css" rel="stylesheet" />
     <link href="~/Content/assets-New Version 02-01-2022/SiteRtl.css" rel="stylesheet" />
     <link href="~/Content/style2.css" rel="stylesheet" />
+
     @RenderSection("Style", required: false)
 </head>
 
@@ -115,9 +118,8 @@
                         <a href="#navbarSupportedContent" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <span class="caret" style="color: wheat;"></span> @SystemResource.Definition <i class="fas fa-diagnoses" aria-hidden="true" style="color: white;"></i>
                         </a>
-                        <ul class="collapse list-unstyled" id="navbarSupportedContent" style="background-color:#052940 ;">
-                            @*<li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">الاصناف </a></li>
-                            <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">أكواد تحليله</a></li>
+                        <ul class="collapse list-unstyled" id="navbarSupportedContent" style="background-color:#052940;">
+                             @*<li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">أكواد تحليله</a></li>
                             <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  فئات الموردين  </a></li>
                             <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  أكواد الموردين     </a></li>
                             <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">  الصناديق     </a></li>
@@ -126,6 +128,7 @@
                             <li class="liItem dropdown-item" id="btnDistribution" key=""><a id="">وحدات الاصناف </a></li>*@
 
                             <li class="liItem dropdown-item" id="" key="DefBranches"><a id="btnDefBranches">@SystemResource.Branches</a></li>
+                            <li class="liItem dropdown-item" id="" key="Items"><a id="btnItems">@SystemResource.Men_StkDefItems </a></li>
                             <li class="liItem dropdown-item" id="btnMS_ItemCategory" key=""><a id="">  @SystemResource.ItemCategories  </a></li>
                             <li class="liItem dropdown-item" id="btnMS_CustomerCategory" key="btnMS_CustomerCategory"><a id="">  @SystemResource.CustomerCategories  </a></li>
                             <li class="liItem dropdown-item" id="btnMs_CustomerTypes" key=""><a id=""> @SystemResource.CustomerTypes   </a></li>
@@ -556,7 +559,6 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="searchTitle">Modal title</h5>
-
                     <button id="resetSearch" class="btn btn-warning"><i class="fas fa-sync-alt"></i></button>
 
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -640,9 +642,16 @@
     <script src="~/Content/Toastr/toastr.min.js"></script>
     <script src="~/Content/Loading/src/js/jquery.preloader.js"></script>
     <script src="~/Style_design/js/moment.min.js"></script>
+    <script src="~/Content/datepicker/jquery-ui.js"></script>
 
     <script>
         $(document).ready(function () {
+            //$('.datepicker').datepicker({
+            //    format: 'mm/dd/yyyy',
+            //    startDate: '-3d'
+            //});
+            
+
             $('select').val('null').select2().css("width", "100%");
             $(window).load(function () {
                 $('#MainLoading').fadeOut(1000, function () { $('#MainLoading').remove(); });

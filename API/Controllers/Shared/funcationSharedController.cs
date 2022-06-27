@@ -14,11 +14,15 @@ using Inv.BLL.Services.GUSERS;
 using Inv.BLL.Services.USER_BRANCH;
 using System.Globalization;
 using Inv.Static.Enums;
+using Inv.Static.VM;
+using Inv.DAL.RedisCache;
+using Inv.Static.Resources;
 
 namespace Inv.API.Controllers
 {
     public class funcationSharedController : BaseController
     {
+        private RedisCache redis = RedisCache.GetInstance();
         private G_USERSController G_USERS;
         private readonly ISharedService Service;
         public funcationSharedController(ISharedService _service, IG_USERSService G_USERSService, IG_USER_BRANCHService G_USER_BRANCHService)
@@ -46,9 +50,9 @@ namespace Inv.API.Controllers
         {
             List<CurrencyCategoryShared> currency = new List<CurrencyCategoryShared>();
             List<int> ids = this.GetCurrencyCategoryIdsFromJoin(currencyId);
-            if(ids.Count() > 0)
+            if (ids.Count() > 0)
             {
-                currency = Service.GetAllCurrencyCategory(x=> ids.Contains(x.CurrencyCategoryId)).Select(x => new CurrencyCategoryShared
+                currency = Service.GetAllCurrencyCategory(x => ids.Contains(x.CurrencyCategoryId)).Select(x => new CurrencyCategoryShared
                 {
                     CurrencyDescA = x.CurrencyCategoryNameA,
                     CurrencyDescE = x.CurrencyCategoryNameE,
@@ -59,11 +63,11 @@ namespace Inv.API.Controllers
             }
             return Ok(new BaseResponse(currency));
         }
-        
+
         [HttpGet, AllowAnonymous]
         public List<int> GetCurrencyCategoryIdsFromJoin(int currencyId)
         {
-            List<int> CurrencyCategoryIds = Service.GetAllCurrencyCategoryJoin(x=>x.CurrencyId == currencyId).ToList().Select(x => x.CurrencyCategoryId.Value).ToList();
+            List<int> CurrencyCategoryIds = Service.GetAllCurrencyCategoryJoin(x => x.CurrencyId == currencyId).ToList().Select(x => x.CurrencyCategoryId.Value).ToList();
             return CurrencyCategoryIds;
         }
 
@@ -94,20 +98,21 @@ namespace Inv.API.Controllers
         [HttpGet, AllowAnonymous]
         public IHttpActionResult GetVendor()
         {
-            List<MS_Vendor> vendors = db.MS_Vendor.ToList().Select(x => new MS_Vendor
-            {
-                VendorId = x.VendorId,
-                VendorCode = x.VendorCode,
-                VendorDescA = x.VendorDescA,
-                VendorDescE = x.VendorDescE,
-            }).ToList();
+            List<VendorVM> vendors = db.Database.SqlQuery<VendorVM>("select VendorId, VendorCode, VendorDescA, VendorDescE from MS_Vendor").ToList();
+            //List<MS_Vendor> vendors = db.MS_Vendor.ToList().Select(x => new MS_Vendor
+            //{
+            //    VendorId = x.VendorId,
+            //    VendorCode = x.VendorCode,
+            //    VendorDescA = x.VendorDescA,
+            //    VendorDescE = x.VendorDescE,
+            //}).ToList();
             return Ok(new BaseResponse(vendors));
         }
 
         [HttpGet, AllowAnonymous]
         public IHttpActionResult GetCustomers()
         {
-            List<MS_Customer> customers = Service.GetCustomers(x=>x.CustomerId != null).Select(x => new MS_Customer
+            List<MS_Customer> customers = Service.GetCustomers(x => x.CustomerId != null).Select(x => new MS_Customer
             {
                 CustomerId = x.CustomerId,
                 CustomerCode = x.CustomerCode,
@@ -159,7 +164,7 @@ namespace Inv.API.Controllers
         [HttpGet, AllowAnonymous]
         public IHttpActionResult GetCostCenters()
         {
-            List<Cal_CostCenters> costCenters = Service.GetCostCenters(x=>x.CostCenterId != null).Select(x => new Cal_CostCenters
+            List<Cal_CostCenters> costCenters = Service.GetCostCenters(x => x.CostCenterId != null).Select(x => new Cal_CostCenters
             {
                 CostCenterId = x.CostCenterId,
                 CostCenterCode = x.CostCenterCode,
@@ -199,7 +204,7 @@ namespace Inv.API.Controllers
                 UserCode = x.USER_CODE,
                 USER_NAME = x.USER_NAME,
             }).ToList();
-            
+
             return Ok(new BaseResponse(res));
         }
 
@@ -327,14 +332,14 @@ namespace Inv.API.Controllers
         [HttpGet, AllowAnonymous]
         public IHttpActionResult GetSystems()
         {
-            List<G_SYSTEM> systems = db.G_SYSTEM.ToList().Select(x => new G_SYSTEM {
+            List<G_SYSTEM> systems = db.G_SYSTEM.ToList().Select(x => new G_SYSTEM
+            {
                 SYSTEM_CODE = x.SYSTEM_CODE,
                 SYSTEM_DESCA = x.SYSTEM_DESCA,
                 SYSTEM_DESCE = x.SYSTEM_DESCE
             }).ToList();
             return Ok(new BaseResponse(systems));
         }
-
 
         [HttpGet, AllowAnonymous]
         public IHttpActionResult GetCounter(int id)
@@ -346,10 +351,11 @@ namespace Inv.API.Controllers
         [HttpGet, AllowAnonymous]
         public IHttpActionResult GetSubSystems()
         {
-            List<G_SUB_SYSTEMS> subSystems = db.G_SUB_SYSTEMS.ToList().Select(x=> new G_SUB_SYSTEMS{ 
-            SUB_SYSTEM_CODE = x.SUB_SYSTEM_CODE,
-            SUB_SYSTEM_DESCA = x.SUB_SYSTEM_DESCA,
-            SUB_SYSTEM_DESCE = x.SUB_SYSTEM_DESCE
+            List<G_SUB_SYSTEMS> subSystems = db.G_SUB_SYSTEMS.ToList().Select(x => new G_SUB_SYSTEMS
+            {
+                SUB_SYSTEM_CODE = x.SUB_SYSTEM_CODE,
+                SUB_SYSTEM_DESCA = x.SUB_SYSTEM_DESCA,
+                SUB_SYSTEM_DESCE = x.SUB_SYSTEM_DESCE
             }).ToList();
             return Ok(new BaseResponse(subSystems));
         }
@@ -382,8 +388,6 @@ namespace Inv.API.Controllers
             return Ok(new BaseResponse(models));
         }
 
-      
-
         [HttpGet, AllowAnonymous]
         public IHttpActionResult GetBankNotic(int bankNoticId)
         {
@@ -400,7 +404,6 @@ namespace Inv.API.Controllers
             return Ok(new BaseResponse(model));
         }
 
-
         [HttpGet, AllowAnonymous]
         public IHttpActionResult GetBankAccounts(int BoxId)
         {
@@ -408,7 +411,7 @@ namespace Inv.API.Controllers
                     join Ms_BankAccount on MS_BoxCurrency.AccountId = Ms_BankAccount.AccountId
                     where MS_BoxCurrency.BoxId= " + BoxId;
             var model = db.Database.SqlQuery<BankAccountsVM>(sql);
-            
+
             return Ok(new BaseResponse(model));
         }
 
@@ -477,5 +480,347 @@ namespace Inv.API.Controllers
 
             return Convert.ToDateTime(date);
         }
+
+        [HttpGet, AllowAnonymous]
+        public IHttpActionResult GetItemPartition(int itemCardId, int storeId)
+        {
+            List<ItemPartitionVM> itemPartition = db.Database.SqlQuery<ItemPartitionVM>
+                ("select QtyPartiation,QtyInNotebook,CoastAverage  from Ms_ItemPartition where ItemCardId = " + itemCardId + " and StoreId = " + storeId + "").ToList();
+            return Ok(new BaseResponse(itemPartition));
+        }
+
+        [HttpGet, AllowAnonymous]
+        public IHttpActionResult GetItemCategories()
+        {
+            List<SharedVM> itemCategory = db.Database.SqlQuery<SharedVM>
+                ("select ItemCategoryId as Id,ItemCatCode as Code,ItemCatDescA as NameA,ItemCatDescE as NameE from MS_ItemCategory where ItemCategoryType = 2 ").ToList();
+            return Ok(new BaseResponse(itemCategory));
+        }
+
+        [HttpGet, AllowAnonymous]
+        public IHttpActionResult GetPartitions()
+        {
+            List<SharedVM> itemCategory = db.Database.SqlQuery<SharedVM>
+                ("select StorePartId as Id,PartCode as Code,PartDescA as NameA,PartDescE as NameE from MS_Partition").ToList();
+            return Ok(new BaseResponse(itemCategory));
+        }
+
+        [HttpGet, AllowAnonymous]
+        public IHttpActionResult GetAttributes()
+        {
+            string sql = @"select AttributId, AttributName1, AttributName2, AttributCode, IsActive, IsMandatory, Dimension,
+                        Prod_BasicUnits.BasUnitId ,Prod_BasicUnits.UnitNam,Prod_BasicUnits.UnitNameE from Prod_ItemAttributes
+                        left join Prod_BasicUnits on Prod_ItemAttributes.BasUnitId = Prod_BasicUnits.BasUnitId";
+
+            List<ItemAttributesVM> itemCategory = db.Database.SqlQuery<ItemAttributesVM>(sql).ToList();
+            return Ok(new BaseResponse(itemCategory));
+        }
+        
+        [HttpGet, AllowAnonymous]
+        public IHttpActionResult LoadUserAuthentications(int userId)
+        {
+            List<MS_UserAuthentications> userAuthenticationss = redis.GetOrSetUserAuthentications(userId);
+            return Ok();
+        }
+        
+        [HttpGet, AllowAnonymous]
+        public IHttpActionResult GetBasicUnits()
+        {
+            string sql = "select BasUnitId, UnitCode, UnitNam, UnitNameE, UnittRate, Symbol, ParentUnit from Prod_BasicUnits where ParentUnit is null";
+            List<BasicUnitsVM> entities = db.Database.SqlQuery<BasicUnitsVM>(sql).ToList();
+            return Ok(new BaseResponse(entities));
+        }
+        
+        [HttpGet, AllowAnonymous]
+        public IHttpActionResult GetBasicUnitsChildren(int ParentUnit)
+        {
+            string sql = "select BasUnitId,UnitCode,UnitNam,UnitNameE,UnittRate,Symbol from Prod_BasicUnits where ParentUnit = " + ParentUnit;
+            List<BasicUnitsVM> entities = db.Database.SqlQuery<BasicUnitsVM>(sql).ToList();
+            return Ok(new BaseResponse(entities));
+        }
+
+        public IHttpActionResult GetItems(string lang, string storeId)
+        {
+            List<MS_UserAuthentications> userAuthenticationss = redis.GetOrSetUserAuthentications(null);
+
+            string sqlString = "";
+            if (lang == "ar")
+            {
+                if (userAuthenticationss.Count >= 64 && userAuthenticationss[63].Authinticated.GetValueOrDefault(false))
+                {
+                    if (string.IsNullOrEmpty(storeId))
+                    {
+                        sqlString = @"select ItemType, Ms_ItemUnit.UnitId as GiftUnitId,Ms_ItemUnit.UnittRate ,Ms_ItemUnit.UnittRate ,MS_ItemCard.ItemCardId as GiftItemCardId,ItemCode,[UnitNam],[UnitNameE],[BarCode1], PartCode, PartDescA, StoreCode, 
+                        StoreDescA,  ItemDescA, ItemDescE,ItemCatCode, ItemCatDescA, QtyInBox,MS_ItemCard.Remarks, 
+                        Ms_ItemPartition.QtyPartiation, Ms_ItemPartition.QtyInNotebook,(CASE [ItemType] WHEN 1 THEN '" + Resource.PerfectProduct + @"' WHEN 2 THEN '" + Resource.Raw + @"'
+                        WHEN 3 THEN '" + Resource.ServeHim + @"' WHEN 4 THEN '" + Resource.FactoryClass + @"' WHEN 5 THEN '" + Resource.Vehicle + @"' WHEN 6 THEN '" + Resource.SemiManufacturedProduct + @"' END) AS ItemTypestring 
+                        ,(CASE [ItemType] WHEN 1 THEN 'Finished product' WHEN 2 THEN 'Material'
+                        WHEN 3 THEN 'Service' WHEN 4 THEN 'Manufacturing product' WHEN 5 THEN 'Vehicle' WHEN 6 THEN 'Semi-Finished products' END) AS ItemType2
+						,[BarCode2],[BarCode3],[BarCode4],[BarCode5],isnull(MS_ItemCard.IsCollection,0)IsCollection,Price1 as FirstPrice,
+                        Price2 as SecandPrice,Price3 as ThirdPrice,Price4 as LargePrice
+						FROM dbo.MS_ItemCard LEFT OUTER JOIN
+                        dbo.MS_ItemCategory ON dbo.MS_ItemCard.ItemCategoryId = dbo.MS_ItemCategory.ItemCategoryId LEFT OUTER JOIN
+                        dbo.Ms_ItemPartition ON dbo.MS_ItemCard.ItemCardId = dbo.Ms_ItemPartition.ItemCardId LEFT OUTER JOIN
+                        dbo.MS_Partition ON dbo.Ms_ItemPartition.StorePartId = dbo.MS_Partition.StorePartId LEFT OUTER JOIN
+                        dbo.MS_Stores ON dbo.MS_Partition.StoreId = dbo.MS_Stores.StoreId
+					    LEFT JOIN [dbo].[Ms_ItemUnit]ON dbo.Ms_ItemUnit.ItemCardId = dbo.MS_ItemCard.ItemCardId
+						--LEFT  JOIN [dbo].[Prod_BasicUnits] ON dbo.Prod_BasicUnits.BasUnitId = dbo.Ms_ItemUnit.BasUnitId
+						LEFT JOIN dbo.MS_LotNumberExpiry ON dbo.MS_LotNumberExpiry.LotNumberExpiryId = dbo.Ms_ItemPartition.LotNumberExpiryId";
+                    }
+                    else
+                    {
+                        if (storeId.Contains("="))
+                        {
+                            sqlString = @"select ItemType, Ms_ItemUnit.UnitId as GiftUnitId,Ms_ItemUnit.UnittRate  ,MS_ItemCard.ItemCardId as GiftItemCardId,ItemCode,[UnitNam],[UnitNameE],[BarCode1], PartCode, PartDescA,
+                            StoreCode, StoreDescA,  ItemDescA, ItemDescE,ItemCatCode, ItemCatDescA, QtyInBox,MS_ItemCard.Remarks, 
+                            Ms_ItemPartition.QtyPartiation, Ms_ItemPartition.QtyInNotebook,(CASE [ItemType] WHEN 1 THEN '" + Resource.PerfectProduct + @"' WHEN 2 THEN '" + Resource.Raw + @"'
+                            WHEN 3 THEN '" + Resource.ServeHim + @"' WHEN 4 THEN '" + Resource.FactoryClass + @"' WHEN 5 THEN '" + Resource.Vehicle + @"' WHEN 6 THEN '" + Resource.SemiManufacturedProduct + @"' END) AS ItemTypestring
+                            ,(CASE [ItemType] WHEN 1 THEN 'Finished product' WHEN 2 THEN 'Material'
+                            WHEN 3 THEN 'Service' WHEN 4 THEN 'Manufacturing product' WHEN 5 THEN 'Vehicle' WHEN 6 THEN 'Semi-Finished products' END) AS ItemType2
+						    ,[BarCode2],[BarCode3],[BarCode4],[BarCode5],isnull(MS_ItemCard.IsCollection,0)IsCollection,Price1 as FirstPrice,
+                            Price2 as SecandPrice,Price3 as ThirdPrice,Price4 as LargePrice
+						    FROM  dbo.MS_ItemCard LEFT OUTER JOIN
+                            dbo.MS_ItemCategory ON dbo.MS_ItemCard.ItemCategoryId = dbo.MS_ItemCategory.ItemCategoryId LEFT OUTER JOIN
+                            dbo.Ms_ItemPartition ON dbo.MS_ItemCard.ItemCardId = dbo.Ms_ItemPartition.ItemCardId LEFT OUTER JOIN
+                            dbo.MS_Partition ON dbo.Ms_ItemPartition.StorePartId = dbo.MS_Partition.StorePartId LEFT OUTER JOIN
+                            dbo.MS_Stores ON dbo.MS_Partition.StoreId = dbo.MS_Stores.StoreId
+						    LEFT JOIN [dbo].[Ms_ItemUnit]ON dbo.Ms_ItemUnit.ItemCardId = dbo.MS_ItemCard.ItemCardId
+						    --LEFT  JOIN [dbo].[Prod_BasicUnits] ON dbo.Prod_BasicUnits.BasUnitId = dbo.Ms_ItemUnit.BasUnitId
+						    LEFT JOIN dbo.MS_LotNumberExpiry ON dbo.MS_LotNumberExpiry.LotNumberExpiryId = dbo.Ms_ItemPartition.LotNumberExpiryId where " + storeId;
+                        }
+                        else
+                        {
+                            sqlString = @"select ItemType, Ms_ItemUnit.UnitId as GiftUnitId,Ms_ItemUnit.UnittRate  ,MS_ItemCard.ItemCardId as GiftItemCardId,ItemCode,[UnitNam],[BarCode1], PartCode, PartDescA,
+                            StoreCode, StoreDescA,  ItemDescA, ItemDescE,ItemCatCode, ItemCatDescA, QtyInBox,MS_ItemCard.Remarks, 
+                            Ms_ItemPartition.QtyPartiation, Ms_ItemPartition.QtyInNotebook,(CASE [ItemType] WHEN 1 THEN '" + Resource.PerfectProduct + @"' WHEN 2 THEN '" + Resource.Raw + @"'
+                            WHEN 3 THEN '" + Resource.ServeHim + @"' WHEN 4 THEN '" + Resource.FactoryClass + @"' WHEN 5 THEN '" + Resource.Vehicle + @"' WHEN 6 THEN '" + Resource.SemiManufacturedProduct + @"' END) AS ItemTypestring
+                            ,(CASE [ItemType] WHEN 1 THEN 'Finished product' WHEN 2 THEN 'Material'
+                            WHEN 3 THEN 'Service' WHEN 4 THEN 'Manufacturing product' WHEN 5 THEN 'Vehicle' WHEN 6 THEN 'Semi-Finished products' END) AS ItemType2
+						    ,[BarCode2],[BarCode3],[BarCode4],[BarCode5],isnull(MS_ItemCard.IsCollection,0)IsCollection,Price1 as FirstPrice,
+                             Price2 as SecandPrice,Price3 as ThirdPrice,Price4 as LargePrice
+						    FROM            dbo.MS_ItemCard LEFT OUTER JOIN
+                            dbo.MS_ItemCategory ON dbo.MS_ItemCard.ItemCategoryId = dbo.MS_ItemCategory.ItemCategoryId LEFT OUTER JOIN
+                            dbo.Ms_ItemPartition ON dbo.MS_ItemCard.ItemCardId = dbo.Ms_ItemPartition.ItemCardId LEFT OUTER JOIN
+                            dbo.MS_Partition ON dbo.Ms_ItemPartition.StorePartId = dbo.MS_Partition.StorePartId LEFT OUTER JOIN
+                            dbo.MS_Stores ON dbo.MS_Partition.StoreId = dbo.MS_Stores.StoreId
+						    LEFT JOIN [dbo].[Ms_ItemUnit]ON dbo.Ms_ItemUnit.ItemCardId = dbo.MS_ItemCard.ItemCardId
+						    --LEFT  JOIN [dbo].[Prod_BasicUnits] ON dbo.Prod_BasicUnits.BasUnitId = dbo.Ms_ItemUnit.BasUnitId
+						    LEFT JOIN dbo.MS_LotNumberExpiry ON dbo.MS_LotNumberExpiry.LotNumberExpiryId = dbo.Ms_ItemPartition.LotNumberExpiryId
+                            where [Ms_ItemPartition].[StoreId] IS NULL or[dbo].[Ms_ItemPartition].[StoreId]=" + storeId;
+                        }
+                    }
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(storeId))
+                    {
+                        sqlString = @"select ItemType, Ms_ItemUnit.UnitId as GiftUnitId,Ms_ItemUnit.UnittRate  ,MS_ItemCard.ItemCardId as GiftItemCardId, ItemCode, PartCode,[UnitNam],[UnitNameE], PartDescA, StoreCode, StoreDescA, 
+                        ItemDescA, ItemDescE,ItemCatCode, ItemCatDescA, QtyInBox,MS_ItemCard.Remarks, 
+                        Ms_ItemPartition.QtyPartiation, Ms_ItemPartition.QtyInNotebook,(CASE [ItemType] WHEN 1 THEN '" + Resource.PerfectProduct + @"' WHEN 2 THEN '" + Resource.Raw + @"'
+                        WHEN 3 THEN '" + Resource.ServeHim + @"' WHEN 4 THEN '" + Resource.FactoryClass + @"' WHEN 5 THEN '" + Resource.Vehicle + @"' WHEN 6 THEN '" + Resource.SemiManufacturedProduct + @"' END) AS ItemTypestring
+                        ,(CASE [ItemType] WHEN 1 THEN 'Finished product' WHEN 2 THEN 'Material'
+                        WHEN 3 THEN 'Service' WHEN 4 THEN 'Manufacturing product' WHEN 5 THEN 'Vehicle' WHEN 6 THEN 'Semi-Finished products' END) AS ItemType2
+                        ,isnull(MS_ItemCard.IsCollection,0)IsCollection,FirstPrice,SecandPrice,ThirdPrice,LargePrice
+						FROM dbo.MS_ItemCard LEFT OUTER JOIN
+                        dbo.MS_ItemCategory ON dbo.MS_ItemCard.ItemCategoryId = dbo.MS_ItemCategory.ItemCategoryId LEFT OUTER JOIN
+                        dbo.Ms_ItemPartition ON dbo.MS_ItemCard.ItemCardId = dbo.Ms_ItemPartition.ItemCardId LEFT OUTER JOIN
+                        dbo.MS_Partition ON dbo.Ms_ItemPartition.StorePartId = dbo.MS_Partition.StorePartId LEFT OUTER JOIN
+                        dbo.MS_Stores ON dbo.MS_Partition.StoreId = dbo.MS_Stores.StoreId
+						LEFT JOIN [dbo].[Ms_ItemUnit]ON dbo.Ms_ItemUnit.ItemCardId = dbo.MS_ItemCard.ItemCardId
+						--LEFT  JOIN [dbo].[Prod_BasicUnits] ON dbo.Prod_BasicUnits.BasUnitId = dbo.Ms_ItemUnit.BasUnitId
+						LEFT JOIN dbo.MS_LotNumberExpiry ON dbo.MS_LotNumberExpiry.LotNumberExpiryId = dbo.Ms_ItemPartition.LotNumberExpiryId";
+                    }
+                    else
+                    {
+                        if (storeId.Contains("="))
+                        {
+                            sqlString = @"select ItemType, Ms_ItemUnit.UnitId as GiftUnitId,Ms_ItemUnit.UnittRate  ,MS_ItemCard.ItemCardId as GiftItemCardId, ItemCode,[UnitNam],[UnitNameE], PartCode, PartDescA, StoreCode, StoreDescA,
+                            ItemDescA, ItemDescE, ItemCatCode, ItemCatDescA, QtyInBox,MS_ItemCard.Remarks, 
+                            Ms_ItemPartition.QtyPartiation, Ms_ItemPartition.QtyInNotebook,(CASE [ItemType] WHEN 1 THEN '" + Resource.PerfectProduct + @"' WHEN 2 THEN '" + Resource.Raw + @"'
+                            WHEN 3 THEN '" + Resource.ServeHim + @"' WHEN 4 THEN '" + Resource.FactoryClass + @"' WHEN 5 THEN '" + Resource.Vehicle + @"' WHEN 6 THEN '" + Resource.SemiManufacturedProduct + @"' END) AS ItemTypestring
+                            ,(CASE [ItemType] WHEN 1 THEN 'Finished product' WHEN 2 THEN 'Material'
+                            WHEN 3 THEN 'Service' WHEN 4 THEN 'Manufacturing product' WHEN 5 THEN 'Vehicle' WHEN 6 THEN 'Semi-Finished products' END) AS ItemType2
+                            ,isnull(MS_ItemCard.IsCollection,0)IsCollection,FirstPrice,SecandPrice,ThirdPrice,LargePrice
+						    FROM dbo.MS_ItemCard LEFT OUTER JOIN
+                            dbo.MS_ItemCategory ON dbo.MS_ItemCard.ItemCategoryId = dbo.MS_ItemCategory.ItemCategoryId LEFT OUTER JOIN
+                            dbo.Ms_ItemPartition ON dbo.MS_ItemCard.ItemCardId = dbo.Ms_ItemPartition.ItemCardId LEFT OUTER JOIN
+                            dbo.MS_Partition ON dbo.Ms_ItemPartition.StorePartId = dbo.MS_Partition.StorePartId LEFT OUTER JOIN
+                            dbo.MS_Stores ON dbo.MS_Partition.StoreId = dbo.MS_Stores.StoreId
+					        LEFT JOIN [dbo].[Ms_ItemUnit]ON dbo.Ms_ItemUnit.ItemCardId = dbo.MS_ItemCard.ItemCardId
+					        --LEFT  JOIN [dbo].[Prod_BasicUnits] ON dbo.Prod_BasicUnits.BasUnitId = dbo.Ms_ItemUnit.BasUnitId
+					        LEFT JOIN dbo.MS_LotNumberExpiry ON dbo.MS_LotNumberExpiry.LotNumberExpiryId = dbo.Ms_ItemPartition.LotNumberExpiryId where " + storeId;
+                        }
+                        else
+                        {
+                            sqlString = @"select ItemType, Ms_ItemUnit.UnitId as GiftUnitId,Ms_ItemUnit.UnittRate  ,MS_ItemCard.ItemCardId as GiftItemCardId, ItemCode,[UnitNam],[UnitNameE], PartCode, PartDescA, StoreCode, StoreDescA,
+                            ItemDescA, ItemDescE, ItemCatCode, ItemCatDescA, QtyInBox,MS_ItemCard.Remarks, 
+                            Ms_ItemPartition.QtyPartiation, Ms_ItemPartition.QtyInNotebook,(CASE [ItemType] WHEN 1 THEN '" + Resource.PerfectProduct + @"' WHEN 2 THEN '" + Resource.Raw + @"'
+                            WHEN 3 THEN '" + Resource.ServeHim + @"' WHEN 4 THEN '" + Resource.FactoryClass + @"' WHEN 5 THEN '" + Resource.Vehicle + @"' WHEN 6 THEN '" + Resource.SemiManufacturedProduct + @"' END) AS ItemTypestring
+                            ,(CASE [ItemType] WHEN 1 THEN 'Finished product' WHEN 2 THEN 'Material'
+                            WHEN 3 THEN 'Service' WHEN 4 THEN 'Manufacturing product' WHEN 5 THEN 'Vehicle' WHEN 6 THEN 'Semi-Finished products' END) AS ItemType2
+                            ,isnull(MS_ItemCard.IsCollection,0)IsCollection,FirstPrice,SecandPrice,ThirdPrice,LargePrice
+						    FROM            dbo.MS_ItemCard LEFT OUTER JOIN
+                            dbo.MS_ItemCategory ON dbo.MS_ItemCard.ItemCategoryId = dbo.MS_ItemCategory.ItemCategoryId LEFT OUTER JOIN
+                            dbo.Ms_ItemPartition ON dbo.MS_ItemCard.ItemCardId = dbo.Ms_ItemPartition.ItemCardId LEFT OUTER JOIN
+                            dbo.MS_Partition ON dbo.Ms_ItemPartition.StorePartId = dbo.MS_Partition.StorePartId LEFT OUTER JOIN
+                            dbo.MS_Stores ON dbo.MS_Partition.StoreId = dbo.MS_Stores.StoreId
+						    LEFT JOIN [dbo].[Ms_ItemUnit]ON dbo.Ms_ItemUnit.ItemCardId = dbo.MS_ItemCard.ItemCardId
+						    --LEFT  JOIN [dbo].[Prod_BasicUnits] ON dbo.Prod_BasicUnits.BasUnitId = dbo.Ms_ItemUnit.BasUnitId
+						    LEFT JOIN dbo.MS_LotNumberExpiry ON dbo.MS_LotNumberExpiry.LotNumberExpiryId = dbo.Ms_ItemPartition.LotNumberExpiryId 
+                            where [Ms_ItemPartition].[StoreId] IS NULL or[dbo].[Ms_ItemPartition].[StoreId]=" + storeId;
+                        }
+                    }
+                }
+            }
+            #region Old Els
+      //      else
+      //      {
+      //          if (userAuthenticationss.Count >= 64 && userAuthenticationss[63].Authinticated.GetValueOrDefault(false))
+      //          {
+      //              if (string.IsNullOrEmpty(storeId))
+      //              {
+      //                  sqlString = @"select   Ms_ItemUnit.UnitId as GiftUnitId,Ms_ItemUnit.UnittRate  ,MS_ItemCard.ItemCardId as GiftItemCardId, ItemCode,[UnitNam],[UnitNameE],[BarCode1], PartCode, PartDescA, StoreCode, StoreDescA,  ItemDescA, ItemDescE, 
+      //                   ItemCatCode, ItemCatDescA, QtyInBox,MS_ItemCard.Remarks, 
+      //                  Ms_ItemPartition.QtyPartiation, Ms_ItemPartition.QtyInNotebook,(CASE [ItemType] WHEN 1 THEN 'Finished product' WHEN 2 THEN 'Material'
+      //                   WHEN 3 THEN 'Service' WHEN 4 THEN 'Manufactured' WHEN 5 THEN 'Vehicle' WHEN 6 THEN 'Semi-Finished product' END) AS ItemTypestring 
+      //                  ,(CASE [ItemType] WHEN 1 THEN 'Finished product' WHEN 2 THEN 'Material'
+      //                  WHEN 3 THEN 'Service' WHEN 4 THEN 'Manufacturing product' WHEN 5 THEN 'Vehicle' WHEN 6 THEN 'Semi-Finished products' END) AS ItemType2
+						// ,[BarCode2],[BarCode3],[BarCode4],[BarCode5],isnull(MS_ItemCard.IsCollection,0)IsCollection
+						// FROM            dbo.MS_ItemCard LEFT OUTER JOIN
+      //                   dbo.MS_ItemCategory ON dbo.MS_ItemCard.ItemCategoryId = dbo.MS_ItemCategory.ItemCategoryId LEFT OUTER JOIN
+      //                   dbo.Ms_ItemPartition ON dbo.MS_ItemCard.ItemCardId = dbo.Ms_ItemPartition.ItemCardId LEFT OUTER JOIN
+      //                   dbo.MS_Partition ON dbo.Ms_ItemPartition.StorePartId = dbo.MS_Partition.StorePartId LEFT OUTER JOIN
+      //                   dbo.MS_Stores ON dbo.MS_Partition.StoreId = dbo.MS_Stores.StoreId
+						// LEFT JOIN [dbo].[Ms_ItemUnit]ON dbo.Ms_ItemUnit.ItemCardId = dbo.MS_ItemCard.ItemCardId
+						//--LEFT  JOIN [dbo].[Prod_BasicUnits] ON dbo.Prod_BasicUnits.BasUnitId = dbo.Ms_ItemUnit.BasUnitId
+						//LEFT JOIN dbo.MS_LotNumberExpiry ON dbo.MS_LotNumberExpiry.LotNumberExpiryId = dbo.Ms_ItemPartition.LotNumberExpiryId";
+      //              }
+      //              else
+      //              {
+      //                  if (storeId.Contains("="))
+      //                  {
+      //                      sqlString = @"select   Ms_ItemUnit.UnitId as GiftUnitId,Ms_ItemUnit.UnittRate  ,MS_ItemCard.ItemCardId as GiftItemCardId, ItemCode,[UnitNam],[UnitNameE],[BarCode1], PartCode, PartDescA, StoreCode, StoreDescA,  ItemDescA, ItemDescE, 
+      //                   ItemCatCode, ItemCatDescA, QtyInBox,MS_ItemCard.Remarks, 
+      //                  Ms_ItemPartition.QtyPartiation, Ms_ItemPartition.QtyInNotebook,(CASE [ItemType] WHEN 1 THEN 'Finished product' WHEN 2 THEN 'Material'
+      //                   WHEN 3 THEN 'Service' WHEN 4 THEN 'Manufactured' WHEN 5 THEN 'Vehicle' WHEN 6 THEN 'Semi-Finished product' END) AS ItemTypestring 
+      //                  ,(CASE [ItemType] WHEN 1 THEN 'Finished product' WHEN 2 THEN 'Material'
+      //                  WHEN 3 THEN 'Service' WHEN 4 THEN 'Manufacturing product' WHEN 5 THEN 'Vehicle' WHEN 6 THEN 'Semi-Finished products' END) AS ItemType2
+						// ,[BarCode2],[BarCode3],[BarCode4],[BarCode5],isnull(MS_ItemCard.IsCollection,0)IsCollection
+						// FROM            dbo.MS_ItemCard LEFT OUTER JOIN
+      //                   dbo.MS_ItemCategory ON dbo.MS_ItemCard.ItemCategoryId = dbo.MS_ItemCategory.ItemCategoryId LEFT OUTER JOIN
+      //                   dbo.Ms_ItemPartition ON dbo.MS_ItemCard.ItemCardId = dbo.Ms_ItemPartition.ItemCardId LEFT OUTER JOIN
+      //                   dbo.MS_Partition ON dbo.Ms_ItemPartition.StorePartId = dbo.MS_Partition.StorePartId LEFT OUTER JOIN
+      //                   dbo.MS_Stores ON dbo.MS_Partition.StoreId = dbo.MS_Stores.StoreId
+						// LEFT JOIN [dbo].[Ms_ItemUnit]ON dbo.Ms_ItemUnit.ItemCardId = dbo.MS_ItemCard.ItemCardId
+						//--LEFT  JOIN [dbo].[Prod_BasicUnits] ON dbo.Prod_BasicUnits.BasUnitId = dbo.Ms_ItemUnit.BasUnitId
+						//LEFT JOIN dbo.MS_LotNumberExpiry ON dbo.MS_LotNumberExpiry.LotNumberExpiryId = dbo.Ms_ItemPartition.LotNumberExpiryId where " + storeId;
+      //                  }
+      //                  else
+      //                  {
+      //                      sqlString = @"select   Ms_ItemUnit.UnitId as GiftUnitId,Ms_ItemUnit.UnittRate  ,MS_ItemCard.ItemCardId as GiftItemCardId, ItemCode,[UnitNam],[UnitNameE],[BarCode1], PartCode, PartDescA, StoreCode, StoreDescA,  ItemDescA, ItemDescE, 
+      //                   ItemCatCode, ItemCatDescA, QtyInBox,MS_ItemCard.Remarks, 
+      //                  Ms_ItemPartition.QtyPartiation, Ms_ItemPartition.QtyInNotebook,(CASE [ItemType] WHEN 1 THEN 'Finished product' WHEN 2 THEN 'Material'
+      //                   WHEN 3 THEN 'Service' WHEN 4 THEN 'Manufactured' WHEN 5 THEN 'Vehicle' WHEN 6 THEN 'Semi-Finished product' END) AS ItemTypestring 
+      //                  ,(CASE [ItemType] WHEN 1 THEN 'Finished product' WHEN 2 THEN 'Material'
+      //                  WHEN 3 THEN 'Service' WHEN 4 THEN 'Manufacturing product' WHEN 5 THEN 'Vehicle' WHEN 6 THEN 'Semi-Finished products' END) AS ItemType2
+						// ,[BarCode2],[BarCode3],[BarCode4],[BarCode5],isnull(MS_ItemCard.IsCollection,0)IsCollection
+						// FROM            dbo.MS_ItemCard LEFT OUTER JOIN
+      //                   dbo.MS_ItemCategory ON dbo.MS_ItemCard.ItemCategoryId = dbo.MS_ItemCategory.ItemCategoryId LEFT OUTER JOIN
+      //                   dbo.Ms_ItemPartition ON dbo.MS_ItemCard.ItemCardId = dbo.Ms_ItemPartition.ItemCardId LEFT OUTER JOIN
+      //                   dbo.MS_Partition ON dbo.Ms_ItemPartition.StorePartId = dbo.MS_Partition.StorePartId LEFT OUTER JOIN
+      //                   dbo.MS_Stores ON dbo.MS_Partition.StoreId = dbo.MS_Stores.StoreId
+						// LEFT JOIN [dbo].[Ms_ItemUnit]ON dbo.Ms_ItemUnit.ItemCardId = dbo.MS_ItemCard.ItemCardId
+						//--LEFT  JOIN [dbo].[Prod_BasicUnits] ON dbo.Prod_BasicUnits.BasUnitId = dbo.Ms_ItemUnit.BasUnitId
+						//LEFT JOIN dbo.MS_LotNumberExpiry ON dbo.MS_LotNumberExpiry.LotNumberExpiryId = dbo.Ms_ItemPartition.LotNumberExpiryId
+      //                  where [Ms_ItemPartition].[StoreId] IS NULL or[dbo].[Ms_ItemPartition].[StoreId]=" + storeId;
+      //                  }
+      //              }
+      //          }
+      //          else
+      //          {
+      //              if (string.IsNullOrEmpty(storeId))
+      //              {
+      //                  sqlString = @"select   Ms_ItemUnit.UnitId as GiftUnitId,Ms_ItemUnit.UnittRate  ,MS_ItemCard.ItemCardId as GiftItemCardId, ItemCode, PartCode,[UnitNam],[UnitNameE], PartDescA, StoreCode, StoreDescA,  ItemDescA, ItemDescE, 
+      //                   ItemCatCode, ItemCatDescA, QtyInBox,MS_ItemCard.Remarks, 
+      //                  Ms_ItemPartition.QtyPartiation, Ms_ItemPartition.QtyInNotebook,(CASE [ItemType] WHEN 1 THEN 'Finished product' WHEN 2 THEN 'Material'
+      //                   WHEN 3 THEN 'Service' WHEN 4 THEN 'Manufactured' WHEN 5 THEN 'Vehicle' WHEN 6 THEN 'Semi-Finished product' END) AS ItemTypestring 
+      //                  ,(CASE [ItemType] WHEN 1 THEN 'Finished product' WHEN 2 THEN 'Material'
+      //                  WHEN 3 THEN 'Service' WHEN 4 THEN 'Manufacturing product' WHEN 5 THEN 'Vehicle' WHEN 6 THEN 'Semi-Finished products' END) AS ItemType2
+      //                  ,isnull(MS_ItemCard.IsCollection,0)IsCollection
+						// FROM            dbo.MS_ItemCard LEFT OUTER JOIN
+      //                   dbo.MS_ItemCategory ON dbo.MS_ItemCard.ItemCategoryId = dbo.MS_ItemCategory.ItemCategoryId LEFT OUTER JOIN
+      //                   dbo.Ms_ItemPartition ON dbo.MS_ItemCard.ItemCardId = dbo.Ms_ItemPartition.ItemCardId LEFT OUTER JOIN
+      //                   dbo.MS_Partition ON dbo.Ms_ItemPartition.StorePartId = dbo.MS_Partition.StorePartId LEFT OUTER JOIN
+      //                   dbo.MS_Stores ON dbo.MS_Partition.StoreId = dbo.MS_Stores.StoreId
+						//-- LEFT JOIN [dbo].[Ms_ItemUnit]ON dbo.Ms_ItemUnit.ItemCardId = dbo.MS_ItemCard.ItemCardId
+						//--LEFT  JOIN [dbo].[Prod_BasicUnits] ON dbo.Prod_BasicUnits.BasUnitId = dbo.Ms_ItemUnit.BasUnitId
+						//LEFT JOIN dbo.MS_LotNumberExpiry ON dbo.MS_LotNumberExpiry.LotNumberExpiryId = dbo.Ms_ItemPartition.LotNumberExpiryId";
+      //              }
+      //              else
+      //              {
+      //                  if (storeId.Contains("="))
+      //                  {
+      //                      sqlString = @"select   Ms_ItemUnit.UnitId as GiftUnitId,Ms_ItemUnit.UnittRate  ,MS_ItemCard.ItemCardId as GiftItemCardId, ItemCode, PartCode,[UnitNam],[UnitNameE], PartDescA, StoreCode, StoreDescA,  ItemDescA, ItemDescE, 
+      //                   ItemCatCode, ItemCatDescA, QtyInBox,MS_ItemCard.Remarks, 
+      //                  Ms_ItemPartition.QtyPartiation, Ms_ItemPartition.QtyInNotebook,(CASE [ItemType] WHEN 1 THEN 'Finished product' WHEN 2 THEN 'Material'
+      //                   WHEN 3 THEN 'Service' WHEN 4 THEN 'Manufactured' WHEN 5 THEN 'Vehicle' WHEN 6 THEN 'Semi-Finished product' END) AS ItemTypestring 
+      //                  ,(CASE [ItemType] WHEN 1 THEN 'Finished product' WHEN 2 THEN 'Material'
+      //                  WHEN 3 THEN 'Service' WHEN 4 THEN 'Manufacturing product' WHEN 5 THEN 'Vehicle' WHEN 6 THEN 'Semi-Finished products' END) AS ItemType2
+      //                  ,isnull(MS_ItemCard.IsCollection,0)IsCollection
+						// FROM            dbo.MS_ItemCard LEFT OUTER JOIN
+      //                   dbo.MS_ItemCategory ON dbo.MS_ItemCard.ItemCategoryId = dbo.MS_ItemCategory.ItemCategoryId LEFT OUTER JOIN
+      //                   dbo.Ms_ItemPartition ON dbo.MS_ItemCard.ItemCardId = dbo.Ms_ItemPartition.ItemCardId LEFT OUTER JOIN
+      //                   dbo.MS_Partition ON dbo.Ms_ItemPartition.StorePartId = dbo.MS_Partition.StorePartId LEFT OUTER JOIN
+      //                   dbo.MS_Stores ON dbo.MS_Partition.StoreId = dbo.MS_Stores.StoreId
+						//LEFT JOIN [dbo].[Ms_ItemUnit]ON dbo.Ms_ItemUnit.ItemCardId = dbo.MS_ItemCard.ItemCardId
+						//--LEFT  JOIN [dbo].[Prod_BasicUnits] ON dbo.Prod_BasicUnits.BasUnitId = dbo.Ms_ItemUnit.BasUnitId
+						//LEFT JOIN dbo.MS_LotNumberExpiry ON dbo.MS_LotNumberExpiry.LotNumberExpiryId = dbo.Ms_ItemPartition.LotNumberExpiryId where " + storeId;
+      //                  }
+      //                  else
+      //                  {
+      //                      sqlString = @"select   Ms_ItemUnit.UnitId as GiftUnitId,Ms_ItemUnit.UnittRate  ,MS_ItemCard.ItemCardId as GiftItemCardId, ItemCode, PartCode,[UnitNam],[UnitNameE], PartDescA, StoreCode, StoreDescA,  ItemDescA, ItemDescE, 
+      //                      ItemCatCode, ItemCatDescA, QtyInBox,MS_ItemCard.Remarks, 
+      //                      Ms_ItemPartition.QtyPartiation, Ms_ItemPartition.QtyInNotebook,(CASE [ItemType] WHEN 1 THEN 'Finished product' WHEN 2 THEN 'Material'
+      //                      WHEN 3 THEN 'Service' WHEN 4 THEN 'Manufactured' WHEN 5 THEN 'Vehicle' WHEN 6 THEN 'Semi-Finished product' END) AS ItemTypestring 
+      //                      ,(CASE [ItemType] WHEN 1 THEN 'Finished product' WHEN 2 THEN 'Material'
+      //                      WHEN 3 THEN 'Service' WHEN 4 THEN 'Manufacturing product' WHEN 5 THEN 'Vehicle' WHEN 6 THEN 'Semi-Finished products' END) AS ItemType2
+      //                      ,isnull(MS_ItemCard.IsCollection,0)IsCollection
+						//    FROM            dbo.MS_ItemCard LEFT OUTER JOIN
+      //                      dbo.MS_ItemCategory ON dbo.MS_ItemCard.ItemCategoryId = dbo.MS_ItemCategory.ItemCategoryId LEFT OUTER JOIN
+      //                      dbo.Ms_ItemPartition ON dbo.MS_ItemCard.ItemCardId = dbo.Ms_ItemPartition.ItemCardId LEFT OUTER JOIN
+      //                      dbo.MS_Partition ON dbo.Ms_ItemPartition.StorePartId = dbo.MS_Partition.StorePartId LEFT OUTER JOIN
+      //                      dbo.MS_Stores ON dbo.MS_Partition.StoreId = dbo.MS_Stores.StoreId
+						//    LEFT JOIN [dbo].[Ms_ItemUnit]ON dbo.Ms_ItemUnit.ItemCardId = dbo.MS_ItemCard.ItemCardId
+						//    --LEFT  JOIN [dbo].[Prod_BasicUnits] ON dbo.Prod_BasicUnits.BasUnitId = dbo.Ms_ItemUnit.BasUnitId
+						//    LEFT JOIN dbo.MS_LotNumberExpiry ON dbo.MS_LotNumberExpiry.LotNumberExpiryId = dbo.Ms_ItemPartition.LotNumberExpiryId 
+      //                      where [Ms_ItemPartition].[StoreId] IS NULL or[dbo].[Ms_ItemPartition].[StoreId]=" + storeId;
+      //                  }
+      //              }
+      //          }
+      //      }
+            #endregion
+
+            List<ItemsVM> items = db.Database.SqlQuery<ItemsVM>(sqlString).ToList();
+            return Ok(new BaseResponse(items));
+        }
+
+        [HttpGet, AllowAnonymous]
+        public IHttpActionResult GetExpensesAccount()
+        {
+            string sql = @"select AccountId as Id ,CAST(AccountCode as nvarchar(1024)) as Code,AccountNameA as NameA, AccountNameE as NameE
+            from Cal_AccountChart where AccountGroup = 5 and AccountType = 2 order by AccountCode";
+
+            List<SharedVM> entities = db.Database.SqlQuery<SharedVM>(sql).ToList();
+            return Ok(new BaseResponse(entities));
+        }
+
+        [HttpGet, AllowAnonymous]
+        public IHttpActionResult GetUnitsById(int id)
+        {
+            string sql = "select UnitId, ItemCardId, UnitNam, UnitNameE from Ms_ItemUnit where ItemCardId = " + id;
+            List<UnitsVM> entities = db.Database.SqlQuery<UnitsVM>(sql).ToList();
+            return Ok(new BaseResponse(entities));
+        }
+
     }
 }

@@ -432,6 +432,7 @@ var HomeComponent;
         //8-9-2021 
         //$("#btnbranches").click(() => { OpenPage(Modules.branches); })
         /////////////////Start Definitions Pages ////////////////////
+        $("#btnItems").click(function () { OpenPage(Modules.Items); });
         $("#btnMs_CustomerTypes").click(function () { OpenPage(Modules.Ms_CustomerTypes); });
         $("#btnMs_VendorTypes").click(function () { OpenPage(Modules.Ms_VendorTypes); });
         $("#btnMS_ItemCategory").click(function () { OpenPage(Modules.MS_ItemCategory); });

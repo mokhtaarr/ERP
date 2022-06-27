@@ -31,5 +31,6 @@ namespace Inv.DAL.Domain
         public string DeletedBy { get; set; }
         public Nullable<System.DateTime> DeletedAt { get; set; }
         public string EtaxCode { get; set; }
+        public Nullable<System.DateTime> UpdatedAt { get; set; }
     }
 }

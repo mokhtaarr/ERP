@@ -461,6 +461,7 @@ namespace HomeComponent {
         //$("#btnbranches").click(() => { OpenPage(Modules.branches); })
 
         /////////////////Start Definitions Pages ////////////////////
+        $("#btnItems").click(() => { OpenPage(Modules.Items); })
         $("#btnMs_CustomerTypes").click(() => { OpenPage(Modules.Ms_CustomerTypes); })
         $("#btnMs_VendorTypes").click(() => { OpenPage(Modules.Ms_VendorTypes); })
         $("#btnMS_ItemCategory").click(() => { OpenPage(Modules.MS_ItemCategory); })

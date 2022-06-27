@@ -289,6 +289,7 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\Cod_AccountCategoriesController.cs" />
     <Compile Include="Controllers\CalCostCenterController.cs" />
+    <Compile Include="Controllers\Definitions\MS_ItemCardController.cs" />
     <Compile Include="Controllers\DynamicConnectionController.cs" />
     <Compile Include="Controllers\ProgrammingTools\Ms_Settings.cs" />
     <Compile Include="Controllers\FixedAssets\Asset_AssetCardController.cs" />
@@ -296,6 +297,7 @@
     <Compile Include="Controllers\MS_PaymentNoteController.cs" />
     <Compile Include="Controllers\MS_TaxesController.cs" />
     <Compile Include="Controllers\Ms_ReceiptNoteController.cs" />
+    <Compile Include="Controllers\Shared\FileHelper.cs" />
     <Compile Include="Controllers\Shared\PostOrderController.cs" />
     <Compile Include="Controllers\Sr_VehicleShapes.cs" />
     <Compile Include="Controllers\Sr_VehicleTypes.cs" />
@@ -407,8 +409,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Data\" />
     <Folder Include="image\Comp\" />
+    <Folder Include="Uploads\Items\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

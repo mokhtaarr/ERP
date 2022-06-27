@@ -55,5 +55,19 @@ namespace Inv.DAL.Domain
         public Nullable<System.DateTime> DeletedAt { get; set; }
         public Nullable<int> CityID { get; set; }
         public byte[] BranchLogo { get; set; }
+        public string PrintHeaderFont { get; set; }
+        public string PrintFooterFont { get; set; }
+        public string PrintHeaderFontColor { get; set; }
+        public string PrintFooterFontColor { get; set; }
+        public Nullable<byte> PrintHeaderFontSize { get; set; }
+        public Nullable<byte> PrintFooterFontSize { get; set; }
+        public Nullable<byte> PrintHeaderFontStyle { get; set; }
+        public Nullable<byte> PrintFooterFontStyle { get; set; }
+        public string PrintHeader { get; set; }
+        public string PrintFooter { get; set; }
+        public string EtaxCode { get; set; }
+        public string TaxReg { get; set; }
+        public string CommercialName { get; set; }
+        public Nullable<System.DateTime> UpdatedAt { get; set; }
     }
 }

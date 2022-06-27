@@ -2,10 +2,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -51,7 +53,7 @@ var APISessionRecord = /** @class */ (function () {
         set: function (value) {
             this.SetAPISession("SystemCode", value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(APISessionRecord.prototype, "SubSystemCode", {
@@ -61,7 +63,7 @@ var APISessionRecord = /** @class */ (function () {
         set: function (value) {
             this.SetAPISession("SubSystemCode", value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(APISessionRecord.prototype, "Modulecode", {
@@ -71,7 +73,7 @@ var APISessionRecord = /** @class */ (function () {
         set: function (value) {
             this.SetAPISession("Modulecode", value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(APISessionRecord.prototype, "UserCode", {
@@ -81,7 +83,7 @@ var APISessionRecord = /** @class */ (function () {
         set: function (value) {
             this.SetAPISession("UserCode", value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(APISessionRecord.prototype, "Token", {
@@ -91,7 +93,7 @@ var APISessionRecord = /** @class */ (function () {
         set: function (value) {
             this.SetAPISession("Token", value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(APISessionRecord.prototype, "CompCode", {
@@ -101,7 +103,7 @@ var APISessionRecord = /** @class */ (function () {
         set: function (value) {
             this.SetAPISession("CompCode", value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(APISessionRecord.prototype, "BranchCode", {
@@ -111,7 +113,7 @@ var APISessionRecord = /** @class */ (function () {
         set: function (value) {
             this.SetAPISession("BranchCode", value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(APISessionRecord.prototype, "CurrentYear", {
@@ -121,7 +123,7 @@ var APISessionRecord = /** @class */ (function () {
         set: function (value) {
             this.SetAPISession("CurrentYear", value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(APISessionRecord.prototype, "ScreenLanguage", {
@@ -131,7 +133,7 @@ var APISessionRecord = /** @class */ (function () {
         set: function (value) {
             this.SetAPISession("ScreenLanguage", value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return APISessionRecord;
@@ -8044,5 +8046,423 @@ var MS_Settings = /** @class */ (function () {
         this.VendSeparator;
     }
     return MS_Settings;
+}());
+var MS_ItemCard = /** @class */ (function () {
+    function MS_ItemCard() {
+        this.ItemCardId = 0;
+        this.ItemCategoryId = 0;
+        this.StoreId = 0;
+        this.StorePartId = 0;
+        this.BasUnitId = 0;
+        this.TaxesId1 = 0;
+        this.Tax1ForSale = false;
+        this.Tax1ForPurch = false;
+        this.Tax1Style = 0;
+        this.Tax1Rate = 0;
+        this.Tax1IsAccomulative = false;
+        this.Tax1PlusOrMinus = false;
+        this.TaxesId2 = 0;
+        this.Tax2ForSale = false;
+        this.Tax2ForPurch = false;
+        this.Tax2Style = 0;
+        this.Tax2Rate = 0;
+        this.Tax2IsAccomulative = false;
+        this.Tax2PlusOrMinus = false;
+        this.TaxesId3 = 0;
+        this.Tax3ForSale = false;
+        this.Tax3ForPurch = false;
+        this.Tax3Style = 0;
+        this.Tax3Rate = 0;
+        this.Tax3IsAccomulative = false;
+        this.Tax3PlusOrMinus = false;
+        this.ItemType = 0;
+        this.ItemCode = "";
+        this.TaxItemCode = "";
+        this.ItemDescA = "";
+        this.ItemDescE = "";
+        this.QtyPartiation = 0;
+        this.QtyInNotebook = 0;
+        this.TotalCost = 0;
+        this.PurchaseNumber = 0;
+        this.LastSalePrice = 0;
+        this.BeforLastCost = 0;
+        this.LastCostManual = 0;
+        this.ManualPurchasePrice = 0;
+        this.LastCost = 0;
+        this.CoastAverage = 0;
+        this.LastPurchDate = "";
+        this.FirstQty = 0;
+        this.FirstPrice = 0;
+        this.SecandQty = 0;
+        this.SecandPrice = 0;
+        this.ThridQty = 0;
+        this.ThirdPrice = 0;
+        this.LargeQty = 0;
+        this.LargePrice = 0;
+        this.Price5 = 0;
+        this.Quantity5 = 0;
+        this.Price6 = 0;
+        this.Price7 = 0;
+        this.Price8 = 0;
+        this.Price9 = 0;
+        this.Price10 = 0;
+        this.LeastSalesPrice = 0;
+        this.LeastProfitMargin = 0;
+        this.QtyInBox = 0;
+        this.PurchasePrice = 0;
+        this.Wheight = 0;
+        this.ServicePrice = 0;
+        this.ProfitPrice = 0;
+        this.Kirat = 0;
+        this.strCustm5 = "";
+        this.Remarks = "";
+        this.AddField1 = "";
+        this.AddField2 = "";
+        this.AddField3 = "";
+        this.AddField4 = "";
+        this.AddField5 = "";
+        this.AddField6 = "";
+        this.AddField7 = "";
+        this.AddField8 = "";
+        this.AddField9 = "";
+        this.AddField10 = "";
+        this.ExpirPeriod = 0;
+        this.PeriodType = 0;
+        this.OfferDesc = "";
+        this.InOffer = false;
+        this.OfferFromDate = "";
+        this.OfferToDate = "";
+        this.IsOfferDiscount = false;
+        this.IsDiscountPercent = false;
+        this.Discount = 0;
+        this.IsExpir = false;
+        this.IsAttributeItem = false;
+        this.IsCollection = false;
+        this.IsDimension = false;
+        this.IsSerialItem = false;
+        this.AllPatchesSamePrice = false;
+        this.UseSameItemAsMaterial = false;
+        this.AutoSuggestBatches = false;
+        this.CostWithDimension = false;
+        this.DimensionSalesPrice = 0;
+        this.LastUpdateTime;
+        this.ItemLimit = 0;
+        this.ItemMax = 0;
+        this.Length = "";
+        this.Width = "";
+        this.Height = "";
+        this.ItemSize = "";
+        this.ItemColor = "";
+        this.SerialNoPrefix = "";
+        this.WarantyPeriod = 0;
+        this.WarantyPeriodType = 0;
+        this.CreatedBy = "";
+        this.CreatedAt = "";
+        this.UpdateBy = "";
+        this.UpdateAt = "";
+        this.DeletedBy = "";
+        this.DeletedAt = "";
+        this.IsTempItem = false;
+        this.ProductionItemUnit = 0;
+        this.SpecialItemExeclud = false;
+        this.IsCommisionPercent = false;
+        this.Commision = 0;
+        this.CommisionEndDate = "";
+        this.IsOuterItem = false;
+        this.UseSomeSubItems = false;
+        this.Unit2IsMandatory = false;
+        this.UseUnit2 = false;
+        this.IsSalesStopped = false;
+        this.IsServerEntity = false;
+        this.MainServerId = 0;
+    }
+    return MS_ItemCard;
+}());
+var MS_ItemVendors = /** @class */ (function () {
+    function MS_ItemVendors() {
+        this.StatusFlag = "";
+        this.VendorDescA = "";
+        this.VendorDescE = "";
+        this.VendorCode = "";
+        this.ItemVendorId = 0;
+        this.ItemCardId = 0;
+        this.VendorId = 0;
+        this.IsBasicVendor = false;
+        this.UnitId = 0;
+        this.UnitRate = 0;
+        this.Quantity1;
+        this.Price1;
+        this.Quantity2;
+        this.Price2;
+        this.Quantity3;
+        this.Price3;
+        this.Quantity4;
+        this.Price4;
+        this.Quantity5;
+        this.Price5;
+        this.Quantity6;
+        this.Price6;
+        this.Quantity7;
+        this.Price7;
+        this.Quantity8;
+        this.Price8;
+        this.Quantity9;
+        this.Price9;
+        this.Quantity10;
+        this.Price10;
+    }
+    return MS_ItemVendors;
+}());
+var Prod_ItemAttributes = /** @class */ (function () {
+    function Prod_ItemAttributes() {
+        this.AttributId = 0;
+        this.AttributCode = "";
+        this.AttributName1 = "";
+        this.AttributName2 = "";
+        this.IsActive = false;
+        this.IsMandatory = false;
+        this.Dimension = 0;
+        this.IsFixedMenuValues = false;
+        this.IsOptionalWithAlarm = false;
+        this.BasUnitId = 0;
+        this.DataType = 0;
+        this.MinValu = 0;
+        this.MaxValu = 0;
+        this.IncrementalValu = 0;
+        this.Remarks = "";
+        this.CreatedBy = "";
+        this.CreatedAt = "";
+        this.UpdateBy = "";
+        this.UpdateAt = "";
+        this.DeletedBy = "";
+        this.DeletedAt = "";
+        this.UnitNam = "";
+        this.UnitNameE = "";
+    }
+    return Prod_ItemAttributes;
+}());
+var Prod_ItemAttributsJoin = /** @class */ (function () {
+    function Prod_ItemAttributsJoin() {
+        this.StatusFlag = "";
+        this.ProdItemAtrribId = 0;
+        this.ItemCardId = 0;
+        this.AttributId = 0;
+        this.IsActive = false;
+        this.IsMandatory = false;
+        this.CreatedBy = "";
+        this.CreatedAt = "";
+        this.UpdateBy = "";
+        this.UpdateAt = "";
+        this.DeletedBy = "";
+        this.DeletedAt = "";
+        this.AttributName1 = "";
+        this.AttributName2 = "";
+        this.Dimension = "";
+        this.AttributCode = "";
+        this.BasUnitId = 0;
+        this.UnitName = "";
+    }
+    return Prod_ItemAttributsJoin;
+}());
+var Ms_ItemPartition = /** @class */ (function () {
+    function Ms_ItemPartition() {
+        this.ItemPartId = 0;
+        this.ItemCardId = 0;
+        this.StoreId = 0;
+        this.StorePartId = 0;
+        this.LotNumberExpiryId = 0;
+        this.QtyPartiation = 0;
+        this.QtyInNotebook = 0;
+        this.TotalCost = 0;
+        this.PurchaseNumber = 0;
+        this.FIFOCost = 0;
+        this.LIFOCost = 0;
+        this.CoastAverage = 0;
+        this.BatchNumberFifoOrLifo = "";
+        this.VarianceQty = 0;
+        this.ReservedQty = 0;
+        this.RequestedQty = 0;
+        this.SaleNotDelivered = 0;
+        this.PurNotReceived = 0;
+        this.QtyOutWithoutBalance = 0;
+        this.QtyInWithoutCost = 0;
+        this.SalesOrder = 0;
+        this.PurchaseOrder = 0;
+        this.WithoutCost = 0;
+        this.ItemLimit = 0;
+        this.ItemMax = 0;
+        this.TVersion;
+        this.TType;
+        this.QtyIUnit2Notebook = 0;
+        this.QtyIUnit2Partiation = 0;
+        this.UpdatedAt = "";
+    }
+    return Ms_ItemPartition;
+}());
+var Ms_ItemCardOffers = /** @class */ (function () {
+    function Ms_ItemCardOffers() {
+        this.OfferItemId = 0;
+        this.ItemCardId = 0;
+        this.UnitId = 0;
+        this.BasicQuantity = 0;
+        this.GiftItemCardId = 0;
+        this.GiftUnitId = 0;
+        this.GiftQuantity = 0;
+        this.IsGiftDiscount = false;
+        this.IsDiscountPercent = false;
+        this.GiftDiscount = 0;
+        this.PriceAfterDisc = 0;
+        this.IsReplace = false;
+        this.FromDate = "";
+        this.ToDate = "";
+        this.StatusFlag = "";
+    }
+    return Ms_ItemCardOffers;
+}());
+var MS_ItemImages = /** @class */ (function () {
+    function MS_ItemImages() {
+        this.ImgId = 0;
+        this.ItemCardId = 0;
+        this.Image;
+        this.ImgDesc1 = "";
+        this.ImgDesc2 = "";
+        this.ImageStr = "";
+    }
+    return MS_ItemImages;
+}());
+var Prod_BasicUnits = /** @class */ (function () {
+    function Prod_BasicUnits() {
+        this.BasUnitId = 0;
+        this.UnitCode = "";
+        this.UnitNam = "";
+        this.UnitNameE = "";
+        this.UnittRate = 0;
+        this.Symbol = "";
+        this.ParentUnit = 0;
+        this.Remarks = "";
+        this.AutoDesc = "";
+        this.EtaxUnitCode = "";
+        this.IsKarat = false;
+        this.CreatedBy = "";
+        this.CreatedAt = "";
+        this.UpdateBy = "";
+        this.UpdateAt = "";
+        this.DeletedBy = "";
+        this.DeletedAt = "";
+    }
+    return Prod_BasicUnits;
+}());
+var Ms_ItemUnit = /** @class */ (function () {
+    function Ms_ItemUnit() {
+        this.UnitId = 0;
+        this.ItemCardId = 0;
+        this.BasUnitId = 0;
+        this.UnittRate = 0;
+        this.UnitCode = "";
+        this.UnitNam = "";
+        this.UnitNameE = "";
+        this.Symbol = "";
+        this.BarCode1 = "";
+        this.BarCode2 = "";
+        this.BarCode3 = "";
+        this.BarCode4 = "";
+        this.BarCode5 = "";
+        this.BarCode6 = "";
+        this.BarCode7 = "";
+        this.BarCode8 = "";
+        this.BarCode9 = "";
+        this.BarCode10 = "";
+        this.BarCode11 = "";
+        this.BarCode12 = "";
+        this.BarCode13 = "";
+        this.BarCode14 = "";
+        this.BarCode15 = "";
+        this.StatusFlag = "";
+        this.DefaultBarCode = 0;
+        this.ManualPurchasePrice = 0;
+        this.LastCost = 0;
+        this.BeforLastCost = 0;
+        this.LastSalePrice = 0;
+        this.LastCostManual = 0;
+        this.IsDefaultSale = false;
+        this.IsDefaultPurchas = false;
+        this.IsBasicUnit = false;
+        this.IsNotRegular = false;
+        this.Price1 = 0;
+        this.Quantity1 = 0;
+        this.Price2 = 0;
+        this.Quantity2 = 0;
+        this.Price3 = 0;
+        this.Quantity3 = 0;
+        this.Price4 = 0;
+        this.Quantity4 = 0;
+        this.Price5 = 0;
+        this.Quantity5 = 0;
+        this.Price6 = 0;
+        this.Price7 = 0;
+        this.Price8 = 0;
+        this.Price9 = 0;
+        this.Price10 = 0;
+        this.LeastSalesPrice = 0;
+        this.LeastProfitMargin = 0;
+        this.Wheight = 0;
+        this.X = 0;
+        this.Y = 0;
+        this.Z = 0;
+    }
+    return Ms_ItemUnit;
+}());
+var MS_ItemAlternatives = /** @class */ (function () {
+    function MS_ItemAlternatives() {
+        this.AlterId = 0;
+        this.ItemCardId = 0;
+        this.AlterItemCardId = 0;
+        this.UnitId = 0;
+        this.UnitRate = 0;
+        this.ItemType = 0;
+        this.Quantity = 0;
+        this.QtyBeforRate = 0;
+        this.Remarks = "";
+        this.StatusFlag = "";
+        this.ItemDescA = "";
+        this.ItemDescE = "";
+        this.UnitNam = "";
+        this.ItemTypeName = "";
+    }
+    return MS_ItemAlternatives;
+}());
+var Ms_ItemCollection = /** @class */ (function () {
+    function Ms_ItemCollection() {
+        this.ItemCollectId = 0;
+        this.ItemCardId = 0;
+        this.ItemCode = "";
+        this.SubItemId = 0;
+        this.UnitId = 0;
+        this.UnitRate = 0;
+        this.ItemType = 0;
+        this.Quantity = 0;
+        this.QtyBeforRate = 0;
+        this.Remarks = "";
+        this.IsNotBasic = false;
+        this.StatusFlag = "";
+        this.UnitNam = "";
+        this.ItemDescA = "";
+        this.ItemDescE = "";
+        this.ItemTypeName = "";
+    }
+    return Ms_ItemCollection;
+}());
+var Prod_ItemcardExpenses = /** @class */ (function () {
+    function Prod_ItemcardExpenses() {
+        this.ProdExpensId = 0;
+        this.ItemCardId = 0;
+        this.AccountId = 0;
+        this.IsPercent = false;
+        this.PercentOf = 0;
+        this.ExpenseValu = 0;
+        this.StatusFlag = "";
+        this.AccountCode = "";
+    }
+    return Prod_ItemcardExpenses;
 }());
 //# sourceMappingURL=Entities.js.map

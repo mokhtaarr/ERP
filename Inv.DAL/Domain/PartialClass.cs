@@ -282,7 +282,16 @@ namespace Inv.DAL.Domain
     public partial class Ms_BoxUsers : SecurityandUpdateFlagClass { }
     public partial class Ms_ReceiptNoteCurrencies : SecurityandUpdateFlagClass { }
     public partial class Cal_AssetAccounts : SecurityandUpdateFlagClass { }
-  
+    public partial class Ms_ItemCardOffers : SecurityandUpdateFlagClass { }
+    public partial class MS_ItemVendors : SecurityandUpdateFlagClass { }
+    public partial class Prod_ItemAttributsJoin : SecurityandUpdateFlagClass { }
+    public partial class MS_ItemImages : SecurityandUpdateFlagClass { }
+    public partial class Ms_ItemUnit : SecurityandUpdateFlagClass { }
+    public partial class MS_ItemAlternatives : SecurityandUpdateFlagClass { }
+    public partial class Ms_ItemCollection : SecurityandUpdateFlagClass { }
+    public partial class Prod_ItemcardExpenses : SecurityandUpdateFlagClass { }
+
+
     #region partial Customer 
     //// ////////////////////Customer ///////////////////////////////////
     public partial class Ms_CustomerBranches : SecurityandUpdateFlagClass { }

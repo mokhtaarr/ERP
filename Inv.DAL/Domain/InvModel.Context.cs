@@ -14,18 +14,17 @@ namespace Inv.DAL.Domain
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
     using System.Linq;
-    using System.Data.Entity.ModelConfiguration.Conventions;
-
+    
     public partial class InvEntities : DbContext
     {
-        public InvEntities() : base("name=InvEntities")
+        public InvEntities()
+            : base("name=InvEntities")
         {
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //throw new UnintentionalCodeFirstException();
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            throw new UnintentionalCodeFirstException();
         }
     
         public virtual DbSet<Cal_AccountChart> Cal_AccountChart { get; set; }
@@ -70,7 +69,6 @@ namespace Inv.DAL.Domain
         public virtual DbSet<MS_ItemCategory> MS_ItemCategory { get; set; }
         public virtual DbSet<Ms_ItemCollection> Ms_ItemCollection { get; set; }
         public virtual DbSet<MS_ItemCostHistory> MS_ItemCostHistory { get; set; }
-        public virtual DbSet<MS_ItemImages> MS_ItemImages { get; set; }
         public virtual DbSet<Ms_ItemPartition> Ms_ItemPartition { get; set; }
         public virtual DbSet<MS_Partition> MS_Partition { get; set; }
         public virtual DbSet<MS_Stores> MS_Stores { get; set; }
@@ -583,6 +581,7 @@ namespace Inv.DAL.Domain
         public virtual DbSet<VW_SearchAllAccounts> VW_SearchAllAccounts { get; set; }
         public virtual DbSet<G_USERS> G_USERS { get; set; }
         public virtual DbSet<MS_Taxes> MS_Taxes { get; set; }
+        public virtual DbSet<MS_ItemImages> MS_ItemImages { get; set; }
     
         public virtual int G_ProcessTrans(Nullable<int> comp, Nullable<int> branch, string trType, string opMode, Nullable<int> trID, ObjectParameter trNo, ObjectParameter ok)
         {
@@ -609,17 +608,17 @@ namespace Inv.DAL.Domain
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("G_ProcessTrans", compParameter, branchParameter, trTypeParameter, opModeParameter, trIDParameter, trNo, ok);
         }
     
-        [DbFunction("InvEntities", "GFun_Companies")]
+        [DbFunction("Entities", "GFun_Companies")]
         public virtual IQueryable<GFun_Companies_Result> GFun_Companies(string userCode)
         {
             var userCodeParameter = userCode != null ?
                 new ObjectParameter("userCode", userCode) :
                 new ObjectParameter("userCode", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GFun_Companies_Result>("[InvEntities].[GFun_Companies](@userCode)", userCodeParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GFun_Companies_Result>("[Entities].[GFun_Companies](@userCode)", userCodeParameter);
         }
     
-        [DbFunction("InvEntities", "GFun_UserCompanyBranch")]
+        [DbFunction("Entities", "GFun_UserCompanyBranch")]
         public virtual IQueryable<GFun_UserCompanyBranch_Result> GFun_UserCompanyBranch(string userCode, Nullable<int> compCode)
         {
             var userCodeParameter = userCode != null ?
@@ -630,10 +629,10 @@ namespace Inv.DAL.Domain
                 new ObjectParameter("CompCode", compCode) :
                 new ObjectParameter("CompCode", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GFun_UserCompanyBranch_Result>("[InvEntities].[GFun_UserCompanyBranch](@userCode, @CompCode)", userCodeParameter, compCodeParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GFun_UserCompanyBranch_Result>("[Entities].[GFun_UserCompanyBranch](@userCode, @CompCode)", userCodeParameter, compCodeParameter);
         }
     
-        [DbFunction("InvEntities", "GFunc_GetPrivilage")]
+        [DbFunction("Entities", "GFunc_GetPrivilage")]
         public virtual IQueryable<GFunc_GetPrivilage_Result> GFunc_GetPrivilage(Nullable<int> year, Nullable<int> comp, Nullable<int> bra, string user, string sys, string mod)
         {
             var yearParameter = year.HasValue ?
@@ -660,10 +659,10 @@ namespace Inv.DAL.Domain
                 new ObjectParameter("Mod", mod) :
                 new ObjectParameter("Mod", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GFunc_GetPrivilage_Result>("[InvEntities].[GFunc_GetPrivilage](@year, @Comp, @bra, @user, @Sys, @Mod)", yearParameter, compParameter, braParameter, userParameter, sysParameter, modParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GFunc_GetPrivilage_Result>("[Entities].[GFunc_GetPrivilage](@year, @Comp, @bra, @user, @Sys, @Mod)", yearParameter, compParameter, braParameter, userParameter, sysParameter, modParameter);
         }
     
-        [DbFunction("InvEntities", "GFunc_GetPrivilageRole")]
+        [DbFunction("Entities", "GFunc_GetPrivilageRole")]
         public virtual IQueryable<GFunc_GetPrivilageRole_Result> GFunc_GetPrivilageRole(Nullable<int> comp, Nullable<int> bra, string user, string sys, string sub, string mod)
         {
             var compParameter = comp.HasValue ?
@@ -690,7 +689,7 @@ namespace Inv.DAL.Domain
                 new ObjectParameter("Mod", mod) :
                 new ObjectParameter("Mod", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GFunc_GetPrivilageRole_Result>("[InvEntities].[GFunc_GetPrivilageRole](@Comp, @bra, @user, @Sys, @sub, @Mod)", compParameter, braParameter, userParameter, sysParameter, subParameter, modParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GFunc_GetPrivilageRole_Result>("[Entities].[GFunc_GetPrivilageRole](@Comp, @bra, @user, @Sys, @sub, @Mod)", compParameter, braParameter, userParameter, sysParameter, subParameter, modParameter);
         }
     
         public virtual ObjectResult<RptCustomerBalanceDetail_Result> RptCustomerBalanceDetail(string customerCodeFrom, string customerCodeTo, Nullable<decimal> custBalanceFrom, Nullable<decimal> custBalanceTo, Nullable<bool> custStatus, string catCodeFrom, string catCodeTo)

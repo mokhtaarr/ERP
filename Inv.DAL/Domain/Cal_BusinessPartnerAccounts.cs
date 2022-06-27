@@ -50,5 +50,7 @@ namespace Inv.DAL.Domain
         public Nullable<System.DateTime> UpdatedAt { get; set; }
         public string DeletedBy { get; set; }
         public Nullable<System.DateTime> DeletedAt { get; set; }
+        public string TaxRefNo { get; set; }
+        public string EtaxCustType { get; set; }
     }
 }

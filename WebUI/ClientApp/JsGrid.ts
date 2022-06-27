@@ -80,10 +80,11 @@ class JsGrid {
                 nameDesc: field,
                 title: field,
                 type: "label",
-                //disabled: field,
+                disabled: Boolean(field),
                 fun: field,
                 Typefun: field,
                 value: field,
+                id: field
             };
             this.Columns.push(col);
         }
@@ -106,20 +107,29 @@ class JsGrid {
 
         $("#" + this.ElementName).jsGrid({
             width: this.Width,
+
             height: this.Height,
+
             heading: this.Heading,
 
             inserting: this.Inserting,
+
             editing: this.Editing,
+
             sorting: this.Sorting,
+
             paging: this.Paging,
+
             filtering: this.Filtering,
+
             autoLoad: true,
+
             selecting: true,
 
             pageSize: this.PageSize,
 
             data: this.DataSource,
+
             confirmDeleting: true,//this.ConfirmDeleteing,
 
             deleteConfirm: this.SysSession?.CurrentEnvironment != null ?
@@ -194,9 +204,12 @@ class JsGrid {
                 var $result = $("<tr>").addClass(this.insertRowClass).attr('id', '_idAdd');
 
                 this._eachField(function (field) {
-                    this._prepareCell("<td>", field, "insertcss")
-                        .append(this.renderTemplate(field.insertTemplate, field))
-                        .appendTo($result);
+                    var td = this._prepareCell("<td>", field, "insertcss");
+                    var input = this.renderTemplate(field.insertTemplate, field);
+                    $(input).attr('id', field.id).attr('disabled', field.disabled);
+                    $(input).attr('name', field.name);
+                    $(input).attr('type', field.type);
+                    td.append(input).appendTo($result);
                 });
 
                 return $result;
@@ -481,8 +494,6 @@ class JsGrid {
                     let e: JsGridInsertEventArgs = new JsGridInsertEventArgs();
                     e.Item = arg.item;
                     this.OnItemInserting(e);
-
-
                 }
             },
 
@@ -534,8 +545,7 @@ class JsGrid {
                 //    arg.cancel = true;
             },
 
-            onItemDeleted: (arg) => {
-            }
+            onItemDeleted: (arg) => { }
         });
 
         //$('select').select2().css("width", "100%");

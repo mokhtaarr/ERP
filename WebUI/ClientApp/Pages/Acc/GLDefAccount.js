@@ -723,7 +723,7 @@ var AccDefCustomer;
         AccountId = Number(AQ_AccList.AccountId);
     }
     function click_in_labl(Id) {
-        var _a, _b, _c, _d, _e;
+        var _a, _b, _c, _d;
         AQ_AccList = new Cal_AccountChart();
         AQ_AccList = GetById(Id);
         if (AQ_AccList != null) {
@@ -733,9 +733,9 @@ var AccDefCustomer;
             SelectCurrency(AQ_AccList.CurrencyId, 0);
             AccountId_NodeParent = Number(AQ_AccList.mainAccountId);
             var mainAccount = Details_ACCOUNT.filter(function (x) { return x.AccountId == AccountId_NodeParent; })[0];
-            txt_mainAccountdes.value = mainAccount == undefined ? "" : (_a = mainAccount) === null || _a === void 0 ? void 0 : _a.AccountNameA;
+            txt_mainAccountdes.value = mainAccount == undefined ? "" : mainAccount === null || mainAccount === void 0 ? void 0 : mainAccount.AccountNameA;
             txt_mainAccountId.value = mainAccount == null ? "" : mainAccount.AccountCode;
-            mainAccountId.value = (_b = AQ_AccList.mainAccountId) === null || _b === void 0 ? void 0 : _b.toString();
+            mainAccountId.value = (_a = AQ_AccList.mainAccountId) === null || _a === void 0 ? void 0 : _a.toString();
             NodeParent = AccountId;
             NAME = AQ_AccList.AccountNameA;
             ACC_CODE = AQ_AccList.AccountCode;
@@ -749,9 +749,9 @@ var AccDefCustomer;
             RemarksA.value = AQ_AccList.RemarksA == "null" ? "" : AQ_AccList.RemarksA;
             RemarksE.value = AQ_AccList.RemarksE == "null" ? "" : AQ_AccList.RemarksE;
             txt_level.value = AQ_AccList.AccountLevel.toString();
-            AccCashFlow.value = (_c = AQ_AccList.AccCashFlow) === null || _c === void 0 ? void 0 : _c.toString();
-            AccountNature.value = (_d = AQ_AccList.AccountNature) === null || _d === void 0 ? void 0 : _d.toString();
-            AcountType.value = (_e = AQ_AccList.AccountType) === null || _e === void 0 ? void 0 : _e.toString();
+            AccCashFlow.value = (_b = AQ_AccList.AccCashFlow) === null || _b === void 0 ? void 0 : _b.toString();
+            AccountNature.value = (_c = AQ_AccList.AccountNature) === null || _c === void 0 ? void 0 : _c.toString();
+            AcountType.value = (_d = AQ_AccList.AccountType) === null || _d === void 0 ? void 0 : _d.toString();
             CalcMethod.value = AQ_AccList.CalcMethod == true ? "1" : "0";
             AccountGroup.value = AQ_AccList.AccountGroup.toString();
             //ragab محلي

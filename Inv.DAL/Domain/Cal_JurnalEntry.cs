@@ -81,5 +81,7 @@ namespace Inv.DAL.Domain
         public Nullable<System.DateTime> UpdateAt { get; set; }
         public string DeletedBy { get; set; }
         public Nullable<System.DateTime> DeletedAt { get; set; }
+        public Nullable<int> VehiclMovId { get; set; }
+        public Nullable<int> ShiftId { get; set; }
     }
 }

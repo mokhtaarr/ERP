@@ -1,5 +1,4 @@
-﻿
-class Custom_AlertLog extends SecurityClass {
+﻿class Custom_AlertLog extends SecurityClass {
     constructor() {
         super();
         this.AlertSubTypeID = "";
@@ -470,4 +469,70 @@ class CountInDashboard {
 class Asset_AssetCardDetailes {
     public Model: Asset_AssetCard;
     public accounts: Array<Cal_AssetAccounts>;
+}
+
+class MS_ItemCardDetailesVM {
+    public Model: MS_ItemCard;
+    public Vendors: Array<MS_ItemVendors>;
+    public AttributsJoin: Array<Prod_ItemAttributsJoin>;
+    public Offers: Array<Ms_ItemCardOffers>;
+    public ItemImages: Array<MS_ItemImages>;
+    public StrItemImages: Array<string>;
+    public GiftUnits: Array<Ms_ItemUnitVM>;
+    public ItemCardUnits: Array<Ms_ItemUnitVM>;
+
+    public ItemUnit: Array<Ms_ItemUnit>;
+    public ItemAlternatives: Array<MS_ItemAlternatives>;
+    public ItemCollection: Array<Ms_ItemCollection>;
+    public ItemCardExpenses: Array<Prod_ItemcardExpenses>;
+}
+
+class SharedVM {
+    public Id: number;
+    public Code: string;
+    public NameA: string;
+    public NameE: string;
+}
+
+class Ms_ItemUnitVM {
+    public ItemCardId: number;
+    public UnitId: number;
+    public UnitCode: string;
+    public UnitNam: string;
+    public UnitNameE: string;
+}
+
+class ItemsVM {
+    public  ItemCode ;
+    public UnitNam: string;
+    public UnitNameE: string;
+    public BarCode1: string;
+    public PartCode: string;
+    public PartDescA: string;
+    public StoreCode: string;
+    public StoreDescA: string;
+    public ItemDescA: string;
+    public ItemDescE: string;
+    public ItemCatCode: string;
+    public ItemCatDescA: string;
+    public GiftItemCardId: number;
+    public GiftUnitId: number;
+    public UnitId: number;
+    public UnittRate : number;
+    public QtyInBox: number;
+    public QtyPartiation: number;
+    public QtyInNotebook: number;
+    public Nullable: boolean;
+    public FirstPrice: number;
+    public SecandPrice: number ;
+    public ThirdPrice: number;
+    public LargePrice: number;
+    public Remarks: string;
+    public ItemTypestring: string;
+    public ItemType: number;
+    public ItemType2: string;
+    public BarCode2: string;
+    public BarCode3: string;
+    public BarCode4: string;
+    public BarCode5: string;
 }

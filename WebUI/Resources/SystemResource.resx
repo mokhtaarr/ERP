@@ -3357,4 +3357,196 @@
   <data name="Search_screen_settings" xml:space="preserve">
     <value>Search screen settings</value>
   </data>
+  <data name="Collection" xml:space="preserve">
+    <value>Collection</value>
+  </data>
+  <data name="CollectionClass" xml:space="preserve">
+    <value>collection class</value>
+  </data>
+  <data name="DemandLimit" xml:space="preserve">
+    <value>demand limit</value>
+  </data>
+  <data name="Dimensions2" xml:space="preserve">
+    <value>Dimensions</value>
+  </data>
+  <data name="EquivalencyUnitMandatory" xml:space="preserve">
+    <value>Equivalency unit is mandatory</value>
+  </data>
+  <data name="ExpiryDates" xml:space="preserve">
+    <value>Expiry dates</value>
+  </data>
+  <data name="FirstQuantity" xml:space="preserve">
+    <value>first quantity</value>
+  </data>
+  <data name="FourthQuantity" xml:space="preserve">
+    <value>Fourth Quantity</value>
+  </data>
+  <data name="GroupClass" xml:space="preserve">
+    <value>Group Class</value>
+  </data>
+  <data name="InfoWhenUsedInDocuments" xml:space="preserve">
+    <value>Information that appears when the item is used in documents</value>
+  </data>
+  <data name="LastPurchaseDate" xml:space="preserve">
+    <value>Last purchase date</value>
+  </data>
+  <data name="LastPurchasePrice" xml:space="preserve">
+    <value>Last purchase price</value>
+  </data>
+  <data name="LastSalePrice" xml:space="preserve">
+    <value>last sale price</value>
+  </data>
+  <data name="ManufacturingExpenses" xml:space="preserve">
+    <value>Manufacturing Expenses</value>
+  </data>
+  <data name="NatureVariety" xml:space="preserve">
+    <value>The nature of the variety</value>
+  </data>
+  <data name="NotebookQuantity" xml:space="preserve">
+    <value>notebook quantity</value>
+  </data>
+  <data name="Offers" xml:space="preserve">
+    <value>Offers</value>
+  </data>
+  <data name="PenultimateCost" xml:space="preserve">
+    <value>Penultimate cost</value>
+  </data>
+  <data name="photos" xml:space="preserve">
+    <value>photos</value>
+  </data>
+  <data name="Price2" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="Properties" xml:space="preserve">
+    <value>Properties</value>
+  </data>
+  <data name="ReservedSale" xml:space="preserve">
+    <value>Reserved for sale</value>
+  </data>
+  <data name="SecondQuantity" xml:space="preserve">
+    <value>second quantity</value>
+  </data>
+  <data name="SellingPriceMeter" xml:space="preserve">
+    <value>Selling price per square meter</value>
+  </data>
+  <data name="SerialNumbers" xml:space="preserve">
+    <value>serial numbers</value>
+  </data>
+  <data name="StopSellingItem" xml:space="preserve">
+    <value>Stop selling the item</value>
+  </data>
+  <data name="Store2" xml:space="preserve">
+    <value>Store</value>
+  </data>
+  <data name="ThirdQuantity" xml:space="preserve">
+    <value>third quantity</value>
+  </data>
+  <data name="UnitsAndPrices" xml:space="preserve">
+    <value>Units And Prices</value>
+  </data>
+  <data name="UseEquivalentUnit" xml:space="preserve">
+    <value>Use the equivalent unit</value>
+  </data>
+  <data name="WarrantyPeriod" xml:space="preserve">
+    <value>warranty period</value>
+  </data>
+  <data name="BasisPricing" xml:space="preserve">
+    <value>basis for pricing</value>
+  </data>
+  <data name="ClassWithProperties" xml:space="preserve">
+    <value>class with properties</value>
+  </data>
+  <data name="CostBasis" xml:space="preserve">
+    <value>cost basis</value>
+  </data>
+  <data name="DimensionalCategory" xml:space="preserve">
+    <value>Dimensional category</value>
+  </data>
+  <data name="FeatureCode" xml:space="preserve">
+    <value>feature code</value>
+  </data>
+  <data name="FeatureName" xml:space="preserve">
+    <value>Feature name</value>
+  </data>
+  <data name="IsMandatory" xml:space="preserve">
+    <value>Is Mandatory</value>
+  </data>
+  <data name="MainSupplier" xml:space="preserve">
+    <value>Main Supplier</value>
+  </data>
+  <data name="OrderUnit" xml:space="preserve">
+    <value>Order Unit</value>
+  </data>
+  <data name="Quantity2" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="AloneGift" xml:space="preserve">
+    <value>Alone the gift</value>
+  </data>
+  <data name="BasicQuantity" xml:space="preserve">
+    <value>basic quantity</value>
+  </data>
+  <data name="BasicUnit2" xml:space="preserve">
+    <value>basic unit</value>
+  </data>
+  <data name="DiscountValue" xml:space="preserve">
+    <value>discount value</value>
+  </data>
+  <data name="GiftQuantity" xml:space="preserve">
+    <value>gift quantity</value>
+  </data>
+  <data name="OfferPrice" xml:space="preserve">
+    <value>offer price</value>
+  </data>
+  <data name="AlternativeQuantity" xml:space="preserve">
+    <value>Alternative Quantity</value>
+  </data>
+  <data name="BasicPurchaseUnit" xml:space="preserve">
+    <value>basic purchase unit</value>
+  </data>
+  <data name="FactoryClass" xml:space="preserve">
+    <value>Factory class</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="IsNotBasic" xml:space="preserve">
+    <value>Not Basic</value>
+  </data>
+  <data name="ItemAlternatives" xml:space="preserve">
+    <value>Item Alternatives</value>
+  </data>
+  <data name="MainSellingUnit" xml:space="preserve">
+    <value>main selling unit</value>
+  </data>
+  <data name="PerfectProduct" xml:space="preserve">
+    <value>perfect product</value>
+  </data>
+  <data name="Raw" xml:space="preserve">
+    <value>raw</value>
+  </data>
+  <data name="SemiManufacturedProduct" xml:space="preserve">
+    <value>semi-manufactured product</value>
+  </data>
+  <data name="ServeHim" xml:space="preserve">
+    <value>serve him</value>
+  </data>
+  <data name="UnitCode" xml:space="preserve">
+    <value>unit code</value>
+  </data>
+  <data name="UnitName" xml:space="preserve">
+    <value>unit name</value>
+  </data>
+  <data name="Vehicle" xml:space="preserve">
+    <value>Vehicle</value>
+  </data>
+  <data name="ItemsUnitsMustBeEntered" xml:space="preserve">
+    <value>Items units must be entered</value>
+  </data>
+  <data name="MainSellingUnitMustSelected" xml:space="preserve">
+    <value>The main selling unit must be selected</value>
+  </data>
+  <data name="PrimaryPurchaseUnitMustSelected" xml:space="preserve">
+    <value>The primary purchase unit must be selected</value>
+  </data>
 </root>

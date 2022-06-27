@@ -41,5 +41,8 @@ namespace Inv.DAL.Domain
         public Nullable<decimal> ItemMax { get; set; }
         public Nullable<long> TVersion { get; set; }
         public string TType { get; set; }
+        public Nullable<decimal> QtyIUnit2Notebook { get; set; }
+        public Nullable<decimal> QtyIUnit2Partiation { get; set; }
+        public Nullable<System.DateTime> UpdatedAt { get; set; }
     }
 }

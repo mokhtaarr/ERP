@@ -131,5 +131,14 @@ namespace Inv.DAL.Domain
         public Nullable<System.DateTime> CommisionEndDate { get; set; }
         public Nullable<bool> IsOuterItem { get; set; }
         public Nullable<bool> UseSomeSubItems { get; set; }
+        public string TaxItemCode { get; set; }
+        public Nullable<decimal> ServicePrice { get; set; }
+        public Nullable<decimal> ProfitPrice { get; set; }
+        public Nullable<decimal> Kirat { get; set; }
+        public Nullable<bool> Unit2IsMandatory { get; set; }
+        public Nullable<bool> UseUnit2 { get; set; }
+        public Nullable<bool> IsSalesStopped { get; set; }
+        public Nullable<bool> IsServerEntity { get; set; }
+        public Nullable<int> MainServerId { get; set; }
     }
 }

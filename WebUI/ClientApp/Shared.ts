@@ -272,6 +272,7 @@ class SystemEnvironment {
     public SUB_SYSTEM_DESCE: string;
     public Language: string;
     public CurrentYear: string;
+    public UserId: number;
     public UserCode: string;
     public UserType: number;
     public SalesManID: number;

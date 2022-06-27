@@ -52,10 +52,11 @@ var JsGrid = /** @class */ (function () {
                 nameDesc: field,
                 title: field,
                 type: "label",
-                //disabled: field,
+                disabled: Boolean(field),
                 fun: field,
                 Typefun: field,
                 value: field,
+                id: field
             };
             this.Columns.push(col);
         }
@@ -151,9 +152,12 @@ var JsGrid = /** @class */ (function () {
                     return $(this.renderTemplate(this.insertRowRenderer, this));
                 var $result = $("<tr>").addClass(this.insertRowClass).attr('id', '_idAdd');
                 this._eachField(function (field) {
-                    this._prepareCell("<td>", field, "insertcss")
-                        .append(this.renderTemplate(field.insertTemplate, field))
-                        .appendTo($result);
+                    var td = this._prepareCell("<td>", field, "insertcss");
+                    var input = this.renderTemplate(field.insertTemplate, field);
+                    $(input).attr('id', field.id).attr('disabled', field.disabled);
+                    $(input).attr('name', field.name);
+                    $(input).attr('type', field.type);
+                    td.append(input).appendTo($result);
                 });
                 return $result;
             },
@@ -411,8 +415,7 @@ var JsGrid = /** @class */ (function () {
                 //else
                 //    arg.cancel = true;
             },
-            onItemDeleted: function (arg) {
-            }
+            onItemDeleted: function (arg) { }
         });
         //$('select').select2().css("width", "100%");
     };

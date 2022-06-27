@@ -1822,7 +1822,6 @@
       <DependentUpon>InvModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RedisCache\RedisCache.cs" />
     <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="Repository\IGenericRepository.cs" />
     <Compile Include="Repository\IUnitOfWork.cs" />
@@ -1853,12 +1852,6 @@
       <DependentUpon>InvModel.edmx</DependentUpon>
       <LastGenOutput>InvModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Inv.Static\Inv.Static.csproj">
-      <Project>{41e67ed6-6818-4dda-8619-0c5200f3dfcc}</Project>
-      <Name>Inv.Static</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

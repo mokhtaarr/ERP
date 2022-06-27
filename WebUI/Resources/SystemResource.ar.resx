@@ -3355,4 +3355,196 @@
   <data name="Search_screen_settings" xml:space="preserve">
     <value>اعدادات شاشة البحث</value>
   </data>
+  <data name="Collection" xml:space="preserve">
+    <value>تجميع</value>
+  </data>
+  <data name="CollectionClass" xml:space="preserve">
+    <value>صنف تجميع</value>
+  </data>
+  <data name="DemandLimit" xml:space="preserve">
+    <value>حد الطـــلب</value>
+  </data>
+  <data name="Dimensions2" xml:space="preserve">
+    <value>ابعاد</value>
+  </data>
+  <data name="EquivalencyUnitMandatory" xml:space="preserve">
+    <value>الوحده المعادله اجباري</value>
+  </data>
+  <data name="ExpiryDates" xml:space="preserve">
+    <value>تواريخ صلاحيه</value>
+  </data>
+  <data name="FirstQuantity" xml:space="preserve">
+    <value>الكمية الاولي</value>
+  </data>
+  <data name="FourthQuantity" xml:space="preserve">
+    <value>الكميه الرابعه</value>
+  </data>
+  <data name="GroupClass" xml:space="preserve">
+    <value>صنف مجمع</value>
+  </data>
+  <data name="InfoWhenUsedInDocuments" xml:space="preserve">
+    <value>معلومه تظهر عند استخدام الصنف فى المستندات</value>
+  </data>
+  <data name="LastPurchaseDate" xml:space="preserve">
+    <value>تاريخ أخر شراء</value>
+  </data>
+  <data name="LastPurchasePrice" xml:space="preserve">
+    <value>أخر سعر شراء</value>
+  </data>
+  <data name="LastSalePrice" xml:space="preserve">
+    <value>أخر سعر بيع</value>
+  </data>
+  <data name="ManufacturingExpenses" xml:space="preserve">
+    <value>مصروفات التصنيع</value>
+  </data>
+  <data name="NatureVariety" xml:space="preserve">
+    <value>طبيعة الصنف</value>
+  </data>
+  <data name="NotebookQuantity" xml:space="preserve">
+    <value>الكمية دفترياً</value>
+  </data>
+  <data name="Offers" xml:space="preserve">
+    <value>عروض</value>
+  </data>
+  <data name="PenultimateCost" xml:space="preserve">
+    <value>تكلفه قبل الأخيره</value>
+  </data>
+  <data name="photos" xml:space="preserve">
+    <value>صور</value>
+  </data>
+  <data name="Price2" xml:space="preserve">
+    <value>سعر</value>
+  </data>
+  <data name="Properties" xml:space="preserve">
+    <value>خصائص</value>
+  </data>
+  <data name="ReservedSale" xml:space="preserve">
+    <value>محجوز للبيع</value>
+  </data>
+  <data name="SecondQuantity" xml:space="preserve">
+    <value>الكمية الثانية</value>
+  </data>
+  <data name="SellingPriceMeter" xml:space="preserve">
+    <value>سعر بيع المتر</value>
+  </data>
+  <data name="SerialNumbers" xml:space="preserve">
+    <value>ارقام مسلسه</value>
+  </data>
+  <data name="StopSellingItem" xml:space="preserve">
+    <value>ايقاف بيع الصنف</value>
+  </data>
+  <data name="Store2" xml:space="preserve">
+    <value>مخزن</value>
+  </data>
+  <data name="ThirdQuantity" xml:space="preserve">
+    <value>الكمية الثالثة</value>
+  </data>
+  <data name="UnitsAndPrices" xml:space="preserve">
+    <value>وحدات واسعار</value>
+  </data>
+  <data name="UseEquivalentUnit" xml:space="preserve">
+    <value>استخدام الوحده المعادله</value>
+  </data>
+  <data name="WarrantyPeriod" xml:space="preserve">
+    <value>مدة الضمان</value>
+  </data>
+  <data name="BasisPricing" xml:space="preserve">
+    <value>اساس للتسعير</value>
+  </data>
+  <data name="ClassWithProperties" xml:space="preserve">
+    <value>صنف ذو خصائص</value>
+  </data>
+  <data name="CostBasis" xml:space="preserve">
+    <value>اساس التكلفة</value>
+  </data>
+  <data name="DimensionalCategory" xml:space="preserve">
+    <value>صنف ذو ابعاد</value>
+  </data>
+  <data name="FeatureCode" xml:space="preserve">
+    <value>كود الخاصيه</value>
+  </data>
+  <data name="FeatureName" xml:space="preserve">
+    <value>اسم الخاصيه</value>
+  </data>
+  <data name="IsMandatory" xml:space="preserve">
+    <value>اجباري</value>
+  </data>
+  <data name="MainSupplier" xml:space="preserve">
+    <value>مورد اساسي</value>
+  </data>
+  <data name="OrderUnit" xml:space="preserve">
+    <value>وحدة الطلب</value>
+  </data>
+  <data name="Quantity2" xml:space="preserve">
+    <value>كميه</value>
+  </data>
+  <data name="AloneGift" xml:space="preserve">
+    <value>وحده الهديه</value>
+  </data>
+  <data name="BasicQuantity" xml:space="preserve">
+    <value>كميه اساسيه</value>
+  </data>
+  <data name="BasicUnit2" xml:space="preserve">
+    <value>الوحده الاساسيه</value>
+  </data>
+  <data name="DiscountValue" xml:space="preserve">
+    <value>قيمة الخصم</value>
+  </data>
+  <data name="GiftQuantity" xml:space="preserve">
+    <value>كمية هديه</value>
+  </data>
+  <data name="OfferPrice" xml:space="preserve">
+    <value>سعر العرض</value>
+  </data>
+  <data name="AlternativeQuantity" xml:space="preserve">
+    <value>كمية البديل</value>
+  </data>
+  <data name="BasicPurchaseUnit" xml:space="preserve">
+    <value>وحدة شراء اساسيه</value>
+  </data>
+  <data name="FactoryClass" xml:space="preserve">
+    <value>صنف مصنع</value>
+  </data>
+  <data name="IsNotBasic" xml:space="preserve">
+    <value>غير اساسي</value>
+  </data>
+  <data name="ItemAlternatives" xml:space="preserve">
+    <value>بدائل الصنف</value>
+  </data>
+  <data name="MainSellingUnit" xml:space="preserve">
+    <value>وحدة بيع اساسيه</value>
+  </data>
+  <data name="PerfectProduct" xml:space="preserve">
+    <value>منتج تام</value>
+  </data>
+  <data name="Raw" xml:space="preserve">
+    <value>خــــامه</value>
+  </data>
+  <data name="SemiManufacturedProduct" xml:space="preserve">
+    <value>منتج نصف مصنع</value>
+  </data>
+  <data name="ServeHim" xml:space="preserve">
+    <value>خدمـــــه</value>
+  </data>
+  <data name="UnitCode" xml:space="preserve">
+    <value>كود الوحده</value>
+  </data>
+  <data name="UnitName" xml:space="preserve">
+    <value>اسم الوحده</value>
+  </data>
+  <data name="Vehicle" xml:space="preserve">
+    <value>مركبـــة</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>من</value>
+  </data>
+  <data name="ItemsUnitsMustBeEntered" xml:space="preserve">
+    <value>لابد من ادخال وحدات الاصناف</value>
+  </data>
+  <data name="MainSellingUnitMustSelected" xml:space="preserve">
+    <value>لابد من اختيار وحدة البيع الاساسيه</value>
+  </data>
+  <data name="PrimaryPurchaseUnitMustSelected" xml:space="preserve">
+    <value>لابد من اختيار وحدة الشراء الاساسيه</value>
+  </data>
 </root>

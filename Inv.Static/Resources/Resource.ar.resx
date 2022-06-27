@@ -129,8 +129,17 @@
   <data name="Error" xml:space="preserve">
     <value>خطأ</value>
   </data>
+  <data name="FactoryClass" xml:space="preserve">
+    <value>صنف مصنع</value>
+  </data>
   <data name="ModelNull" xml:space="preserve">
     <value>لايوجد بيانات لحفظها</value>
+  </data>
+  <data name="PerfectProduct" xml:space="preserve">
+    <value>منتج تام</value>
+  </data>
+  <data name="Raw" xml:space="preserve">
+    <value>خــــامه</value>
   </data>
   <data name="ReLogin" xml:space="preserve">
     <value>المستخدم الحالي غير موجود ؟؟ من فضلك اعد تسجيل الدخول مرة اخرى</value>
@@ -140,5 +149,14 @@
   </data>
   <data name="SaveSucc" xml:space="preserve">
     <value>تم الحفظ بنجاح</value>
+  </data>
+  <data name="SemiManufacturedProduct" xml:space="preserve">
+    <value>منتج نصف مصنع</value>
+  </data>
+  <data name="ServeHim" xml:space="preserve">
+    <value>خدمـــــه</value>
+  </data>
+  <data name="Vehicle" xml:space="preserve">
+    <value>مركبـــة</value>
   </data>
 </root>

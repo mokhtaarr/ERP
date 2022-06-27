@@ -116,5 +116,12 @@ namespace Inv.DAL.Domain
         public Nullable<System.DateTime> UpdateAt { get; set; }
         public string DeletedBy { get; set; }
         public Nullable<System.DateTime> DeletedAt { get; set; }
+        public Nullable<int> ShiftId { get; set; }
+        public Nullable<System.DateTime> UpdatedAt { get; set; }
+        public byte[] LastUpdateTime { get; set; }
+        public Nullable<bool> IsRemoteEntity { get; set; }
+        public Nullable<int> RemotId { get; set; }
+        public Nullable<int> MainCustServerId { get; set; }
+        public Nullable<int> PayId { get; set; }
     }
 }

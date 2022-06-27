@@ -58,5 +58,7 @@ namespace Inv.DAL.Domain
         public string DeletedBy { get; set; }
         public Nullable<System.DateTime> DeletedAt { get; set; }
         public Nullable<byte> CostCenterOption { get; set; }
+        public Nullable<bool> IsServerEntity { get; set; }
+        public Nullable<int> MainServerId { get; set; }
     }
 }

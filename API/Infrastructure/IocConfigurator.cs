@@ -59,8 +59,8 @@ using Inv.BLL.Services.CalBusinessPartnerAccounts;
 using Inv.BLL.Services.CalPostOrder;
 using Inv.BLL.Services.SysAnalyticalCodes;
 using Inv.BLL.Services.ProdJobOrder;
-using Inv.BLL.Services.ProdJobOrder;
 using Inv.BLL.Services.SrVehicles;
+using Inv.BLL.Services.MsItemCard;
 
 namespace Inv.API.Infrastructure
 {
@@ -125,6 +125,7 @@ namespace Inv.API.Infrastructure
             container.RegisterType<ISr_VehicleShapesService, Sr_VehicleShapesService>();
             container.RegisterType<IProd_EquipmentsService, Prod_EquipmentsService>();
             container.RegisterType<IMs_ReceiptNoteService, Ms_ReceiptNoteService>();
+            container.RegisterType<IMS_ItemCardService, MS_ItemCardService>();
 
 
             //////////////////////// System Pages Service ////////////////////////////

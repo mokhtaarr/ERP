@@ -29,5 +29,7 @@ namespace Inv.DAL.Domain
         public Nullable<System.DateTime> UpdateAt { get; set; }
         public string DeletedBy { get; set; }
         public Nullable<System.DateTime> DeletedAt { get; set; }
+        public string EtaxUnitCode { get; set; }
+        public Nullable<bool> IsKarat { get; set; }
     }
 }

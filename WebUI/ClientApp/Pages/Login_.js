@@ -155,6 +155,8 @@ var Login_;
                     if (result != null && result.USER_CODE != null) {
                         $("#divLogin").css("display", "none");
                         $("#divCompanies").css("display", "block");
+                        LoadUserAuthentications(result.UserId);
+                        SystemEnv.UserId = result.UserId;
                         SystemEnv.Token = result.Tokenid;
                         SystemEnv.UserType = result.USER_TYPE;
                         SystemEnv.SalesManID = result.SalesManID;
@@ -204,6 +206,15 @@ var Login_;
                     alert(res.ErrorMessage);
                     return;
                 }
+            }
+        });
+    }
+    function LoadUserAuthentications(userId) {
+        Ajax.Callsync({
+            type: "Get",
+            url: sys.apiUrl("funcationShared", "LoadUserAuthentications"),
+            data: { userId: userId },
+            success: function (Response) {
             }
         });
     }

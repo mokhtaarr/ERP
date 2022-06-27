@@ -78,5 +78,8 @@ namespace Inv.DAL.Domain
         public string VendJob { get; set; }
         public string VendID { get; set; }
         public string EtaxCustType { get; set; }
+        public byte[] LastUpdateTime { get; set; }
+        public Nullable<bool> IsServerEntity { get; set; }
+        public Nullable<int> MainServerId { get; set; }
     }
 }

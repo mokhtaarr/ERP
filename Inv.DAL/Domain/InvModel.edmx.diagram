@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="331a2ca0c71d4a2698019b0b4c70657e" Name="Diagram1" ZoomLevel="61">
+      <Diagram DiagramId="331a2ca0c71d4a2698019b0b4c70657e" Name="Diagram1" ZoomLevel="59">
         <EntityTypeShape EntityType="InvEntities.Cal_AccountChart" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="InvEntities.G_AlertControl" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="InvEntities.G_AlertLog" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
@@ -47,7 +47,6 @@
         <EntityTypeShape EntityType="InvEntities.MS_ItemCategory" Width="1.5" PointX="10.75" PointY="20.75" IsExpanded="true" />
         <EntityTypeShape EntityType="InvEntities.Ms_ItemCollection" Width="1.5" PointX="20.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="InvEntities.MS_ItemCostHistory" Width="1.5" PointX="20.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InvEntities.MS_ItemImages" Width="1.5" PointX="22.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="InvEntities.Ms_ItemPartition" Width="1.5" PointX="22.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="InvEntities.MS_Partition" Width="1.5" PointX="22.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="InvEntities.MS_Stores" Width="1.5" PointX="12.75" PointY="22.75" IsExpanded="true" />
@@ -560,6 +559,7 @@
         <EntityTypeShape EntityType="InvEntities.VW_SearchAllAccounts" Width="1.5" PointX="0.75" PointY="24.75" />
         <EntityTypeShape EntityType="InvEntities.G_USERS" Width="1.5" PointX="40.375" PointY="73.75" />
         <EntityTypeShape EntityType="InvEntities.MS_Taxes" Width="1.5" PointX="31.375" PointY="90.75" />
+        <EntityTypeShape EntityType="InvEntities.MS_ItemImages" Width="1.5" PointX="0.75" PointY="29.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

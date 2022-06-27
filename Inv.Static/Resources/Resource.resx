@@ -129,8 +129,17 @@
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="FactoryClass" xml:space="preserve">
+    <value>Factory class</value>
+  </data>
   <data name="ModelNull" xml:space="preserve">
     <value>There is no data to save</value>
+  </data>
+  <data name="PerfectProduct" xml:space="preserve">
+    <value>perfect product</value>
+  </data>
+  <data name="Raw" xml:space="preserve">
+    <value>raw</value>
   </data>
   <data name="ReLogin" xml:space="preserve">
     <value>The current user does not exist?? Please log in again</value>
@@ -140,5 +149,14 @@
   </data>
   <data name="SaveSucc" xml:space="preserve">
     <value>Saved successfully</value>
+  </data>
+  <data name="SemiManufacturedProduct" xml:space="preserve">
+    <value>semi-manufactured product</value>
+  </data>
+  <data name="ServeHim" xml:space="preserve">
+    <value>serve him</value>
+  </data>
+  <data name="Vehicle" xml:space="preserve">
+    <value>Vehicle</value>
   </data>
 </root>

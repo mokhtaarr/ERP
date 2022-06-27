@@ -2983,6 +2983,24 @@
     <Content Include="Content\Dashboard\dist\js\pages\sparkline\jquery.charts-sparkline.js" />
     <Content Include="Content\Dashboard\dist\js\sidebarmenu.js" />
     <Content Include="Content\Dashboard\dist\js\waves.js" />
+    <Content Include="Content\datepicker\AUTHORS.txt" />
+    <Content Include="Content\datepicker\external\jquery\jquery.js" />
+    <Content Include="Content\datepicker\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\datepicker\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\datepicker\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\datepicker\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\datepicker\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\datepicker\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\datepicker\index.html" />
+    <Content Include="Content\datepicker\jquery-ui.css" />
+    <Content Include="Content\datepicker\jquery-ui.js" />
+    <Content Include="Content\datepicker\jquery-ui.min.css" />
+    <Content Include="Content\datepicker\jquery-ui.min.js" />
+    <Content Include="Content\datepicker\jquery-ui.structure.css" />
+    <Content Include="Content\datepicker\jquery-ui.structure.min.css" />
+    <Content Include="Content\datepicker\jquery-ui.theme.css" />
+    <Content Include="Content\datepicker\jquery-ui.theme.min.css" />
+    <Content Include="Content\datepicker\LICENSE.txt" />
     <Content Include="Content\Loading\.gitignore" />
     <Content Include="Content\Loading\examle\image.png" />
     <Content Include="Content\Loading\examle\preloader.html" />
@@ -3947,6 +3965,7 @@
     <Content Include="Content\assets-New Version 02-01-2022\vendor\fonts\fontawesome-free-5.15.1-web\webfonts\fa-solid-900.ttf" />
     <Content Include="Content\assets-New Version 02-01-2022\vendor\fonts\fontawesome-free-5.15.1-web\webfonts\fa-solid-900.woff" />
     <Content Include="Content\assets-New Version 02-01-2022\vendor\fonts\fontawesome-free-5.15.1-web\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\datepicker\package.json" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <EmbeddedResource Include="Reports\Report\Reports\CustomerinfoAr.rdlc" />
     <Content Include="SavePath\TR_Invoice%28 119 %29   08_31_2021.pdf" />
@@ -4252,6 +4271,7 @@
     <Content Include="Views\static\AnswerTaxes.cshtml" />
     <Content Include="Views\static\PeriodicalBook.cshtml" />
     <Content Include="Views\static\TaxForms.cshtml" />
+    <Content Include="Views\Definitions\Items.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -4296,6 +4316,7 @@
     <TypeScriptCompile Include="ClientApp\Pages\Answers\TaxForms.ts" />
     <TypeScriptCompile Include="ClientApp\Pages\Answers\EngineNumbers.ts" />
     <TypeScriptCompile Include="ClientApp\Pages\Answers\Answer.ts" />
+    <TypeScriptCompile Include="ClientApp\Pages\Definitions\Items.ts" />
     <TypeScriptCompile Include="ClientApp\Pages\Definitions\MSGA_City.ts" />
     <TypeScriptCompile Include="ClientApp\Pages\Definitions\Hr_Employees.ts" />
     <TypeScriptCompile Include="ClientApp\Pages\Definitions\MS_CustomerCategory.ts" />

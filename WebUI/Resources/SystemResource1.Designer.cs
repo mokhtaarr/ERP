@@ -457,11 +457,29 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alone the gift.
+        /// </summary>
+        public static string AloneGift {
+            get {
+                return ResourceManager.GetString("AloneGift", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Alternate Data Member.
         /// </summary>
         public static string AlternateDataMember {
             get {
                 return ResourceManager.GetString("AlternateDataMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alternative Quantity.
+        /// </summary>
+        public static string AlternativeQuantity {
+            get {
+                return ResourceManager.GetString("AlternativeQuantity", resourceCulture);
             }
         }
         
@@ -2293,11 +2311,47 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to basic purchase unit.
+        /// </summary>
+        public static string BasicPurchaseUnit {
+            get {
+                return ResourceManager.GetString("BasicPurchaseUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to basic quantity.
+        /// </summary>
+        public static string BasicQuantity {
+            get {
+                return ResourceManager.GetString("BasicQuantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to basic unit.
         /// </summary>
         public static string basicUnit {
             get {
                 return ResourceManager.GetString("basicUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to basic unit.
+        /// </summary>
+        public static string BasicUnit2 {
+            get {
+                return ResourceManager.GetString("BasicUnit2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to basis for pricing.
+        /// </summary>
+        public static string BasisPricing {
+            get {
+                return ResourceManager.GetString("BasisPricing", resourceCulture);
             }
         }
         
@@ -2941,6 +2995,15 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to class with properties.
+        /// </summary>
+        public static string ClassWithProperties {
+            get {
+                return ResourceManager.GetString("ClassWithProperties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clause.
         /// </summary>
         public static string Clause {
@@ -3130,6 +3193,24 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Collection.
+        /// </summary>
+        public static string Collection {
+            get {
+                return ResourceManager.GetString("Collection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to collection class.
+        /// </summary>
+        public static string CollectionClass {
+            get {
+                return ResourceManager.GetString("CollectionClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Commercial registry issuance date.
         /// </summary>
         public static string CommercialRegistryIssuanceDate {
@@ -3252,6 +3333,15 @@ namespace Inv.WebUI.Resources {
         public static string Cost {
             get {
                 return ResourceManager.GetString("Cost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to cost basis.
+        /// </summary>
+        public static string CostBasis {
+            get {
+                return ResourceManager.GetString("CostBasis", resourceCulture);
             }
         }
         
@@ -3778,6 +3868,15 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to demand limit.
+        /// </summary>
+        public static string DemandLimit {
+            get {
+                return ResourceManager.GetString("DemandLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to department.
         /// </summary>
         public static string department {
@@ -3904,11 +4003,29 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dimensional category.
+        /// </summary>
+        public static string DimensionalCategory {
+            get {
+                return ResourceManager.GetString("DimensionalCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dimensions.
         /// </summary>
         public static string Dimensions {
             get {
                 return ResourceManager.GetString("Dimensions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dimensions.
+        /// </summary>
+        public static string Dimensions2 {
+            get {
+                return ResourceManager.GetString("Dimensions2", resourceCulture);
             }
         }
         
@@ -3963,6 +4080,15 @@ namespace Inv.WebUI.Resources {
         public static string DiscountReports {
             get {
                 return ResourceManager.GetString("DiscountReports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to discount value.
+        /// </summary>
+        public static string DiscountValue {
+            get {
+                return ResourceManager.GetString("DiscountValue", resourceCulture);
             }
         }
         
@@ -4354,6 +4480,15 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Equivalency unit is mandatory.
+        /// </summary>
+        public static string EquivalencyUnitMandatory {
+            get {
+                return ResourceManager.GetString("EquivalencyUnitMandatory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Equivalent currency rate.
         /// </summary>
         public static string EquivalentCurrencyRate {
@@ -4435,6 +4570,15 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expiry dates.
+        /// </summary>
+        public static string ExpiryDates {
+            get {
+                return ResourceManager.GetString("ExpiryDates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Explanation.
         /// </summary>
         public static string Explanation {
@@ -4480,6 +4624,15 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Factory class.
+        /// </summary>
+        public static string FactoryClass {
+            get {
+                return ResourceManager.GetString("FactoryClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Favorites.
         /// </summary>
         public static string Favorites {
@@ -4494,6 +4647,24 @@ namespace Inv.WebUI.Resources {
         public static string Fax {
             get {
                 return ResourceManager.GetString("Fax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to feature code.
+        /// </summary>
+        public static string FeatureCode {
+            get {
+                return ResourceManager.GetString("FeatureCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feature name.
+        /// </summary>
+        public static string FeatureName {
+            get {
+                return ResourceManager.GetString("FeatureName", resourceCulture);
             }
         }
         
@@ -4584,6 +4755,15 @@ namespace Inv.WebUI.Resources {
         public static string FirstName {
             get {
                 return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to first quantity.
+        /// </summary>
+        public static string FirstQuantity {
+            get {
+                return ResourceManager.GetString("FirstQuantity", resourceCulture);
             }
         }
         
@@ -4705,6 +4885,15 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fourth Quantity.
+        /// </summary>
+        public static string FourthQuantity {
+            get {
+                return ResourceManager.GetString("FourthQuantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fraction difference.
         /// </summary>
         public static string Fraction_difference {
@@ -4719,6 +4908,15 @@ namespace Inv.WebUI.Resources {
         public static string fractionalUnit {
             get {
                 return ResourceManager.GetString("fractionalUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From.
+        /// </summary>
+        public static string From {
+            get {
+                return ResourceManager.GetString("From", resourceCulture);
             }
         }
         
@@ -4777,6 +4975,15 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to gift quantity.
+        /// </summary>
+        public static string GiftQuantity {
+            get {
+                return ResourceManager.GetString("GiftQuantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Give All powers.
         /// </summary>
         public static string Give_All_powers {
@@ -4818,6 +5025,15 @@ namespace Inv.WebUI.Resources {
         public static string Gregorian {
             get {
                 return ResourceManager.GetString("Gregorian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Class.
+        /// </summary>
+        public static string GroupClass {
+            get {
+                return ResourceManager.GetString("GroupClass", resourceCulture);
             }
         }
         
@@ -5056,6 +5272,15 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Information that appears when the item is used in documents.
+        /// </summary>
+        public static string InfoWhenUsedInDocuments {
+            get {
+                return ResourceManager.GetString("InfoWhenUsedInDocuments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Insert Restrictions.
         /// </summary>
         public static string insert_restrictions {
@@ -5218,11 +5443,29 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Is Mandatory.
+        /// </summary>
+        public static string IsMandatory {
+            get {
+                return ResourceManager.GetString("IsMandatory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Is Money Collector.
         /// </summary>
         public static string IsMoneyCollector {
             get {
                 return ResourceManager.GetString("IsMoneyCollector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not Basic.
+        /// </summary>
+        public static string IsNotBasic {
+            get {
+                return ResourceManager.GetString("IsNotBasic", resourceCulture);
             }
         }
         
@@ -5286,6 +5529,15 @@ namespace Inv.WebUI.Resources {
         public static string Item {
             get {
                 return ResourceManager.GetString("Item", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Item Alternatives.
+        /// </summary>
+        public static string ItemAlternatives {
+            get {
+                return ResourceManager.GetString("ItemAlternatives", resourceCulture);
             }
         }
         
@@ -5358,6 +5610,15 @@ namespace Inv.WebUI.Resources {
         public static string ItemSearch {
             get {
                 return ResourceManager.GetString("ItemSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Items units must be entered.
+        /// </summary>
+        public static string ItemsUnitsMustBeEntered {
+            get {
+                return ResourceManager.GetString("ItemsUnitsMustBeEntered", resourceCulture);
             }
         }
         
@@ -5560,6 +5821,33 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last purchase date.
+        /// </summary>
+        public static string LastPurchaseDate {
+            get {
+                return ResourceManager.GetString("LastPurchaseDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last purchase price.
+        /// </summary>
+        public static string LastPurchasePrice {
+            get {
+                return ResourceManager.GetString("LastPurchasePrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to last sale price.
+        /// </summary>
+        public static string LastSalePrice {
+            get {
+                return ResourceManager.GetString("LastSalePrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Latest Update For Vacations.
         /// </summary>
         public static string LatestUpdateForVacations {
@@ -5686,11 +5974,47 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to main selling unit.
+        /// </summary>
+        public static string MainSellingUnit {
+            get {
+                return ResourceManager.GetString("MainSellingUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The main selling unit must be selected.
+        /// </summary>
+        public static string MainSellingUnitMustSelected {
+            get {
+                return ResourceManager.GetString("MainSellingUnitMustSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Main Supplier.
+        /// </summary>
+        public static string MainSupplier {
+            get {
+                return ResourceManager.GetString("MainSupplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Male.
         /// </summary>
         public static string Male {
             get {
                 return ResourceManager.GetString("Male", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manufacturing Expenses.
+        /// </summary>
+        public static string ManufacturingExpenses {
+            get {
+                return ResourceManager.GetString("ManufacturingExpenses", resourceCulture);
             }
         }
         
@@ -6370,6 +6694,15 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The nature of the variety.
+        /// </summary>
+        public static string NatureVariety {
+            get {
+                return ResourceManager.GetString("NatureVariety", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Net.
         /// </summary>
         public static string net {
@@ -6496,6 +6829,15 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to notebook quantity.
+        /// </summary>
+        public static string NotebookQuantity {
+            get {
+                return ResourceManager.GetString("NotebookQuantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notes.
         /// </summary>
         public static string Notes {
@@ -6573,6 +6915,24 @@ namespace Inv.WebUI.Resources {
         public static string NumberOfPeriods {
             get {
                 return ResourceManager.GetString("NumberOfPeriods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to offer price.
+        /// </summary>
+        public static string OfferPrice {
+            get {
+                return ResourceManager.GetString("OfferPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offers.
+        /// </summary>
+        public static string Offers {
+            get {
+                return ResourceManager.GetString("Offers", resourceCulture);
             }
         }
         
@@ -6663,6 +7023,15 @@ namespace Inv.WebUI.Resources {
         public static string opposite_current_restriction {
             get {
                 return ResourceManager.GetString("opposite_current_restriction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order Unit.
+        /// </summary>
+        public static string OrderUnit {
+            get {
+                return ResourceManager.GetString("OrderUnit", resourceCulture);
             }
         }
         
@@ -6856,6 +7225,15 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Penultimate cost.
+        /// </summary>
+        public static string PenultimateCost {
+            get {
+                return ResourceManager.GetString("PenultimateCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Percentage.
         /// </summary>
         public static string Percentage {
@@ -6879,6 +7257,15 @@ namespace Inv.WebUI.Resources {
         public static string percentageDiscount {
             get {
                 return ResourceManager.GetString("percentageDiscount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to perfect product.
+        /// </summary>
+        public static string PerfectProduct {
+            get {
+                return ResourceManager.GetString("PerfectProduct", resourceCulture);
             }
         }
         
@@ -6942,6 +7329,15 @@ namespace Inv.WebUI.Resources {
         public static string Phone {
             get {
                 return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to photos.
+        /// </summary>
+        public static string photos {
+            get {
+                return ResourceManager.GetString("photos", resourceCulture);
             }
         }
         
@@ -7144,6 +7540,15 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Price.
+        /// </summary>
+        public static string Price2 {
+            get {
+                return ResourceManager.GetString("Price2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pricing Policies.
         /// </summary>
         public static string PricingPolicies {
@@ -7158,6 +7563,15 @@ namespace Inv.WebUI.Resources {
         public static string PrimaryDocumentType {
             get {
                 return ResourceManager.GetString("PrimaryDocumentType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The primary purchase unit must be selected.
+        /// </summary>
+        public static string PrimaryPurchaseUnitMustSelected {
+            get {
+                return ResourceManager.GetString("PrimaryPurchaseUnitMustSelected", resourceCulture);
             }
         }
         
@@ -7293,6 +7707,15 @@ namespace Inv.WebUI.Resources {
         public static string ProgramDoesNotCopyOrTransferFiles {
             get {
                 return ResourceManager.GetString("ProgramDoesNotCopyOrTransferFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Properties.
+        /// </summary>
+        public static string Properties {
+            get {
+                return ResourceManager.GetString("Properties", resourceCulture);
             }
         }
         
@@ -7477,6 +7900,15 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quantity.
+        /// </summary>
+        public static string Quantity2 {
+            get {
+                return ResourceManager.GetString("Quantity2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quarterly.
         /// </summary>
         public static string Quarterly {
@@ -7509,6 +7941,15 @@ namespace Inv.WebUI.Resources {
         public static string Ratio {
             get {
                 return ResourceManager.GetString("Ratio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to raw.
+        /// </summary>
+        public static string Raw {
+            get {
+                return ResourceManager.GetString("Raw", resourceCulture);
             }
         }
         
@@ -7671,6 +8112,15 @@ namespace Inv.WebUI.Resources {
         public static string Representative {
             get {
                 return ResourceManager.GetString("Representative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reserved for sale.
+        /// </summary>
+        public static string ReservedSale {
+            get {
+                return ResourceManager.GetString("ReservedSale", resourceCulture);
             }
         }
         
@@ -7918,6 +8368,15 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to second quantity.
+        /// </summary>
+        public static string SecondQuantity {
+            get {
+                return ResourceManager.GetString("SecondQuantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to select type restriction.
         /// </summary>
         public static string select_type_restrection {
@@ -7981,6 +8440,24 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selling price per square meter.
+        /// </summary>
+        public static string SellingPriceMeter {
+            get {
+                return ResourceManager.GetString("SellingPriceMeter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to semi-manufactured product.
+        /// </summary>
+        public static string SemiManufacturedProduct {
+            get {
+                return ResourceManager.GetString("SemiManufacturedProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Send a transfer.
         /// </summary>
         public static string Sendtransfer {
@@ -8013,6 +8490,24 @@ namespace Inv.WebUI.Resources {
         public static string SerialNumber {
             get {
                 return ResourceManager.GetString("SerialNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to serial numbers.
+        /// </summary>
+        public static string SerialNumbers {
+            get {
+                return ResourceManager.GetString("SerialNumbers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to serve him.
+        /// </summary>
+        public static string ServeHim {
+            get {
+                return ResourceManager.GetString("ServeHim", resourceCulture);
             }
         }
         
@@ -8386,6 +8881,15 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Stop selling the item.
+        /// </summary>
+        public static string StopSellingItem {
+            get {
+                return ResourceManager.GetString("StopSellingItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Store.
         /// </summary>
         public static string Store {
@@ -8418,6 +8922,15 @@ namespace Inv.WebUI.Resources {
         public static string Store_Transferred_To {
             get {
                 return ResourceManager.GetString("Store_Transferred_To", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Store.
+        /// </summary>
+        public static string Store2 {
+            get {
+                return ResourceManager.GetString("Store2", resourceCulture);
             }
         }
         
@@ -8733,6 +9246,15 @@ namespace Inv.WebUI.Resources {
         public static string ThereIsNo {
             get {
                 return ResourceManager.GetString("ThereIsNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to third quantity.
+        /// </summary>
+        public static string ThirdQuantity {
+            get {
+                return ResourceManager.GetString("ThirdQuantity", resourceCulture);
             }
         }
         
@@ -9268,6 +9790,33 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to unit code.
+        /// </summary>
+        public static string UnitCode {
+            get {
+                return ResourceManager.GetString("UnitCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to unit name.
+        /// </summary>
+        public static string UnitName {
+            get {
+                return ResourceManager.GetString("UnitName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Units And Prices.
+        /// </summary>
+        public static string UnitsAndPrices {
+            get {
+                return ResourceManager.GetString("UnitsAndPrices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Units Count.
         /// </summary>
         public static string UnitsCount {
@@ -9318,6 +9867,15 @@ namespace Inv.WebUI.Resources {
         public static string UseCurrentCostInSelectedStore {
             get {
                 return ResourceManager.GetString("UseCurrentCostInSelectedStore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use the equivalent unit.
+        /// </summary>
+        public static string UseEquivalentUnit {
+            get {
+                return ResourceManager.GetString("UseEquivalentUnit", resourceCulture);
             }
         }
         
@@ -9583,6 +10141,15 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vehicle.
+        /// </summary>
+        public static string Vehicle {
+            get {
+                return ResourceManager.GetString("Vehicle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to VehicleShapes.
         /// </summary>
         public static string VehicleShapes {
@@ -9696,6 +10263,15 @@ namespace Inv.WebUI.Resources {
         public static string WarrantyDate {
             get {
                 return ResourceManager.GetString("WarrantyDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to warranty period.
+        /// </summary>
+        public static string WarrantyPeriod {
+            get {
+                return ResourceManager.GetString("WarrantyPeriod", resourceCulture);
             }
         }
         

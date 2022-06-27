@@ -97,11 +97,38 @@ namespace Inv.Static.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Factory class.
+        /// </summary>
+        public static string FactoryClass {
+            get {
+                return ResourceManager.GetString("FactoryClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There is no data to save.
         /// </summary>
         public static string ModelNull {
             get {
                 return ResourceManager.GetString("ModelNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to perfect product.
+        /// </summary>
+        public static string PerfectProduct {
+            get {
+                return ResourceManager.GetString("PerfectProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to raw.
+        /// </summary>
+        public static string Raw {
+            get {
+                return ResourceManager.GetString("Raw", resourceCulture);
             }
         }
         
@@ -129,6 +156,33 @@ namespace Inv.Static.Resources {
         public static string SaveSucc {
             get {
                 return ResourceManager.GetString("SaveSucc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to semi-manufactured product.
+        /// </summary>
+        public static string SemiManufacturedProduct {
+            get {
+                return ResourceManager.GetString("SemiManufacturedProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to serve him.
+        /// </summary>
+        public static string ServeHim {
+            get {
+                return ResourceManager.GetString("ServeHim", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicle.
+        /// </summary>
+        public static string Vehicle {
+            get {
+                return ResourceManager.GetString("Vehicle", resourceCulture);
             }
         }
     }

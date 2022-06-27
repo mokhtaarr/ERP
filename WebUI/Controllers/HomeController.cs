@@ -191,6 +191,10 @@ namespace Inv.WebUI.Controllers
 
         #region Defination 
         ///////////////////////////// Start Defination ////////////////////////////
+        public ActionResult ItemsIndex()
+        {
+            return View("~/Views/Definitions/Items.cshtml");
+        }
         public ActionResult Ms_CustomerTypesIndex()
         {
             return View("~/Views/Definitions/Ms_CustomerTypesIndex.cshtml");
