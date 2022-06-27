@@ -14682,6 +14682,8 @@ class Prod_ItemcardExpenses {
         this.ExpenseValu = 0;
         this.StatusFlag = "";
         this.AccountCode = "";
+        this.AccountNameA = "";
+        this.AccountNameE = "";
     }
     public ProdExpensId: number;
     public ItemCardId: number;
@@ -14691,5 +14693,7 @@ class Prod_ItemcardExpenses {
     public ExpenseValu: number;
     public StatusFlag: string;
     public AccountCode: string;
+    public AccountNameA: string;
+    public AccountNameE: string;
 }
 

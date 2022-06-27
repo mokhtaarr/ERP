@@ -312,11 +312,9 @@ namespace Items {
         UnitsPricesGrid.InsertionMode = JsGridInsertionMode.Binding;
 
         UnitsPricesGrid.OnItemUpdating = UpdateUnitsPrices
-
         UnitsPricesGrid.Columns = [
             {
-                name: "btnAddItem", visible: false, type: "control", editButton: true,
-                /*modeSwitchButton: true, */deleteButton: true
+                name: "btnAddItem", visible: false, type: "control", editButton: true, /*modeSwitchButton: true, */deleteButton: true
             },
             {
                 title: Resource.MainSellingUnit, css: "ColumPadding", name: "IsDefaultSale", id: "IsDefaultSale", type: "checkbox"
@@ -433,7 +431,6 @@ namespace Items {
                 title: Resource.Barcode + " 15", css: "ColumPadding", name: "BarCode15", id: "BarCode15", type: "text"
             },
            
-            
             /////////////////////////////////// hiden fileds ////////////////////////////
             {
                 title: "UnitId", css: "ColumPadding disable hidden", name: "UnitId", id: "UnitId", type: "text"
@@ -453,9 +450,9 @@ namespace Items {
 
     function UpdateUnitsPrices(e: JsGridUpdateEventArgs) {
         let item = e.Item as Ms_ItemUnit;
-
         if (item.IsDefaultSale)
             ItemUnit.forEach(x => x.IsDefaultSale = false);
+
         if (item.IsDefaultPurchas)
             ItemUnit.forEach(x => x.IsDefaultPurchas = false);
 
@@ -481,9 +478,9 @@ namespace Items {
         ItemAlternativesGrid.InsertionMode = JsGridInsertionMode.Binding;
         ItemAlternativesGrid.OnItemEditing = () => { trId = "_idEdit"; };
 
-        ItemAlternativesGrid.OnItemUpdating = UpdateItemAlternatives
-        ItemAlternativesGrid.OnItemInserting = InsertItemAlternatives;
-        ItemAlternativesGrid.OnItemDeleting = DeleteItemAlternatives;
+        //ItemAlternativesGrid.OnItemInserting = InsertItemAlternatives;
+        //ItemAlternativesGrid.OnItemUpdating = UpdateItemAlternatives
+        //ItemAlternativesGrid.OnItemDeleting = DeleteItemAlternatives;
          
         ItemAlternativesGrid.OnRowSelected = () => { };
         ItemAlternativesGrid.OnRefreshed = () => { };
@@ -540,7 +537,7 @@ namespace Items {
                 title: "AlterId", css: "ColumPadding disable hidden", name: "AlterId", id: "AlterId", type: "text"
             },
             {
-                title: "StatusFlag", css: "ColumPadding disable hidden", name: "StatusFlag", id: "StatusFlag"
+                title: "StatusFlag", css: "ColumPadding disable hidden", name: "StatusFlag", id: "StatusFlag", type: "text"
             },
         ];
         ItemAlternativesGrid.Bind();
@@ -590,7 +587,6 @@ namespace Items {
         ItemCollectionGrid.ConfirmDeleteing = true;
         ItemCollectionGrid.InsertionMode = JsGridInsertionMode.Binding;
         ItemCollectionGrid.OnItemEditing = () => { trId = "_idEdit"; /*DocumentActions.ChangeSelectToSearchable("ItemCollectionGrid")*/ };
-
         //ItemCollectionGrid.OnItemUpdating = UpdateOffer
         //ItemCollectionGrid.OnItemInserting = InsertOffer;
         //ItemCollectionGrid.OnItemDeleting = DeleteOffer;
@@ -656,7 +652,7 @@ namespace Items {
                 title: "ItemCollectId", css: "ColumPadding disable hidden", name: "ItemCollectId", id: "ItemCollectId", type: "text"
             },
             {
-                title: "StatusFlag", css: "ColumPadding disable hidden", name: "StatusFlag", id: "StatusFlag"
+                title: "StatusFlag", css: "ColumPadding disable hidden", name: "StatusFlag", id: "StatusFlag", type: "text"
             },
         ];
         ItemCollectionGrid.Bind();
@@ -797,6 +793,7 @@ namespace Items {
         AttributesGrid.DataSource = AttributsJoin;
         AttributesGrid.Bind();
 
+        AttributsJoinPros = AttributsJoinPros.filter(x => x.AttributId != item.AttributId);
         AttributsJoinPros.push(item);
     }
 
@@ -817,6 +814,9 @@ namespace Items {
         var index: number = e.ItemIndex;
 
         AttributsJoin.splice(index, 1);
+        AttributsJoinPros.push(item);
+
+        AttributsJoinPros = AttributsJoinPros.filter(x => x.AttributId != item.AttributId);
         AttributsJoinPros.push(item);
     }
 
@@ -933,13 +933,13 @@ namespace Items {
                 title: "UnitId", css: "ColumPadding disable hidden", name: "UnitId", id: "UnitId", type: "text"
             },
             {
-                title: "ItemCardId", css: "ColumPadding disable hidden", name: "ItemCardId", id: "ItemCardId"
+                title: "ItemCardId", css: "ColumPadding disable hidden", name: "ItemCardId", id: "ItemCardId", type: "text"
             },
             {
-                title: "OfferItemId", css: "ColumPadding disable hidden", name: "OfferItemId", id: "OfferItemId"
+                title: "OfferItemId", css: "ColumPadding disable hidden", name: "OfferItemId", id: "OfferItemId", type: "text"
             },
             {
-                title: "StatusFlag", css: "ColumPadding disable hidden", name: "StatusFlag", id: "StatusFlag"
+                title: "StatusFlag", css: "ColumPadding disable hidden", name: "StatusFlag", id: "StatusFlag", type: "text"
             },
         ];
         OffersGrid.Bind();
@@ -953,6 +953,9 @@ namespace Items {
         ItemCardOffers.splice(index, 1, item);
         OffersGrid.DataSource = ItemCardOffers;
         OffersGrid.Bind();
+
+        ItemCardOffersPros = ItemCardOffersPros.filter(x => x.GiftItemCardId != item.GiftItemCardId);
+        ItemCardOffersPros.push(item);
     }
 
     function InsertOffer(e: JsGridInsertEventArgs) {
@@ -966,9 +969,16 @@ namespace Items {
     }
 
     function DeleteOffer(e: JsGridDeleteEventArgs) {
-        let item = e.Item as MS_ItemVendors;
+        let item = e.Item as Ms_ItemCardOffers;
+        var index: number = e.ItemIndex;
         item.StatusFlag = 'd';
-        ItemVendors.push(item);
+
+        ItemCardOffers.slice(index, 1);
+        OffersGrid.DataSource = ItemCardOffers;
+        OffersGrid.Bind();
+
+        ItemCardOffersPros = ItemCardOffersPros.filter(x => x.GiftItemCardId != item.GiftItemCardId);
+        ItemCardOffersPros.push(item);
     }
 
     
@@ -1002,7 +1012,10 @@ namespace Items {
                 }
             },
             {
-                title: Resource.Itm_ItemName, css: "ColumPadding", name: (lang == "ar" ? "AccountNameA" : "AccountNameE"), id: "AccountName", type: "text", disabled: true
+                title: Resource.Itm_ItemName, css: "ColumPadding", name: "AccountNameA", id: "AccountNameA", type: "text", disabled: true
+            },
+            {
+                title: Resource.Itm_ItemName + " 2", css: "ColumPadding", name: "AccountNameE", id: "AccountNameE", type: "text", disabled: true
             },
             {
                 title: Resource.percentage2 + " " + Resource.From, css: "ColumPadding", name: "PercentOf", id: "PercentOf", type: "text"
@@ -1025,7 +1038,7 @@ namespace Items {
                 title: "ProdExpensId", css: "ColumPadding disable hidden", name: "ProdExpensId", id: "ProdExpensId", type: "text"
             },
             {
-                title: "StatusFlag", css: "ColumPadding disable hidden", name: "StatusFlag", id: "StatusFlag"
+                title: "StatusFlag", css: "ColumPadding disable hidden", name: "StatusFlag", id: "StatusFlag", type: "text"
             },
         ];
         ItemCardExpensesGrid.Bind();
@@ -1125,19 +1138,7 @@ namespace Items {
                 title: Resource.Name_English, css: "ColumPadding", name: "VendorDescE", id: "VendorDescE", type: "text", disabled: true
             },
             {
-                title: Resource.OrderUnit, css: "ColumPadding", name: "UnitId", id: "UnitId",
-                //itemTemplate: function (data, row: MS_ItemVendors) {
-                //    //return GetGiftUniteName(row.UnitId);
-                //},
-                //editTemplate: function (data, row: MS_ItemVendors) {
-                //    let select = CreateDropdownList(GetGiftUnitsList(row.ItemCardId), "UnitNam", "UnitNameE", "UnitId", null, "GiftUnitName");
-                //    select.value = row.UnitId.toString();
-                //    return select;
-                //},
-                //insertTemplate: function (data, row = new MS_ItemVendors()) {
-                //    let select = CreateDropdownList(GetGiftUnitsList(row.ItemCardId), "UnitNam", "UnitNameE", "UnitId", null, "GiftUnitName");
-                //    return select;
-                //},
+                title: Resource.OrderUnit, css: "ColumPadding", name: "UnitId", id: "UnitId", type: "text"
             },
             {
                 title: Resource.M_Transfer, css: "ColumPadding", name: "UnitRate", id: "UnitRate", type: "number", disabled: true
@@ -1172,37 +1173,55 @@ namespace Items {
             {
                 title: Resource.Price2 + " 5", css: "ColumPadding Price", name: "Price5", id: "Price5", type: "number"
             },
-
             {
-                title: "VendorId", css: "ColumPadding disable hidden", name: "VendorId",
+                title: Resource.Quantity2 + " 6", css: "ColumPadding", name: "Quantity6", id: "Quantity6", type: "number"
             },
             {
-                title: "StatusFlag", css: "ColumPadding disable hidden", name: "StatusFlag"
+                title: Resource.Price2 + " 6", css: "ColumPadding Price", name: "Price6", id: "Price6", type: "number"
+            },
+            {
+                title: Resource.Quantity2 + " 7", css: "ColumPadding", name: "Quantity7", id: "Quantity7", type: "number"
+            },
+            {
+                title: Resource.Price2 + " 7", css: "ColumPadding Price", name: "Price7", id: "Price7", type: "number"
+            },
+            {
+                title: Resource.Quantity2 + " 8", css: "ColumPadding", name: "Quantity8", id: "Quantity8", type: "number"
+            },
+            {
+                title: Resource.Price2 + " 8", css: "ColumPadding Price", name: "Price8", id: "Price8", type: "number"
+            },
+            {
+                title: Resource.Quantity2 + " 9", css: "ColumPadding", name: "Quantity9", id: "Quantity9", type: "number"
+            },
+            {
+                title: Resource.Price2 + " 9", css: "ColumPadding Price", name: "Price9", id: "Price9", type: "number"
+            },
+            {
+                title: Resource.Quantity2 + " 10", css: "ColumPadding", name: "Quantity10", id: "Quantity10", type: "number"
+            },
+            {
+                title: Resource.Price2 + " 10", css: "ColumPadding Price", name: "Price10", id: "Price10", type: "number"
+            },
+            {
+                title: "VendorId", css: "ColumPadding ", name: "VendorId", id: "VendorId", type: "text"
+            },
+            {
+                title: "ItemCardId", css: "ColumPadding ", name: "ItemCardId", id: "ItemCardId", type: "text"
+            },
+            {
+                title: "StatusFlag", css: "ColumPadding ", name: "StatusFlag", id: "StatusFlag", type: "text"
             },
         ];
         SuppliersGrid.Bind();
     }
 
-    function UpdateSupplier(e: JsGridUpdateEventArgs) {
-        let item = e.Item as MS_ItemVendors;
-
-        SetStaticCol("#_idEdit", item);
-        GetPriceAndQyt("#_idEdit", item);
-        item.StatusFlag = 'u';
-
-        var index: number = e.ItemIndex;
-        ItemVendors.splice(index, 1, item);
-        SuppliersGrid.DataSource = ItemVendors;
-        SuppliersGrid.Bind();
-
-        ItemVendorsPros.push(item);
-    }
-
     function InsertSupplier(e: JsGridInsertEventArgs) {
         let item = e.Item as MS_ItemVendors;
+        
         item.StatusFlag = 'i';
         SetStaticCol("#_idAdd", item);
-        GetPriceAndQyt("#_idAdd", item);
+        //GetPriceAndQyt("#_idAdd", item);
 
         ItemVendors.push(item);
         SuppliersGrid.DataSource = ItemVendors;
@@ -1210,13 +1229,32 @@ namespace Items {
         DocumentActions.ChangeSelectToSearchable("SuppliersGrid");
     }
 
+    function UpdateSupplier(e: JsGridUpdateEventArgs) {
+        let item = e.Item as MS_ItemVendors;
+        SetStaticCol("#_idEdit", item);
+        //GetPriceAndQyt("#_idEdit", item);
+        item.StatusFlag = 'u';
+
+        var index: number = e.ItemIndex;
+        ItemVendors.splice(index, 1, item);
+        SuppliersGrid.DataSource = ItemVendors;
+        SuppliersGrid.Bind();
+
+
+        ItemVendorsPros = ItemVendorsPros.filter(x => x.VendorId != item.VendorId);
+        ItemVendorsPros.push(item);
+    }
+
     function DeleteSupplier(e: JsGridDeleteEventArgs) {
         let item = e.Item as MS_ItemVendors;
         var index: number = e.ItemIndex;
         item.StatusFlag = 'd';
 
-        ItemVendorsPros.push(item);
         ItemVendors.splice(index, 1);
+        ItemVendorsPros.push(item);
+
+        ItemVendorsPros = ItemVendorsPros.filter(x => x.VendorId != item.VendorId);
+        ItemVendorsPros.push(item);
     }
 
     ///////////////////////////////////// End Grid /////////////////////////////////
@@ -1240,25 +1278,24 @@ namespace Items {
     function Assign() {
         Success = false;
         ItemCardDetailes.Model = DocumentActions.AssignToModel<MS_ItemCard>(Model);
-        ItemCardDetailes.ItemUnit = ItemUnit;
+        ItemCardDetailes.ItemUnit = AssignArr(ItemUnit, ItemUnitPros);
         ItemCardDetailes.ItemImages = ItemImages;
-        ItemCardDetailes.ItemAlternatives = AssignArr(ItemAlternatives, ItemAlternativesPros);
-        ItemCardDetailes.ItemCollection = ItemCollection;
+        ItemCardDetailes.ItemAlternatives = ItemAlternativesGrid.DataSource;
+        ItemCardDetailes.ItemCollection = ItemCollectionGrid.DataSource;
         ItemCardDetailes.AttributsJoin = AssignArr(AttributsJoin, AttributsJoinPros);
-        ItemCardDetailes.Offers = ItemCardOffers;
+        ItemCardDetailes.Offers = AssignArr(ItemCardOffers, ItemCardOffersPros);
         ItemCardDetailes.ItemCardExpenses = ItemCardExpenses;
         ItemCardDetailes.Vendors = AssignArr(ItemVendors, ItemVendorsPros);
-        debugger
-
+        
         if (StatusFlag == "i") {
             Model.CreatedAt = DateTimeFormat(Date().toString());
             Model.CreatedBy = sys.SysSession.CurrentEnvironment.UserCode;
-            //Insert();
+            Insert();
         }
         if (StatusFlag == "u") {
             Model.UpdateAt = DateTimeFormat(Date().toString());
             Model.UpdateBy = sys.SysSession.CurrentEnvironment.UserCode;
-            //Update();
+            Update();
         }
 
         if (Success)
@@ -1274,7 +1311,7 @@ namespace Items {
 
     function Save() {
         if (DocumentActions.CheckCode(ItemCards, DocumentActions.GetElementByName("ItemCode").value, "ItemCode") == false && StatusFlag == "i") {
-            MessageBox.Show(Resource.CodeCannotDuplicated, Resource.Error);
+            MessageBox.Toastr(Resource.CodeCannotDuplicated, Resource.Error, ToastrTypes.error);
         }
         else {
             Assign();
@@ -1351,6 +1388,7 @@ namespace Items {
 
     function btnAdd_onclick() {
         StatusFlag = 'i';
+        ObjectId = 0;
         RemoveDisabled(true);
         ResetSelect2();
         //$('select option:first-child').val('null').prop("selected", true).prop("disabled", true);
@@ -1524,6 +1562,10 @@ namespace Items {
             item.VendorDescA = vendor.VendorDescA;
             item.VendorDescE = vendor.VendorDescE;
             item.VendorCode = vendor.VendorCode;
+            item.ItemCardId = ObjectId;
+
+            if (SharedWork.CurrentMode == ScreenModes.Add || SharedWork.CurrentMode == ScreenModes.Edit)
+                item.StatusFlag = IsNullOrEmpty(item.VendorId.toString()) ? 'i' : 'u';
         }
         return item;
     }
@@ -1728,11 +1770,19 @@ namespace Items {
         let itemCard = Items.filter(x => x.GiftItemCardId == row.AlterItemCardId)[0],
             code = itemCard == null ? "" : itemCard.ItemCode;
 
-        try {
-            row.ItemDescA =  itemCard.ItemDescA
-            row.ItemDescE = itemCard.ItemDescE
-            row.UnitNam = lang == "ar" ? itemCard.UnitNam : itemCard.UnitNameE
-            row.ItemTypeName = itemCard.ItemTypestring
+        try {;
+            row.ItemDescA = itemCard.ItemDescA;
+            row.ItemDescE = itemCard.ItemDescE;
+            row.UnitNam = lang == "ar" ? itemCard.UnitNam : itemCard.UnitNameE;
+            row.ItemTypeName = itemCard.ItemTypestring;
+            row.UnitRate = itemCard.UnittRate;
+            row.AlterItemCardId = itemCard.GiftItemCardId;
+            row.UnitId = itemCard.UnitId;
+            row.ItemCardId = ObjectId;
+
+            if (SharedWork.CurrentMode == ScreenModes.Add || SharedWork.CurrentMode == ScreenModes.Edit) 
+                row.StatusFlag = IsNullOrEmpty(row.AlterId.toString()) ? 'i' : 'u';
+            
         } catch (e) {}
 
         let txt = CreateElement("text", "", code, null, "ItemCode", null);
@@ -1753,6 +1803,14 @@ namespace Items {
             row.ItemDescE = itemCard.ItemDescE
             row.UnitNam = lang == "ar" ? itemCard.UnitNam : itemCard.UnitNameE
             row.ItemTypeName = itemCard.ItemTypestring
+            row.ItemType = itemCard.ItemType;
+            row.UnitRate = itemCard.UnittRate;
+            row.SubItemId = itemCard.GiftItemCardId;
+            row.UnitId = itemCard.GiftUnitId;
+            row.ItemCardId = ObjectId;
+
+            if (SharedWork.CurrentMode == ScreenModes.Add || SharedWork.CurrentMode == ScreenModes.Edit)
+                row.StatusFlag = IsNullOrEmpty(row.ItemCollectId.toString()) ? 'i' : 'u';
         } catch (e) { }
 
         let txt = CreateElement("text", "", code, null, "ItemCode", null);
@@ -1763,13 +1821,18 @@ namespace Items {
         }
         return txt
     }
-    
-    function GetItemExpenses(data) {
-        let item = ExpensesAccount.filter(x => x.Id == data)[0];
+
+    function GetItemExpenses(id: number) {
+        let item = ExpensesAccount.filter(x => x.Id == id)[0];
         if (item == null)
             return;
 
-        $("#" + trId + " #AccountName").val((lang == "ar" ? item.NameA : item.NameE));
+        $("#" + trId + " #AccountNameA").val(item.NameA);
+        $("#" + trId + " #AccountNameE").val(item.NameE);
+        $("#" + trId + " #AccountId").val(item.Id);
+
+        if (SharedWork.CurrentMode == ScreenModes.Add || SharedWork.CurrentMode == ScreenModes.Edit)
+            $("#" + trId + " #StatusFlag").val(ObjectId == 0 ? 'i' : 'u');
     }
 
     function GetBasicUnits() {
@@ -1802,8 +1865,20 @@ namespace Items {
                         UnitsPricesGrid.Columns[0].visible = true;
                     else
                         UnitsPricesGrid.Columns[0].visible = false;
-                    
-                    ItemUnit = result.Response;
+
+                    let units = result.Response as Array<Ms_ItemUnit>;
+                    for (var item of units) {
+                        let unit = new Ms_ItemUnit();
+                        unit.BasUnitId = item.BasUnitId;
+                        unit.UnitCode = item.UnitCode;
+                        unit.UnitNam = item.UnitNam;
+                        unit.UnitNameE = item.UnitNameE;
+                        unit.UnittRate = item.UnittRate;
+                        unit.Symbol = item.Symbol;
+                        unit.StatusFlag = 'i';
+                        ItemUnit.push(unit);
+                    }
+
                     MapBaseUnitToItemUnit(ParentUnit);
                     UnitsPricesGrid.DataSource = ItemUnit;
                     UnitsPricesGrid.Bind();

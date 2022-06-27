@@ -8462,6 +8462,8 @@ var Prod_ItemcardExpenses = /** @class */ (function () {
         this.ExpenseValu = 0;
         this.StatusFlag = "";
         this.AccountCode = "";
+        this.AccountNameA = "";
+        this.AccountNameE = "";
     }
     return Prod_ItemcardExpenses;
 }());

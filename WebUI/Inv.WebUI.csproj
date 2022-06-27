@@ -4316,6 +4316,7 @@
     <TypeScriptCompile Include="ClientApp\Pages\Answers\TaxForms.ts" />
     <TypeScriptCompile Include="ClientApp\Pages\Answers\EngineNumbers.ts" />
     <TypeScriptCompile Include="ClientApp\Pages\Answers\Answer.ts" />
+    <TypeScriptCompile Include="ClientApp\Pages\Definitions\Prod_BasicUnits.ts" />
     <TypeScriptCompile Include="ClientApp\Pages\Definitions\Items.ts" />
     <TypeScriptCompile Include="ClientApp\Pages\Definitions\MSGA_City.ts" />
     <TypeScriptCompile Include="ClientApp\Pages\Definitions\Hr_Employees.ts" />
