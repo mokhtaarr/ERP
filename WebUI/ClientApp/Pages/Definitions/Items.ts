@@ -1259,11 +1259,6 @@ namespace Items {
 
     ///////////////////////////////////// End Grid /////////////////////////////////
 
-    function AssignArr<Arr1, Arr2>(Arr1, Arr2) {
-        var newArray = Arr1.concat(Arr2);
-        return newArray;
-    }
-
     function EmptyDeletedList() {
         ItemUnitPros = new Array<Ms_ItemUnit>();
         ItemImages = new Array<MS_ItemImages>();
@@ -1278,14 +1273,14 @@ namespace Items {
     function Assign() {
         Success = false;
         ItemCardDetailes.Model = DocumentActions.AssignToModel<MS_ItemCard>(Model);
-        ItemCardDetailes.ItemUnit = AssignArr(ItemUnit, ItemUnitPros);
+        ItemCardDetailes.ItemUnit = DocumentActions.AssignArr(ItemUnit, ItemUnitPros);
         ItemCardDetailes.ItemImages = ItemImages;
         ItemCardDetailes.ItemAlternatives = ItemAlternativesGrid.DataSource;
         ItemCardDetailes.ItemCollection = ItemCollectionGrid.DataSource;
-        ItemCardDetailes.AttributsJoin = AssignArr(AttributsJoin, AttributsJoinPros);
-        ItemCardDetailes.Offers = AssignArr(ItemCardOffers, ItemCardOffersPros);
+        ItemCardDetailes.AttributsJoin = DocumentActions.AssignArr(AttributsJoin, AttributsJoinPros);
+        ItemCardDetailes.Offers = DocumentActions.AssignArr(ItemCardOffers, ItemCardOffersPros);
         ItemCardDetailes.ItemCardExpenses = ItemCardExpenses;
-        ItemCardDetailes.Vendors = AssignArr(ItemVendors, ItemVendorsPros);
+        ItemCardDetailes.Vendors = DocumentActions.AssignArr(ItemVendors, ItemVendorsPros);
         
         if (StatusFlag == "i") {
             Model.CreatedAt = DateTimeFormat(Date().toString());
@@ -1914,7 +1909,7 @@ namespace Items {
                     let res = result.Response as Array<SharedVM>;
                     ExpensesAccount = new Array<SharedVM>();
                     ExpensesAccount.push(new SharedVM());
-                    ExpensesAccount = AssignArr(ExpensesAccount, res);
+                    ExpensesAccount = DocumentActions.AssignArr(ExpensesAccount, res);
 
                 }
                 else {
@@ -2198,7 +2193,7 @@ namespace Items {
         emptyList.push(new Ms_ItemUnitVM());
 
         ItemCardUnits = ItemCardDetailes.ItemCardUnits == null ? new Array<Ms_ItemUnitVM>() :
-            AssignArr(emptyList, ItemCardDetailes.ItemCardUnits);
+            DocumentActions.AssignArr(emptyList, ItemCardDetailes.ItemCardUnits);
         return ItemCardUnits;
     }
 
@@ -2210,7 +2205,7 @@ namespace Items {
             return GiftUnits;
 
         GiftUnits = ItemCardDetailes.GiftUnits.filter(x => x.ItemCardId == id) == null ? new Array<Ms_ItemUnitVM>() :
-            AssignArr(emptyList, ItemCardDetailes.GiftUnits);
+            DocumentActions.AssignArr(emptyList, ItemCardDetailes.GiftUnits);
         return GiftUnits;
     }
 

@@ -32,6 +32,7 @@ var Modules = {
     Sr_VehicleTypes: "Sr_VehicleTypes",
     Sr_VehicleShapes: "Sr_VehicleShapes",
     Prod_Equipments: "Prod_Equipments",
+    BasicUnits: "BasicUnits",
 
 
     //////////////////// Accounting //////////////////////
@@ -612,6 +613,10 @@ function CreateSpanValdition(defaultValue: string, forId: string, className: str
 }
 
 var DocumentActions = {
+    AssignArr<Arr1, Arr2>(Arr1, Arr2) {
+        var newArray = Arr1.concat(Arr2);
+        return newArray;
+    },
     ChangeSelectToSearchable(parantID: string, id: string = "") {
         if (!IsNullOrEmpty(id))
             setTimeout(function () { $('#' + id).select2().trigger('change'); }, 5);

@@ -242,7 +242,6 @@ var HomeComponent;
             }
             if (li != null) {
                 if (singleUserModule != null) {
-                    debugger;
                     if (singleUserModule.Access === false)
                         li.remove();
                     //li.style.display = "none";
@@ -447,6 +446,7 @@ var HomeComponent;
         $("#btnSr_VehicleTypes").click(function () { OpenPage(Modules.Sr_VehicleTypes); });
         $("#btnSr_VehicleShapes").click(function () { OpenPage(Modules.Sr_VehicleShapes); });
         $("#btnProd_Equipments").click(function () { OpenPage(Modules.Prod_Equipments); });
+        $("#btnBasicUnits").click(function () { OpenPage(Modules.BasicUnits); });
         /////////////////End Definitions Pages ////////////////////
         /////////////////Start Account Pages ////////////////////
         $("#btnAcc").click(function () { OpenPage(Modules.Acc); });

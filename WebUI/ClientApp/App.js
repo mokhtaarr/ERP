@@ -39,6 +39,7 @@ var Modules = {
     Sr_VehicleTypes: "Sr_VehicleTypes",
     Sr_VehicleShapes: "Sr_VehicleShapes",
     Prod_Equipments: "Prod_Equipments",
+    BasicUnits: "BasicUnits",
     //////////////////// Accounting //////////////////////
     Acc: "Acc",
     Cod_AccountCategorie: "Cod_AccountCategorie",
@@ -474,6 +475,10 @@ function CreateSpanValdition(defaultValue, forId, className) {
     return element;
 }
 var DocumentActions = {
+    AssignArr: function (Arr1, Arr2) {
+        var newArray = Arr1.concat(Arr2);
+        return newArray;
+    },
     ChangeSelectToSearchable: function (parantID, id) {
         if (id === void 0) { id = ""; }
         if (!IsNullOrEmpty(id))

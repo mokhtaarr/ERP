@@ -3547,4 +3547,19 @@
   <data name="PrimaryPurchaseUnitMustSelected" xml:space="preserve">
     <value>لابد من اختيار وحدة الشراء الاساسيه</value>
   </data>
+  <data name="BasicUnits" xml:space="preserve">
+    <value>وحدات الاصناف</value>
+  </data>
+  <data name="AttachedUnits" xml:space="preserve">
+    <value>الوحدات الملحقه</value>
+  </data>
+  <data name="AutoConversionFactor" xml:space="preserve">
+    <value>معامل تحويل تلقائي</value>
+  </data>
+  <data name="GroupDescription" xml:space="preserve">
+    <value>توصيف المجموعه</value>
+  </data>
+  <data name="Using" xml:space="preserve">
+    <value>الاستخدام</value>
+  </data>
 </root>

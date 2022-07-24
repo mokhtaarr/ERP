@@ -89,6 +89,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ProdBasicUnits\IProd_BasicUnitsService.cs" />
+    <Compile Include="Services\ProdBasicUnits\Prod_BasicUnitsService.cs" />
     <Compile Include="Services\MsItemCard\MS_ItemCardService.cs" />
     <Compile Include="Services\MsItemCard\IMS_ItemCardService.cs" />
     <Compile Include="Services\CalBusinessPartnerAccounts\Cal_BusinessPartnerAccountsService.cs" />

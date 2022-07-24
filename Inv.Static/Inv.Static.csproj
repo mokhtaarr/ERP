@@ -73,6 +73,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="VM\Prod_BasicUnitsDetailesVM.cs" />
     <Compile Include="VM\MS_ItemCardDetailesVM.cs" />
     <Compile Include="VM\Ms_SettingsVM.cs" />
     <Compile Include="VM\SharedVM.cs" />

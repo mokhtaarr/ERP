@@ -61,6 +61,7 @@ using Inv.BLL.Services.SysAnalyticalCodes;
 using Inv.BLL.Services.ProdJobOrder;
 using Inv.BLL.Services.SrVehicles;
 using Inv.BLL.Services.MsItemCard;
+using Inv.BLL.Services.ProdBasicUnits;
 
 namespace Inv.API.Infrastructure
 {
@@ -126,6 +127,7 @@ namespace Inv.API.Infrastructure
             container.RegisterType<IProd_EquipmentsService, Prod_EquipmentsService>();
             container.RegisterType<IMs_ReceiptNoteService, Ms_ReceiptNoteService>();
             container.RegisterType<IMS_ItemCardService, MS_ItemCardService>();
+            container.RegisterType<IProd_BasicUnitsService, Prod_BasicUnitsService>();
 
 
             //////////////////////// System Pages Service ////////////////////////////

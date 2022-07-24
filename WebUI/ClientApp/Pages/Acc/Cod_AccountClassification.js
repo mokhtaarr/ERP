@@ -131,7 +131,7 @@ var CodAccountClassification;
     }
     $('#Tree').on("select_node.jstree", function (e, data) { click_in_labl(data.node.id); });
     function click_in_labl(Id) {
-        var _a, _b, _c, _d, _e, _f, _g, _h;
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j;
         AccountClassification = new Cod_AccountClassification();
         AccountClassification = AccountClassifications.filter(function (x) { return x.AccountClassId == Number(Id); })[0];
         if (AccountClassification != null) {
@@ -143,10 +143,10 @@ var CodAccountClassification;
             RemarksA.value = (_d = AccountClassification.RemarksA) === null || _d === void 0 ? void 0 : _d.toString();
             RemarksE.value = (_e = AccountClassification.RemarksE) === null || _e === void 0 ? void 0 : _e.toString();
             AccountType = AccountClassification.AccountClassType;
-            AccountClassType.value = AccountType === null || AccountType === void 0 ? void 0 : AccountType.toString();
-            ParentAccountClassId.value = (_f = AccountClassification.ParentAccountClassId) === null || _f === void 0 ? void 0 : _f.toString();
-            AId.value = (_g = AccountClassification.AId) === null || _g === void 0 ? void 0 : _g.toString();
-            AccountCatId.value = (_h = AccountClassification.AccountCatId) === null || _h === void 0 ? void 0 : _h.toString();
+            AccountClassType.value = (_f = AccountType) === null || _f === void 0 ? void 0 : _f.toString();
+            ParentAccountClassId.value = (_g = AccountClassification.ParentAccountClassId) === null || _g === void 0 ? void 0 : _g.toString();
+            AId.value = (_h = AccountClassification.AId) === null || _h === void 0 ? void 0 : _h.toString();
+            AccountCatId.value = (_j = AccountClassification.AccountCatId) === null || _j === void 0 ? void 0 : _j.toString();
             var CheckIfHasNodes = AccountClassifications.filter(function (x) { return x.ParentAccountClassId == _AccountClassId; })[0];
             hasNodes = CheckIfHasNodes != null ? true : false;
         }

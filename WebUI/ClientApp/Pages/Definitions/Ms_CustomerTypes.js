@@ -126,19 +126,19 @@ var Ms_CustomerType;
     }
     $('#Tree').on("select_node.jstree", function (e, data) { click_in_labl(data.node.id); });
     function click_in_labl(Id) {
-        var _a, _b, _c, _d, _e, _f;
+        var _a, _b, _c, _d, _e, _f, _g;
         CustomerType = new Ms_CustomerTypes();
         CustomerType = CustomerTypes.filter(function (x) { return x.CustomerTypeId == Number(Id); })[0];
         if (CustomerType != null) {
             _CustomerTypeId = Number(CustomerType.CustomerTypeId);
             ParentId = Number(CustomerType.CustomerTypeParent);
-            CustomerTypeParent.value = ParentId === null || ParentId === void 0 ? void 0 : ParentId.toString();
-            Code.value = (_a = CustomerType.CustomerTypeCode) === null || _a === void 0 ? void 0 : _a.toString();
-            DescA.value = (_b = CustomerType.CustomerTypeDescA) === null || _b === void 0 ? void 0 : _b.toString();
-            DescE.value = (_c = CustomerType.CustomerTypeDescE) === null || _c === void 0 ? void 0 : _c.toString();
-            Remarks.value = (_d = CustomerType.Remarks) === null || _d === void 0 ? void 0 : _d.toString();
-            CustomerTypeLevel.value = (_e = CustomerType.CustomerTypeLevel) === null || _e === void 0 ? void 0 : _e.toString();
-            CustomerTypeLevelType.value = (_f = CustomerType.CustomerTypeLevelType) === null || _f === void 0 ? void 0 : _f.toString();
+            CustomerTypeParent.value = (_a = ParentId) === null || _a === void 0 ? void 0 : _a.toString();
+            Code.value = (_b = CustomerType.CustomerTypeCode) === null || _b === void 0 ? void 0 : _b.toString();
+            DescA.value = (_c = CustomerType.CustomerTypeDescA) === null || _c === void 0 ? void 0 : _c.toString();
+            DescE.value = (_d = CustomerType.CustomerTypeDescE) === null || _d === void 0 ? void 0 : _d.toString();
+            Remarks.value = (_e = CustomerType.Remarks) === null || _e === void 0 ? void 0 : _e.toString();
+            CustomerTypeLevel.value = (_f = CustomerType.CustomerTypeLevel) === null || _f === void 0 ? void 0 : _f.toString();
+            CustomerTypeLevelType.value = (_g = CustomerType.CustomerTypeLevelType) === null || _g === void 0 ? void 0 : _g.toString();
             var CheckIfHasNodes = CustomerTypes.filter(function (x) { return x.CustomerTypeParent == _CustomerTypeId; })[0];
             hasNodes = CheckIfHasNodes != null ? true : false;
         }

@@ -1,56 +1,44 @@
-﻿$(document).ready(() => {
+$(document).ready(function () {
     SharedButtons.OnLoad();
     ProdBasicUnits.InitalizeComponent();
     $('#headertop1').addClass('display_none');
     $('#headertop2').removeClass('display_none');
-})
- 
-namespace ProdBasicUnits {
-    var sys: SystemTools = new SystemTools();
+});
+var ProdBasicUnits;
+(function (ProdBasicUnits) {
+    var sys = new SystemTools();
     var language = sys.SysSession.CurrentEnvironment.ScreenLanguage;
-    var SysSession: SystemSession = GetSystemSession();
-    let Resource: any = GetResourceList("");
+    var SysSession = GetSystemSession();
+    var Resource = GetResourceList("");
     $('#headerTitle').text(Resource.BasicUnits);
-
-    var UnitsGrid: JsGrid = new JsGrid();
-    var UnitsDetailsGrid: JsGrid = new JsGrid();
-
-    var BasicUnitsDetailesVM: Prod_BasicUnitsDetailesVM = new Prod_BasicUnitsDetailesVM();
-    var Model: Prod_BasicUnits = new Prod_BasicUnits();
-    var BasicUnits: Array<Prod_BasicUnits> = new Array<Prod_BasicUnits>();
-
-    var Details: Array<Prod_BasicUnits> = new Array<Prod_BasicUnits>();
-    var DetailsPros: Array<Prod_BasicUnits> = new Array<Prod_BasicUnits>();
+    var UnitsGrid = new JsGrid();
+    var UnitsDetailsGrid = new JsGrid();
+    var BasicUnitsDetailesVM = new Prod_BasicUnitsDetailesVM();
+    var Model = new Prod_BasicUnits();
+    var BasicUnits = new Array();
+    var Details = new Array();
+    var DetailsPros = new Array();
     var Data = new Array();
-
-    var element: HTMLInputElement;
+    var element;
     // Select Option
-
-    var nodeActive: any;
+    var nodeActive;
     var StatusFlag;
     var Success;
-    var hasNodes: boolean;
+    var hasNodes;
     var ObjectId = 0;
-    var trId: string;
-
-    export function InitalizeComponent() {
+    var trId;
+    function InitalizeComponent() {
         SharedButtons.compcode = Number(SysSession.CurrentEnvironment.CompCode);
-
         SharedWork.withCondition = true;
         localStorage.setItem("TableName", "Prod_BasicUnits");
         localStorage.setItem("Condition", "ParentUnit is null");
-
         NavigateModule.InitalizeComponent();
         SharedWork.OnNavigate = Navigate;
-        SharedButtons.AddAction(() => { btnAdd_onclick(); });
-
-        SharedButtons.DeleteAction(() => { btnDelete_onClick(); });
-
-        SharedButtons.EditAction(() => { btnEdit_onclick(); });
-
-        SharedButtons.UndoAction(() => { Undo(); });
-
-        SharedButtons.SaveAction(() => {
+        SharedButtons.AddAction(function () { btnAdd_onclick(); });
+        SharedButtons.DeleteAction(function () { btnDelete_onClick(); });
+        SharedButtons.EditAction(function () { btnEdit_onclick(); });
+        SharedButtons.UndoAction(function () { Undo(); });
+        SharedButtons.SaveAction(function () {
             if (SharedWork.CurrentMode == ScreenModes.Add || SharedWork.CurrentMode == ScreenModes.Edit) {
                 btnsave_onClick();
             }
@@ -59,41 +47,36 @@ namespace ProdBasicUnits {
                 return;
             }
         });
-
         InitalizeControls();
         InitalizeEvents();
         GetAll();
-
         InitializeGrid();
         InitializeBasicUnitDetailsGrid();
     }
-
+    ProdBasicUnits.InitalizeComponent = InitalizeComponent;
     function InitalizeControls() {
-        SharedButtons.btnSearch = document.getElementById("btnProd_BasicUnitsSearch") as HTMLButtonElement;
+        SharedButtons.btnSearch = document.getElementById("btnProd_BasicUnitsSearch");
     }
-
     function InitalizeEvents() {
         SharedButtons.btnSearch.onclick = btnSearch_onclick;
         SharedButtons.btnRefrash2.onclick = Refrash;
     }
-
     function GetAll() {
         Disabled(false);
         Ajax.Callsync({
             type: "Get",
             url: sys.apiUrl("Prod_BasicUnits", "GetAll"),
-            success: (d) => {
-                let result = d as BaseResponse;
+            success: function (d) {
+                var result = d;
                 if (result.IsSuccess) {
                     Data = new Array();
-                    BasicUnits = result.Response as Array<Prod_BasicUnits>;
+                    BasicUnits = result.Response;
                     UnitsGrid.DataSource = BasicUnits;
                     UnitsGrid.Bind();
                 }
             }
         });
     }
-
     ///////////////////////////////////// Strt Grid /////////////////////////////////
     function InitializeGrid() {
         UnitsGrid.ElementName = "UnitsGrid";
@@ -101,10 +84,10 @@ namespace ProdBasicUnits {
         UnitsGrid.InsertionMode = JsGridInsertionMode.Binding;
         UnitsGrid.Paging = true;
         UnitsGrid.PageSize = 5;
-        UnitsGrid.OnItemInserting = () => { };
-        UnitsGrid.OnItemUpdating = () => { };
-        UnitsGrid.OnItemDeleting = () => { };
-        UnitsGrid.OnRowDoubleClicked = () => { GetByID(Number(UnitsGrid.SelectedKey)); };
+        UnitsGrid.OnItemInserting = function () { };
+        UnitsGrid.OnItemUpdating = function () { };
+        UnitsGrid.OnItemDeleting = function () { };
+        UnitsGrid.OnRowDoubleClicked = function () { GetByID(Number(UnitsGrid.SelectedKey)); };
         UnitsGrid.Columns = [
             {
                 title: Resource.SHT_Code, css: "ColumPadding", name: "UnitCode"
@@ -130,15 +113,14 @@ namespace ProdBasicUnits {
         ];
         UnitsGrid.Bind();
     }
-
-    function FillGrid(BasicUnitsDetailes: Prod_BasicUnitsDetailesVM) {
+    function FillGrid(BasicUnitsDetailes) {
         try {
             Details = BasicUnitsDetailes.Details;
             UnitsDetailsGrid.DataSource = Details;
             UnitsDetailsGrid.Bind();
-        } catch (e) { }
+        }
+        catch (e) { }
     }
-
     function InitializeBasicUnitDetailsGrid() {
         UnitsDetailsGrid.ElementName = "UnitsDetailsGrid";
         UnitsDetailsGrid.PrimaryKey = "AlterId";
@@ -148,14 +130,12 @@ namespace ProdBasicUnits {
         UnitsDetailsGrid.PageSize = 10;
         UnitsDetailsGrid.ConfirmDeleteing = true;
         UnitsDetailsGrid.InsertionMode = JsGridInsertionMode.Binding;
-        UnitsDetailsGrid.OnItemEditing = () => { trId = "_idEdit"; };
-
+        UnitsDetailsGrid.OnItemEditing = function () { trId = "_idEdit"; };
         UnitsDetailsGrid.OnItemInserting = InsertItemAlternatives;
-        UnitsDetailsGrid.OnItemUpdating = UpdateItemAlternatives
+        UnitsDetailsGrid.OnItemUpdating = UpdateItemAlternatives;
         UnitsDetailsGrid.OnItemDeleting = DeleteItemAlternatives;
-
-        UnitsDetailsGrid.OnRowSelected = () => { };
-        UnitsDetailsGrid.OnRefreshed = () => { };
+        UnitsDetailsGrid.OnRowSelected = function () { };
+        UnitsDetailsGrid.OnRefreshed = function () { };
         UnitsDetailsGrid.Columns = [
             {
                 title: "#", name: "btnAddItem", visible: true, type: "control", modeSwitchButton: true, editButton: true
@@ -178,7 +158,6 @@ namespace ProdBasicUnits {
             {
                 title: Resource.Notes, css: "ColumPadding", name: "Remarks", id: "Remarks", type: "text"
             },
-
             /////////////////////////////////// hiden fileds ////////////////////////////
             {
                 title: "ParentUnit", css: "ColumPadding disable hidden", name: "ParentUnit", id: "ParentUnit", type: "text"
@@ -189,49 +168,39 @@ namespace ProdBasicUnits {
         ];
         UnitsDetailsGrid.Bind();
     }
-
-    function InsertItemAlternatives(e: JsGridInsertEventArgs) {
-        let item = e.Item as Prod_BasicUnits;
+    function InsertItemAlternatives(e) {
+        var item = e.Item;
         item.StatusFlag = 'i';
-
         Details.push(item);
         UnitsDetailsGrid.DataSource = Details;
         UnitsDetailsGrid.Bind();
     }
-
-    function UpdateItemAlternatives(e: JsGridUpdateEventArgs) {
-        let item = e.Item as Prod_BasicUnits;
+    function UpdateItemAlternatives(e) {
+        var item = e.Item;
         item.StatusFlag = 'u';
-
-        var index: number = e.ItemIndex;
+        var index = e.ItemIndex;
         Details.splice(index, 1, item);
-
         UnitsDetailsGrid.DataSource = Details;
         UnitsDetailsGrid.Bind();
-
         DetailsPros.push(item);
     }
-
-    function DeleteItemAlternatives(e: JsGridDeleteEventArgs) {
-        let item = e.Item as Prod_BasicUnits;
-        var index: number = e.ItemIndex;
+    function DeleteItemAlternatives(e) {
+        var item = e.Item;
+        var index = e.ItemIndex;
         item.StatusFlag = 'd';
-
         DetailsPros.push(item);
         Details.splice(index, 1);
     }
     ///////////////////////////////////// End Grid /////////////////////////////////
-
     function GetByID(Id) {
         Ajax.Callsync({
             type: "Get",
             url: sys.apiUrl("Prod_BasicUnits", "GetById"),
             data: { id: Id },
-            success: (d) => {
-                let result = d as BaseResponse;
+            success: function (d) {
+                var result = d;
                 if (result.IsSuccess) {
-                    BasicUnitsDetailesVM = result.Response as Prod_BasicUnitsDetailesVM;
-
+                    BasicUnitsDetailesVM = result.Response;
                     Display(BasicUnitsDetailesVM.Model);
                     FillGrid(BasicUnitsDetailesVM);
                     SharedWork.SwitchModes(ScreenModes.Query);
@@ -241,28 +210,23 @@ namespace ProdBasicUnits {
             }
         });
     }
-
-    function Display(model: Prod_BasicUnits) {
+    function Display(model) {
         DocumentActions.RenderFromModel(model);
         ObjectId = Number(model.BasUnitId);
         Model = model;
     }
-
     function Navigate() {
         Model = BasicUnits[SharedWork.PageIndex - 1];
         GetByID(Model.BasUnitId);
     }
-
     function btnAdd_onclick() {
         RemoveDisabled(true);
         element = DocumentActions.GetElementByName("UnittRate");
         element.disabled = true;
         element.value = "1.000";
-
         ClearGrids();
         StatusFlag = 'i';
     }
-
     function btnEdit_onclick() {
         if (ObjectId == 0) {
             MessageBox.Show(Resource.PleaseSelectItem, Resource.Error);
@@ -271,47 +235,40 @@ namespace ProdBasicUnits {
             RemoveDisabled(false);
             element = DocumentActions.GetElementByName("UnitCode");
             element.disabled = true;
-
             element = DocumentActions.GetElementByName("UnittRate");
             element.disabled = true;
-
             StatusFlag = 'u';
         }
     }
-
     function btnsave_onClick() {
-        if (!ValidationHeader()) return
+        if (!ValidationHeader())
+            return;
         Save();
     }
-
     function btnDelete_onClick() {
-        Delete()
+        Delete();
     }
-
     function ValidationHeader() {
         if (DocumentActions.GetElementByName("UnitCode").value == "") {
             MessageBox.Toastr(Resource.PleaseEnterCode, Resource.Error, ToastrTypes.error);
-            return false
+            return false;
         }
         else if (DocumentActions.CheckCode(BasicUnits, DocumentActions.GetElementByName("UnitCode").value, "UnitCode") == false && StatusFlag == "i") {
             MessageBox.Toastr(Resource.CodeCannotDuplicated, Resource.Error, ToastrTypes.error);
         }
         else if (DocumentActions.GetElementByName("UnitNam").value == "") {
             MessageBox.Toastr(Resource.PleaseEnterNameArabic, Resource.Error, ToastrTypes.error);
-            return false
+            return false;
         }
         else
             return true;
     }
-
-    function RemoveDisabled(clear: boolean) {
+    function RemoveDisabled(clear) {
         DocumentActions.allElements(false, clear, Model);
     }
-
-    function Disabled(clear: boolean) {
+    function Disabled(clear) {
         DocumentActions.allElements(true, clear, Model);
     }
-
     function Undo() {
         Disabled(false);
         Success = false;
@@ -319,13 +276,11 @@ namespace ProdBasicUnits {
             GetByID(ObjectId);
         else
             SharedWork.SwitchModes(ScreenModes.Start);
-        DetailsPros = new Array<Prod_BasicUnits>();
+        DetailsPros = new Array();
     }
-
     function Assign() {
-        BasicUnitsDetailesVM.Model = DocumentActions.AssignToModel<Prod_BasicUnits>(Model);
+        BasicUnitsDetailesVM.Model = DocumentActions.AssignToModel(Model);
         BasicUnitsDetailesVM.Details = DocumentActions.AssignArr(Details, DetailsPros);
-
         if (StatusFlag == "i") {
             Model.CreatedAt = DateTimeFormat(Date().toString());
             Model.CreatedBy = SysSession.CurrentEnvironment.UserCode;
@@ -337,28 +292,24 @@ namespace ProdBasicUnits {
             Model.UpdateBy = SysSession.CurrentEnvironment.UserCode;
             Update();
         }
-
         if (Success)
             MessageBox.Toastr(Resource.SavedSucc, "", ToastrTypes.success);
-
         ObjectId = Model.BasUnitId;
         GetAll();
         if (ObjectId != 0)
             GetByID(ObjectId);
-
         return true;
     }
-
     function Insert() {
         $("#MessageBoxDialog").modal("hide");
         Ajax.Callsync({
             type: "POST",
             url: sys.apiUrl("Prod_BasicUnits", "Insert"),
             data: JSON.stringify(BasicUnitsDetailesVM),
-            success: (Response) => {
-                let result = Response as BaseResponse;
+            success: function (Response) {
+                var result = Response;
                 if (result.IsSuccess) {
-                    Model = result.Response as Prod_BasicUnits;
+                    Model = result.Response;
                     ObjectId = Model.BasUnitId;
                     Success = true;
                 }
@@ -369,17 +320,16 @@ namespace ProdBasicUnits {
             }
         });
     }
-
     function Update() {
         $("#MessageBoxDialog").modal("hide");
         Ajax.Callsync({
             type: "POST",
             url: sys.apiUrl("Prod_BasicUnits", "Update"),
             data: JSON.stringify(BasicUnitsDetailesVM),
-            success: (Response) => {
-                let result = Response as BaseResponse;
+            success: function (Response) {
+                var result = Response;
                 if (result.IsSuccess) {
-                    Model = result.Response as Prod_BasicUnits;
+                    Model = result.Response;
                     ObjectId = Model.BasUnitId;
                     Success = true;
                 }
@@ -390,7 +340,6 @@ namespace ProdBasicUnits {
             }
         });
     }
-
     function Save() {
         Assign();
         if (Success) {
@@ -399,13 +348,12 @@ namespace ProdBasicUnits {
             SharedWork.SwitchModes(ScreenModes.Query);
         }
     }
-
     function Delete() {
         $("#MessageBoxDialog").modal("hide");
         Ajax.Callsync({
             type: "Get",
             url: sys.apiUrl("Prod_BasicUnits", "Delete") + "/" + ObjectId,
-            success: (result) => {
+            success: function (result) {
                 if (result) {
                     Success = result;
                     GetAll();
@@ -419,25 +367,23 @@ namespace ProdBasicUnits {
             }
         });
     }
-
     function btnSearch_onclick() {
-        let sys: SystemTools = new SystemTools();
-        sys.FindKey(Modules.BasicUnits, SharedButtons.btnSearch.id, "", () => {
+        var sys = new SystemTools();
+        sys.FindKey(Modules.BasicUnits, SharedButtons.btnSearch.id, "", function () {
             if (Model.UnitCode != null) {
                 Display(Model);
             }
         });
     }
-
     function Refrash() {
         GetAll();
         if (ObjectId != 0)
             GetByID(ObjectId);
     }
-
     function ClearGrids() {
-        Details = new Array<Prod_BasicUnits>();
+        Details = new Array();
         UnitsDetailsGrid.DataSource = Details;
         UnitsDetailsGrid.Bind();
     }
-}
+})(ProdBasicUnits || (ProdBasicUnits = {}));
+//# sourceMappingURL=Prod_BasicUnits.js.map

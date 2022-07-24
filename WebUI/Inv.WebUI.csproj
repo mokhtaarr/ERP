@@ -4272,6 +4272,7 @@
     <Content Include="Views\static\PeriodicalBook.cshtml" />
     <Content Include="Views\static\TaxForms.cshtml" />
     <Content Include="Views\Definitions\Items.cshtml" />
+    <Content Include="Views\Definitions\BasicUnits.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

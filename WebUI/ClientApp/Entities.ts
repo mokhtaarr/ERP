@@ -14467,6 +14467,7 @@ class Prod_BasicUnits {
         this.UpdateAt = "";
         this.DeletedBy = "";
         this.DeletedAt = "";
+        this.StatusFlag = "";
     }
     public BasUnitId: number;
     public UnitCode: string;
@@ -14485,6 +14486,7 @@ class Prod_BasicUnits {
     public UpdateAt: string;
     public DeletedBy: string;
     public DeletedAt: string;
+    public StatusFlag: string;
 }
 
 class Ms_ItemUnit {

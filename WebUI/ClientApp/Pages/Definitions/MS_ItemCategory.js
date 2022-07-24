@@ -129,19 +129,19 @@ var MSItemCategory;
     }
     $('#Tree').on("select_node.jstree", function (e, data) { click_in_labl(data.node.id); });
     function click_in_labl(Id) {
-        var _a, _b, _c, _d, _e, _f;
+        var _a, _b, _c, _d, _e, _f, _g;
         ItemCategory = new MS_ItemCategory();
         ItemCategory = ItemCategories.filter(function (x) { return x.ItemCategoryId == Number(Id); })[0];
         if (ItemCategory != null) {
             _ItemCategoryId = Number(ItemCategory.ItemCategoryId);
             ParentId = Number(ItemCategory.ParentItemCategoryId);
-            ParentItemCategoryId.value = ParentId === null || ParentId === void 0 ? void 0 : ParentId.toString();
-            Code.value = (_a = ItemCategory.ItemCatCode) === null || _a === void 0 ? void 0 : _a.toString();
-            DescA.value = (_b = ItemCategory.ItemCatDescA) === null || _b === void 0 ? void 0 : _b.toString();
-            DescE.value = (_c = ItemCategory.ItemCatDescE) === null || _c === void 0 ? void 0 : _c.toString();
-            Remarks.value = (_d = ItemCategory.Remarks) === null || _d === void 0 ? void 0 : _d.toString();
-            ItemCategoryCatLevel.value = (_e = ItemCategory.ItemCategoryCatLevel) === null || _e === void 0 ? void 0 : _e.toString();
-            ItemCategoryType.value = (_f = ItemCategory.ItemCategoryType) === null || _f === void 0 ? void 0 : _f.toString();
+            ParentItemCategoryId.value = (_a = ParentId) === null || _a === void 0 ? void 0 : _a.toString();
+            Code.value = (_b = ItemCategory.ItemCatCode) === null || _b === void 0 ? void 0 : _b.toString();
+            DescA.value = (_c = ItemCategory.ItemCatDescA) === null || _c === void 0 ? void 0 : _c.toString();
+            DescE.value = (_d = ItemCategory.ItemCatDescE) === null || _d === void 0 ? void 0 : _d.toString();
+            Remarks.value = (_e = ItemCategory.Remarks) === null || _e === void 0 ? void 0 : _e.toString();
+            ItemCategoryCatLevel.value = (_f = ItemCategory.ItemCategoryCatLevel) === null || _f === void 0 ? void 0 : _f.toString();
+            ItemCategoryType.value = (_g = ItemCategory.ItemCategoryType) === null || _g === void 0 ? void 0 : _g.toString();
             if (ItemCategory.CategoryImage != null) {
                 imgURL = "data:image/png;base64," + ItemCategory.CategoryImage;
                 PreviewCategoryImage.hidden = false;
@@ -260,6 +260,7 @@ var MSItemCategory;
         }
     }
     function Assign() {
+        var _a, _b;
         Data = new Array();
         ItemCategory = new MS_ItemCategory();
         var level = Number(ItemCategoryCatLevel.value) == 0 ? 1 : Number(ItemCategoryCatLevel.value);
@@ -270,7 +271,7 @@ var MSItemCategory;
             ItemCategory.ItemCatDescE = DescE.value;
             ItemCategory.Remarks = Remarks.value;
             ItemCategory.ItemCategoryCatLevel = level;
-            ItemCategory.CategoryImage = imgURL === null || imgURL === void 0 ? void 0 : imgURL.split('base64,')[1];
+            ItemCategory.CategoryImage = (_a = imgURL) === null || _a === void 0 ? void 0 : _a.split('base64,')[1];
             ItemCategory.ParentItemCategoryId = ParentItemCategoryId.value;
             ItemCategory.ItemCategoryType = Number(ItemCategoryType.value);
             ItemCategory.CreatedAt = DateTimeFormat(Date().toString());
@@ -285,7 +286,7 @@ var MSItemCategory;
             ItemCategory.ItemCatDescE = DescE.value;
             ItemCategory.Remarks = Remarks.value;
             ItemCategory.ItemCategoryCatLevel = level;
-            ItemCategory.CategoryImage = imgURL === null || imgURL === void 0 ? void 0 : imgURL.split('base64,')[1];
+            ItemCategory.CategoryImage = (_b = imgURL) === null || _b === void 0 ? void 0 : _b.split('base64,')[1];
             ItemCategory.ParentItemCategoryId = ParentItemCategoryId.value;
             ItemCategory.ItemCategoryType = Number(ItemCategoryType.value);
             ItemCategory.UpdateAt = DateTimeFormat(Date().toString());

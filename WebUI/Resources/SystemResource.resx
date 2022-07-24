@@ -3549,4 +3549,19 @@
   <data name="PrimaryPurchaseUnitMustSelected" xml:space="preserve">
     <value>The primary purchase unit must be selected</value>
   </data>
+  <data name="BasicUnits" xml:space="preserve">
+    <value>Basic Units</value>
+  </data>
+  <data name="AttachedUnits" xml:space="preserve">
+    <value>attached units</value>
+  </data>
+  <data name="AutoConversionFactor" xml:space="preserve">
+    <value>automatic conversion factor</value>
+  </data>
+  <data name="GroupDescription" xml:space="preserve">
+    <value>Group Description</value>
+  </data>
+  <data name="Using" xml:space="preserve">
+    <value>Using</value>
+  </data>
 </root>

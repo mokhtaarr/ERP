@@ -1,1 +1,1 @@
-[{"ConnectionNumber":1,"ServerName":"DESKTOP-OU11TO4\\SQL2014","singleDb":"ERP","InitialCatalog":"ERP","IntegratedSecurity":false,"DbUserName":"sa","DbPassword":"123","providerName":"System.Data.SqlClient"}]
+[{"ConnectionNumber":1,"ServerName":".\\SQL2014","singleDb":"ERP","InitialCatalog":"ERP","IntegratedSecurity":false,"DbUserName":"sa","DbPassword":"123","providerName":"System.Data.SqlClient"}]

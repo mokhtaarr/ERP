@@ -257,7 +257,6 @@ namespace HomeComponent {
             }
             if (li != null) {
                 if (singleUserModule != null) {
-                    debugger
                     if (singleUserModule.Access === false)
                         li.remove();
                         //li.style.display = "none";
@@ -476,8 +475,7 @@ namespace HomeComponent {
         $("#btnSr_VehicleTypes").click(() => { OpenPage(Modules.Sr_VehicleTypes); })
         $("#btnSr_VehicleShapes").click(() => { OpenPage(Modules.Sr_VehicleShapes); })
         $("#btnProd_Equipments").click(() => { OpenPage(Modules.Prod_Equipments); })
-
-
+        $("#btnBasicUnits").click(() => { OpenPage(Modules.BasicUnits); })
 
         /////////////////End Definitions Pages ////////////////////
 

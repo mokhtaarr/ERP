@@ -290,6 +290,7 @@ namespace Inv.DAL.Domain
     public partial class MS_ItemAlternatives : SecurityandUpdateFlagClass { }
     public partial class Ms_ItemCollection : SecurityandUpdateFlagClass { }
     public partial class Prod_ItemcardExpenses : SecurityandUpdateFlagClass { }
+    public partial class Prod_BasicUnits : SecurityandUpdateFlagClass { }
 
 
     #region partial Customer 

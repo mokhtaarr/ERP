@@ -1132,10 +1132,6 @@ var Items;
         ItemVendorsPros.push(item);
     }
     ///////////////////////////////////// End Grid /////////////////////////////////
-    function AssignArr(Arr1, Arr2) {
-        var newArray = Arr1.concat(Arr2);
-        return newArray;
-    }
     function EmptyDeletedList() {
         ItemUnitPros = new Array();
         ItemImages = new Array();
@@ -1149,14 +1145,14 @@ var Items;
     function Assign() {
         Success = false;
         ItemCardDetailes.Model = DocumentActions.AssignToModel(Model);
-        ItemCardDetailes.ItemUnit = AssignArr(ItemUnit, ItemUnitPros);
+        ItemCardDetailes.ItemUnit = DocumentActions.AssignArr(ItemUnit, ItemUnitPros);
         ItemCardDetailes.ItemImages = ItemImages;
         ItemCardDetailes.ItemAlternatives = ItemAlternativesGrid.DataSource;
         ItemCardDetailes.ItemCollection = ItemCollectionGrid.DataSource;
-        ItemCardDetailes.AttributsJoin = AssignArr(AttributsJoin, AttributsJoinPros);
-        ItemCardDetailes.Offers = AssignArr(ItemCardOffers, ItemCardOffersPros);
+        ItemCardDetailes.AttributsJoin = DocumentActions.AssignArr(AttributsJoin, AttributsJoinPros);
+        ItemCardDetailes.Offers = DocumentActions.AssignArr(ItemCardOffers, ItemCardOffersPros);
         ItemCardDetailes.ItemCardExpenses = ItemCardExpenses;
-        ItemCardDetailes.Vendors = AssignArr(ItemVendors, ItemVendorsPros);
+        ItemCardDetailes.Vendors = DocumentActions.AssignArr(ItemVendors, ItemVendorsPros);
         if (StatusFlag == "i") {
             Model.CreatedAt = DateTimeFormat(Date().toString());
             Model.CreatedBy = sys.SysSession.CurrentEnvironment.UserCode;
@@ -1719,7 +1715,7 @@ var Items;
                     var res = result.Response;
                     ExpensesAccount = new Array();
                     ExpensesAccount.push(new SharedVM());
-                    ExpensesAccount = AssignArr(ExpensesAccount, res);
+                    ExpensesAccount = DocumentActions.AssignArr(ExpensesAccount, res);
                 }
                 else {
                     MessageBox.Toastr(result.ErrorMessage, Resource.Error, ToastrTypes.error);
@@ -1955,7 +1951,7 @@ var Items;
         var emptyList = new Array();
         emptyList.push(new Ms_ItemUnitVM());
         ItemCardUnits = ItemCardDetailes.ItemCardUnits == null ? new Array() :
-            AssignArr(emptyList, ItemCardDetailes.ItemCardUnits);
+            DocumentActions.AssignArr(emptyList, ItemCardDetailes.ItemCardUnits);
         return ItemCardUnits;
     }
     function GetGiftUnitsList(id) {
@@ -1964,7 +1960,7 @@ var Items;
         if (ItemCardDetailes.GiftUnits == null)
             return GiftUnits;
         GiftUnits = ItemCardDetailes.GiftUnits.filter(function (x) { return x.ItemCardId == id; }) == null ? new Array() :
-            AssignArr(emptyList, ItemCardDetailes.GiftUnits);
+            DocumentActions.AssignArr(emptyList, ItemCardDetailes.GiftUnits);
         return GiftUnits;
     }
     function GetUnitsById(id) {

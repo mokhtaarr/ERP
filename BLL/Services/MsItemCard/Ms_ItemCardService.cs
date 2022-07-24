@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Inv.BLL.Services.MsItemCard
 {
-   public class MS_ItemCardService : IMS_ItemCardService
+    public class MS_ItemCardService : IMS_ItemCardService
     {
         private readonly IUnitOfWork unitOfWork;
 
@@ -33,7 +33,7 @@ namespace Inv.BLL.Services.MsItemCard
         {
             return unitOfWork.Repository<MS_ItemCard>().Get(predicate);
         }
-        
+
         public List<MS_ItemVendors> GetItemVendors(Expression<Func<MS_ItemVendors, bool>> predicate)
         {
             return unitOfWork.Repository<MS_ItemVendors>().Get(predicate);
@@ -43,15 +43,35 @@ namespace Inv.BLL.Services.MsItemCard
         {
             return unitOfWork.Repository<Ms_ItemCardOffers>().Get(predicate);
         }
-        
+
         public List<Prod_ItemAttributsJoin> GetAttributs(Expression<Func<Prod_ItemAttributsJoin, bool>> predicate)
         {
             return unitOfWork.Repository<Prod_ItemAttributsJoin>().Get(predicate);
         }
-        
+
         public List<MS_ItemImages> GetItemImages(Expression<Func<MS_ItemImages, bool>> predicate)
         {
             return unitOfWork.Repository<MS_ItemImages>().Get(predicate);
+        }
+
+        public List<Ms_ItemUnit> GetItemUnits(Expression<Func<Ms_ItemUnit, bool>> predicate)
+        {
+            return unitOfWork.Repository<Ms_ItemUnit>().Get(predicate);
+        }
+
+        public List<MS_ItemAlternatives> GetItemAlternatives(Expression<Func<MS_ItemAlternatives, bool>> predicate)
+        {
+            return unitOfWork.Repository<MS_ItemAlternatives>().Get(predicate);
+        }
+
+        public List<Ms_ItemCollection> GetItemCollection(Expression<Func<Ms_ItemCollection, bool>> predicate)
+        {
+            return unitOfWork.Repository<Ms_ItemCollection>().Get(predicate);
+        }
+
+        public List<Prod_ItemcardExpenses> GetItemcardExpenses(Expression<Func<Prod_ItemcardExpenses, bool>> predicate)
+        {
+            return unitOfWork.Repository<Prod_ItemcardExpenses>().Get(predicate);
         }
 
         public MS_ItemCard Insert(MS_ItemCard entity)
@@ -60,14 +80,14 @@ namespace Inv.BLL.Services.MsItemCard
             unitOfWork.Save();
             return memb;
         }
-        
+
         public List<T> InsertList<T>(List<T> entitys) where T : class, new()
         {
             unitOfWork.Repository<T>().Insert(entitys);
             unitOfWork.Save();
             return null;
         }
-        
+
         public MS_ItemCard Update(MS_ItemCard entity)
         {
 
@@ -95,7 +115,7 @@ namespace Inv.BLL.Services.MsItemCard
             }
             unitOfWork.Save();
         }
-        
+
         public void UpdateOffers(List<Ms_ItemCardOffers> entities)
         {
             var insertedRecord = entities.Where(x => x.StatusFlag == 'i').ToList();
@@ -115,7 +135,7 @@ namespace Inv.BLL.Services.MsItemCard
             }
             unitOfWork.Save();
         }
-        
+
         public void UpdateAttributs(List<Prod_ItemAttributsJoin> entities)
         {
             var insertedRecord = entities.Where(x => x.StatusFlag == 'i').ToList();
@@ -155,7 +175,7 @@ namespace Inv.BLL.Services.MsItemCard
             }
             unitOfWork.Save();
         }
-        
+
         public void UpdateItemUnit(List<Ms_ItemUnit> entities)
         {
             var insertedRecord = entities.Where(x => x.StatusFlag == 'i').ToList();
@@ -175,7 +195,7 @@ namespace Inv.BLL.Services.MsItemCard
             }
             unitOfWork.Save();
         }
-        
+
         public void UpdateItemAlternatives(List<MS_ItemAlternatives> entities)
         {
             var insertedRecord = entities.Where(x => x.StatusFlag == 'i').ToList();
@@ -195,7 +215,7 @@ namespace Inv.BLL.Services.MsItemCard
             }
             unitOfWork.Save();
         }
-        
+
         public void UpdateItemCollection(List<Ms_ItemCollection> entities)
         {
             var insertedRecord = entities.Where(x => x.StatusFlag == 'i').ToList();
@@ -215,7 +235,7 @@ namespace Inv.BLL.Services.MsItemCard
             }
             unitOfWork.Save();
         }
-        
+
         public void UpdateItemCardExpenses(List<Prod_ItemcardExpenses> entities)
         {
             var insertedRecord = entities.Where(x => x.StatusFlag == 'i').ToList();
@@ -242,7 +262,7 @@ namespace Inv.BLL.Services.MsItemCard
             unitOfWork.Save();
             return null;
         }
-        
+
         public bool Delete(int id)
         {
             try
@@ -251,7 +271,7 @@ namespace Inv.BLL.Services.MsItemCard
                 unitOfWork.Save();
                 return true;
             }
-            catch 
+            catch
             {
                 return false;
             }

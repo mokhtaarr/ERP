@@ -250,6 +250,11 @@ namespace Inv.WebUI.Controllers
             return View("~/Views/Definitions/Prod_EquipmentsIndex.cshtml");
 
         }
+        public ActionResult BasicUnitsIndex()
+        {
+            return View("~/Views/Definitions/BasicUnits.cshtml");
+
+        }
         ///////////////////////////// End Defination ////////////////////////////
         #endregion
 

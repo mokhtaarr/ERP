@@ -2095,6 +2095,15 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to attached units.
+        /// </summary>
+        public static string AttachedUnits {
+            get {
+                return ResourceManager.GetString("AttachedUnits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Attachment Options.
         /// </summary>
         public static string AttachmentOptions {
@@ -2109,6 +2118,15 @@ namespace Inv.WebUI.Resources {
         public static string Attachments {
             get {
                 return ResourceManager.GetString("Attachments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to automatic conversion factor.
+        /// </summary>
+        public static string AutoConversionFactor {
+            get {
+                return ResourceManager.GetString("AutoConversionFactor", resourceCulture);
             }
         }
         
@@ -2343,6 +2361,15 @@ namespace Inv.WebUI.Resources {
         public static string BasicUnit2 {
             get {
                 return ResourceManager.GetString("BasicUnit2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Basic Units.
+        /// </summary>
+        public static string BasicUnits {
+            get {
+                return ResourceManager.GetString("BasicUnits", resourceCulture);
             }
         }
         
@@ -5034,6 +5061,15 @@ namespace Inv.WebUI.Resources {
         public static string GroupClass {
             get {
                 return ResourceManager.GetString("GroupClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Description.
+        /// </summary>
+        public static string GroupDescription {
+            get {
+                return ResourceManager.GetString("GroupDescription", resourceCulture);
             }
         }
         
@@ -9993,6 +10029,15 @@ namespace Inv.WebUI.Resources {
         public static string UseSystemPropertiesAndDimensions {
             get {
                 return ResourceManager.GetString("UseSystemPropertiesAndDimensions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Using.
+        /// </summary>
+        public static string Using {
+            get {
+                return ResourceManager.GetString("Using", resourceCulture);
             }
         }
         

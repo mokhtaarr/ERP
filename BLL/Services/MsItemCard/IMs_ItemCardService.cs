@@ -18,6 +18,10 @@ namespace Inv.BLL.Services.MsItemCard
         List<Ms_ItemCardOffers> GetOffers(Expression<Func<Ms_ItemCardOffers, bool>> predicate);
         List<Prod_ItemAttributsJoin> GetAttributs(Expression<Func<Prod_ItemAttributsJoin, bool>> predicate);
         List<MS_ItemImages> GetItemImages(Expression<Func<MS_ItemImages, bool>> predicate);
+        List<Ms_ItemUnit> GetItemUnits(Expression<Func<Ms_ItemUnit, bool>> predicate);
+        List<MS_ItemAlternatives> GetItemAlternatives(Expression<Func<MS_ItemAlternatives, bool>> predicate);
+        List<Ms_ItemCollection> GetItemCollection(Expression<Func<Ms_ItemCollection, bool>> predicate);
+        List<Prod_ItemcardExpenses> GetItemcardExpenses(Expression<Func<Prod_ItemcardExpenses, bool>> predicate);
         MS_ItemCard Insert(MS_ItemCard entity);
         List<T> InsertList<T>(List<T> entitys) where T : class, new();
         MS_ItemCard Update(MS_ItemCard entity);

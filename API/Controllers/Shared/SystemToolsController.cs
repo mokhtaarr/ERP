@@ -129,8 +129,6 @@ namespace Inv.API.Controllers
                         connection.Close();
                         command.Dispose();
                         connection.Dispose();
-
-
                         return result;
                     }
                 }

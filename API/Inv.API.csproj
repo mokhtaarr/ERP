@@ -289,6 +289,7 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\Cod_AccountCategoriesController.cs" />
     <Compile Include="Controllers\CalCostCenterController.cs" />
+    <Compile Include="Controllers\Definitions\Prod_BasicUnitsController.cs" />
     <Compile Include="Controllers\Definitions\MS_ItemCardController.cs" />
     <Compile Include="Controllers\DynamicConnectionController.cs" />
     <Compile Include="Controllers\ProgrammingTools\Ms_Settings.cs" />

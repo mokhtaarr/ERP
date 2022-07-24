@@ -189,28 +189,37 @@ namespace Inv.API.Controllers
             {
                 try
                 {
-                    db.Database.SqlQuery<int>("delete from MS_ItemVendors where ItemCardId = " + id + "");
-                    db.Database.SqlQuery<int>("delete from Ms_ItemCardOffers where ItemCardId = " + id + "");
-                    db.Database.SqlQuery<int>("delete from Prod_ItemAttributsJoin where ItemCardId = " + id + "");
-                    db.Database.SqlQuery<int>("delete from MS_ItemImages where ItemCardId = " + id + "");
-                    db.Database.SqlQuery<int>("delete from Ms_ItemUnit where ItemCardId = " + id + "");
-                    db.Database.SqlQuery<int>("delete from MS_ItemAlternatives where ItemCardId = " + id + "");
-                    db.Database.SqlQuery<int>("delete from Ms_ItemCollection where ItemCardId = " + id + "");
-                    db.Database.SqlQuery<int>("delete from Prod_ItemcardExpenses where ItemCardId = " + id + "");
-
-                    //MS_ItemCardDetailesVM detailes = new MS_ItemCardDetailesVM()
-                    //{
-                    //    Vendors = Service.GetItemVendors(x => x.ItemCardId == id),
-                    //    Offers = Service.GetOffers(x => x.ItemCardId == id),
-                    //    AttributsJoin = Service.GetAttributs(x => x.ItemCardId == id)
-                    //};
-
-                    //if (detailes.Vendors.Count() > 0)
-                    //    Service.DeleteList(detailes.Vendors);
-                    //if (detailes.Offers.Count() > 0)
-                    //    Service.DeleteList(detailes.Offers);
-                    // if (detailes.AttributsJoin.Count() > 0)
-                    //    Service.DeleteList(detailes.AttributsJoin);
+                    var Offers = Service.GetOffers(x => x.ItemCardId == id);
+                    if (Offers.Count() > 0)
+                        Service.DeleteList(Offers);
+                    
+                    var AttributsJoin = Service.GetAttributs(x => x.ItemCardId == id);
+                    if (AttributsJoin.Count() > 0)
+                        Service.DeleteList(AttributsJoin);
+                    
+                    var ItemImages = Service.GetItemImages(x => x.ItemCardId == id);
+                    if (ItemImages.Count() > 0)
+                        Service.DeleteList(ItemImages);
+                    
+                    var ItemUnit = Service.GetItemUnits(x => x.ItemCardId == id);
+                    if (ItemUnit.Count() > 0)
+                        Service.DeleteList(ItemUnit);
+                   
+                    var ItemAlternatives = Service.GetItemAlternatives(x => x.ItemCardId == id);
+                    if (ItemAlternatives.Count() > 0)
+                        Service.DeleteList(ItemAlternatives);
+                    
+                    var ItemCollection = Service.GetItemCollection(x => x.ItemCardId == id);
+                    if (ItemCollection.Count() > 0)
+                        Service.DeleteList(ItemCollection);
+                   
+                    var ItemCardExpenses = Service.GetItemcardExpenses(x => x.ItemCardId == id);
+                    if (ItemCardExpenses.Count() > 0)
+                        Service.DeleteList(ItemCardExpenses);
+                    
+                    var Vendors = Service.GetItemVendors(x => x.ItemCardId == id);
+                    if (Vendors.Count() > 0)
+                        Service.DeleteList(Vendors);
 
                     bool res = Service.Delete(id);
                     dbTransaction.Commit();
@@ -292,59 +301,5 @@ namespace Inv.API.Controllers
             Service.DeleteList(difItemImages);
             //var count = db.Database.SqlQuery<int>("delete from MS_ItemImages where ItemCardId in (" + deleteIds + ")");
         }
-
-        //[HttpPost, AllowAnonymous]
-        //public bool Uploadfile()
-        //{
-        //    MS_ItemCard Model = new MS_ItemCard();
-        //    HttpFileCollection httpPostedFile = HttpContext.Current.Request.Files;
-        //    if (HttpContext.Current.Request.Files.AllKeys.Any())
-        //    {
-        //        for (int i = 0; i < httpPostedFile.Count; i++)
-        //        {
-        //            HttpPostedFile file = httpPostedFile[i];
-        //            MS_ItemImages Item = new MS_ItemImages();
-        //            if (file != null && file.ContentLength > 0)
-        //            {
-        //                string fname = file.FileName;
-        //                // Get the complete folder path and store the file inside it.
-
-        //                string fileName = Path.GetFileName(fname);
-        //                string _name = FileHelper.GetFileNewNamewithoutfolder(fileName, Path.GetExtension(fileName));
-        //                string path = Path.Combine(HttpContext.Current.Server.MapPath("~/" + ConfigurationManager.AppSettings["UploadPath"] + "/Items/"), _name);
-        //                file.SaveAs(path);
-
-        //                if (Model.ItemCardId != 0)
-        //                {
-        //                    string query = "select * from MS_ItemImages where ItemCardId = " + Model.ItemCardId;
-        //                    List<string> oldImages = db.Database.SqlQuery<string>(query).ToList();
-
-        //                    if (Item.Image != null)
-        //                    {
-        //                        foreach (var item in oldImages)
-        //                        {
-        //                            string str = Path.Combine(HttpContext.Current.Server.MapPath("~/" + ConfigurationManager.AppSettings["UploadPath"] + "/Items/"), item);
-        //                            if (File.Exists(str))
-        //                            {
-        //                                File.Delete(str);
-        //                            }
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //            //else if (Model.ItemCardId != 0)
-        //            //{
-        //            //    Item = Service.GetAboutUsById(Model.ItemCardId);
-        //            //    Model.Image = Item.Image;
-        //            //}
-        //        }
-        //    }
-        //    //else if (Model.Id != 0 && (Model.Image == "" || Model.Image == null))
-        //    //{
-        //    //    var Item = Service.GetAboutUsById(Model.Id);
-        //    //    Model.Image = Item.Image;
-        //    //}
-        //    return true;
-        //}
     }
 }

@@ -31,7 +31,7 @@ var SharedWork = /** @class */ (function () {
         set: function (value) {
             localStorage.setItem("PageIndex", value.toString());
         },
-        enumerable: false,
+        enumerable: true,
         configurable: true
     });
     Object.defineProperty(SharedWork, "ModelCount", {
@@ -55,7 +55,7 @@ var SharedWork = /** @class */ (function () {
         },
         set: function (value) {
         },
-        enumerable: false,
+        enumerable: true,
         configurable: true
     });
     Object.defineProperty(SharedWork, "ModelCount2", {
@@ -79,7 +79,7 @@ var SharedWork = /** @class */ (function () {
             return 0;
         },
         set: function (value) { },
-        enumerable: false,
+        enumerable: true,
         configurable: true
     });
     SharedWork.Render = function () {

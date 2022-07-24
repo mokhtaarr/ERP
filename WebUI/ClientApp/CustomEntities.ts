@@ -487,6 +487,11 @@ class MS_ItemCardDetailesVM {
     public ItemCardExpenses: Array<Prod_ItemcardExpenses>;
 }
 
+class Prod_BasicUnitsDetailesVM {
+    public Model: Prod_BasicUnits;
+    public Details: Array<Prod_BasicUnits>;
+}
+
 class SharedVM {
     public Id: number;
     public Code: string;
