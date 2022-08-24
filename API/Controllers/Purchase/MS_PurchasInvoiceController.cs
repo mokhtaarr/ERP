@@ -128,7 +128,6 @@ namespace Inv.API.Controllers
                         Service.DeleteList(Details);
                     
                     bool res = Service.Delete(id);
-
                     dbTransaction.Commit();
                     return Ok(res);
                 }

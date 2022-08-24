@@ -97,8 +97,6 @@ namespace PurchasInvoice {
             GetAllTerms(1);
             GetJournalEntryBooks(1);
             GetRectSourceType();
-
-            InitializeDetailGrid();
         } catch (e) { }
     }
 
@@ -128,6 +126,9 @@ namespace PurchasInvoice {
         RectSourceType.onchange = function () {
             let type = $('#' + RectSourceType.id).find('option:selected').attr('type');
             if (!IsNullOrEmpty(type)) {
+                if (divDetailGrid.DataSource.length == 0 && SharedWork.CurrentMode == ScreenModes.Add)
+                    InitializeDetailGrid();
+
                 switch (type) {
                     case "Customers":
                         SetNewSelectNodes(Resource.Client, "CustomerId")
@@ -147,8 +148,11 @@ namespace PurchasInvoice {
                         SetNewSelectNodes("", "")
                         break;
                 }
-            } else
+            } else {
                 SetNewSelectNodes("", "");
+                $('#divDetailGrid').html('');
+                $("#InvTotalAfterRate").val(0);
+            }
         };
     }
 
@@ -178,10 +182,15 @@ namespace PurchasInvoice {
                     DeatilsAndModel = result.Response as PurchasInvoiceAndDetail;
                     Model = DeatilsAndModel.Model;
                     Display(Model);
+                    Details = DeatilsAndModel.Details;
 
-                    divDetailGrid.DataSource = DeatilsAndModel.Details;
-                    divDetailGrid.Bind();
                     SharedWork.SwitchModes(ScreenModes.Query);
+
+                    divDetailGrid.DataSource = Details;
+                    if (divDetailGrid.DataSource.length != 0 && SharedWork.CurrentMode == ScreenModes.Query)
+                        InitializeDetailGrid();
+
+                    GetTotalForDetails();
                 }
                 else
                     MessageBox.Show(Resource.Error, Resource.Error);
@@ -200,7 +209,7 @@ namespace PurchasInvoice {
         }
 
         if (StatusFlag == "u") {
-            // Model.PurInvId = ObjectId;
+             Model.PurInvId = ObjectId;
             Model.UpdateAt = DateTimeFormat(Date().toString());
             Model.UpdateBy = SysSession.CurrentEnvironment.UserCode;
             Update();
@@ -219,6 +228,9 @@ namespace PurchasInvoice {
             MessageBox.Show(Resource.CustomerCodeCannotDuplicated, Resource.Error);
         }
         else {
+            if (Details.length == 0)
+                MessageBox.Toastr("", Resource.Error, ToastrTypes.error);
+
             Assign();
             if (Success) {
                 Disabled(false);
@@ -278,6 +290,7 @@ namespace PurchasInvoice {
             success: (result) => {
                 if (result) {
                     Success = true;
+                    $("#InvTotalAfterRate").val(0);
                     GetAll();
                     Disabled(result);
                 }
@@ -290,10 +303,15 @@ namespace PurchasInvoice {
     }
 
     function btnAdd_onclick() {
+        $('#divDetailGrid').html('');
+
         StatusFlag = 'i';
         RemoveDisabled(true);
 
         element = DocumentActions.GetElementByName("TrNo");
+        element.disabled = true;
+
+        element = DocumentActions.GetElementByName("InvTotal");
         element.disabled = true;
 
         //$('select option:first-child').val('null').prop("selected", true).prop("disabled", true);
@@ -307,6 +325,9 @@ namespace PurchasInvoice {
         else {
             RemoveDisabled(false);
             element = DocumentActions.GetElementByName("TrNo");
+            element.disabled = true;
+
+            element = DocumentActions.GetElementByName("InvTotal");
             element.disabled = true;
 
             element = DocumentActions.GetElementByName("BookId");
@@ -336,18 +357,16 @@ namespace PurchasInvoice {
     }
 
     function ValidationHeader() {
-        //if (DocumentActions.GetElementByName("TrNo").value == "") {
-        //    MessageBox.Show(Resource.PleaseEnterCustomerCode, Resource.Error);
-        //    return false
-        //}
-        //else if (DocumentActions.GetElementByName("Name1").value == "") {
-        //    MessageBox.Show(Resource.PleaseEnterNameArabic, Resource.Error);
-        //    return false
-        //}
-        if (!flagTotal) {
-            MessageBox.Toastr("لحفظ المستند لابد اجمالى المدين  = اجمالى الدائن", Resource.Error, ToastrTypes.error);
-            flag = flagTotal;
+        if ($('#divDetailGrid').html() == '') {
+            flag = false;
+            MessageBox.Toastr(Resource.NumberOfItemsIsZero, Resource.Error, ToastrTypes.error);
         }
+
+        else if (Details.length == 0) {
+            flag = false;
+            MessageBox.Toastr(Resource.MustChooseAtLeastOneProduct, Resource.Error, ToastrTypes.error);
+        }
+
         return flag;
     }
 
@@ -358,6 +377,7 @@ namespace PurchasInvoice {
     }
 
     function InitializeDetailGrid() {
+        $('#divDetailGrid').removeClass('disableTable');
         divDetailGrid.ElementName = "divDetailGrid";
         divDetailGrid.PrimaryKey = "InvItemCardId";
         divDetailGrid.Inserting = true;
@@ -469,11 +489,12 @@ namespace PurchasInvoice {
         if (ItemCard == null)
             Details.push(item);
         else
-            toastr.error(language == "ar" ? "هذا الصنف موجود بالفعل" : "This item already exists");
+            MessageBox.Toastr(Resource.ItemAlreadyExists, Resource.Error, ToastrTypes.error);
 
         divDetailGrid.DataSource = Details;
         divDetailGrid.Bind();
         DocumentActions.ChangeSelectToSearchable("divDetailGrid");
+        GetTotalForDetails();
     }
 
     function UpdateItem(e: JsGridUpdateEventArgs) {
@@ -483,10 +504,11 @@ namespace PurchasInvoice {
         item.StatusFlag = 'u';
         item = GetNewUnit(item);
 
+        PushItemChanged(item, index);
+
         divDetailGrid.DataSource = Details;
         divDetailGrid.Bind();
-
-        PushItemChanged(item, index);
+        GetTotalForDetails();
     }
 
     function DeleteItem(e: JsGridDeleteEventArgs) {
@@ -496,13 +518,14 @@ namespace PurchasInvoice {
         item.StatusFlag = 'd';
 
         PushItemChanged(item, index);
+        GetTotalForDetails();
     }
 
     function PushItemChanged(item: MS_PurchaseInvoiceItemCard, index: number) {
-        Details.splice(index, 1);
+        item.StatusFlag == 'd' ? Details.splice(index, 1) : Details.splice(index, 1, item);
         let ItemCard: MS_PurchaseInvoiceItemCard = DetailsPros.filter(x => x.ItemCardId != item.ItemCardId && x.UnitId != item.UnitId)[0];
 
-        if (ItemCard == null)
+        if (ItemCard == null) 
             DetailsPros.push(item);
     }
     
@@ -809,7 +832,7 @@ namespace PurchasInvoice {
     }
 
     function Refrash() {
-        //ClearGrids();
+        ClearGrids();
         GetAll();
         GetByID(ObjectId);
     }
@@ -1115,5 +1138,21 @@ namespace PurchasInvoice {
                 }
             }
         });
+    }
+
+    function GetTotalForDetails() {
+        let ItemTotalCurr = 0,
+            ItemTotallocal = 0,
+            Rate = Number($("#Rate").val())
+
+        for (var i = 0; i < Details.length; i++) {
+            let Quantity = Details[i].Quantity,
+                Price = Details[i].Price;
+            ItemTotalCurr = ItemTotalCurr + (Quantity * Price);
+            ItemTotallocal = ItemTotalCurr * Rate;
+        }
+
+        $("#InvTotal").val(ItemTotalCurr);
+        $("#InvTotalAfterRate").val(ItemTotallocal);
     }
 }

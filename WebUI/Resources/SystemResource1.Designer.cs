@@ -5569,6 +5569,15 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This item already exists.
+        /// </summary>
+        public static string ItemAlreadyExists {
+            get {
+                return ResourceManager.GetString("ItemAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Item Alternatives.
         /// </summary>
         public static string ItemAlternatives {
@@ -6667,6 +6676,15 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must choose at least one product.
+        /// </summary>
+        public static string MustChooseAtLeastOneProduct {
+            get {
+                return ResourceManager.GetString("MustChooseAtLeastOneProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
@@ -6942,6 +6960,15 @@ namespace Inv.WebUI.Resources {
         public static string NumberOfClips {
             get {
                 return ResourceManager.GetString("NumberOfClips", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The number of items cannot be = zero.
+        /// </summary>
+        public static string NumberOfItemsIsZero {
+            get {
+                return ResourceManager.GetString("NumberOfItemsIsZero", resourceCulture);
             }
         }
         
@@ -9516,6 +9543,15 @@ namespace Inv.WebUI.Resources {
         public static string TotalCurr {
             get {
                 return ResourceManager.GetString("TotalCurr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To save the document, the total of the debtor must be = the total of the creditor.
+        /// </summary>
+        public static string TotalDebtorMustEqualTotalCreditor {
+            get {
+                return ResourceManager.GetString("TotalDebtorMustEqualTotalCreditor", resourceCulture);
             }
         }
         

@@ -3576,4 +3576,16 @@
   <data name="TotalCurr" xml:space="preserve">
     <value>currency total</value>
   </data>
+  <data name="ItemAlreadyExists" xml:space="preserve">
+    <value>This item already exists</value>
+  </data>
+  <data name="MustChooseAtLeastOneProduct" xml:space="preserve">
+    <value>You must choose at least one product</value>
+  </data>
+  <data name="NumberOfItemsIsZero" xml:space="preserve">
+    <value>The number of items cannot be = zero</value>
+  </data>
+  <data name="TotalDebtorMustEqualTotalCreditor" xml:space="preserve">
+    <value>To save the document, the total of the debtor must be = the total of the creditor</value>
+  </data>
 </root>

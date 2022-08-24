@@ -79,12 +79,12 @@ namespace Inv.DAL.Repository
         /// <returns>List of Entities</returns>
         public virtual List<T> Get(Expression<Func<T, bool>> predicate)
         {
-            return this.Entities.Where(predicate).ToList<T>();
+            return this.Entities.Where(predicate).AsNoTracking().ToList<T>();
         }
 
         public virtual IQueryable<T> GetQueryable(Expression<Func<T, bool>> predicate)
         {
-            return this.Entities.Where(predicate).AsQueryable<T>();
+            return this.Entities.Where(predicate).AsNoTracking().AsQueryable<T>();
         }
         /// <summary>
         /// Get All Enitites
@@ -255,9 +255,17 @@ namespace Inv.DAL.Repository
                     throw new ArgumentNullException("Entities");
 
                 foreach (var entity in Entities)
-                    this.Entities.Remove(entity);
-
-
+                {
+                    this.Entities.Attach(entity);
+                    try
+                    {
+                        this.Entities.Remove(entity);
+                    }
+                    catch
+                    {
+                        this._context.Entry(entity).State = EntityState.Deleted;
+                    }
+                }
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -277,7 +285,7 @@ namespace Inv.DAL.Repository
         {
             get
             {
-                return this.Entities;
+                return this.Entities.AsNoTracking();
             }
         }
 

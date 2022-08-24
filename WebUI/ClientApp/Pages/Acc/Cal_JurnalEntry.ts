@@ -310,7 +310,7 @@ namespace CalJurnalEntry {
         //    return false
         //}
         if (!flagTotal) {
-            MessageBox.Toastr("لحفظ المستند لابد اجمالى المدين  = اجمالى الدائن", Resource.Error, ToastrTypes.error);
+            MessageBox.Toastr(Resource.TotalDebtorMustEqualTotalCreditor, Resource.Error, ToastrTypes.error);
             flag = flagTotal;
         }
         return flag;

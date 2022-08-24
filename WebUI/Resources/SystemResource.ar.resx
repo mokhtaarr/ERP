@@ -3574,4 +3574,16 @@
   <data name="TotalCurr" xml:space="preserve">
     <value>الاجمالي بعمله</value>
   </data>
+  <data name="ItemAlreadyExists" xml:space="preserve">
+    <value>هذا الصنف موجود بالفعل</value>
+  </data>
+  <data name="MustChooseAtLeastOneProduct" xml:space="preserve">
+    <value>لابد من خيار منتج واحد على الاقل</value>
+  </data>
+  <data name="NumberOfItemsIsZero" xml:space="preserve">
+    <value>لا يجوز ان يكون عدد الاصناف  = صفر</value>
+  </data>
+  <data name="TotalDebtorMustEqualTotalCreditor" xml:space="preserve">
+    <value>لحفظ المستند لابد اجمالى المدين  = اجمالى الدائن</value>
+  </data>
 </root>
