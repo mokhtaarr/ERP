@@ -3564,4 +3564,16 @@
   <data name="Using" xml:space="preserve">
     <value>Using</value>
   </data>
+  <data name="PaymentType" xml:space="preserve">
+    <value>Payment type</value>
+  </data>
+  <data name="TransDesc2" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="priceCurr" xml:space="preserve">
+    <value>currency price</value>
+  </data>
+  <data name="TotalCurr" xml:space="preserve">
+    <value>currency total</value>
+  </data>
 </root>

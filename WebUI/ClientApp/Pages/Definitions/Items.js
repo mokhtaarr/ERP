@@ -46,6 +46,7 @@ var Items;
     var ItemCategory = new Array();
     var Partitions = new Array();
     var Items = new Array();
+    var ItemVM;
     var ExpensesAccount = new Array();
     var GiftUnits = new Array();
     var ItemCardUnits = new Array();
@@ -1599,7 +1600,8 @@ var Items;
             findItems(Items, function () {
                 var id = SearchGrid.SearchDataGrid.SelectedKey;
                 if (!IsNullOrEmpty(id)) {
-                    SetItemAlternatives(Number(id));
+                    ItemVM = SearchGrid.SearchDataGrid.SelectedItem;
+                    SetItemAlternatives(ItemVM);
                 }
             });
         };
@@ -1828,8 +1830,8 @@ var Items;
         $("#" + trId + " #ItemType").val(item.ItemType);
         $("#" + trId + " #SubItemId").val(item.GiftItemCardId);
     }
-    function SetItemAlternatives(id) {
-        var item = Items.filter(function (c) { return c.GiftItemCardId == id; })[0];
+    function SetItemAlternatives(item) {
+        //let item = Items.filter(c => c.GiftItemCardId == id)[0];
         if (item == null)
             return;
         $("#" + trId + " #ItemDescA").val(item.ItemDescA);

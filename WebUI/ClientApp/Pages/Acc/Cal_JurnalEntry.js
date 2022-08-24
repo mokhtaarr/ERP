@@ -401,9 +401,8 @@ var CalJurnalEntry;
             {
                 title: Resource.Code, type: "text", css: "ColumPadding", name: "AccountCode", id: "AccountCode",
                 itemTemplate: function (data, row) {
-                    var _a;
                     var account = AllAccounts.filter(function (x) { return x.AccountCode == data; })[0];
-                    return (_a = account) === null || _a === void 0 ? void 0 : _a.AccountNameA;
+                    return account === null || account === void 0 ? void 0 : account.AccountNameA;
                 },
                 editTemplate: function (data, item) {
                     var txt = CreateDropdownList(AllAccounts, "AccountNameA", "AccountNameA", "AccountCode", true);

@@ -137,6 +137,7 @@ class DataTable {
             //console.log(SearchGrid.SearchDataGrid.SelectedKey);
             try {
                 SearchGrid.SearchDataGrid.SelectedKey = table.row(this).data()[SearchGrid.SearchDataGrid.PrimaryKey];
+                SearchGrid.SearchDataGrid.SelectedItem = table.row(this).data();
                 SearchGrid.SearchDataGrid.OnDoubleClick();
             } catch (e) {
             }

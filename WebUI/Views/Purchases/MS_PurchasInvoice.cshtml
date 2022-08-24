@@ -1,0 +1,160 @@
+﻿@using Inv.WebUI.Resources
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+    ViewBag.Title = SystemResource.Purchase_Invoice;
+}
+
+
+<div class="row">
+    <div class="col-12 Div_Tree bg-white max-h-500 p-3">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-BasicData-tab" data-toggle="tab" href="#BasicData" role="tab" aria-controls="nav-BasicData" aria-selected="true"><i class="fas fa-database"></i> @SystemResource.BasicData</a>
+                <a class="nav-item nav-link" id="nav-AdditionalData-tab" data-toggle="tab" href="#AdditionalData" role="tab" aria-controls="nav-AdditionalData" aria-selected="false"><i class="fas fa-folder-plus"></i> @SystemResource.AdditionalData</a>
+                <a class="nav-item nav-link" id="nav-Attachments-tab" data-toggle="tab" href="#Attachments" role="tab" aria-controls="nav-Attachments" aria-selected="false"><i class="fas fa-paperclip"></i> @SystemResource.Attachments</a>
+            </div>
+        </nav>
+
+        <div class="tab-content text-center row" id="nav-tabContent">
+            <div id="BasicData" class="tab-pane fade show active col-12">
+                <div class="row">
+                    <div class="form-group col-md-5">
+                        <div class="row">
+                            <label class="col-md-3" for="TrNo">@SystemResource.ArrestWarrantNumber</label>
+
+                            <div class="col-md-4">
+                                <input type="number" class="form-control" id="TrNo" name="TrNo">
+                            </div>
+
+                            <div class="col-md-5">
+                                <select id="BookId" name="BookId" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-1 text-center">
+                        <button type="button" class="src-btn btn btn-warning  " id="btnMS_PurchasInvoiceSearch" name="btnSearch">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <div class="form-group d-flex col-md-3">
+                        <label>@SystemResource.EditingDate</label>
+                        <input type="date" class="form-control" id="TrDate" name="TrDate">
+                    </div>
+
+                    <div class="form-group d-flex col-md-3 d-flex">
+                        <label>@SystemResource.DocumentType</label>
+                        <select id="TermId" name="TermId" class="form-control">
+                            <option></option>
+                        </select>
+                    </div>
+
+                    <div class="form-group d-flex col-md-3">
+                        <label>@SystemResource.Side</label>
+                        <select class="form-control" id="RectSourceType" name="RectSourceType"> </select>
+                    </div>
+
+                    <div class="form-group d-flex col-md-3" id="selectMode">
+                        <label>@SystemResource.Client</label>
+                        <select name="CustomerId" id="CustomerId" class="form-control selectModeInput"> </select>
+                    </div>
+
+                    <div class="form-group d-flex col-md-2">
+                        <label>@SystemResource.Reference</label>
+                        <input type="text" class="form-control" id="ManualTrNo" name="ManualTrNo">
+                    </div>
+
+                    <div class="form-group d-flex col-md-2">
+                        <label for="">@SystemResource.Currency</label>
+                        <select name="CurrencyId" id="CurrencyId" class="form-control"> </select>
+                    </div>
+                    
+                    <div class="form-group d-flex col-md-2">
+                        <label for="">@SystemResource.M_Transfer</label>
+                        <input type="number" class="form-control" id="Rate" name="Rate">
+                    </div>
+
+                    <div class="form-group d-flex col-md-2">
+                        <label for="inputZip">@SystemResource.PaymentType</label>
+                        <select class="form-control" id="InvoiceType" name="InvoiceType">
+                            <option value=""></option>
+                            <option value="0">@SystemResource.Cash</option>
+                            <option value="1">@SystemResource.App_Doubted</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group d-flex col-md-4">
+                        <label for="">@SystemResource.AnalyticalCode</label>
+                        <select name="AId" id="AId" class="form-control"> </select>
+                    </div>
+                    
+                    <div class="form-group d-flex col-md-6">
+                        <label for="">@SystemResource.Quantity</label>
+                        <input name="InvTotal" id="InvTotal" class="form-control" />
+                        <input name="InvTotalAfterRate" id="InvTotalAfterRate" class="form-control" disabled />
+                    </div>
+
+                    <div class="col-12">
+                        <table data-Sub="True" id="divDetailGrid"></table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="AdditionalData" class="tab-pane fade  col-12">
+                <div class="row">
+                    <div class="form-group d-flex col-md-6">
+                        <label>@SystemResource.ExtraField 1</label>
+                        <input type="text" class="form-control" id="InvDescA" name="InvDescA">
+                    </div>
+
+                    <div class="form-group d-flex col-md-6">
+                        <label>@SystemResource.ExtraField 2</label>
+                        <input type="text" class="form-control" id="InvDescE" name="InvDescE">
+                    </div>
+
+                    <div class="form-group d-flex col-md-6">
+                        <label>@SystemResource.TransDesc2 3</label>
+                        <input type="text" class="form-control" id="AddField3" name="AddField3">
+                    </div>
+                    
+                    <div class="form-group d-flex col-md-6">
+                        <label>@SystemResource.TransDesc2 4</label>
+                        <input type="text" class="form-control" id="AddField4" name="AddField4">
+                    </div>
+                    
+                    <div class="form-group d-flex col-md-6">
+                        <label>@SystemResource.TransDesc2 5</label>
+                        <input type="text" class="form-control" id="AddField5" name="AddField5">
+                    </div>
+                    
+                    <div class="form-group d-flex col-md-6">
+                        <label>@SystemResource.TransDesc2 6</label>
+                        <input type="text" class="form-control" id="AddField6" name="AddField6">
+                    </div>
+                    
+                    <div class="form-group d-flex col-md-6">
+                        <label>@SystemResource.TransDesc2 7</label>
+                        <input type="text" class="form-control" id="AddField7" name="AddField7">
+                    </div>
+                    
+                    <div class="form-group d-flex col-md-6">
+                        <label>@SystemResource.Notes</label>
+                        <textarea class="form-control" id="Remarks" name="Remarks"></textarea>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="Attachments" class="tab-pane fade col-12">
+                <div class="col-lg-12  ">
+                    <table id="divAttachmentsGrid"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/ClientApp/Pages/purchases/MS_PurchasInvoice.js"></script>

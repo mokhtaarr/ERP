@@ -126,19 +126,19 @@ var MsVendorTypes;
     }
     $('#Tree').on("select_node.jstree", function (e, data) { click_in_labl(data.node.id); });
     function click_in_labl(Id) {
-        var _a, _b, _c, _d, _e, _f, _g;
+        var _a, _b, _c, _d, _e, _f;
         VendorType = new Ms_VendorTypes();
         VendorType = VendorTypes.filter(function (x) { return x.VendorTypeId == Number(Id); })[0];
         if (VendorType != null) {
             _VendorTypeId = Number(VendorType.VendorTypeId);
             ParentId = Number(VendorType.VendorTypeParent);
-            VendorTypeParent.value = (_a = ParentId) === null || _a === void 0 ? void 0 : _a.toString();
-            Code.value = (_b = VendorType.VendorTypeCode) === null || _b === void 0 ? void 0 : _b.toString();
-            DescA.value = (_c = VendorType.VendorTypeDescA) === null || _c === void 0 ? void 0 : _c.toString();
-            DescE.value = (_d = VendorType.VendorTypeDescE) === null || _d === void 0 ? void 0 : _d.toString();
-            Remarks.value = (_e = VendorType.Remarks) === null || _e === void 0 ? void 0 : _e.toString();
-            VendorTypeLevel.value = (_f = VendorType.VendorTypeLevel) === null || _f === void 0 ? void 0 : _f.toString();
-            VendorTypeLevelType.value = (_g = VendorType.VendorTypeLevelType) === null || _g === void 0 ? void 0 : _g.toString();
+            VendorTypeParent.value = ParentId === null || ParentId === void 0 ? void 0 : ParentId.toString();
+            Code.value = (_a = VendorType.VendorTypeCode) === null || _a === void 0 ? void 0 : _a.toString();
+            DescA.value = (_b = VendorType.VendorTypeDescA) === null || _b === void 0 ? void 0 : _b.toString();
+            DescE.value = (_c = VendorType.VendorTypeDescE) === null || _c === void 0 ? void 0 : _c.toString();
+            Remarks.value = (_d = VendorType.Remarks) === null || _d === void 0 ? void 0 : _d.toString();
+            VendorTypeLevel.value = (_e = VendorType.VendorTypeLevel) === null || _e === void 0 ? void 0 : _e.toString();
+            VendorTypeLevelType.value = (_f = VendorType.VendorTypeLevelType) === null || _f === void 0 ? void 0 : _f.toString();
             var CheckIfHasNodes = VendorTypes.filter(function (x) { return x.VendorTypeParent == _VendorTypeId; })[0];
             hasNodes = CheckIfHasNodes != null ? true : false;
         }

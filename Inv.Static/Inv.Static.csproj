@@ -76,6 +76,7 @@
     <Compile Include="VM\Prod_BasicUnitsDetailesVM.cs" />
     <Compile Include="VM\MS_ItemCardDetailesVM.cs" />
     <Compile Include="VM\Ms_SettingsVM.cs" />
+    <Compile Include="VM\PurchasInvoiceAndDetail.cs" />
     <Compile Include="VM\SharedVM.cs" />
   </ItemGroup>
   <ItemGroup>

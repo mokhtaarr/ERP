@@ -60,6 +60,7 @@ namespace Items {
     var ItemCategory: Array<SharedVM> = new Array<SharedVM>();
     var Partitions: Array<SharedVM> = new Array<SharedVM>();
     var Items: Array<ItemsVM> = new Array<ItemsVM>();
+    var ItemVM: any;
     var ExpensesAccount: Array<SharedVM> = new Array<SharedVM>();
 
     var GiftUnits = new Array<Ms_ItemUnitVM>();
@@ -1073,7 +1074,6 @@ namespace Items {
         ItemCardExpensesPros.push(item);
     }
 
-
     function InitializeSuppliersGrid() {
         SuppliersGrid.ElementName = "SuppliersGrid";
         SuppliersGrid.PrimaryKey = "ItemVendorId";
@@ -1783,7 +1783,10 @@ namespace Items {
         let txt = CreateElement("text", "", code, null, "ItemCode", null);
         txt.ondblclick = function () {
             findItems(Items, () => {
-                let id = SearchGrid.SearchDataGrid.SelectedKey; if (!IsNullOrEmpty(id)) { SetItemAlternatives(Number(id)); }
+                let id = SearchGrid.SearchDataGrid.SelectedKey; if (!IsNullOrEmpty(id)) {
+                    ItemVM = SearchGrid.SearchDataGrid.SelectedItem as ItemsVM;
+                    SetItemAlternatives(ItemVM);
+                }
             });
         }
         return txt
@@ -2039,8 +2042,8 @@ namespace Items {
         $("#" + trId + " #SubItemId").val(item.GiftItemCardId);
     }
     
-    function SetItemAlternatives(id: number) {
-        let item = Items.filter(c => c.GiftItemCardId == id)[0];
+    function SetItemAlternatives(item: ItemsVM) {
+        //let item = Items.filter(c => c.GiftItemCardId == id)[0];
         if (item == null)
             return;
 

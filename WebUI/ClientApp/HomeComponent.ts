@@ -495,6 +495,10 @@ namespace HomeComponent {
         $("#btnMS_PaymentNote").click(() => { OpenPage(Modules.MS_PaymentNote); })
         /////////////////End Account Pages ////////////////////
 
+        /////////////////Start Purchase Pages ////////////////////
+        $("#btnPurchasInvoice").click(() => { OpenPage(Modules.PurchasInvoice); })
+        /////////////////End Purchase Pages ////////////////////
+
         ///////// Start Setting ///////////
         $("#btnSearch").click(() => { OpenPage(Modules.Search); })
         ///////// End Setting ///////////

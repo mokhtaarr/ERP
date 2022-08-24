@@ -4273,6 +4273,7 @@
     <Content Include="Views\static\TaxForms.cshtml" />
     <Content Include="Views\Definitions\Items.cshtml" />
     <Content Include="Views\Definitions\BasicUnits.cshtml" />
+    <Content Include="Views\Purchases\MS_PurchasInvoice.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -4346,6 +4347,7 @@
     <TypeScriptCompile Include="ClientApp\MessageBox.ts" />
     <TypeScriptCompile Include="ClientApp\Pages\Login_.ts" />
     <TypeScriptCompile Include="ClientApp\Pages\ProgrammingTools\Ms_Settings.ts" />
+    <TypeScriptCompile Include="ClientApp\Pages\Purchases\MS_PurchasInvoice.ts" />
     <TypeScriptCompile Include="ClientApp\Partial\Background.ts" />
     <TypeScriptCompile Include="ClientApp\Shared.ts" />
     <TypeScriptCompile Include="ClientApp\SharedButtons.ts" />
@@ -4401,7 +4403,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>61563</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:4545/</IISUrl>
+          <IISUrl>http://localhost:4540/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -7261,6 +7261,15 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Payment type.
+        /// </summary>
+        public static string PaymentType {
+            get {
+                return ResourceManager.GetString("PaymentType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Penultimate cost.
         /// </summary>
         public static string PenultimateCost {
@@ -7581,6 +7590,15 @@ namespace Inv.WebUI.Resources {
         public static string Price2 {
             get {
                 return ResourceManager.GetString("Price2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to currency price.
+        /// </summary>
+        public static string priceCurr {
+            get {
+                return ResourceManager.GetString("priceCurr", resourceCulture);
             }
         }
         
@@ -9493,6 +9511,15 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to currency total.
+        /// </summary>
+        public static string TotalCurr {
+            get {
+                return ResourceManager.GetString("TotalCurr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total Items.
         /// </summary>
         public static string TotalItems {
@@ -9552,6 +9579,15 @@ namespace Inv.WebUI.Resources {
         public static string TransDesc {
             get {
                 return ResourceManager.GetString("TransDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string TransDesc2 {
+            get {
+                return ResourceManager.GetString("TransDesc2", resourceCulture);
             }
         }
         

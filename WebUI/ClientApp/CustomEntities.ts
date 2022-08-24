@@ -541,3 +541,8 @@ class ItemsVM {
     public BarCode4: string;
     public BarCode5: string;
 }
+
+class PurchasInvoiceAndDetail {
+    public Model: MS_PurchasInvoice;
+    public Details: Array<MS_PurchaseInvoiceItemCard>;
+}

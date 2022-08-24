@@ -463,6 +463,9 @@ var HomeComponent;
         $("#btnMS_Expenses").click(function () { OpenPage(Modules.MS_Expenses); });
         $("#btnMS_PaymentNote").click(function () { OpenPage(Modules.MS_PaymentNote); });
         /////////////////End Account Pages ////////////////////
+        /////////////////Start Purchase Pages ////////////////////
+        $("#btnPurchasInvoice").click(function () { OpenPage(Modules.PurchasInvoice); });
+        /////////////////End Purchase Pages ////////////////////
         ///////// Start Setting ///////////
         $("#btnSearch").click(function () { OpenPage(Modules.Search); });
         ///////// End Setting ///////////

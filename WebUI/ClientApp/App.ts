@@ -50,6 +50,10 @@ var Modules = {
     Ms_ReceiptNote: "Ms_ReceiptNote",
     MS_PaymentNote: "MS_PaymentNote",
 
+    //////////////////// Purchase //////////////////////
+    PurchasInvoice: "PurchasInvoice",
+
+
     ///////// Setting ///////////
     Search: "Search",
 
@@ -216,7 +220,7 @@ interface IJsGridColumn {
     items?: any;
     valueField?: string;
     textField?: string;
-    value?: string;
+    value?: any;
 
     //updateItem?: any;
     _createEditButton?: any;
@@ -1812,7 +1816,7 @@ function GetDate() {
     return ReturnedDate;
 }
 
-function CreateDropdownList<T>(arr: Array<T>, Name_Ar: string, Name_En: string, Key: string, IsSelectNull: boolean = false, id: string = null, disabled: boolean = false): HTMLSelectElement {
+function CreateDropdownList<T>(arr: Array<T>, Name_Ar: string, Name_En: string, Key: string, IsSelectNull: boolean = false, id: string = null, disabled: boolean = false, value: string = null): HTMLSelectElement {
     var Env = GetSystemEnvironment();
     let element = document.createElement("select") as HTMLSelectElement;
     if (!IsNullOrEmpty(id))
@@ -1834,6 +1838,7 @@ function CreateDropdownList<T>(arr: Array<T>, Name_Ar: string, Name_En: string, 
             }
             break;
     }
+    element.value = value;
     return element;
 }
 

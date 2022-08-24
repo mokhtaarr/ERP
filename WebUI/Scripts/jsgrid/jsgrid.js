@@ -2114,8 +2114,12 @@
         },
 
         _createTextBox: function () {
-            return $("<input>").attr("type", "number")
-                .prop("readonly", !!this.readOnly);
+            var $result = $("<input>").attr("type", "number").prop("readonly", !!this.readOnly);
+            if (this.Typefun != null || this.Typefun != "" || this.Typefun != " ")
+                $result.on(this.Typefun, this.fun);
+
+            return $result;
+            //return $("<input>").attr("type", "number").prop("readonly", !!this.readOnly);
         }
     });
 
@@ -2171,6 +2175,10 @@
         this.selectedIndex = -1;
         this.valueField = "";
         this.textField = "";
+        //this.id = (config.id) == null ? "" : config.id;
+        //this.value = (config.value) == null ? "" : config.value;
+        //this.fun = (config.fun) == null ? "" : config.fun;
+        //this.Typefun = (config.Typefun) == null ? "" : config.Typefun;
 
         if(config.valueField && config.items.length) {
             var firstItemValue = config.items[0][config.valueField];
@@ -2191,6 +2199,9 @@
             var items = this.items,
                 valueField = this.valueField,
                 textField = this.textField,
+                value = this.value,
+                fun = this.fun,
+                Typefun = this.Typefun,
                 resultItem;
 
             if(valueField) {
@@ -2269,6 +2280,7 @@
                 textField = this.textField,
                 value = this.value,
                 fun = this.fun,
+                items = this.items,
                 Typefun = this.Typefun,
                 selectedIndex = this.selectedIndex;
              
@@ -2277,15 +2289,13 @@
                 var value = valueField ? item[valueField] : index,
                     text = textField ? item[textField] : item;
 
-                var $option = $("<option>")
-                    .attr("value", value)
-                    .text(text)
-                    .appendTo($result);
+                var $option = $("<option>").attr("value", value).text(text).appendTo($result);
 
                 $option.prop("selected", (selectedIndex === index));
             });
-
             $result.prop("disabled", !!this.readOnly);
+            $result.val(value);
+
             if (Typefun != null || Typefun != "" || Typefun != " ")
                 $result.on(Typefun, fun);
 

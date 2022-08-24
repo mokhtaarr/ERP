@@ -62,6 +62,7 @@ using Inv.BLL.Services.ProdJobOrder;
 using Inv.BLL.Services.SrVehicles;
 using Inv.BLL.Services.MsItemCard;
 using Inv.BLL.Services.ProdBasicUnits;
+using Inv.BLL.Services.Purchase.PurchasInvoice;
 
 namespace Inv.API.Infrastructure
 {
@@ -133,6 +134,10 @@ namespace Inv.API.Infrastructure
             //////////////////////// System Pages Service ////////////////////////////
             container.RegisterType<ISearchService, SearchService>();
             container.RegisterType<ISharedService, SharedService>();
+            
+
+            //////////////////////// System Pages Service ////////////////////////////
+            container.RegisterType<IMS_PurchasInvoiceService, MS_PurchasInvoiceService>();
 
 
             //////////////////////// Fixed assets Pages Service ////////////////////////////

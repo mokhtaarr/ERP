@@ -179,9 +179,8 @@ var USERS;
     }
     USERS.Navigate = Navigate;
     function drpuserType_change() {
-        var _a;
         var selectedRelease = List_UserType.filter(function (x) { return x.CodeValue == Number(drpuserType_2.value); })[0];
-        var resilt = (_a = selectedRelease) === null || _a === void 0 ? void 0 : _a.CodeValue;
+        var resilt = selectedRelease === null || selectedRelease === void 0 ? void 0 : selectedRelease.CodeValue;
         if (resilt == 1) {
             $("#selsman").removeClass("display_none");
             $("#cashbox").addClass("display_none");

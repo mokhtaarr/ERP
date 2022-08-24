@@ -2,10 +2,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -51,7 +53,7 @@ var APISessionRecord = /** @class */ (function () {
         set: function (value) {
             this.SetAPISession("SystemCode", value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(APISessionRecord.prototype, "SubSystemCode", {
@@ -61,7 +63,7 @@ var APISessionRecord = /** @class */ (function () {
         set: function (value) {
             this.SetAPISession("SubSystemCode", value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(APISessionRecord.prototype, "Modulecode", {
@@ -71,7 +73,7 @@ var APISessionRecord = /** @class */ (function () {
         set: function (value) {
             this.SetAPISession("Modulecode", value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(APISessionRecord.prototype, "UserCode", {
@@ -81,7 +83,7 @@ var APISessionRecord = /** @class */ (function () {
         set: function (value) {
             this.SetAPISession("UserCode", value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(APISessionRecord.prototype, "Token", {
@@ -91,7 +93,7 @@ var APISessionRecord = /** @class */ (function () {
         set: function (value) {
             this.SetAPISession("Token", value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(APISessionRecord.prototype, "CompCode", {
@@ -101,7 +103,7 @@ var APISessionRecord = /** @class */ (function () {
         set: function (value) {
             this.SetAPISession("CompCode", value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(APISessionRecord.prototype, "BranchCode", {
@@ -111,7 +113,7 @@ var APISessionRecord = /** @class */ (function () {
         set: function (value) {
             this.SetAPISession("BranchCode", value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(APISessionRecord.prototype, "CurrentYear", {
@@ -121,7 +123,7 @@ var APISessionRecord = /** @class */ (function () {
         set: function (value) {
             this.SetAPISession("CurrentYear", value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(APISessionRecord.prototype, "ScreenLanguage", {
@@ -131,7 +133,7 @@ var APISessionRecord = /** @class */ (function () {
         set: function (value) {
             this.SetAPISession("ScreenLanguage", value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return APISessionRecord;
@@ -8465,5 +8467,218 @@ var Prod_ItemcardExpenses = /** @class */ (function () {
         this.AccountNameE = "";
     }
     return Prod_ItemcardExpenses;
+}());
+var MS_PurchasInvoice = /** @class */ (function () {
+    function MS_PurchasInvoice() {
+        this.PurInvId = 0;
+        this.VendorId = 0;
+        this.StorId = 0;
+        this.PurOrderId = 0;
+        this.PurOrderReqId = 0;
+        this.BookId = 0;
+        this.TermId = 0;
+        this.CurrencyId = 0;
+        this.VendBranchId = 0;
+        this.ExpensesId = 0;
+        this.FinancialIntervalsId = 0;
+        this.DBTableName = "";
+        this.DBTableId = 0;
+        this.AccountTableName = "";
+        this.RectSourceType = 0;
+        this.AccountId = 0;
+        this.TaxesId1 = 0;
+        this.TaxValue1 = 0;
+        this.TaxesId2 = 0;
+        this.TaxValue2 = 0;
+        this.TaxesId3 = 0;
+        this.TaxValue3 = 0;
+        this.AId = 0;
+        this.TrNo = 0;
+        this.ManualTrNo = "";
+        this.TrDate = "";
+        this.InvDescA = "";
+        this.InvDescE = "";
+        this.Remarks = "";
+        this.AddField3 = "";
+        this.AddField4 = "";
+        this.AddField5 = "";
+        this.AddField6 = "";
+        this.AddField7 = "";
+        this.InvoiceType = 0;
+        this.InvDueDate = "";
+        this.TotalItemTax1 = 0;
+        this.TotalItemTax2 = 0;
+        this.TotalItemTax3 = 0;
+        this.TotalTaxValu = 0;
+        this.InvTotal = 0;
+        this.DiscPercent = 0;
+        this.DiscAmount = 0;
+        this.DiscPercent2 = 0;
+        this.DiscAmount2 = 0;
+        this.DiscPercent3 = 0;
+        this.DiscAmount3 = 0;
+        this.DiscPercent4 = 0;
+        this.DiscAmount4 = 0;
+        this.PriceAfterTax = 0;
+        this.ExpenValue = 0;
+        this.PaidPrice = 0;
+        this.NetPrice = 0;
+        this.PaidPriceVisa = 0;
+        this.Closed = false;
+        this.IsPrinted = false;
+        this.Rate = 0;
+        this.NetPriceBeforCurr = 0;
+        this.ExpenValueBeforCurr = 0;
+        this.ExpenValueWithCurr = 0;
+        this.AdvancExpenseWithCurr = 0;
+        this.AdvancExpenseBeforCurr = 0;
+        this.IsDelivered = false;
+        this.IsPosted = false;
+        this.Postedby = "";
+        this.PostedDate = "";
+        this.CloseDate = "";
+        this.UncloseDate = "";
+        this.ClosedBy = 0;
+        this.UnclosedBy = 0;
+        this.PermPrinted = 0;
+        this.PermPrintedAt = "";
+        this.IsPaid = false;
+        this.PaidDocId = 0;
+        this.NotPaid = 0;
+        this.TermCostCenterId = 0;
+        this.TermCostCenterValue = 0;
+        this.IsShippingInv = false;
+        this.IsNoCostDeliver = 0;
+        this.DeliverNoCostExecut = false;
+        this.MultiResourceDeliver = false;
+        this.EtaxSent = false;
+        this.EtaxSentTime = "";
+        this.EtaxRemarks = "";
+        this.EtaxReference = "";
+        this.CreatedBy = "";
+        this.CreatedAt = "";
+        this.UpdateBy = "";
+        this.UpdateAt = "";
+        this.DeletedBy = "";
+        this.DeletedAt = "";
+        this.IsReturned = false;
+        this.ShiftId = 0;
+        this.LastUpdateTime;
+        this.IsRemoteEntity = false;
+        this.RemotId = 0;
+        this.MainVendServerId = 0;
+    }
+    return MS_PurchasInvoice;
+}());
+var MS_PurchaseInvoiceItemCard = /** @class */ (function () {
+    function MS_PurchaseInvoiceItemCard() {
+        this.InvItemCardId = 0;
+        this.PurInvId = 0;
+        this.ItemCardId = 0;
+        this.ItemAtrribBatchId = 0;
+        this.StoreId = 0;
+        this.StorePartId = 0;
+        this.StockRecItemCardId = 0;
+        this.CityIDFrom = 0;
+        this.CityIDTo = 0;
+        this.ItemIdToFollow = 0;
+        this.FollowCollectionId = 0;
+        this.LotNumberExpiryId = 0;
+        this.TaxesId1 = 0;
+        this.Tax1Style = 0;
+        this.Tax1IsAccomulative = false;
+        this.Tax1PlusOrMinus = false;
+        this.Tax1Percent = 0;
+        this.TaxValue1 = 0;
+        this.TaxesId2 = 0;
+        this.Tax2Style = 0;
+        this.Tax2IsAccomulative = false;
+        this.Tax2PlusOrMinus = false;
+        this.Tax2Percent = 0;
+        this.TaxValue2 = 0;
+        this.TaxesId3 = 0;
+        this.Tax3Style = 0;
+        this.Tax3IsAccomulative = false;
+        this.Tax3PlusOrMinus = false;
+        this.Tax3Percent = 0;
+        this.TaxValue3 = 0;
+        this.ScaleCardId = 0;
+        this.UnitId = 0;
+        this.UnitRate = 0;
+        this.ItemType = 0;
+        this.PayId = 0;
+        this.VJOrderId = 0;
+        this.StockRecId = 0;
+        this.BarCode = "";
+        this.BatchNumberFifoOrLifo = "";
+        this.QuantityRecieved = 0;
+        this.QtyRecievedBeforRate = 0;
+        this.Quantity = 0;
+        this.QtyBeforRate = 0;
+        this.ExecutedQty = 0;
+        this.QtyIUnit2 = 0;
+        this.ReturnQty = 0;
+        this.ReturnQtyBeforRate = 0;
+        this.Price = 0;
+        this.PriceAfterRate = 0;
+        this.ServicePrice = 0;
+        this.ProfitPrice = 0;
+        this.Kirat = 0;
+        this.DisAmount = 0;
+        this.DisPercent = 0;
+        this.DisAmountAfterRate = 0;
+        this.MainDiscPercent = 0;
+        this.MainDiscValue = 0;
+        this.TaxableValue = 0;
+        this.FIFOCost = 0;
+        this.FIFOCostUnit = 0;
+        this.LIFOCost = 0;
+        this.LIFOCostUnit = 0;
+        this.CoastAverage = 0;
+        this.CoastAverageUnit = 0;
+        this.IsCollection = false;
+        this.ExpenseShare = 0;
+        this.ExpenseShareUnit = 0;
+        this.PriceAfterExpense = 0;
+        this.PriceAfterExpenseUnit = 0;
+        this.PriceAfterCurr = 0;
+        this.PriceAfterCurrUnit = 0;
+        this.ExpenseShareAfterCurr = 0;
+        this.ExpenseShareAfterCurrUnit = 0;
+        this.PriceAfterExpenseAfterCurr = 0;
+        this.PriceAfterExpensAfterCurrUnit = 0;
+        this.Remarks = "";
+        this.Remarks1 = "";
+        this.Remarks2 = "";
+        this.Remarks3 = "";
+        this.ItemCardDesc = "";
+        this.ItemCardDescE = "";
+        this.PriceIncludTaxInPurch = false;
+        this.IsNoCostDeliver = 0;
+        this.DeliverNoCostExecut = false;
+        this.AId = 0;
+        this.DBTableName = "";
+        this.DBTableId = 0;
+        this.AccountTableName = "";
+        this.RectSourceType = 0;
+        this.AccountId = 0;
+        this.RectSourceTypeId = 0;
+        this.VehicleId = 0;
+        this.QtyBeforDiscount = 0;
+        this.QtyDiscount = 0;
+        this.QualityDiscount = 0;
+        this.QualityValueDisc = 0;
+        this.QtyScalDiffrence = 0;
+        this.QtyScalDiffrenceValue = 0;
+        this.LastUpdateTime;
+        this.MainServerId = 0;
+        this.ServerUnitId = 0;
+        this.ServerItemCardId = 0;
+        this.ItemDescA = "";
+        this.ItemDescE = "";
+        this.UnitNam = "";
+        this.StatusFlag = "";
+    }
+    return MS_PurchaseInvoiceItemCard;
 }());
 //# sourceMappingURL=Entities.js.map

@@ -38,8 +38,6 @@ namespace Inv.WebUI.Controllers
 
             return View("HomeIndex");
         }
-
-
         public ActionResult Logout()
         {
 
@@ -258,6 +256,15 @@ namespace Inv.WebUI.Controllers
         ///////////////////////////// End Defination ////////////////////////////
         #endregion
 
+        #region purchases Pages 
+        /// //////////////////////////////////////////// purchases Pages ////////////////////////
+        public ActionResult PurchasInvoiceIndex()
+        {
+            return View("~/Views/Purchases/MS_PurchasInvoice.cshtml");
+        }
+
+        #endregion
+
         #region Fixed Assets
         public ActionResult Asset_AssetCardIndex()
         {
@@ -270,7 +277,8 @@ namespace Inv.WebUI.Controllers
         }
         #endregion
 
-        #region Fixed Assets
+        #region Settings
+        /// //////////////////////////////////////////// Settings Page ////////////////////////
         public ActionResult SettingsIndex()
         {
             return View("~/Views/ProgrammingTools/MS_Settings.cshtml");

@@ -298,6 +298,7 @@
     <Compile Include="Controllers\MS_PaymentNoteController.cs" />
     <Compile Include="Controllers\MS_TaxesController.cs" />
     <Compile Include="Controllers\Ms_ReceiptNoteController.cs" />
+    <Compile Include="Controllers\Purchase\MS_PurchasInvoiceController.cs" />
     <Compile Include="Controllers\Shared\FileHelper.cs" />
     <Compile Include="Controllers\Shared\PostOrderController.cs" />
     <Compile Include="Controllers\Sr_VehicleShapes.cs" />

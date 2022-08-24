@@ -3562,4 +3562,16 @@
   <data name="Using" xml:space="preserve">
     <value>الاستخدام</value>
   </data>
+  <data name="PaymentType" xml:space="preserve">
+    <value>نوع السداد</value>
+  </data>
+  <data name="TransDesc2" xml:space="preserve">
+    <value>وصف</value>
+  </data>
+  <data name="priceCurr" xml:space="preserve">
+    <value>السعر بعمله</value>
+  </data>
+  <data name="TotalCurr" xml:space="preserve">
+    <value>الاجمالي بعمله</value>
+  </data>
 </root>

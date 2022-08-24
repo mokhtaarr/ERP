@@ -54,6 +54,8 @@ var Modules = {
     Sys_FinancialYears: "Sys_FinancialYears",
     Ms_ReceiptNote: "Ms_ReceiptNote",
     MS_PaymentNote: "MS_PaymentNote",
+    //////////////////// Purchase //////////////////////
+    PurchasInvoice: "PurchasInvoice",
     ///////// Setting ///////////
     Search: "Search",
     ///////// Programming Tools///////////
@@ -1531,10 +1533,11 @@ function GetDate() {
     ReturnedDate = yyyy + '-' + mm + '-' + dd;
     return ReturnedDate;
 }
-function CreateDropdownList(arr, Name_Ar, Name_En, Key, IsSelectNull, id, disabled) {
+function CreateDropdownList(arr, Name_Ar, Name_En, Key, IsSelectNull, id, disabled, value) {
     if (IsSelectNull === void 0) { IsSelectNull = false; }
     if (id === void 0) { id = null; }
     if (disabled === void 0) { disabled = false; }
+    if (value === void 0) { value = null; }
     var Env = GetSystemEnvironment();
     var element = document.createElement("select");
     if (!IsNullOrEmpty(id))
@@ -1557,6 +1560,7 @@ function CreateDropdownList(arr, Name_Ar, Name_En, Key, IsSelectNull, id, disabl
             }
             break;
     }
+    element.value = value;
     return element;
 }
 function CreateDropdownListWithCode(arr, Name_Ar, Name_En, code, Key, IsSelectNull) {
