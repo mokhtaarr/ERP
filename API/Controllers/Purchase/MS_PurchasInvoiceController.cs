@@ -1,4 +1,5 @@
-﻿using Inv.API.Models;
+﻿
+using Inv.API.Models;
 using Inv.DAL.Domain;
 using System;
 using System.Collections.Generic;
@@ -67,7 +68,7 @@ namespace Inv.API.Controllers
                             detailes.Details.ForEach(x => x.PurInvId = Model.PurInvId);
                     
                             if (detailes.Details.Count() > 0)
-                                Service.InsertList(detailes.Details);
+                                Service.InsertList(detailes.Details.Distinct().ToList());
 
                             dbTransaction.Commit();
                             return Ok(new BaseResponse(detailes.Model));
@@ -99,7 +100,7 @@ namespace Inv.API.Controllers
                             detailes.Details.ForEach(x => x.PurInvId = Model.PurInvId);
 
                             if (detailes.Details.Count() > 0)
-                                Service.UpdatePurchaseInvoiceItemCard(detailes.Details);
+                                Service.UpdatePurchaseInvoiceItemCard(detailes.Details.Distinct().ToList());
                             
                             dbTransaction.Commit();
                             return Ok(new BaseResponse(detailes.Model));

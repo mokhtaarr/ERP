@@ -14902,6 +14902,8 @@ class MS_PurchaseInvoiceItemCard {
     constructor() {
         this.InvItemCardId = 0;
         this.PurInvId = 0;
+        this.ItemTotal = 0;
+        this.ItemTotalAfterRate = 0;
         this.ItemCardId = 0;
         this.ItemAtrribBatchId = 0;
         this.StoreId = 0;
@@ -15006,13 +15008,15 @@ class MS_PurchaseInvoiceItemCard {
         this.ItemDescE = "";
         this.UnitNam = "";
         this.StatusFlag = "";
-    }
+    } 
     public StatusFlag: string;
     public UnitNam: string;
     public ItemDescA: string;
     public ItemDescE: string;
     public InvItemCardId: number;
     public PurInvId: number;
+    public ItemTotal: number;
+    public ItemTotalAfterRate: number;
     public ItemCardId: number;
     public ItemAtrribBatchId: number;
     public StoreId: number;

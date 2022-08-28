@@ -183,6 +183,10 @@ namespace PurchasInvoice {
                     Model = DeatilsAndModel.Model;
                     Display(Model);
                     Details = DeatilsAndModel.Details;
+                    for (var i = 0; i < Details.length; i++) {
+                        Details[i].ItemTotal = Details[i].Price * Details[i].Quantity;
+                        Details[i].ItemTotalAfterRate = Model.Rate * (Details[i].Price * Details[i].Quantity);
+                    }
 
                     SharedWork.SwitchModes(ScreenModes.Query);
 
@@ -200,7 +204,8 @@ namespace PurchasInvoice {
 
     function Assign() {
         DeatilsAndModel.Model = DocumentActions.AssignToModel<MS_PurchasInvoice>(Model);
-        DeatilsAndModel.Details = DocumentActions.AssignArr(Details, DetailsPros);
+        DeatilsAndModel.Details = Details;
+        //DeatilsAndModel.Details = DocumentActions.AssignArr(Details, DetailsPros);
 
         if (StatusFlag == "i") {
             Model.CreatedAt = DateTimeFormat(Date().toString());
@@ -498,7 +503,6 @@ namespace PurchasInvoice {
     }
 
     function UpdateItem(e: JsGridUpdateEventArgs) {
-        debugger
         let item = e.Item as MS_PurchaseInvoiceItemCard;
         var index: number = e.ItemIndex;
         item.StatusFlag = 'u';
@@ -522,6 +526,7 @@ namespace PurchasInvoice {
     }
 
     function PushItemChanged(item: MS_PurchaseInvoiceItemCard, index: number) {
+        //Details.splice(index, 1);
         item.StatusFlag == 'd' ? Details.splice(index, 1) : Details.splice(index, 1, item);
         let ItemCard: MS_PurchaseInvoiceItemCard = DetailsPros.filter(x => x.ItemCardId != item.ItemCardId && x.UnitId != item.UnitId)[0];
 

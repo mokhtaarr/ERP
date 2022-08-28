@@ -151,6 +151,10 @@ var PurchasInvoice;
                     Model = DeatilsAndModel.Model;
                     Display(Model);
                     Details = DeatilsAndModel.Details;
+                    for (var i = 0; i < Details.length; i++) {
+                        Details[i].ItemTotal = Details[i].Price * Details[i].Quantity;
+                        Details[i].ItemTotalAfterRate = Model.Rate * (Details[i].Price * Details[i].Quantity);
+                    }
                     SharedWork.SwitchModes(ScreenModes.Query);
                     divDetailGrid.DataSource = Details;
                     if (divDetailGrid.DataSource.length != 0 && SharedWork.CurrentMode == ScreenModes.Query)
@@ -164,7 +168,8 @@ var PurchasInvoice;
     }
     function Assign() {
         DeatilsAndModel.Model = DocumentActions.AssignToModel(Model);
-        DeatilsAndModel.Details = DocumentActions.AssignArr(Details, DetailsPros);
+        DeatilsAndModel.Details = Details;
+        //DeatilsAndModel.Details = DocumentActions.AssignArr(Details, DetailsPros);
         if (StatusFlag == "i") {
             Model.CreatedAt = DateTimeFormat(Date().toString());
             Model.CreatedBy = SysSession.CurrentEnvironment.UserCode;
@@ -435,7 +440,6 @@ var PurchasInvoice;
         GetTotalForDetails();
     }
     function UpdateItem(e) {
-        debugger;
         var item = e.Item;
         var index = e.ItemIndex;
         item.StatusFlag = 'u';
@@ -454,6 +458,7 @@ var PurchasInvoice;
         GetTotalForDetails();
     }
     function PushItemChanged(item, index) {
+        //Details.splice(index, 1);
         item.StatusFlag == 'd' ? Details.splice(index, 1) : Details.splice(index, 1, item);
         var ItemCard = DetailsPros.filter(function (x) { return x.ItemCardId != item.ItemCardId && x.UnitId != item.UnitId; })[0];
         if (ItemCard == null)

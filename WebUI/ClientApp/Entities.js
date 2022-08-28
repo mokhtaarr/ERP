@@ -8574,6 +8574,8 @@ var MS_PurchaseInvoiceItemCard = /** @class */ (function () {
     function MS_PurchaseInvoiceItemCard() {
         this.InvItemCardId = 0;
         this.PurInvId = 0;
+        this.ItemTotal = 0;
+        this.ItemTotalAfterRate = 0;
         this.ItemCardId = 0;
         this.ItemAtrribBatchId = 0;
         this.StoreId = 0;
