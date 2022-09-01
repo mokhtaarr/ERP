@@ -3588,4 +3588,7 @@
   <data name="TotalDebtorMustEqualTotalCreditor" xml:space="preserve">
     <value>To save the document, the total of the debtor must be = the total of the creditor</value>
   </data>
+  <data name="ErrorMaximumImage" xml:space="preserve">
+    <value>Maximum image size is 3MB</value>
+  </data>
 </root>

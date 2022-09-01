@@ -14,6 +14,7 @@ namespace Inv.DAL.Domain
     
     public partial class G_SearchFormModule
     {
+        public int id { get; set; }
         public string SystemCode { get; set; }
         public string SubSystemCode { get; set; }
         public string ModuleCode { get; set; }

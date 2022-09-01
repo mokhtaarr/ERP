@@ -58,8 +58,8 @@ namespace Inv.API.Controllers
                         if (detailes.module.Count() > 0)
                         {
                             G_SearchFormModule module = Service.Insert(detailes.module.FirstOrDefault());
-                            detailes.settings.FirstOrDefault().SearchFormCode = module.ModuleCode;
-                            detailes.ColumnSetting.ForEach(x => x.SearchFormCode = module.ModuleCode);
+                            detailes.settings.FirstOrDefault().SearchFormCode = module.SearchFormCode;
+                            detailes.ColumnSetting.ForEach(x => x.SearchFormCode = module.SearchFormCode);
                             
                             if (detailes.ColumnSetting.Count() > 0)
                                 Service.InsertList(detailes.ColumnSetting);
@@ -91,8 +91,8 @@ namespace Inv.API.Controllers
                     if (detailes.module.Count() > 0)
                     {
                         G_SearchFormModule module = Service.Update(detailes.module.FirstOrDefault());
-                        detailes.settings.ForEach(x => x.SearchFormCode = module.ModuleCode);
-                        detailes.ColumnSetting.ForEach(x => x.SearchFormCode = module.ModuleCode);
+                        detailes.settings.ForEach(x => x.SearchFormCode = module.SearchFormCode);
+                        detailes.ColumnSetting.ForEach(x => x.SearchFormCode = module.SearchFormCode);
 
                         if (detailes.settings.Count() > 0)
                             Service.UpdateSettings(detailes.settings);

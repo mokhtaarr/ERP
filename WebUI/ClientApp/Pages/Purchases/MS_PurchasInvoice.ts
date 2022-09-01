@@ -362,6 +362,7 @@ namespace PurchasInvoice {
     }
 
     function ValidationHeader() {
+        flag = true;
         if ($('#divDetailGrid').html() == '') {
             flag = false;
             MessageBox.Toastr(Resource.NumberOfItemsIsZero, Resource.Error, ToastrTypes.error);

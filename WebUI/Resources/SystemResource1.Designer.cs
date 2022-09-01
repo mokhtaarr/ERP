@@ -4534,6 +4534,15 @@ namespace Inv.WebUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Maximum image size is 3MB.
+        /// </summary>
+        public static string ErrorMaximumImage {
+            get {
+                return ResourceManager.GetString("ErrorMaximumImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error On Save.
         /// </summary>
         public static string ErrorOnSave {

@@ -3586,4 +3586,7 @@
   <data name="TotalDebtorMustEqualTotalCreditor" xml:space="preserve">
     <value>لحفظ المستند لابد اجمالى المدين  = اجمالى الدائن</value>
   </data>
+  <data name="ErrorMaximumImage" xml:space="preserve">
+    <value>اقصى حجم للصوره هو ٣  ميجا</value>
+  </data>
 </root>

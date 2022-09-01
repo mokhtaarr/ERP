@@ -184,9 +184,6 @@ namespace Search {
             {
                 title: Resource.App_SystemPage, css: "ColumPadding", name: "ModuleCode"
             },
-            //{
-            //    title: "كود الربط", css: "ColumPadding", name: "SearchFormCode"
-            //},
             {
                 title: Resource.App_SystemControl, css: "ColumPadding", name: "ControlCode"
             },

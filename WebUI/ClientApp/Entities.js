@@ -8327,6 +8327,7 @@ var MS_ItemImages = /** @class */ (function () {
         this.ImgDesc1 = "";
         this.ImgDesc2 = "";
         this.ImageStr = "";
+        this.StatusFlag = "";
     }
     return MS_ItemImages;
 }());

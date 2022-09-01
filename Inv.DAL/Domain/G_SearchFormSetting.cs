@@ -14,6 +14,7 @@ namespace Inv.DAL.Domain
     
     public partial class G_SearchFormSetting
     {
+        public int id { get; set; }
         public int SearchFormSettingID { get; set; }
         public string SearchFormCode { get; set; }
         public Nullable<byte> FieldSequence { get; set; }

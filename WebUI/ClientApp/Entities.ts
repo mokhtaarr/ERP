@@ -14439,6 +14439,7 @@ class MS_ItemImages {
         this.ImgDesc1 = "";
         this.ImgDesc2 = "";
         this.ImageStr = "";
+        this.StatusFlag = "";
     }
     public ImgId: number;
     public ItemCardId: number;
@@ -14446,6 +14447,7 @@ class MS_ItemImages {
     public ImgDesc1: string;
     public ImgDesc2: string;
     public ImageStr: string;
+    public StatusFlag: string;
 }
 
 class Prod_BasicUnits {

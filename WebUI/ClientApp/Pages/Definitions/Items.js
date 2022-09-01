@@ -95,26 +95,9 @@ var Items;
         FillDropdownItemType("ItemType");
     }
     Items_1.InitalizeComponent = InitalizeComponent;
-    function GetAll() {
-        EmptyDeletedList();
-        FillSelectOption();
-        Disabled(false);
-        Ajax.Callsync({
-            type: "GET",
-            url: sys.apiUrl("MS_ItemCard", "GetAll"),
-            success: function (d) {
-                var res = d;
-                if (res.IsSuccess) {
-                    ItemCards = res.Response;
-                    itemGrid.DataSource = ItemCards;
-                    itemGrid.Bind();
-                }
-            }
-        });
-    }
     function InitalizeControls() {
         SharedButtons.btnRefrash2 = document.getElementById("btnRefrash");
-        SharedButtons.btnSearch = document.getElementById("btnMS_ItemCardSearch");
+        SharedButtons.btnSearch = document.getElementById("btnItemsSearch");
         BasUnitId = document.getElementById("BasUnitId");
         fileInput = document.getElementById('ItemImages');
     }
@@ -124,7 +107,16 @@ var Items;
         // Listen for the change event so we can capture the file
         fileInput.addEventListener('change', function (e) {
             //imagesBase64 = [];
+            var allSize = 0;
             for (var i = 0; i < fileInput.files.length; i++) {
+                allSize += parseFloat(e.target.files[i].size);
+            }
+            for (var i = 0; i < fileInput.files.length; i++) {
+                var size = (allSize / 1024) / 1024;
+                if (size > 3) {
+                    MessageBox.Toastr(Resource.ErrorMaximumImage, "", ToastrTypes.error);
+                    return;
+                }
                 getBase64(fileInput.files[i]);
             }
         });
@@ -144,6 +136,23 @@ var Items;
         ObjectId = Model.ItemCardId;
         if (ObjectId != 0)
             GetByID(ObjectId);
+    }
+    function GetAll() {
+        EmptyDeletedList();
+        FillSelectOption();
+        Disabled(false);
+        Ajax.Callsync({
+            type: "GET",
+            url: sys.apiUrl("MS_ItemCard", "GetAll"),
+            success: function (d) {
+                var res = d;
+                if (res.IsSuccess) {
+                    ItemCards = res.Response;
+                    itemGrid.DataSource = ItemCards;
+                    itemGrid.Bind();
+                }
+            }
+        });
     }
     function GetByID(id) {
         Ajax.Callsync({
@@ -1289,7 +1298,7 @@ var Items;
     }
     function btnSearch_onclick() {
         var sys = new SystemTools();
-        sys.FindKey(Modules.DefBranches, SharedButtons.btnSearch.id, "", function () {
+        sys.FindKey(Modules.Items, SharedButtons.btnSearch.id, "", function () {
             var id = SearchGrid.SearchDataGrid.SelectedKey;
             if (!IsNullOrEmpty(id)) {
                 //GetMasterAndDetails(id.toString());
@@ -1858,6 +1867,8 @@ var Items;
         reader.onload = function () {
             var itemImage = new MS_ItemImages();
             itemImage.ImageStr = reader.result.toString();
+            //itemImage.StatusFlag = 'i';
+            //itemImage.StatusFlag = SharedWork.CurrentMode == ScreenModes.Add ? 'i' : SharedWork.CurrentMode == ScreenModes.Edit ? 'u' : '';
             //.replace('data:', '').replace(/^.+,/, '');
             ItemImages.push(itemImage);
             ready = true;
@@ -1868,6 +1879,7 @@ var Items;
         var imagesPre = document.getElementById("imagesPre");
         imagesPre.innerHTML = "";
         var _loop_1 = function () {
+            //let nameImage = SharedWork.CurrentMode == ScreenModes.Add ? ItemImages[i].ImageStr : ItemImages[i].Image,
             var nameImage = ItemImages[i].ImageStr, src = "";
             try {
                 src = nameImage.split('data:image/jpeg;base64,').length > 1 ? nameImage : $('#GetAPIUrl').val() + "/Uploads/Items/" + nameImage;

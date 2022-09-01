@@ -135,8 +135,8 @@ namespace Inv.API.Controllers
                     {
                         if (detailes.Model != null)
                         {
-                            if (detailes.ItemImages.Count > 0)
-                                DeleteOldImages(detailes.ItemImages[0].ItemCardId.Value, detailes.ItemImages);
+                            //if (detailes.ItemImages.Count > 0)
+                            DeleteOldImages(detailes.Model.ItemCardId, detailes.ItemImages);
 
                             SaveImageBase64(detailes.ItemImages);
                             
@@ -264,6 +264,8 @@ namespace Inv.API.Controllers
                         using (image = Image.FromStream(streamBitmap))
                         {
                             image.Save(fullPath);
+                            item.ImageStr = fileName;
+                            item.StatusFlag = 'i';
                         }
                     }
                 }
@@ -277,7 +279,7 @@ namespace Inv.API.Controllers
             }
         }
 
-        public void DeleteOldImages(int ItemCardId, List<MS_ItemImages> ItemImages)
+        public void DeleteOldImages(int? ItemCardId, List<MS_ItemImages> ItemImages)
         {
             List<MS_ItemImages> oldItemImages = Service.GetItemImages(x => x.ItemCardId == ItemCardId);
             //.Except(ItemImages).ToList();
@@ -294,9 +296,7 @@ namespace Inv.API.Controllers
 
                 string str = Path.Combine(HttpContext.Current.Server.MapPath("~/" + ConfigurationManager.AppSettings["UploadPath"] + "/Items/"), item.ImageStr);
                 if (File.Exists(str))
-                {
                     File.Delete(str);
-                }
             }
             Service.DeleteList(difItemImages);
             //var count = db.Database.SqlQuery<int>("delete from MS_ItemImages where ItemCardId in (" + deleteIds + ")");

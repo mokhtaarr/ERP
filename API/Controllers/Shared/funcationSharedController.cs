@@ -25,6 +25,7 @@ namespace Inv.API.Controllers
         private RedisCache redis = RedisCache.GetInstance();
         private G_USERSController G_USERS;
         private readonly ISharedService Service;
+
         public funcationSharedController(ISharedService _service, IG_USERSService G_USERSService, IG_USER_BRANCHService G_USER_BRANCHService)
         {
             this.Service = _service;
@@ -174,6 +175,7 @@ namespace Inv.API.Controllers
             return Ok(new BaseResponse(costCenters));
         }
 
+        [HttpGet, AllowAnonymous]
         public List<CustomDropDownUsers> GetAllUsers(string CompCode, string Token, string UserCode)
         {
             try
@@ -415,6 +417,7 @@ namespace Inv.API.Controllers
             return Ok(new BaseResponse(model));
         }
 
+        [HttpGet, AllowAnonymous]
         public static string ConvertDateCalendar(DateTime? DateConv, string Calendar = "Gregorian", string DateLangCulture = "en-US")
         {
             if (DateConv != null)
@@ -455,6 +458,7 @@ namespace Inv.API.Controllers
                 return "";
         }
 
+        [HttpGet, AllowAnonymous]
         public static DateTime ConvertToDate(string date, string format)
         {
             try
@@ -539,6 +543,7 @@ namespace Inv.API.Controllers
             return Ok(new BaseResponse(entities));
         }
 
+        [HttpGet, AllowAnonymous]
         public IHttpActionResult GetItems(string lang, string storeId)
         {
             List<MS_UserAuthentications> userAuthenticationss = redis.GetOrSetUserAuthentications(null);

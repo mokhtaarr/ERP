@@ -122,28 +122,9 @@ namespace Items {
         FillDropdownItemType("ItemType");
     }
 
-    function GetAll() {
-        EmptyDeletedList();
-        FillSelectOption();
-        Disabled(false);
-
-        Ajax.Callsync({
-            type: "GET",
-            url: sys.apiUrl("MS_ItemCard", "GetAll"),
-            success: (d) => {
-                let res = d as BaseResponse;
-                if (res.IsSuccess) {
-                    ItemCards = res.Response as Array<MS_ItemCard>;
-                    itemGrid.DataSource = ItemCards;
-                    itemGrid.Bind();
-                }
-            }
-        });
-    }
-
     function InitalizeControls() {
         SharedButtons.btnRefrash2 = document.getElementById("btnRefrash") as HTMLButtonElement;
-        SharedButtons.btnSearch = document.getElementById("btnMS_ItemCardSearch") as HTMLButtonElement;
+        SharedButtons.btnSearch = document.getElementById("btnItemsSearch") as HTMLButtonElement;
         BasUnitId = document.getElementById("BasUnitId") as HTMLSelectElement;
         fileInput = document.getElementById('ItemImages');
     }
@@ -155,7 +136,19 @@ namespace Items {
         // Listen for the change event so we can capture the file
         fileInput.addEventListener('change', (e) => {
             //imagesBase64 = [];
+            let allSize: number = 0;
             for (let i = 0; i < fileInput.files.length; i++) {
+                allSize += parseFloat(e.target.files[i].size);
+            }
+
+            for (let i = 0; i < fileInput.files.length; i++) {
+                
+                let size = (allSize / 1024) /1024;
+                if (size > 3) {
+                    MessageBox.Toastr(Resource.ErrorMaximumImage, "", ToastrTypes.error);
+                    return;
+                }
+
                 getBase64(fileInput.files[i]);
             }
         });
@@ -176,6 +169,25 @@ namespace Items {
         ObjectId = Model.ItemCardId;
         if (ObjectId != 0)
             GetByID(ObjectId);
+    }
+
+    function GetAll() {
+        EmptyDeletedList();
+        FillSelectOption();
+        Disabled(false);
+
+        Ajax.Callsync({
+            type: "GET",
+            url: sys.apiUrl("MS_ItemCard", "GetAll"),
+            success: (d) => {
+                let res = d as BaseResponse;
+                if (res.IsSuccess) {
+                    ItemCards = res.Response as Array<MS_ItemCard>;
+                    itemGrid.DataSource = ItemCards;
+                    itemGrid.Bind();
+                }
+            }
+        });
     }
 
     function GetByID(id: number) {
@@ -448,6 +460,7 @@ namespace Items {
         ];
         UnitsPricesGrid.Bind();
     }
+
 
     function UpdateUnitsPrices(e: JsGridUpdateEventArgs) {
         let item = e.Item as Ms_ItemUnit;
@@ -1430,7 +1443,7 @@ namespace Items {
 
     function btnSearch_onclick() {
         let sys: SystemTools = new SystemTools();
-        sys.FindKey(Modules.DefBranches, SharedButtons.btnSearch.id, "", () => {
+        sys.FindKey(Modules.Items, SharedButtons.btnSearch.id, "", () => {
             let id = SearchGrid.SearchDataGrid.SelectedKey;
             if (!IsNullOrEmpty(id)) {
                 //GetMasterAndDetails(id.toString());
@@ -2073,7 +2086,9 @@ namespace Items {
         reader.readAsDataURL(file);
         reader.onload = function () {
             let itemImage: MS_ItemImages = new MS_ItemImages();
-            itemImage.ImageStr = reader.result.toString()
+            itemImage.ImageStr = reader.result.toString();
+            //itemImage.StatusFlag = 'i';
+            //itemImage.StatusFlag = SharedWork.CurrentMode == ScreenModes.Add ? 'i' : SharedWork.CurrentMode == ScreenModes.Edit ? 'u' : '';
                 //.replace('data:', '').replace(/^.+,/, '');
             ItemImages.push(itemImage);
             ready = true;
@@ -2085,6 +2100,7 @@ namespace Items {
         let imagesPre = document.getElementById("imagesPre");
         imagesPre.innerHTML = "";
         for (var i = 0; i < ItemImages.length; i++) {
+            //let nameImage = SharedWork.CurrentMode == ScreenModes.Add ? ItemImages[i].ImageStr : ItemImages[i].Image,
             let nameImage = ItemImages[i].ImageStr,
                 src = "";
             try {
@@ -2114,7 +2130,6 @@ namespace Items {
     }
 
     function DeleteOldImage(id, src) {
-        
         let oldImage = $('#' + id);
         oldImage.parent().remove();
         ItemImages = ItemImages.filter(x => x.ImageStr != src);
