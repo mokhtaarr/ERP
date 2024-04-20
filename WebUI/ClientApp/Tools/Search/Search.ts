@@ -107,9 +107,7 @@ namespace Search {
             success: (d) => {
                 let result = d as BaseResponse;
                 if (result.IsSuccess) {
-                    MasterDetails = result.Response as MasterDetailsSearch;
-                    Models = MasterDetails.module;
-                    
+                    Models = result.Response as Array<G_SearchFormModule>;
                     divSearchGrid.DataSource = Models;
                     divSearchGrid.Bind();
                 }
@@ -117,17 +115,39 @@ namespace Search {
         });
     }
 
+    function GetByCode(code: string) {
+        Ajax.Callsync({
+            type: "GET",
+            url: sys.apiUrl("SySearch", "Get"),
+            data: {code: code},
+            success: (Response) => {
+                let result = Response as BaseResponse;
+                if (result.IsSuccess) {
+                    MasterDetails = result.Response as MasterDetailsSearch;
+                }
+                else {
+                    console.log(result.ErrorMessage);
+                }
+            }
+        });
+        return MasterDetails;
+    }
+
     function Display(Model: G_SearchFormModule) {
         DocumentActions.RenderFromModel(Model);
-        if (Model != null)
-        ObjectId = Model.ModuleCode;
-        SetDataSourceFroDetails(ObjectId);
-        DocumentActions.ConvertAll_InGridToSelect2("divColumnSettingGrid");
+        if (Model != null) {
+            ObjectId = Model.ModuleCode;
+            SetDataSourceFroDetails(ObjectId);
+            DocumentActions.ConvertAll_InGridToSelect2("divColumnSettingGrid");
+        }
     }
 
     function SetDataSourceFroDetails(code: string) {
         if (!IsNullOrEmpty(code)) {
-            Setting = MasterDetails.settings.filter(x => x.SearchFormCode == code)[0];
+
+            MasterDetails = GetByCode(code);
+            Setting = MasterDetails.settings;
+
             if (Setting != null) {
                 DocumentActions.RenderFromModel(Setting);
                 ReturnDataPropertyValue = Setting.ReturnDataPropertyName;
@@ -140,9 +160,12 @@ namespace Search {
 
             GetReturnDataPropertyName();
 
-            ColumnSetting = MasterDetails.ColumnSetting.filter(x => x.SearchFormCode == code);
-            divColumnSettingGrid.DataSource = ColumnSetting;
-            divColumnSettingGrid.Bind();
+            if (MasterDetails.ColumnSetting != null) {
+                ColumnSetting = MasterDetails.ColumnSetting.filter(x => x.SearchFormCode == code);
+                divColumnSettingGrid.DataSource = ColumnSetting;
+                divColumnSettingGrid.Bind();
+            } else
+                ColumnSetting = null;
         }
     }
 
@@ -461,7 +484,7 @@ namespace Search {
         Disabled(false);
         Success = false;
         if (ObjectId != null) {
-            Model = MasterDetails.module.filter(x => x.SearchFormCode == ObjectId)[0];
+            Model = Models.filter(x => x.SearchFormCode == ObjectId)[0];
             Display(Model)
         }
     }
@@ -526,16 +549,12 @@ namespace Search {
 
     function Assign() {
         MasterDetails = new MasterDetailsSearch();
-        MasterDetails.module = new Array<G_SearchFormModule>();
-        MasterDetails.settings = new Array<G_SearchForm>();
-
         Model = DocumentActions.AssignToModel<G_SearchFormModule>(Model);
         Model.SearchFormCode = Model.ModuleCode;
         Setting = DocumentActions.AssignToModel<G_SearchForm>(Setting);
-
         MasterDetails.ColumnSetting = ColumnSetting;
-        MasterDetails.module.push(Model);
-        MasterDetails.settings.push(Setting);
+        MasterDetails.module = Model;
+        MasterDetails.settings = Setting;
 
         if (StatusFlag == "i") 
             Insert();

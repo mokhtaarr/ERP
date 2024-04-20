@@ -1300,8 +1300,8 @@ var Items;
         var sys = new SystemTools();
         sys.FindKey(Modules.Items, SharedButtons.btnSearch.id, "", function () {
             var id = SearchGrid.SearchDataGrid.SelectedKey;
-            if (!IsNullOrEmpty(id)) {
-                //GetMasterAndDetails(id.toString());
+            if (!IsNullOrEmpty(id.toString())) {
+                GetByID(id);
             }
         });
     }

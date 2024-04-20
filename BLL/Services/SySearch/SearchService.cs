@@ -34,9 +34,9 @@ namespace Inv.BLL.Services.SySearch
             return unitOfWork.Repository<G_SearchFormModule>().Get(predicate);
         }
 
-        public G_SearchFormModule Insert(G_SearchFormModule entity)
+        public T Insert<T>(T entity) where T : class, new()
         {
-            var memb = unitOfWork.Repository<G_SearchFormModule>().Insert(entity);
+            var memb = unitOfWork.Repository<T>().Insert(entity);
             unitOfWork.Save();
             return memb;
         }
@@ -55,23 +55,9 @@ namespace Inv.BLL.Services.SySearch
             return memb;
         }
 
-        public void UpdateSettings(List<G_SearchForm> settings)
+        public void UpdateSettings(G_SearchForm settings)
         {
-            var insertedRecord = settings.Where(x => x.StatusFlag == 'i').ToList();
-            var updatedRecord = settings.Where(x => x.StatusFlag == 'u').ToList();
-            var deletedRecord = settings.Where(x => x.StatusFlag == 'd').ToList();
-
-            if (updatedRecord.Count() > 0)
-                unitOfWork.Repository<G_SearchForm>().Update(updatedRecord);
-
-            if (insertedRecord.Count() > 0)
-                unitOfWork.Repository<G_SearchForm>().Insert(insertedRecord);
-
-            if (deletedRecord.Count() > 0)
-            {
-                foreach (var entity in deletedRecord)
-                    unitOfWork.Repository<G_SearchForm>().Delete(entity);
-            }
+            unitOfWork.Repository<G_SearchForm>().Update(settings);
             unitOfWork.Save();
         }
 
@@ -102,11 +88,11 @@ namespace Inv.BLL.Services.SySearch
             return null;
         }
         
-        public bool Delete(G_SearchFormModule module)
+        public bool Delete<T>(T entity) where T : class, new()
         {
             try
             {
-                unitOfWork.Repository<G_SearchFormModule>().Delete(module);
+                unitOfWork.Repository<T>().Delete(entity);
                 unitOfWork.Save();
                 return true;
             }

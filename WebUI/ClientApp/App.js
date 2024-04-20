@@ -18,6 +18,7 @@ var JsGridHeaderCenter = "JsGridHeaderCenter";
 var TransparentButton = "TransparentButton";
 var Modules = {
     //////////////////// Defination //////////////////////
+    MS_PrintBarCode: "MS_PrintBarCode",
     Home: "Home",
     Items: "Items",
     Ms_CustomerTypes: "Ms_CustomerTypes",

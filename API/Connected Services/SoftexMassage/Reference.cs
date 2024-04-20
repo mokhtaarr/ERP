@@ -31,7 +31,7 @@ namespace Inv.API.SoftexMassage {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://smsws.softexsw.info/ClientServices/")]
     public enum EnumMiniClientStatus {

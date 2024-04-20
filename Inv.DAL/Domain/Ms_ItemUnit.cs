@@ -68,5 +68,8 @@ namespace Inv.DAL.Domain
         public Nullable<decimal> X { get; set; }
         public Nullable<decimal> Y { get; set; }
         public Nullable<decimal> Z { get; set; }
+        public string EtaxUnitCode { get; set; }
+        public Nullable<bool> IsKarat { get; set; }
+        public Nullable<int> MainServerId { get; set; }
     }
 }

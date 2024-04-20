@@ -30,7 +30,7 @@ var HomeComponent;
                 else {
                     var result = JSON.parse(d);
                     if (result == null) {
-                        MessageBox.Show("Access denied", moduleCode);
+                        MessageBox.Show("denied", moduleCode);
                         return;
                     }
                     if (result.Access == true) {
@@ -428,6 +428,7 @@ var HomeComponent;
         $("#btnUSERS").click(function () { OpenPage(Modules.USERS); }); //
         $("#btnDefBranches").click(function () { OpenPage(Modules.DefBranches); });
         $("#btnCurrencyCategory").click(function () { OpenPage(Modules.CurrencyCategory); });
+        $("btnMS_PrintBarCode").click(function () { OpenPage(Modules.CurrencyCategory); });
         //8-9-2021 
         //$("#btnbranches").click(() => { OpenPage(Modules.branches); })
         /////////////////Start Definitions Pages ////////////////////

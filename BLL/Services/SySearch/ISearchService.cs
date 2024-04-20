@@ -14,12 +14,12 @@ namespace Inv.BLL.Services.SySearch
         G_SearchFormModule GetById(string code);
         List<G_SearchFormModule> GetAll();
         List<G_SearchFormModule> GetAll(Expression<Func<G_SearchFormModule, bool>> predicate);
-        G_SearchFormModule Insert(G_SearchFormModule entity);
+        T Insert<T>(T entitys) where T : class, new();
         List<T> InsertList<T>(List<T> entitys) where T : class, new();
         G_SearchFormModule Update(G_SearchFormModule entity);
-        void UpdateSettings(List<G_SearchForm> settings);
+        void UpdateSettings(G_SearchForm settings);
         void UpdateColumnSetting(List<G_SearchFormSetting> ColumnSetting);
-        bool Delete(G_SearchFormModule module);
+        bool Delete<T>(T entity) where T : class, new();
         List<T> DeleteList<T>(List<T> entitys) where T : class, new();
     }
 }

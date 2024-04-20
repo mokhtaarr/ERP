@@ -31,7 +31,7 @@ namespace Inv.DAL.RedisCache
         }
         public void SetConnection()
         {
-            conn = ConnectionMultiplexer.Connect(new ConfigurationOptions { AllowAdmin = true, EndPoints = { { "localhost", 6379 } } });
+            conn = ConnectionMultiplexer.Connect(new ConfigurationOptions { AllowAdmin = true, EndPoints = { { "localhost", 4540 } } });
         }
         public void SetContext()
         {

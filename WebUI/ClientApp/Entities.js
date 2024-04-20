@@ -6723,6 +6723,7 @@ var G_SearchFormModule = /** @class */ (function (_super) {
     __extends(G_SearchFormModule, _super);
     function G_SearchFormModule() {
         var _this = _super.call(this) || this;
+        _this.SearchFormModuleId = 0;
         _this.SystemCode = "";
         _this.SubSystemCode = "";
         _this.ModuleCode = "";
@@ -6736,8 +6737,8 @@ var G_SearchFormSetting = /** @class */ (function (_super) {
     __extends(G_SearchFormSetting, _super);
     function G_SearchFormSetting() {
         var _this = _super.call(this) || this;
-        _this.StatusFlag = "";
         _this.SearchFormSettingID = 0;
+        _this.StatusFlag = "";
         _this.SearchFormCode = "";
         _this.FieldSequence = 0;
         _this.DataMember = "";

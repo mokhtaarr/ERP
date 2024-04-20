@@ -1,0 +1,45 @@
+﻿@using Inv.WebUI.Resources
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+    ViewBag.Title = "فئات العملاء";
+}
+
+<div class="row bg-white p-3">
+    <div class="col-md-8 row">
+        <label class="col-md-1">@SystemResource.Code</label>
+        <div class="col-md-4">
+            <input id="CatCode" disabled name="CatCode" type="text" class="form-control input-sm text_Display" placeholder="@SystemResource.Code">
+        </div>
+
+        <div class="col-md-1">
+            <button type="button" class="src-btn btn btn-warning" id="btnMS_CustomerCategorySearch" name="btnSearch">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+
+        <div class="col-md-12 row mt-2">
+            <label class="col-md-2">@SystemResource.Name_Arabic</label>
+            <div class="col-md-4">
+                <input id="CatDescA" disabled name="CatDescA" type="text" class="form-control input-sm text_Display" placeholder="@SystemResource.Name_Arabic">
+            </div>
+
+            <label class="col-md-2">@SystemResource.Name_English</label>
+            <div class="col-md-4">
+                <input id="CatDescE" disabled name="CatDescE" type="text" class="form-control input-sm text_Display" placeholder="@SystemResource.Name_English">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <textarea id="Remarks" disabled name="Remarks" type="text" class="form-control">@SystemResource.Notes</textarea>
+    </div>
+</div>
+
+<div class="row mt-3 bg-white">
+    <div class="col-md-12 p-3">
+        <table data-main="mainTable" id="divCustomerCategoryGrid"></table>
+    </div>
+</div>
+
+<script src="~/ClientApp/Pages/Definitions/MS_CustomerCategory.js"></script>

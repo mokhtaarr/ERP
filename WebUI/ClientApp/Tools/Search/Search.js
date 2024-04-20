@@ -91,24 +91,42 @@ var Search;
             success: function (d) {
                 var result = d;
                 if (result.IsSuccess) {
-                    MasterDetails = result.Response;
-                    Models = MasterDetails.module;
+                    Models = result.Response;
                     divSearchGrid.DataSource = Models;
                     divSearchGrid.Bind();
                 }
             }
         });
     }
+    function GetByCode(code) {
+        Ajax.Callsync({
+            type: "GET",
+            url: sys.apiUrl("SySearch", "Get"),
+            data: { code: code },
+            success: function (Response) {
+                var result = Response;
+                if (result.IsSuccess) {
+                    MasterDetails = result.Response;
+                }
+                else {
+                    console.log(result.ErrorMessage);
+                }
+            }
+        });
+        return MasterDetails;
+    }
     function Display(Model) {
         DocumentActions.RenderFromModel(Model);
-        if (Model != null)
+        if (Model != null) {
             ObjectId = Model.ModuleCode;
-        SetDataSourceFroDetails(ObjectId);
-        DocumentActions.ConvertAll_InGridToSelect2("divColumnSettingGrid");
+            SetDataSourceFroDetails(ObjectId);
+            DocumentActions.ConvertAll_InGridToSelect2("divColumnSettingGrid");
+        }
     }
     function SetDataSourceFroDetails(code) {
         if (!IsNullOrEmpty(code)) {
-            Setting = MasterDetails.settings.filter(function (x) { return x.SearchFormCode == code; })[0];
+            MasterDetails = GetByCode(code);
+            Setting = MasterDetails.settings;
             if (Setting != null) {
                 DocumentActions.RenderFromModel(Setting);
                 ReturnDataPropertyValue = Setting.ReturnDataPropertyName;
@@ -120,9 +138,13 @@ var Search;
                 DocumentActions.ConvertAll_InGridToSelect2("setting");
             }
             GetReturnDataPropertyName();
-            ColumnSetting = MasterDetails.ColumnSetting.filter(function (x) { return x.SearchFormCode == code; });
-            divColumnSettingGrid.DataSource = ColumnSetting;
-            divColumnSettingGrid.Bind();
+            if (MasterDetails.ColumnSetting != null) {
+                ColumnSetting = MasterDetails.ColumnSetting.filter(function (x) { return x.SearchFormCode == code; });
+                divColumnSettingGrid.DataSource = ColumnSetting;
+                divColumnSettingGrid.Bind();
+            }
+            else
+                ColumnSetting = null;
         }
     }
     function InitializeGrid() {
@@ -441,7 +463,7 @@ var Search;
         Disabled(false);
         Success = false;
         if (ObjectId != null) {
-            Model = MasterDetails.module.filter(function (x) { return x.SearchFormCode == ObjectId; })[0];
+            Model = Models.filter(function (x) { return x.SearchFormCode == ObjectId; })[0];
             Display(Model);
         }
     }
@@ -501,14 +523,12 @@ var Search;
     }
     function Assign() {
         MasterDetails = new MasterDetailsSearch();
-        MasterDetails.module = new Array();
-        MasterDetails.settings = new Array();
         Model = DocumentActions.AssignToModel(Model);
         Model.SearchFormCode = Model.ModuleCode;
         Setting = DocumentActions.AssignToModel(Setting);
         MasterDetails.ColumnSetting = ColumnSetting;
-        MasterDetails.module.push(Model);
-        MasterDetails.settings.push(Setting);
+        MasterDetails.module = Model;
+        MasterDetails.settings = Setting;
         if (StatusFlag == "i")
             Insert();
         if (StatusFlag == "u") {

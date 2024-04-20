@@ -173,8 +173,8 @@ class CustomVendorUsers {
 }
 
 class MasterDetailsSearch {
-    public module: Array<G_SearchFormModule>;
-    public settings: Array<G_SearchForm>;
+    public module: G_SearchFormModule;
+    public settings: G_SearchForm;
     public ColumnSetting: Array<G_SearchFormSetting>;
 }
 

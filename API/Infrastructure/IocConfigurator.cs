@@ -63,6 +63,7 @@ using Inv.BLL.Services.SrVehicles;
 using Inv.BLL.Services.MsItemCard;
 using Inv.BLL.Services.ProdBasicUnits;
 using Inv.BLL.Services.Purchase.PurchasInvoice;
+using Inv.BLL.Services.MSPrintBrCode;
 
 namespace Inv.API.Infrastructure
 {
@@ -119,7 +120,7 @@ namespace Inv.API.Infrastructure
             container.RegisterType<IMS_CustomerService, MS_CustomerService>();
             container.RegisterType<IMS_VendorService, MS_VendorService>();
             container.RegisterType<IHr_EmployeesService, Hr_EmployeesService>();
-            container.RegisterType<IMS_CustomerCategoryService, MS_CustomerCategoryService>();
+            container.RegisterType<IMS_PrintBarCodeService, MS_PrintBarCodeService>();
             container.RegisterType<IHr_JobsService, Hr_JobsService>();
             container.RegisterType<IHr_DepartmentsService, Hr_DepartmentsService>();
             container.RegisterType<IMSGA_CityService, MSGA_CityService>();

@@ -216,7 +216,17 @@ namespace Inv.DAL.Repository
                 if (entity == null)
                     throw new ArgumentNullException(typeof(T).Name);
 
-                this.Entities.Remove(entity);
+                this.Entities.Attach(entity);
+                try
+                {
+                    this.Entities.Remove(entity);
+                }
+                catch
+                {
+                    this._context.Entry(entity).State = EntityState.Deleted;
+                }
+
+                //this.Entities.Remove(entity);
             }
             catch (DbEntityValidationException dbEx)
             {

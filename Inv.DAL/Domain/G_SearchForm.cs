@@ -14,7 +14,6 @@ namespace Inv.DAL.Domain
     
     public partial class G_SearchForm
     {
-        public int id { get; set; }
         public string SearchFormCode { get; set; }
         public string ReturnDataPropertyName { get; set; }
         public string Description { get; set; }

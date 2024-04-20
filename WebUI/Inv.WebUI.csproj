@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Inv.WebUI</RootNamespace>
     <AssemblyName>Inv.WebUI</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -4274,6 +4274,7 @@
     <Content Include="Views\Definitions\Items.cshtml" />
     <Content Include="Views\Definitions\BasicUnits.cshtml" />
     <Content Include="Views\Purchases\MS_PurchasInvoice.cshtml" />
+    <Content Include="Views\Definitions\MS_PrintBarCodeIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

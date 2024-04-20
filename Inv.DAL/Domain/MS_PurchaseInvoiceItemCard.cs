@@ -99,5 +99,22 @@ namespace Inv.DAL.Domain
         public Nullable<byte> RectSourceType { get; set; }
         public Nullable<int> AccountId { get; set; }
         public Nullable<int> RectSourceTypeId { get; set; }
+        public Nullable<int> StockRecItemCardId { get; set; }
+        public Nullable<decimal> ExecutedQty { get; set; }
+        public Nullable<decimal> QtyIUnit2 { get; set; }
+        public Nullable<decimal> ServicePrice { get; set; }
+        public Nullable<decimal> ProfitPrice { get; set; }
+        public Nullable<decimal> Kirat { get; set; }
+        public Nullable<int> VehicleId { get; set; }
+        public Nullable<decimal> QtyBeforDiscount { get; set; }
+        public Nullable<decimal> QtyDiscount { get; set; }
+        public Nullable<decimal> QualityDiscount { get; set; }
+        public Nullable<decimal> QualityValueDisc { get; set; }
+        public Nullable<decimal> QtyScalDiffrence { get; set; }
+        public Nullable<decimal> QtyScalDiffrenceValue { get; set; }
+        public byte[] LastUpdateTime { get; set; }
+        public Nullable<int> MainServerId { get; set; }
+        public Nullable<int> ServerUnitId { get; set; }
+        public Nullable<int> ServerItemCardId { get; set; }
     }
 }

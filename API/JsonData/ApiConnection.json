@@ -1,1 +1,12 @@
-[{"ConnectionNumber":1,"ServerName":".\\SQL2014","singleDb":"ERP","InitialCatalog":"ERP","IntegratedSecurity":false,"DbUserName":"sa","DbPassword":"123","providerName":"System.Data.SqlClient"}]
+[
+  {
+    "ConnectionNumber": 1,
+    "ServerName": "DESKTOP-V32V88M\\MOKHTAR",
+    "singleDb": "ERP2-4-2024",
+    "InitialCatalog": "ERP2-4-2024",
+    "IntegratedSecurity": false,
+    "DbUserName": "sa",
+    "DbPassword": "A271185b",
+    "providerName": "System.Data.SqlClient"
+  }
+]

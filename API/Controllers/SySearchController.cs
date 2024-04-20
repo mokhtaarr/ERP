@@ -22,21 +22,26 @@ namespace Inv.API.Controllers
         [HttpGet, AllowAnonymous]
         public IHttpActionResult GetAll()
         {
-            MasterDetailsSearch masterDetails = new MasterDetailsSearch();
-            masterDetails.module = Service.GetAll().OrderBy(x => x.ModuleCode).ToList();
-            masterDetails = GetAllDetails(masterDetails);
+            using (var dbTransaction = db.Database.BeginTransaction())
+            {
+                string query = @"select * from G_SearchFormModule Order By ModuleCode";
+                List<G_SearchFormModule> modules = db.Database.SqlQuery<G_SearchFormModule>(query).ToList();
+                return Ok(new BaseResponse(modules));
+            }
 
-            return Ok(new BaseResponse(masterDetails));
+            //List<G_SearchFormModule> modules = Service.GetAll().OrderBy(x => x.ModuleCode).ToList();
+            //return Ok(new BaseResponse(modules));
         }
 
         [HttpGet, AllowAnonymous]
-        public MasterDetailsSearch GetAllDetails(MasterDetailsSearch masterDetails)
+        public IHttpActionResult Get(string code)
         {
-            List<string> codes = masterDetails.module.Select(x => x.ModuleCode).ToList();
-            masterDetails.settings = Getsetting(codes);
-            masterDetails.ColumnSetting = GetColumnSetting(codes);
-
-            return masterDetails;
+            MasterDetailsSearch masterDetails = new MasterDetailsSearch()
+            {
+                settings = Getsetting(code),
+                ColumnSetting = GetColumnSetting(code)
+            };
+            return Ok(new BaseResponse(masterDetails));
         }
 
         [HttpGet, AllowAnonymous]
@@ -55,23 +60,23 @@ namespace Inv.API.Controllers
                 {
                     if (detailes != null)
                     {
-                        if (detailes.module.Count() > 0)
+                        if (detailes.module != null)
                         {
-                            G_SearchFormModule module = Service.Insert(detailes.module.FirstOrDefault());
-                            detailes.settings.FirstOrDefault().SearchFormCode = module.SearchFormCode;
+                            G_SearchFormModule module = Service.Insert(detailes.module);
+                            detailes.settings.SearchFormCode = module.SearchFormCode;
                             detailes.ColumnSetting.ForEach(x => x.SearchFormCode = module.SearchFormCode);
-                            
+
                             if (detailes.ColumnSetting.Count() > 0)
                                 Service.InsertList(detailes.ColumnSetting);
-                            if (detailes.settings.Count() > 0)
-                                Service.InsertList(detailes.settings);
+                            if (detailes.settings != null)
+                                Service.Insert(detailes.settings);
 
                             dbTransaction.Commit();
                             return Ok(new BaseResponse(detailes.module));
                         }
-                        return Ok(new BaseResponse(HttpStatusCode.ExpectationFailed));
+                        return Ok(new BaseResponse(HttpStatusCode.InternalServerError, "model is null"));
                     }
-                    else return Ok(new BaseResponse(HttpStatusCode.ExpectationFailed));
+                    else return Ok(new BaseResponse(HttpStatusCode.InternalServerError, "detailes is null"));
                 }
                 catch (Exception ex)
                 {
@@ -88,21 +93,25 @@ namespace Inv.API.Controllers
             {
                 try
                 {
-                    if (detailes.module.Count() > 0)
+                    if (detailes != null)
                     {
-                        G_SearchFormModule module = Service.Update(detailes.module.FirstOrDefault());
-                        detailes.settings.ForEach(x => x.SearchFormCode = module.SearchFormCode);
-                        detailes.ColumnSetting.ForEach(x => x.SearchFormCode = module.SearchFormCode);
+                        if (detailes.module != null)
+                        {
+                            G_SearchFormModule module = Service.Update(detailes.module);
+                            detailes.settings.SearchFormCode = module.SearchFormCode;
+                            detailes.ColumnSetting.ForEach(x => x.SearchFormCode = module.SearchFormCode);
 
-                        if (detailes.settings.Count() > 0)
-                            Service.UpdateSettings(detailes.settings);
-                        if (detailes.ColumnSetting.Count() > 0)
-                            Service.UpdateColumnSetting(detailes.ColumnSetting);
+                            if (detailes.settings != null)
+                                Service.UpdateSettings(detailes.settings);
+                            if (detailes.ColumnSetting.Count() > 0)
+                                Service.UpdateColumnSetting(detailes.ColumnSetting);
 
-                        dbTransaction.Commit();
-                        return Ok(new BaseResponse(detailes.module));
+                            dbTransaction.Commit();
+                            return Ok(new BaseResponse(detailes.module));
+                        }
+                        return Ok(new BaseResponse(HttpStatusCode.InternalServerError, "model is null"));
                     }
-                    return Ok(new BaseResponse(detailes.module));
+                    else return Ok(new BaseResponse(HttpStatusCode.InternalServerError, "detailes is null"));
                 }
                 catch (Exception ex)
                 {
@@ -119,17 +128,19 @@ namespace Inv.API.Controllers
             {
                 try
                 {
-                    G_SearchFormModule module = GetByCode(code);
-                    MasterDetailsSearch masterDetails = new MasterDetailsSearch() {module = new List<G_SearchFormModule>() };
-                    masterDetails.module.Add(module);
-                    MasterDetailsSearch detailes = GetAllDetails(masterDetails);
+                    MasterDetailsSearch detailes = new MasterDetailsSearch()
+                    {
+                        module = GetByCode(code),
+                        settings = Getsetting(code),
+                        ColumnSetting = GetColumnSetting(code)
+                    };
 
-                    if (detailes.settings.Count() > 0)
-                        Service.DeleteList(detailes.settings);
+                    if (detailes.settings != null)
+                        Service.Delete(detailes.settings);
                     if (detailes.ColumnSetting.Count() > 0)
                         Service.DeleteList(detailes.ColumnSetting);
 
-                    bool res = Service.Delete(module);
+                    bool res = Service.Delete(detailes.module);
                     dbTransaction.Commit();
                     return Ok(res);
                 }
@@ -143,16 +154,16 @@ namespace Inv.API.Controllers
 
 
         [HttpGet, AllowAnonymous]
-        public List<G_SearchForm> Getsetting(List<string> codes)
+        public G_SearchForm Getsetting(string code)
         {
-            List<G_SearchForm> setting = db.G_SearchForm.Where(x => codes.Contains(x.SearchFormCode)).ToList();
+            G_SearchForm setting = db.G_SearchForm.FirstOrDefault(x => x.SearchFormCode == code);
             return setting;
         }
 
         [HttpGet, AllowAnonymous]
-        public List<G_SearchFormSetting> GetColumnSetting(List<string> codes)
+        public List<G_SearchFormSetting> GetColumnSetting(string code)
         {
-            List<G_SearchFormSetting> ColumnSetting = db.G_SearchFormSetting.Where(x => codes.Contains(x.SearchFormCode)).ToList();
+            List<G_SearchFormSetting> ColumnSetting = db.G_SearchFormSetting.Where(x => x.SearchFormCode == code).ToList();
             return ColumnSetting;
         }
     }

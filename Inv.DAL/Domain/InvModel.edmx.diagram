@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="331a2ca0c71d4a2698019b0b4c70657e" Name="Diagram1" ZoomLevel="59">
+      <Diagram DiagramId="331a2ca0c71d4a2698019b0b4c70657e" Name="Diagram1" ZoomLevel="69">
         <EntityTypeShape EntityType="InvEntities.Cal_AccountChart" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="InvEntities.G_AlertControl" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="InvEntities.G_AlertLog" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
@@ -26,7 +26,6 @@
         <EntityTypeShape EntityType="InvEntities.G_Role" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="InvEntities.G_RoleModule" Width="1.5" PointX="14.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="InvEntities.G_RoleUsers" Width="1.5" PointX="14.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InvEntities.G_SearchForm" Width="1.5" PointX="14.75" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="InvEntities.G_SUB_SYSTEMS" Width="1.5" PointX="4.75" PointY="15.75" IsExpanded="true" />
         <EntityTypeShape EntityType="InvEntities.G_SYSTEM" Width="1.5" PointX="6.75" PointY="15.75" IsExpanded="true" />
         <EntityTypeShape EntityType="InvEntities.G_TransCounter" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
@@ -66,7 +65,6 @@
         <EntityTypeShape EntityType="InvEntities.Cod_AccountClassification" Width="1.5" PointX="26.375" PointY="13.75" />
         <EntityTypeShape EntityType="InvEntities.Ms_CustomerTypes" Width="1.5" PointX="26.375" PointY="18.75" />
         <EntityTypeShape EntityType="InvEntities.Ms_VendorTypes" Width="1.5" PointX="26.375" PointY="23.75" />
-        <EntityTypeShape EntityType="InvEntities.G_SearchFormModule" Width="1.5" PointX="27.375" PointY="0.75" />
         <EntityTypeShape EntityType="InvEntities.Ms_CusromerUsers" Width="1.5" PointX="27.375" PointY="3.75" />
         <EntityTypeShape EntityType="InvEntities.Ms_CustImgs" Width="1.5" PointX="27.375" PointY="7.75" />
         <EntityTypeShape EntityType="InvEntities.MS_Customer" Width="1.5" PointX="28.375" PointY="10.75" />
@@ -552,7 +550,6 @@
         <EntityTypeShape EntityType="InvEntities.Tr_OpenningBalance" Width="1.5" PointX="90.75" PointY="10.75" />
         <EntityTypeShape EntityType="InvEntities.Tr_OpenningBalanceDetails" Width="1.5" PointX="90.75" PointY="15.75" />
         <EntityTypeShape EntityType="InvEntities.YearMonthes" Width="1.5" PointX="90.75" PointY="18.75" />
-        <EntityTypeShape EntityType="InvEntities.G_SearchFormSetting" Width="1.5" PointX="0.75" PointY="15.75" />
         <EntityTypeShape EntityType="InvEntities.MS_Vendor" Width="1.5" PointX="19.75" PointY="91.75" />
         <EntityTypeShape EntityType="InvEntities.Hr_Employees" Width="1.5" PointX="85.375" PointY="90.75" />
         <EntityTypeShape EntityType="InvEntities.Cal_Clauses" Width="1.5" PointX="40.375" PointY="58.75" />
@@ -560,6 +557,9 @@
         <EntityTypeShape EntityType="InvEntities.G_USERS" Width="1.5" PointX="40.375" PointY="73.75" />
         <EntityTypeShape EntityType="InvEntities.MS_Taxes" Width="1.5" PointX="31.375" PointY="90.75" />
         <EntityTypeShape EntityType="InvEntities.MS_ItemImages" Width="1.5" PointX="0.75" PointY="29.75" />
+        <EntityTypeShape EntityType="InvEntities.G_SearchForm" Width="1.5" PointX="0.75" PointY="15.75" />
+        <EntityTypeShape EntityType="InvEntities.G_SearchFormSetting" Width="1.5" PointX="91.75" PointY="22.75" />
+        <EntityTypeShape EntityType="InvEntities.G_SearchFormModule" Width="1.5" PointX="40.375" PointY="63.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

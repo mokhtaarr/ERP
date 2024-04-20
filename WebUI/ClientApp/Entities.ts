@@ -11449,12 +11449,14 @@ class G_SearchForm extends SecurityClass {
 class G_SearchFormModule extends SecurityClass {
     constructor() {
         super();
+        this.SearchFormModuleId = 0;
         this.SystemCode = "";
         this.SubSystemCode = "";
         this.ModuleCode = "";
         this.ControlCode = "";
         this.SearchFormCode = "";
     }
+    public SearchFormModuleId: number;
     public SystemCode: string;
     public SubSystemCode: string;
     public ModuleCode: string;
@@ -11465,8 +11467,8 @@ class G_SearchFormModule extends SecurityClass {
 class G_SearchFormSetting extends SecurityClass {
     constructor() {
         super();
-        this.StatusFlag = "";
         this.SearchFormSettingID = 0;
+        this.StatusFlag = "";
         this.SearchFormCode = "";
         this.FieldSequence = 0;
         this.DataMember = "";
@@ -11480,8 +11482,8 @@ class G_SearchFormSetting extends SecurityClass {
         this.FieldTitleA = "";
         this.IsSearchable = false;
     }
-    public StatusFlag: string;
     public SearchFormSettingID: number;
+    public StatusFlag: string;
     public SearchFormCode: string;
     public FieldSequence: number;
     public DataMember: string;

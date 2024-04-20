@@ -48,7 +48,6 @@ namespace Inv.DAL.Domain
         public virtual DbSet<G_Role> G_Role { get; set; }
         public virtual DbSet<G_RoleModule> G_RoleModule { get; set; }
         public virtual DbSet<G_RoleUsers> G_RoleUsers { get; set; }
-        public virtual DbSet<G_SearchForm> G_SearchForm { get; set; }
         public virtual DbSet<G_SUB_SYSTEMS> G_SUB_SYSTEMS { get; set; }
         public virtual DbSet<G_SYSTEM> G_SYSTEM { get; set; }
         public virtual DbSet<G_TransCounter> G_TransCounter { get; set; }
@@ -88,7 +87,6 @@ namespace Inv.DAL.Domain
         public virtual DbSet<Cod_AccountClassification> Cod_AccountClassification { get; set; }
         public virtual DbSet<Ms_CustomerTypes> Ms_CustomerTypes { get; set; }
         public virtual DbSet<Ms_VendorTypes> Ms_VendorTypes { get; set; }
-        public virtual DbSet<G_SearchFormModule> G_SearchFormModule { get; set; }
         public virtual DbSet<Ms_CusromerUsers> Ms_CusromerUsers { get; set; }
         public virtual DbSet<Ms_CustImgs> Ms_CustImgs { get; set; }
         public virtual DbSet<MS_Customer> MS_Customer { get; set; }
@@ -574,7 +572,6 @@ namespace Inv.DAL.Domain
         public virtual DbSet<Tr_OpenningBalance> Tr_OpenningBalance { get; set; }
         public virtual DbSet<Tr_OpenningBalanceDetails> Tr_OpenningBalanceDetails { get; set; }
         public virtual DbSet<YearMonthes> YearMonthes { get; set; }
-        public virtual DbSet<G_SearchFormSetting> G_SearchFormSetting { get; set; }
         public virtual DbSet<MS_Vendor> MS_Vendor { get; set; }
         public virtual DbSet<Hr_Employees> Hr_Employees { get; set; }
         public virtual DbSet<Cal_Clauses> Cal_Clauses { get; set; }
@@ -582,6 +579,9 @@ namespace Inv.DAL.Domain
         public virtual DbSet<G_USERS> G_USERS { get; set; }
         public virtual DbSet<MS_Taxes> MS_Taxes { get; set; }
         public virtual DbSet<MS_ItemImages> MS_ItemImages { get; set; }
+        public virtual DbSet<G_SearchForm> G_SearchForm { get; set; }
+        public virtual DbSet<G_SearchFormSetting> G_SearchFormSetting { get; set; }
+        public virtual DbSet<G_SearchFormModule> G_SearchFormModule { get; set; }
     
         public virtual int G_ProcessTrans(Nullable<int> comp, Nullable<int> branch, string trType, string opMode, Nullable<int> trID, ObjectParameter trNo, ObjectParameter ok)
         {
@@ -608,17 +608,17 @@ namespace Inv.DAL.Domain
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("G_ProcessTrans", compParameter, branchParameter, trTypeParameter, opModeParameter, trIDParameter, trNo, ok);
         }
     
-        [DbFunction("Entities", "GFun_Companies")]
+        [DbFunction("InvEntities", "GFun_Companies")]
         public virtual IQueryable<GFun_Companies_Result> GFun_Companies(string userCode)
         {
             var userCodeParameter = userCode != null ?
                 new ObjectParameter("userCode", userCode) :
                 new ObjectParameter("userCode", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GFun_Companies_Result>("[Entities].[GFun_Companies](@userCode)", userCodeParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GFun_Companies_Result>("[InvEntities].[GFun_Companies](@userCode)", userCodeParameter);
         }
     
-        [DbFunction("Entities", "GFun_UserCompanyBranch")]
+        [DbFunction("InvEntities", "GFun_UserCompanyBranch")]
         public virtual IQueryable<GFun_UserCompanyBranch_Result> GFun_UserCompanyBranch(string userCode, Nullable<int> compCode)
         {
             var userCodeParameter = userCode != null ?
@@ -629,10 +629,10 @@ namespace Inv.DAL.Domain
                 new ObjectParameter("CompCode", compCode) :
                 new ObjectParameter("CompCode", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GFun_UserCompanyBranch_Result>("[Entities].[GFun_UserCompanyBranch](@userCode, @CompCode)", userCodeParameter, compCodeParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GFun_UserCompanyBranch_Result>("[InvEntities].[GFun_UserCompanyBranch](@userCode, @CompCode)", userCodeParameter, compCodeParameter);
         }
     
-        [DbFunction("Entities", "GFunc_GetPrivilage")]
+        [DbFunction("InvEntities", "GFunc_GetPrivilage")]
         public virtual IQueryable<GFunc_GetPrivilage_Result> GFunc_GetPrivilage(Nullable<int> year, Nullable<int> comp, Nullable<int> bra, string user, string sys, string mod)
         {
             var yearParameter = year.HasValue ?
@@ -659,10 +659,10 @@ namespace Inv.DAL.Domain
                 new ObjectParameter("Mod", mod) :
                 new ObjectParameter("Mod", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GFunc_GetPrivilage_Result>("[Entities].[GFunc_GetPrivilage](@year, @Comp, @bra, @user, @Sys, @Mod)", yearParameter, compParameter, braParameter, userParameter, sysParameter, modParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GFunc_GetPrivilage_Result>("[InvEntities].[GFunc_GetPrivilage](@year, @Comp, @bra, @user, @Sys, @Mod)", yearParameter, compParameter, braParameter, userParameter, sysParameter, modParameter);
         }
     
-        [DbFunction("Entities", "GFunc_GetPrivilageRole")]
+        [DbFunction("InvEntities", "GFunc_GetPrivilageRole")]
         public virtual IQueryable<GFunc_GetPrivilageRole_Result> GFunc_GetPrivilageRole(Nullable<int> comp, Nullable<int> bra, string user, string sys, string sub, string mod)
         {
             var compParameter = comp.HasValue ?
@@ -689,7 +689,7 @@ namespace Inv.DAL.Domain
                 new ObjectParameter("Mod", mod) :
                 new ObjectParameter("Mod", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GFunc_GetPrivilageRole_Result>("[Entities].[GFunc_GetPrivilageRole](@Comp, @bra, @user, @Sys, @sub, @Mod)", compParameter, braParameter, userParameter, sysParameter, subParameter, modParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GFunc_GetPrivilageRole_Result>("[InvEntities].[GFunc_GetPrivilageRole](@Comp, @bra, @user, @Sys, @sub, @Mod)", compParameter, braParameter, userParameter, sysParameter, subParameter, modParameter);
         }
     
         public virtual ObjectResult<RptCustomerBalanceDetail_Result> RptCustomerBalanceDetail(string customerCodeFrom, string customerCodeTo, Nullable<decimal> custBalanceFrom, Nullable<decimal> custBalanceTo, Nullable<bool> custStatus, string catCodeFrom, string catCodeTo)

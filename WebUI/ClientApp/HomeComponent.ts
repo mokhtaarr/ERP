@@ -32,7 +32,7 @@ namespace HomeComponent {
                     let result = JSON.parse(d) as UserPrivilege;
 
                     if (result == null) {
-                        MessageBox.Show("Access denied", moduleCode);
+                        MessageBox.Show("denied", moduleCode);
                         return;
                     }
                     if (result.Access == true) {
@@ -455,6 +455,7 @@ namespace HomeComponent {
         $("#btnUSERS").click(() => { OpenPage(Modules.USERS); })//
         $("#btnDefBranches").click(() => { OpenPage(Modules.DefBranches); })
         $("#btnCurrencyCategory").click(() => { OpenPage(Modules.CurrencyCategory); })
+        $("btnMS_PrintBarCode").click(() => { OpenPage(Modules.CurrencyCategory); })
 
         //8-9-2021 
         //$("#btnbranches").click(() => { OpenPage(Modules.branches); })

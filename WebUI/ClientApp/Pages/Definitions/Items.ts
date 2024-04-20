@@ -1445,8 +1445,8 @@ namespace Items {
         let sys: SystemTools = new SystemTools();
         sys.FindKey(Modules.Items, SharedButtons.btnSearch.id, "", () => {
             let id = SearchGrid.SearchDataGrid.SelectedKey;
-            if (!IsNullOrEmpty(id)) {
-                //GetMasterAndDetails(id.toString());
+            if (!IsNullOrEmpty(id.toString())) {
+                GetByID(id);
             }
         });
     }

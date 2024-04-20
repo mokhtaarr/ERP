@@ -14,11 +14,11 @@ namespace Inv.DAL.Domain
     
     public partial class G_SearchFormModule
     {
-        public int id { get; set; }
         public string SystemCode { get; set; }
         public string SubSystemCode { get; set; }
         public string ModuleCode { get; set; }
         public string ControlCode { get; set; }
         public string SearchFormCode { get; set; }
+        public int SearchFormModuleId { get; set; }
     }
 }

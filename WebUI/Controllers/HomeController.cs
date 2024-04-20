@@ -205,6 +205,11 @@ namespace Inv.WebUI.Controllers
         {
             return View("~/Views/Definitions/MS_CustomerCategoryIndex.cshtml");
         }
+
+        public ActionResult MS_PrintBarCodeIndex()
+        {
+            return View("~/Views/Definitions/MS_PrintBarCodeIndex.cshtml");
+        }
         public ActionResult Ms_VendorTypesIndex()
         {
             return View("~/Views/Definitions/Ms_VendorTypesIndex.cshtml");
